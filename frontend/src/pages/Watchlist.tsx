@@ -7,7 +7,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
-import { fetchProperties } from "../services/data";
+import { fetchPropertiesByIds } from "../services/data";
 import {
   computeAlerts,
   getWatchlist,
@@ -26,8 +26,7 @@ import { Img } from "../components/Img";
 import { ErrorState, Loading } from "../components/States";
 
 export function Watchlist() {
-  const { loading, error, data: properties, reload } = useAsync(fetchProperties, []);
-  const [watch, setWatch] = useState<WatchMap>({});
+  const [watch, setWatch] = useState<WatchMap>(() => getWatchlist());
 
   useEffect(() => {
     const sync = () => setWatch(getWatchlist());
@@ -40,10 +39,17 @@ export function Watchlist() {
     };
   }, []);
 
+  const ids = Object.keys(watch);
+  // Load only the tracked properties (one small file each), refetching when the
+  // set of watched ids changes.
+  const { loading, error, data: properties, reload } = useAsync(
+    () => fetchPropertiesByIds(ids),
+    [ids.join(",")],
+  );
+
   if (loading && !properties) return <Loading label="Loading watchlist…" />;
   if (error) return <ErrorState error={error} onRetry={reload} />;
 
-  const ids = Object.keys(watch);
   const rows = (properties ?? []).filter((p) => ids.includes(p.id));
 
   if (rows.length === 0) {

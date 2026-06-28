@@ -1,0 +1,154 @@
+/* ════════════════════════════════════════════════════════════════
+   Property card-grid view (SeLoger / Bien'ici style)
+   Uses only the light cold-blue theme tokens from index.css :root.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ---- View toggle (Cards / Table) ---- */
+.view-toggle {
+  display: inline-flex;
+  margin-left: auto;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: var(--surface);
+}
+.view-toggle button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--border);
+  cursor: pointer;
+  transition: background .12s, color .12s;
+}
+.view-toggle button:last-child { border-right: none; }
+.view-toggle button:hover { color: var(--primary-text); background: var(--surface-2); }
+.view-toggle button.on {
+  background: var(--primary-soft);
+  color: var(--primary-text);
+}
+
+/* ---- The grid ---- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 16px;
+}
+
+.card-grid-note {
+  margin: 14px 2px 0;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+/* ---- A single card ---- */
+.property-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  color: var(--text);
+  text-decoration: none;
+  transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+}
+.property-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+}
+.property-card.is-inactive { opacity: 0.62; }
+
+/* ---- Photo + overlays ---- */
+.property-card-photo {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--surface-inset);
+}
+.property-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: var(--r-md);
+  border-top-right-radius: var(--r-md);
+  display: block;
+}
+.property-card-badge {
+  position: absolute;
+  top: 9px;
+  left: 9px;
+}
+.property-card-badge .badge {
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow-sm);
+}
+.property-card-dpe {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  box-shadow: var(--shadow-sm);
+}
+.property-card-score {
+  position: absolute;
+  bottom: 9px;
+  left: 9px;
+  display: inline-grid;
+  place-items: center;
+  min-width: 26px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: var(--r-pill);
+  color: #fff;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---- Body ---- */
+.property-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 13px 14px 15px;
+}
+.property-card-price {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 23px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  line-height: 1.1;
+}
+.property-card-meta {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.property-card-foot {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 3px;
+}
+.property-card-yield {
+  flex: 0 0 auto;
+  font-weight: 700;
+  font-size: 12.5px;
+}
+.property-card-address {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+}

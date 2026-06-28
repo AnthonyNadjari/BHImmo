@@ -364,7 +364,7 @@ h2 { font-size: 15px; font-weight: 640; letter-spacing: -0.01em; margin: 0 0 12p
 
 .gallery-card { padding: 10px; }
 .gallery { display: flex; flex-direction: column; gap: 8px; }
-.gallery-main { width: 100%; height: 380px; object-fit: cover; border-radius: var(--r-md); background: var(--bg-subtle); display: block; }
+.gallery-main { width: 100%; aspect-ratio: 16 / 10; height: auto; object-fit: cover; border-radius: var(--r-md); background: var(--bg-subtle); display: block; }
 .gallery-strip { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
 .gallery-thumb { border: 2px solid transparent; border-radius: var(--r-xs); padding: 0; background: none; cursor: pointer; line-height: 0; flex: 0 0 auto; overflow: hidden; }
 .gallery-thumb img, .gallery-thumb .img-fallback { width: 84px; height: 60px; object-fit: cover; display: block; }
@@ -376,7 +376,7 @@ h2 { font-size: 15px; font-weight: 640; letter-spacing: -0.01em; margin: 0 0 12p
 
 /* ---- Detail hero (photo-led) ---- */
 .detail-hero { display: grid; grid-template-columns: 1.7fr 1fr; gap: 18px; margin-bottom: 18px; align-items: start; }
-.detail-hero-media .gallery-main { height: 340px; }
+.detail-hero-media .gallery-main { aspect-ratio: 16 / 10; height: auto; }
 .detail-hero-info { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); box-shadow: var(--shadow-sm); padding: 20px; display: flex; flex-direction: column; gap: 12px; }
 .detail-hero-info h1 { font-size: 21px; line-height: 1.25; }
 .detail-hero-info .status-pill { align-self: flex-start; margin-left: 0; }
@@ -401,13 +401,11 @@ h2 { font-size: 15px; font-weight: 640; letter-spacing: -0.01em; margin: 0 0 12p
 @media (max-width: 980px) {
   .kpi-strip { grid-template-columns: repeat(2, 1fr); }
   .detail-hero { grid-template-columns: 1fr; }
-  .detail-hero-media .gallery-main { height: 300px; }
 }
 @media (max-width: 860px) {
   .detail-grid { grid-template-columns: 1fr; }
   .card.span-2 { grid-column: span 1; }
   .map-layout { grid-template-columns: 1fr; }
-  .gallery-main { height: 260px; }
 }
 @media (max-width: 720px) {
   /* Dense tables scroll horizontally inside .table-scroll on small screens. */

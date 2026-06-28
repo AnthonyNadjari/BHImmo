@@ -39,8 +39,10 @@ const POOL: string[] = [
   "1600607687939-ce8a6c25118c",
 ];
 
-function unsplash(id: string, width: number, quality = 62): string {
-  return `https://images.unsplash.com/photo-${id}?w=${width}&q=${quality}&auto=format&fit=crop`;
+function unsplash(id: string, width: number, height: number, quality = 62): string {
+  // Serve at a defined aspect ratio so the UI's object-fit:cover shows the
+  // whole framed photo instead of an awkward crop.
+  return `https://images.unsplash.com/photo-${id}?w=${width}&h=${height}&q=${quality}&auto=format&fit=crop&crop=entropy`;
 }
 
 export interface ImageSet {
@@ -59,7 +61,8 @@ export function imageSet(id: string, count = 5): ImageSet {
   }
   const picks = pool.slice(0, count);
   return {
-    images: picks.map((p) => unsplash(p, 1100, 66)),
-    thumb: unsplash(picks[0]!, 400, 55),
+    // 16:10 landscape — matches the gallery hero and the card-grid thumbnails.
+    images: picks.map((p) => unsplash(p, 1200, 750, 66)),
+    thumb: unsplash(picks[0]!, 480, 300, 55),
   };
 }

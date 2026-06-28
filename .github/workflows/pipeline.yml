@@ -40,7 +40,10 @@ jobs:
 
       - name: Run pipeline
         env:
-          PRER_MODE: ${{ github.event.inputs.mode || 'hybrid' }}
+          # 'hybrid'/'live' source the universe from real DVF (Etalab) transactions;
+          # PER_ARR keeps the universe stable across runs (matches committed data).
+          PRER_MODE: ${{ github.event.inputs.mode || 'live' }}
+          PRER_DVF_PER_ARR: "15"
         run: npm run pipeline
 
       - name: Commit updated dataset

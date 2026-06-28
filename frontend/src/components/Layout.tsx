@@ -44,9 +44,9 @@ export function Layout() {
         <Outlet />
       </main>
       <footer className="footer">
-        Open data: BAN · DVF (Etalab) · Géorisques · ADEME DPE · INSEE · OSM ·
-        data.education · Vélib' &amp; arbres (opendata.paris.fr). Synthetic listings,
-        deterministic pipeline. No live offer.
+        Live data: real Paris apartment transactions from DVF (Etalab), enriched with
+        BAN · ADEME DPE · INSEE · IDFM · OSM · data.education · Vélib' &amp; arbres
+        (opendata.paris.fr). Refreshed automatically via GitHub Actions.
       </footer>
     </div>
   );

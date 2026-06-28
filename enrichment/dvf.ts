@@ -13,24 +13,12 @@
  * reference price so the rest of the pipeline still has DVF context.
  */
 
-import { ENDPOINTS, fetchJson, type PipelineConfig } from "../shared/config.ts";
-import { haversineMeters, mean, round } from "../shared/geo.ts";
+import { type PipelineConfig } from "../shared/config.ts";
+import { mean, round } from "../shared/geo.ts";
 import { ARRONDISSEMENT_BY_CODE } from "../shared/paris.ts";
 import { SeededRandom } from "../shared/prng.ts";
+import { nearbyDvfComps } from "../scraper/dvf-source.ts";
 import type { ComparableSale, DvfStats } from "../shared/types.ts";
-
-interface DvfApiResult {
-  valeur_fonciere?: string | number;
-  surface_relle_bati?: string | number;
-  type_local?: string;
-  date_mutation?: string;
-  lat?: number;
-  lon?: number;
-}
-
-interface DvfApiResponse {
-  resultats?: DvfApiResult[];
-}
 
 interface Comparable extends ComparableSale {
   pricePerM2: number;
@@ -63,28 +51,12 @@ async function fetchLiveDvf(
   ctx: DvfContext,
   config: PipelineConfig,
 ): Promise<Comparable[] | null> {
-  const url = `${ENDPOINTS.dvf}?lat=${ctx.lat}&lon=${ctx.lng}&dist=500`;
-  const data = await fetchJson<DvfApiResponse>(url, config);
-  if (!data?.resultats) return null;
-
-  const comps: Comparable[] = [];
-  for (const r of data.resultats) {
-    if (r.type_local && !/appartement/i.test(r.type_local)) continue;
-    const price = Number(r.valeur_fonciere);
-    const surface = Number(r.surface_relle_bati);
-    if (!Number.isFinite(price) || !Number.isFinite(surface) || surface < 9) continue;
-    const ppm2 = price / surface;
-    if (ppm2 < 2000 || ppm2 > 40000) continue; // discard obvious outliers
-    if (r.lat == null || r.lon == null) continue;
-
-    comps.push({
-      price: round(price),
-      pricePerM2: round(ppm2),
-      date: (r.date_mutation ?? "").slice(0, 10),
-      distance_m: round(haversineMeters(ctx.lat, ctx.lng, r.lat, r.lon)),
-    });
-  }
-  return comps;
+  // Comparables come from the same real DVF transactions loaded at ingestion
+  // (geo-dvf flat files), so every property is scored against genuine nearby
+  // sales — available regardless of run mode, since the cache is real.
+  void config;
+  const comps = nearbyDvfComps(ctx.lat, ctx.lng, 500);
+  return comps.length ? comps : null;
 }
 
 function summarize(comps: Comparable[]): DvfStats {

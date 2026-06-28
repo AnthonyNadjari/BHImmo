@@ -20,6 +20,7 @@ import { ScoreBar } from "../components/ScoreBar";
 import { Badge } from "../components/Badge";
 import { Img } from "../components/Img";
 import { Icon } from "../components/Icon";
+import { PropertyCard } from "../components/PropertyCard";
 import { YieldCell } from "../components/YieldBadge";
 import { DataFreshness } from "../components/DataFreshness";
 import { ErrorState, TableSkeleton } from "../components/States";
@@ -43,6 +44,9 @@ interface SortState {
 }
 
 const MAX_COMPARE = 3;
+const MAX_CARDS = 60;
+
+type ViewMode = "cards" | "table";
 
 export function Dashboard() {
   const { loading, error, data, reload } = useAsync(fetchIndex, []);
@@ -56,6 +60,7 @@ export function Dashboard() {
   const [sort, setSort] = useState<SortState>({ key: "opportunity_score", dir: "desc" });
   const [selected, setSelected] = useState<string[]>([]);
   const [showCompare, setShowCompare] = useState(false);
+  const [view, setView] = useState<ViewMode>("cards");
 
   const entries = data?.properties ?? [];
 
@@ -204,9 +209,49 @@ export function Dashboard() {
         >
           <Icon name="clock" size={13} /> Long on market
         </button>
+        <div className="view-toggle" role="group" aria-label="View mode">
+          <button
+            type="button"
+            className={view === "cards" ? "on" : ""}
+            aria-pressed={view === "cards"}
+            onClick={() => setView("cards")}
+          >
+            ▦ Cards
+          </button>
+          <button
+            type="button"
+            className={view === "table" ? "on" : ""}
+            aria-pressed={view === "table"}
+            onClick={() => setView("table")}
+          >
+            ≣ Table
+          </button>
+        </div>
       </div>
 
-      <div className="table-scroll">
+      {view === "cards" ? (
+        <>
+          {filtered.length === 0 ? (
+            <p className="state" role="status">
+              No listings match these filters.
+            </p>
+          ) : (
+            <>
+              <div className="card-grid">
+                {filtered.slice(0, MAX_CARDS).map((e) => (
+                  <PropertyCard key={e.id} entry={e} />
+                ))}
+              </div>
+              {filtered.length > MAX_CARDS && (
+                <p className="card-grid-note" role="status">
+                  Showing {MAX_CARDS} of {filtered.length} — refine filters or switch to Table.
+                </p>
+              )}
+            </>
+          )}
+        </>
+      ) : (
+        <div className="table-scroll">
         <table className="data-table listings-table">
           <thead>
             <tr>
@@ -277,6 +322,7 @@ export function Dashboard() {
           </p>
         )}
       </div>
+      )}
 
       {selected.length > 0 && (
         <div className="compare-bar">

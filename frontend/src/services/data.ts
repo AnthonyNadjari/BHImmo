@@ -24,7 +24,7 @@ async function getJson<T>(name: string): Promise<T> {
 
 let indexPromise: Promise<IndexFile> | null = null;
 let marketPromise: Promise<MarketFile> | null = null;
-let propertiesPromise: Promise<Property[]> | null = null;
+const propertyCache = new Map<string, Promise<Property | undefined>>();
 
 /**
  * Drop the memoized datasets and force the next fetch to bypass all caches,
@@ -34,7 +34,7 @@ export function clearDataCache(): void {
   cacheBust = String(Date.now());
   indexPromise = null;
   marketPromise = null;
-  propertiesPromise = null;
+  propertyCache.clear();
 }
 
 export function fetchIndex(): Promise<IndexFile> {
@@ -45,13 +45,22 @@ export function fetchMarket(): Promise<MarketFile> {
   return (marketPromise ??= getJson<MarketFile>("market.json"));
 }
 
-export function fetchProperties(): Promise<Property[]> {
-  return (propertiesPromise ??= getJson<{ properties: Property[] }>(
-    "properties.json",
-  ).then((f) => f.properties));
+/**
+ * Fetch a single property by id from its own file (`data/property/<id>.json`).
+ * At scale this loads one small record instead of the whole dataset. Returns
+ * undefined if the property doesn't exist (404).
+ */
+export function fetchProperty(id: string): Promise<Property | undefined> {
+  let p = propertyCache.get(id);
+  if (!p) {
+    p = getJson<Property>(`property/${encodeURIComponent(id)}.json`).catch(() => undefined);
+    propertyCache.set(id, p);
+  }
+  return p;
 }
 
-export async function fetchProperty(id: string): Promise<Property | undefined> {
-  const all = await fetchProperties();
-  return all.find((p) => p.id === id);
+/** Resolve several properties by id (used by the watchlist). */
+export async function fetchPropertiesByIds(ids: string[]): Promise<Property[]> {
+  const all = await Promise.all(ids.map((id) => fetchProperty(id)));
+  return all.filter((p): p is Property => p !== undefined);
 }

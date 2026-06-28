@@ -216,12 +216,12 @@ export function PropertyDetail() {
       </div>
 
       <p className="muted source-note">
-        Source: {p.source}
+        Source: {p.source === "dvf" ? "DVF · Etalab (real transaction)" : "Synthetic (demo)"}
         {p.url && /^https?:\/\//i.test(p.url) && isReachableUrl(p.url) ? (
           <>
             {" · "}
             <a href={p.url} target="_blank" rel="noreferrer noopener">
-              original listing ↗
+              {p.source === "dvf" ? "explore on the DVF map ↗" : "original listing ↗"}
             </a>
           </>
         ) : (
