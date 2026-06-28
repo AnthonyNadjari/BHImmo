@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Build output
+dist/
+frontend/dist/
+frontend/public/data/
+
+# Pipeline working state (kept out of git; canonical state lives in /data)
+.cache/
+*.log
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.local
+
+# Env
+.env
+.env.*
+!.env.example

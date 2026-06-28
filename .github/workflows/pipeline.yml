@@ -1,0 +1,56 @@
+name: Data pipeline
+
+# Refreshes the dataset and commits the updated JSON back to the repo.
+# Scheduled every 6 hours (GitHub runs cron from the default branch only),
+# plus manual dispatch on any branch.
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Pipeline mode (hybrid uses real APIs with fallback)"
+        type: choice
+        options: [hybrid, mock, live]
+        default: hybrid
+
+# Never run two pipeline updates concurrently on the same branch.
+concurrency:
+  group: pipeline-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install pipeline dependencies
+        run: npm ci
+
+      - name: Run pipeline
+        env:
+          PRER_MODE: ${{ github.event.inputs.mode || 'hybrid' }}
+        run: npm run pipeline
+
+      - name: Commit updated dataset
+        run: |
+          git config user.name "prer-bot"
+          git config user.email "prer-bot@users.noreply.github.com"
+          if [ -n "$(git status --porcelain data)" ]; then
+            git add data
+            git commit -m "data: scheduled refresh $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push origin HEAD:${{ github.ref_name }}
+          else
+            echo "No dataset changes to commit."
+          fi

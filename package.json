@@ -1,0 +1,25 @@
+{
+  "name": "paris-real-estate-radar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Paris Real Estate Radar (P.R.E.R) — opportunity scanner for Paris intra-muros real estate. Static frontend on GitHub Pages, data pipeline on GitHub Actions.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "pipeline": "tsx pipeline/run.ts",
+    "pipeline:mock": "PRER_MODE=mock tsx pipeline/run.ts",
+    "pipeline:live": "PRER_MODE=live tsx pipeline/run.ts",
+    "pipeline:hybrid": "PRER_MODE=hybrid tsx pipeline/run.ts",
+    "typecheck": "tsc --noEmit",
+    "seed": "PRER_MODE=mock PRER_SEED_RUNS=8 tsx pipeline/seed.ts"
+  },
+  "dependencies": {
+    "tsx": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

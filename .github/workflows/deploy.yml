@@ -1,0 +1,70 @@
+name: Deploy frontend to GitHub Pages
+
+# Builds the static React app (bundling the latest committed dataset) and
+# publishes it to GitHub Pages. Triggers on:
+#   - pushes that touch the frontend or the dataset,
+#   - completion of the data pipeline (so fresh data redeploys automatically),
+#   - manual dispatch.
+on:
+  push:
+    branches:
+      - main
+      - claude/paris-real-estate-radar-apil7n
+    paths:
+      - "frontend/**"
+      - "data/**"
+      - ".github/workflows/deploy.yml"
+  workflow_run:
+    workflows: ["Data pipeline"]
+    types: [completed]
+  workflow_dispatch:
+
+# Allow one concurrent deployment; let a newer one supersede an in-flight one.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build (base path = /<repo>/)
+        working-directory: frontend
+        env:
+          PRER_BASE: /${{ github.event.repository.name }}/
+        run: npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
