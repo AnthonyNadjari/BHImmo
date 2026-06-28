@@ -22,12 +22,12 @@ export function Layout() {
   return (
     <div className="app">
       <header className="topbar">
-        <Link to="/" className="brand" aria-label="Paris Real Estate Radar — home">
+        <Link to="/" className="brand" aria-label="BHImmobilier — home">
           <span className="brand-mark">
             <Icon name="radar" size={20} strokeWidth={2} />
           </span>
-          <span className="brand-name">Paris Real Estate Radar</span>
-          <span className="brand-tag">PRER</span>
+          <span className="brand-name">BHImmobilier</span>
+          <span className="brand-tag">PARIS RADAR</span>
         </Link>
         <nav className="nav">
           <NavLink to="/" end>
