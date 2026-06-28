@@ -7,10 +7,10 @@ interface Risk {
 }
 
 function level(v: number): { text: string; color: string } {
-  if (v >= 0.66) return { text: "High", color: "#c0392b" };
-  if (v >= 0.4) return { text: "Moderate", color: "#b5651d" };
-  if (v >= 0.2) return { text: "Low", color: "#8a6d00" };
-  return { text: "Very low", color: "#0f7a4d" };
+  if (v >= 0.66) return { text: "High", color: "#ff5d52" };
+  if (v >= 0.4) return { text: "Moderate", color: "#f08a3c" };
+  if (v >= 0.2) return { text: "Low", color: "#e0a44a" };
+  return { text: "Very low", color: "#3ecf8e" };
 }
 
 export function RiskBars({

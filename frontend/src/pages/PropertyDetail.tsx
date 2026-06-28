@@ -181,9 +181,9 @@ export function PropertyDetail() {
             <MiniMap property={p} />
           </Suspense>
           <div className="minimap-legend">
-            <span><i style={{ background: "#34357a" }} /> Transport</span>
-            <span><i style={{ background: "#0f7a4d" }} /> Park</span>
-            <span><i style={{ background: "#0e8f8f" }} /> Vélib'</span>
+            <span><i style={{ background: "#e0a44a" }} /> Transport</span>
+            <span><i style={{ background: "#3ecf8e" }} /> Park</span>
+            <span><i style={{ background: "#34c6c6" }} /> Vélib'</span>
           </div>
         </div>
 
