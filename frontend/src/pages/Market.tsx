@@ -6,13 +6,20 @@
 
 import { useAsync } from "../hooks/useAsync";
 import { fetchMarket } from "../services/data";
-import { districtLabel, formatPercent, formatPerM2, scoreColor } from "../services/format";
+import { ErrorState, Loading } from "../components/States";
+import {
+  districtLabel,
+  formatNumber,
+  formatPercent,
+  formatPerM2,
+  scoreColor,
+} from "../services/format";
 
 export function Market() {
-  const { loading, error, data } = useAsync(fetchMarket, []);
+  const { loading, error, data, reload } = useAsync(fetchMarket, []);
 
-  if (loading) return <p className="state">Loading market model…</p>;
-  if (error) return <p className="state error">Failed to load: {error.message}</p>;
+  if (loading) return <Loading label="Loading market model…" />;
+  if (error) return <ErrorState error={error} onRetry={reload} />;
   if (!data) return null;
 
   const rows = [...data.arrondissements].sort(
@@ -39,6 +46,7 @@ export function Market() {
               <th>Arr.</th>
               <th>Name</th>
               <th>Listings</th>
+              <th>Density</th>
               <th>Avg €/m²</th>
               <th>Median €/m²</th>
               <th>DVF €/m²</th>
@@ -53,10 +61,11 @@ export function Market() {
                 <td>{districtLabel(r.district)}</td>
                 <td>{r.name}</td>
                 <td className="num">{r.listing_count}</td>
+                <td className="num">{formatNumber(r.density)}/km²</td>
                 <td className="num">{formatPerM2(r.avg_price_m2)}</td>
                 <td className="num">{formatPerM2(r.median_price_m2)}</td>
                 <td className="num">{formatPerM2(r.dvf_avg_price_m2)}</td>
-                <td className="num" style={{ color: r.trend_1y_percent < 0 ? "#b03a3a" : "#1a8a4a" }}>
+                <td className="num" style={{ color: r.trend_1y_percent < 0 ? "var(--bad)" : "var(--good)" }}>
                   {formatPercent(r.trend_1y_percent)}
                 </td>
                 <td className="num">

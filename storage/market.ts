@@ -16,6 +16,7 @@ import {
   round,
 } from "../shared/geo.ts";
 import { ARRONDISSEMENTS, CITY_AVG_PRICE_M2 } from "../shared/paris.ts";
+import { getInseeProfile } from "../enrichment/insee.ts";
 import type {
   MarketArrondissement,
   MarketFile,
@@ -53,6 +54,7 @@ export function buildMarket(
       district: arr.district,
       name: arr.name,
       listing_count: list.length,
+      density: getInseeProfile(arr.district).density,
       avg_price_m2: round(mean(ppm2)),
       median_price_m2: round(median(ppm2)),
       dvf_avg_price_m2: round(dvfRefs.length ? mean(dvfRefs) : arr.refPriceM2),

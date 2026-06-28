@@ -7,13 +7,15 @@ import { Link } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
 import { fetchIndex } from "../services/data";
 import { OpportunityScatter } from "../components/OpportunityScatter";
+import { Img } from "../components/Img";
+import { ErrorState, Loading } from "../components/States";
 import { districtLabel, formatEuro, scoreColor } from "../services/format";
 
 export function MapPage() {
-  const { loading, error, data } = useAsync(fetchIndex, []);
+  const { loading, error, data, reload } = useAsync(fetchIndex, []);
 
-  if (loading) return <p className="state">Loading map…</p>;
-  if (error) return <p className="state error">Failed to load: {error.message}</p>;
+  if (loading) return <Loading label="Loading map…" />;
+  if (error) return <ErrorState error={error} onRetry={reload} />;
 
   const active = (data?.properties ?? []).filter((e) => e.status === "active");
   const top = [...active]
@@ -29,27 +31,36 @@ export function MapPage() {
         </div>
       </div>
 
+      {active.length === 0 ? (
+        <div className="state">No active listings to map right now.</div>
+      ) : (
       <div className="map-layout">
         <div className="card">
           <OpportunityScatter entries={active} />
         </div>
         <div className="card">
           <h2>Top opportunities</h2>
-          <ol className="top-list">
+          <ul className="top-list">
             {top.map((e) => (
               <li key={e.id}>
-                <Link to={`/property/${e.id}`}>{e.address}</Link>
-                <span className="top-meta">
-                  {districtLabel(e.district)} · {formatEuro(e.current_price)}
-                </span>
+                <Link to={`/property/${e.id}`} className="top-thumb-link" aria-label={e.address}>
+                  <Img src={e.image} seed={e.id} alt="" className="top-thumb" />
+                </Link>
+                <div className="top-info">
+                  <Link to={`/property/${e.id}`}>{e.address}</Link>
+                  <span className="top-meta">
+                    {districtLabel(e.district)} · {formatEuro(e.current_price)}
+                  </span>
+                </div>
                 <span className="top-score" style={{ color: scoreColor(e.opportunity_score) }}>
                   {e.opportunity_score}
                 </span>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </div>
+      )}
     </section>
   );
 }

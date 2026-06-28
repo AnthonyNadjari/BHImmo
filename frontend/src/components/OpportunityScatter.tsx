@@ -68,10 +68,23 @@ export function OpportunityScatter({ entries }: { entries: IndexEntry[] }) {
               stroke="#fff"
               strokeWidth={0.6}
               className="scatter-dot"
+              role="button"
+              tabIndex={0}
+              aria-label={`${e.address}, score ${e.opportunity_score}`}
               onMouseEnter={() => setHover(e)}
               onMouseLeave={() => setHover(null)}
+              onFocus={() => setHover(e)}
+              onBlur={() => setHover(null)}
               onClick={() => navigate(`/property/${e.id}`)}
-            />
+              onKeyDown={(ev) => {
+                if (ev.key === "Enter" || ev.key === " ") {
+                  ev.preventDefault();
+                  navigate(`/property/${e.id}`);
+                }
+              }}
+            >
+              <title>{`${e.address} · score ${e.opportunity_score}`}</title>
+            </circle>
           );
         })}
       </svg>

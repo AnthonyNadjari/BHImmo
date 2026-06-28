@@ -72,6 +72,7 @@ function dvfGapScore(ppm2: number, ref: number): { score: number; gapPct: number
 /** Cheapness vs the arrondissement-wide reference price (displayed sub-score). */
 function priceScore(ppm2: number, district: string): number {
   const ref = ARRONDISSEMENT_BY_CODE.get(district)?.refPriceM2 ?? 10500;
+  if (ref <= 0) return 50;
   const gap = (ref - ppm2) / ref;
   return round(clamp(50 + gap * 220, 0, 100));
 }
@@ -97,7 +98,7 @@ function liquidityScore(
   const surfaceLiquidity =
     surface <= 35 ? 100 : surface <= 70 ? 80 : surface <= 110 ? 55 : 35;
   const ref = ARRONDISSEMENT_BY_CODE.get(district)?.refPriceM2 ?? 10500;
-  const demand = clamp(((ref - 8000) / (15500 - 8000)) * 100, 0, 100);
+  const demand = ref > 0 ? clamp(((ref - 8000) / (15500 - 8000)) * 100, 0, 100) : 50;
   return round(clamp(0.4 * transport + 0.3 * surfaceLiquidity + 0.3 * demand, 0, 100));
 }
 

@@ -110,6 +110,11 @@ export interface Property {
   /** Composite public-transport accessibility, 0–100. */
   transport_score: number;
 
+  /** Listing photo gallery (deterministic, hot-linkable URLs). */
+  images: string[];
+  /** Small thumbnail URL for compact UI (dashboard rows, cards). */
+  thumb: string;
+
   /** Optional energy performance (ADEME/DPE), letters A–G. */
   dpe?: {
     energy_class: string;
@@ -149,6 +154,8 @@ export interface IndexEntry {
   /** Compact price series for the dashboard sparkline. */
   spark: number[];
   badge: "opportunity" | "watch" | "overvalued";
+  /** Thumbnail URL for the dashboard row. */
+  image: string;
 }
 
 export interface IndexFile {
@@ -161,6 +168,8 @@ export interface MarketArrondissement {
   district: string;
   name: string;
   listing_count: number;
+  /** INSEE population density (inhabitants / km²). */
+  density: number;
   avg_price_m2: number;
   median_price_m2: number;
   /** DVF reference €/m² for the arrondissement. */

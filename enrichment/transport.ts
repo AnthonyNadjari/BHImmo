@@ -47,7 +47,7 @@ function combine(nearestM: number, nearbyCount: number): number {
 }
 
 interface OverpassResponse {
-  elements?: unknown[];
+  elements?: Array<{ tags?: { total?: string } }>;
 }
 
 async function overpassStationCount(
@@ -55,12 +55,14 @@ async function overpassStationCount(
   config: PipelineConfig,
 ): Promise<number | null> {
   if (config.mode !== "live") return null;
-  const query = `[out:json][timeout:5];(node["railway"="station"](around:${WALK_RADIUS_M},${ctx.lat},${ctx.lng});node["railway"="subway_entrance"](around:${WALK_RADIUS_M},${ctx.lat},${ctx.lng}););out count;`;
+  // `out count;` returns a single element whose tags.total holds the count.
+  const query = `[out:json][timeout:5];(node["railway"="station"](around:${WALK_RADIUS_M},${ctx.lat},${ctx.lng});way["railway"="station"](around:${WALK_RADIUS_M},${ctx.lat},${ctx.lng}););out count;`;
   const data = await fetchJson<OverpassResponse>(ENDPOINTS.overpass, config, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `data=${encodeURIComponent(query)}`,
   });
-  const count = (data?.elements?.length ?? null) as number | null;
-  return count;
+  const total = data?.elements?.[0]?.tags?.total;
+  const count = total != null ? Number(total) : NaN;
+  return Number.isFinite(count) ? count : null;
 }

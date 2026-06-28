@@ -40,6 +40,8 @@ export interface Property {
   };
   risks: { flood: number; clay: number; noise: number };
   transport_score: number;
+  images: string[];
+  thumb: string;
   dpe?: { energy_class: string; ghg_class: string };
   score: {
     opportunity_score: number;
@@ -75,6 +77,7 @@ export interface IndexEntry {
   status: PropertyStatus;
   spark: number[];
   badge: Badge;
+  image: string;
 }
 
 export interface IndexFile {
@@ -87,6 +90,7 @@ export interface MarketArrondissement {
   district: string;
   name: string;
   listing_count: number;
+  density: number;
   avg_price_m2: number;
   median_price_m2: number;
   dvf_avg_price_m2: number;

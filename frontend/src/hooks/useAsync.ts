@@ -1,19 +1,23 @@
-/** Tiny async-state hook: { loading, error, data } for a promise factory. */
+/** Tiny async-state hook: { loading, error, data, reload }. */
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export interface AsyncState<T> {
   loading: boolean;
   error: Error | null;
   data: T | null;
+  reload: () => void;
 }
 
 export function useAsync<T>(factory: () => Promise<T>, deps: unknown[] = []): AsyncState<T> {
-  const [state, setState] = useState<AsyncState<T>>({
+  const [state, setState] = useState<{ loading: boolean; error: Error | null; data: T | null }>({
     loading: true,
     error: null,
     data: null,
   });
+  const [nonce, setNonce] = useState(0);
+
+  const reload = useCallback(() => setNonce((n) => n + 1), []);
 
   useEffect(() => {
     let alive = true;
@@ -25,7 +29,7 @@ export function useAsync<T>(factory: () => Promise<T>, deps: unknown[] = []): As
       alive = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps);
+  }, [...deps, nonce]);
 
-  return state;
+  return { ...state, reload };
 }

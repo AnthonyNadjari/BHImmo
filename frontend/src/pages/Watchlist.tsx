@@ -22,9 +22,11 @@ import {
   scoreColor,
   STATUS_LABEL,
 } from "../services/format";
+import { Img } from "../components/Img";
+import { ErrorState, Loading } from "../components/States";
 
 export function Watchlist() {
-  const { loading, error, data: properties } = useAsync(fetchProperties, []);
+  const { loading, error, data: properties, reload } = useAsync(fetchProperties, []);
   const [watch, setWatch] = useState<WatchMap>({});
 
   useEffect(() => {
@@ -38,8 +40,8 @@ export function Watchlist() {
     };
   }, []);
 
-  if (loading) return <p className="state">Loading…</p>;
-  if (error) return <p className="state error">Failed to load: {error.message}</p>;
+  if (loading) return <Loading label="Loading watchlist…" />;
+  if (error) return <ErrorState error={error} onRetry={reload} />;
 
   const ids = Object.keys(watch);
   const rows = (properties ?? []).filter((p) => ids.includes(p.id));
@@ -76,6 +78,9 @@ export function Watchlist() {
           const alerts = computeAlerts(p, snap);
           return (
             <div className="card watch-card" key={p.id}>
+              <Link to={`/property/${p.id}`} className="watch-thumb-link" aria-label={p.address.normalized}>
+                <Img src={p.thumb || p.images?.[0] || ""} seed={p.id} alt="" className="watch-thumb" />
+              </Link>
               <div className="watch-card-head">
                 <Link to={`/property/${p.id}`} className="watch-title">
                   {p.address.normalized}

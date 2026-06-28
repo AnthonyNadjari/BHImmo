@@ -20,7 +20,9 @@ const COLUMNS: Array<{ header: string; value: (e: IndexEntry) => string | number
 ];
 
 function escape(value: string | number): string {
-  const s = String(value);
+  let s = String(value);
+  // Neutralize spreadsheet formula injection (=, +, -, @, tab, CR prefixes).
+  if (/^[=+\-@\t\r]/.test(s)) s = `'${s}`;
   return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
 }
 

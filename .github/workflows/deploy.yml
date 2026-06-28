@@ -32,25 +32,39 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # When triggered by the pipeline finishing, only deploy a successful run.
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Deploy the exact commit the pipeline just produced (avoids serving
+          # stale data on workflow_run-triggered deploys).
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: frontend/package-lock.json
+
+      # Enables GitHub Pages (GitHub Actions source) on first run and exposes
+      # the correct base path for the Vite build.
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Install frontend dependencies
         working-directory: frontend
         run: npm ci
 
-      - name: Build (base path = /<repo>/)
+      - name: Build
         working-directory: frontend
         env:
-          PRER_BASE: /${{ github.event.repository.name }}/
+          PRER_BASE: ${{ steps.pages.outputs.base_path }}/
         run: npm run build
 
       - name: Upload Pages artifact

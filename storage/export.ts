@@ -47,6 +47,7 @@ function toIndexEntry(p: Property): IndexEntry {
     status: p.status,
     spark: spark(p),
     badge: badgeFor(p.score.opportunity_score),
+    image: p.thumb,
   };
 }
 

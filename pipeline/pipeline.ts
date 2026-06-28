@@ -14,6 +14,7 @@
 
 import type { PipelineConfig } from "../shared/config.ts";
 import { log } from "../shared/logger.ts";
+import { imageSet } from "../shared/images.ts";
 import type { NormalizedListing } from "../scraper/index.ts";
 import { ingestListings, listingEndedInSale } from "../scraper/index.ts";
 import { matchListings, propertyId } from "../scraper/match.ts";
@@ -55,6 +56,8 @@ async function buildNewProperty(
     config,
   );
 
+  const gallery = imageSet(id);
+
   return {
     id,
     address: {
@@ -81,6 +84,8 @@ async function buildNewProperty(
     risks: enrichment.risks,
     transport_score: enrichment.transport_score,
     dpe: enrichment.dpe,
+    images: gallery.images,
+    thumb: gallery.thumb,
     // Filled by the scoring pass below.
     score: { opportunity_score: 0, price_score: 0, market_gap_score: 0, liquidity_score: 0 },
     signals: { price_drops: 0, total_drop_percent: 0, long_time_on_market: false, explanations: [] },
@@ -98,8 +103,11 @@ function applyUpdate(
   const today = isoDay(config.now);
   const last = property.price_history[property.price_history.length - 1];
 
-  // Only record a new history point when the price actually moved.
-  if (!last || last.price !== listing.price) {
+  // Keep at most one observation per calendar day: update today's point in
+  // place, otherwise append only when the price actually moved.
+  if (last && last.date === today) {
+    last.price = listing.price;
+  } else if (!last || last.price !== listing.price) {
     property.price_history.push({
       date: today,
       price: listing.price,
@@ -165,14 +173,23 @@ export async function runPipeline(config: PipelineConfig): Promise<PipelineSumma
   log.step(6, "Scoring engine");
   const all = [...byId.values()];
   for (const property of all) {
+    // Backfill imagery for any property persisted before galleries existed.
+    if (!property.images || property.images.length === 0) {
+      const gallery = imageSet(property.id);
+      property.images = gallery.images;
+      property.thumb = gallery.thumb;
+    }
     const { score, signals } = scoreProperty(property);
     property.score = score;
     property.signals = signals;
   }
 
   // Step 7 — export.
+  // Use day-granularity for generated_at so a no-change run produces
+  // byte-identical JSON (the scheduled workflow then commits nothing instead
+  // of churning an empty diff 4× a day).
   log.step(7, "Export datasets");
-  await exportDatasets(all, config.now.toISOString());
+  await exportDatasets(all, `${isoDay(config.now)}T00:00:00.000Z`);
 
   const active = all.filter((p) => p.status === "active").length;
   const opportunities = all.filter((p) => p.score.opportunity_score >= 68).length;

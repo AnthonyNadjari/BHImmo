@@ -2,12 +2,12 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 /**
- * `base` must match the GitHub Pages sub-path. For the repo published at
- * https://anthonynadjari.github.io/BHImmo/ that is `/BHImmo/`. Override with
- * the PRER_BASE env var (the deploy workflow sets it automatically).
+ * Default base is "/" (Vercel / root-domain hosting). For GitHub Pages project
+ * sites the path is a sub-folder (e.g. /BHImmo/); the Pages deploy workflow
+ * sets PRER_BASE=/<repo>/ to override.
  */
 export default defineConfig({
-  base: process.env.PRER_BASE ?? "/BHImmo/",
+  base: process.env.PRER_BASE ?? "/",
   plugins: [react()],
   build: {
     outDir: "dist",

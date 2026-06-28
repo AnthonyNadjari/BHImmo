@@ -17,17 +17,19 @@ import {
   STATUS_LABEL,
 } from "../services/format";
 import { PriceChart } from "../components/PriceChart";
+import { Gallery } from "../components/Gallery";
 import { RiskBars } from "../components/RiskBars";
 import { ScoreGauge } from "../components/ScoreBar";
 import { MapEmbed } from "../components/MapEmbed";
 import { WatchButton } from "../components/WatchButton";
+import { ErrorState, Loading } from "../components/States";
 
 export function PropertyDetail() {
   const { id = "" } = useParams();
-  const { loading, error, data: p } = useAsync(() => fetchProperty(id), [id]);
+  const { loading, error, data: p, reload } = useAsync(() => fetchProperty(id), [id]);
 
-  if (loading) return <p className="state">Loading property…</p>;
-  if (error) return <p className="state error">Failed to load: {error.message}</p>;
+  if (loading) return <Loading label="Loading property…" />;
+  if (error) return <ErrorState error={error} onRetry={reload} />;
   if (!p) return <NotFound />;
 
   const dvfRef =
@@ -43,30 +45,31 @@ export function PropertyDetail() {
         ← Back to dashboard
       </Link>
 
-      {/* Header */}
-      <header className="detail-head">
-        <div>
+      {/* Photo-led hero */}
+      <div className="detail-hero">
+        <div className="detail-hero-media">
+          <Gallery images={p.images} seed={p.id} alt={p.address.normalized} />
+        </div>
+        <aside className="detail-hero-info">
+          <span className={`status-pill ${p.status}`}>{STATUS_LABEL[p.status]}</span>
           <h1>{p.address.normalized}</h1>
           <p className="muted">
             {districtLabel(p.address.district)} arrondissement · {p.characteristics.surface_m2} m² ·{" "}
-            {p.characteristics.rooms} rooms · floor {p.characteristics.floor} ·{" "}
-            <span className={`status-pill ${p.status}`}>{STATUS_LABEL[p.status]}</span>
+            {p.characteristics.rooms} rooms · floor {p.characteristics.floor}
           </p>
-        </div>
-        <div className="detail-head-right">
-          <div className="big-price">
-            {formatEuro(p.pricing.current_price)}
+          <div className="hero-price">
+            <strong>{formatEuro(p.pricing.current_price)}</strong>
             <span>{formatPerM2(p.pricing.price_per_m2)}</span>
           </div>
-          <div className="big-score" style={{ borderColor: scoreColor(p.score.opportunity_score) }}>
-            <span>Opportunity</span>
+          <div className="hero-score" style={{ borderColor: scoreColor(p.score.opportunity_score) }}>
+            <span>Opportunity score</span>
             <strong style={{ color: scoreColor(p.score.opportunity_score) }}>
               {p.score.opportunity_score}
             </strong>
           </div>
           <WatchButton property={p} />
-        </div>
-      </header>
+        </aside>
+      </div>
 
       <div className="detail-grid">
         {/* Price history */}
@@ -164,16 +167,18 @@ export function PropertyDetail() {
         </div>
       </div>
 
-      {p.url && (
-        <p className="muted source-note">
-          Source: {p.source}
-          {" · "}
-          <a href={p.url} target="_blank" rel="noreferrer">
-            original listing ↗
-          </a>{" "}
-          (synthetic demo link)
-        </p>
-      )}
+      <p className="muted source-note">
+        Source: {p.source}
+        {p.url && /^https?:\/\//i.test(p.url) && (
+          <>
+            {" · "}
+            <a href={p.url} target="_blank" rel="noreferrer noopener">
+              original listing ↗
+            </a>{" "}
+            (synthetic demo link)
+          </>
+        )}
+      </p>
     </section>
   );
 }

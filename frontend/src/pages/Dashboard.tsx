@@ -18,6 +18,9 @@ import { downloadCsv } from "../services/csv";
 import { Sparkline } from "../components/Sparkline";
 import { ScoreBar } from "../components/ScoreBar";
 import { Badge } from "../components/Badge";
+import { Img } from "../components/Img";
+import { ErrorState, TableSkeleton } from "../components/States";
+import { median } from "../services/stats";
 import type { IndexEntry } from "../types";
 
 type SortKey =
@@ -37,7 +40,7 @@ interface SortState {
 const MAX_COMPARE = 3;
 
 export function Dashboard() {
-  const { loading, error, data } = useAsync(fetchIndex, []);
+  const { loading, error, data, reload } = useAsync(fetchIndex, []);
 
   const [search, setSearch] = useState("");
   const [district, setDistrict] = useState("all");
@@ -97,10 +100,27 @@ export function Dashboard() {
           : cur,
     );
 
-  if (loading) return <p className="state">Loading listings…</p>;
-  if (error) return <p className="state error">Failed to load data: {error.message}</p>;
+  if (loading)
+    return (
+      <section>
+        <div className="page-head">
+          <h1>Dashboard</h1>
+        </div>
+        <TableSkeleton rows={9} cols={8} />
+      </section>
+    );
+  if (error) return <ErrorState error={error} onRetry={reload} />;
 
   const compareRows = entries.filter((e) => selected.includes(e.id));
+
+  const active = entries.filter((e) => e.status === "active");
+  const kpis = [
+    { label: "Active listings", value: String(active.length) },
+    { label: "Opportunities", value: String(active.filter((e) => e.opportunity_score >= 68).length), accent: "good" as const },
+    { label: "Median €/m²", value: formatPerM2(Math.round(median(active.map((e) => e.price_per_m2)))) },
+    { label: "With price drops", value: String(active.filter((e) => e.price_drops > 0).length) },
+    { label: "Avg score", value: String(Math.round(median(active.map((e) => e.opportunity_score)))) },
+  ];
 
   return (
     <section>
@@ -115,6 +135,15 @@ export function Dashboard() {
         <button className="btn" onClick={() => downloadCsv(filtered)}>
           ⬇ Export CSV
         </button>
+      </div>
+
+      <div className="kpi-strip">
+        {kpis.map((k) => (
+          <div className="kpi" key={k.label}>
+            <span className="kpi-label">{k.label}</span>
+            <span className={`kpi-value ${k.accent === "good" ? "accent-good" : ""}`}>{k.value}</span>
+          </div>
+        ))}
       </div>
 
       <div className="filters">
@@ -142,15 +171,21 @@ export function Dashboard() {
         </select>
         <button
           className={`chip ${onlyHighScore ? "on" : ""}`}
+          aria-pressed={onlyHighScore}
           onClick={() => setOnlyHighScore((v) => !v)}
         >
           🔥 High score
         </button>
-        <button className={`chip ${onlyDrops ? "on" : ""}`} onClick={() => setOnlyDrops((v) => !v)}>
+        <button
+          className={`chip ${onlyDrops ? "on" : ""}`}
+          aria-pressed={onlyDrops}
+          onClick={() => setOnlyDrops((v) => !v)}
+        >
           ↓ Price drops
         </button>
         <button
           className={`chip ${onlyLongMarket ? "on" : ""}`}
+          aria-pressed={onlyLongMarket}
           onClick={() => setOnlyLongMarket((v) => !v)}
         >
           ⏳ Long on market
@@ -162,6 +197,7 @@ export function Dashboard() {
           <thead>
             <tr>
               <th className="col-check"></th>
+              <th className="col-thumb"></th>
               <th>Address</th>
               <SortableTh label="Arr." k="district" sort={sort} onClick={toggleSort} />
               <SortableTh label="Price" k="current_price" sort={sort} onClick={toggleSort} />
@@ -183,6 +219,11 @@ export function Dashboard() {
                     onChange={() => toggleSelect(e.id)}
                     aria-label="Select for comparison"
                   />
+                </td>
+                <td className="col-thumb">
+                  <Link to={`/property/${e.id}`} className="thumb-link" aria-label={e.address}>
+                    <Img src={e.image} seed={e.id} alt="" className="row-thumb" />
+                  </Link>
                 </td>
                 <td className="col-address">
                   <Link to={`/property/${e.id}`}>{e.address}</Link>
@@ -240,10 +281,13 @@ function SortableTh({
   onClick: (k: SortKey) => void;
 }) {
   const active = sort.key === k;
+  const ariaSort = active ? (sort.dir === "asc" ? "ascending" : "descending") : "none";
   return (
-    <th className={`sortable ${active ? "active" : ""}`} onClick={() => onClick(k)}>
-      {label}
-      <span className="sort-caret">{active ? (sort.dir === "asc" ? "▲" : "▼") : "↕"}</span>
+    <th className={`sortable ${active ? "active" : ""}`} aria-sort={ariaSort}>
+      <button type="button" className="th-sort" onClick={() => onClick(k)}>
+        {label}
+        <span className="sort-caret">{active ? (sort.dir === "asc" ? "▲" : "▼") : "↕"}</span>
+      </button>
     </th>
   );
 }

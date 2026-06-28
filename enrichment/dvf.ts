@@ -49,7 +49,12 @@ export async function enrichDvf(
 ): Promise<DvfStats> {
   const live = await fetchLiveDvf(ctx, config);
   if (live && live.length >= 3) {
-    return summarize(live);
+    const stats = summarize(live);
+    // Guard against empty radius buckets collapsing the averages to 0, which
+    // would silently neutralize the (heavily weighted) DVF gap score.
+    if (stats.avg_price_m2_500m > 0 && stats.avg_price_m2_100m > 0) {
+      return stats;
+    }
   }
   return syntheticDvf(ctx);
 }

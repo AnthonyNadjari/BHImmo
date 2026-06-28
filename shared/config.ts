@@ -51,7 +51,7 @@ export const ENDPOINTS = {
   georisquesClay: "https://www.georisques.gouv.fr/api/v1/rga",
   /** ADEME / DPE — energy performance certificates (existing dwellings). */
   ademeDpe:
-    "https://data.ademe.fr/data-fair/api/v1/datasets/dpe-v2-logements-existants/lines",
+    "https://data.ademe.fr/data-fair/api/v1/datasets/dpe03existant/lines",
   /** Overpass — OSM query endpoint, used to count nearby transit stops. */
   overpass: "https://overpass-api.de/api/interpreter",
 } as const;

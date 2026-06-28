@@ -34,11 +34,11 @@ export function districtLabel(district: string): string {
   return `${n}${n === 1 ? "er" : "e"}`;
 }
 
-/** Color ramp for an opportunity score (0–100). */
+/** Color ramp for an opportunity score (0–100). Tuned for AA text contrast. */
 export function scoreColor(score: number): string {
-  if (score >= 68) return "#1a8a4a"; // green
-  if (score >= 50) return "#b8860b"; // amber
-  if (score >= 45) return "#c2741c"; // orange
+  if (score >= 68) return "#157a41"; // green
+  if (score >= 50) return "#946400"; // amber
+  if (score >= 45) return "#a4561a"; // orange
   return "#b03a3a"; // red
 }
 

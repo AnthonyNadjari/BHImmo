@@ -40,14 +40,16 @@ async function main(): Promise<void> {
   await clearDataset();
 
   let runs = 0;
+  let lastT = -1;
   for (let t = start.getTime(); t <= end.getTime(); t += stepDays * DAY_MS) {
-    const now = new Date(t);
-    await runPipeline({ ...base, mode: "mock", now });
+    await runPipeline({ ...base, mode: "mock", now: new Date(t) });
+    lastT = t;
     runs++;
   }
 
-  // Ensure the final snapshot is exactly "today".
-  if (start.getTime() <= end.getTime()) {
+  // Ensure the final snapshot lands exactly on "today" (only if the loop
+  // didn't already end there — avoids a redundant duplicate pass).
+  if (lastT !== end.getTime()) {
     await runPipeline({ ...base, mode: "mock", now: end });
     runs++;
   }
