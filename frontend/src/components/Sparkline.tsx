@@ -30,7 +30,7 @@ export function Sparkline({ values, width = 88, height = 24 }: Props) {
   const first = values[0]!;
   const last = values[values.length - 1]!;
   const trend = last - first;
-  const stroke = trend < 0 ? "#3ecf8e" : trend > 0 ? "#ff5d52" : "#968a73";
+  const stroke = trend < 0 ? "#2dd4bf" : trend > 0 ? "#fb5a78" : "#6c7f9a";
   const pct = first ? ((last - first) / first) * 100 : 0;
 
   return (
