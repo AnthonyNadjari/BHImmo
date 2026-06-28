@@ -3,7 +3,7 @@
  * score, with a quick top-opportunities list.
  */
 
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
 import { fetchIndex } from "../services/data";
@@ -17,11 +17,19 @@ const PropertyMap = lazy(() => import("../components/PropertyMap"));
 export function MapPage() {
   const { loading, error, data, reload } = useAsync(fetchIndex, []);
 
+  // Memoize so PropertyMap gets a stable `entries` reference and the marker
+  // cluster is built once per dataset, not on every render.
+  const active = useMemo(
+    () => (data?.properties ?? []).filter((e) => e.status === "active"),
+    [data],
+  );
+  const top = useMemo(
+    () => [...active].sort((a, b) => b.opportunity_score - a.opportunity_score).slice(0, 8),
+    [active],
+  );
+
   if (loading && !data) return <Loading label="Loading map…" />;
   if (error) return <ErrorState error={error} onRetry={reload} />;
-
-  const active = (data?.properties ?? []).filter((e) => e.status === "active");
-  const top = [...active].sort((a, b) => b.opportunity_score - a.opportunity_score).slice(0, 8);
 
   return (
     <section>
