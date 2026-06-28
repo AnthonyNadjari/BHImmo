@@ -1,5 +1,7 @@
 # Paris Real Estate Radar — P.R.E.R
 
+### ▶ Live demo: https://raw.githack.com/AnthonyNadjari/BHImmo/live/index.html
+
 > An opportunity scanner for Paris *intra-muros* real estate. It ingests
 > listings, enriches them with French open data (transactions, risks,
 > transport, energy), computes an **explainable** opportunity score (0–100),
@@ -175,6 +177,14 @@ npm run dev               # http://localhost:5173  (copies ../data automatically
 
 The build is a plain static site (`frontend/dist`).
 
+### Live now (zero config)
+
+Every push to `main` (and every data refresh) publishes the built site to the
+`live` branch via [`deploy.yml`](.github/workflows/deploy.yml), served by the
+raw.githack CDN — no account, token, or repo setting required:
+
+**https://raw.githack.com/AnthonyNadjari/BHImmo/live/index.html**
+
 ### Vercel (recommended)
 
 The repo ships a [`vercel.json`](vercel.json) that builds the frontend from the
@@ -190,12 +200,13 @@ Or import the GitHub repo in the Vercel dashboard — zero config, `vercel.json`
 handles the build (`outputDirectory: frontend/dist`). The Vite `base` defaults
 to `/` for root-domain hosting.
 
-### GitHub Pages
+### GitHub Pages (clean `*.github.io` URL)
 
-[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) builds and
-publishes to Pages on every push to `main` (and after each data refresh). It
-self-enables Pages via `actions/configure-pages` and sets the correct
-`/<repo>/` base path. Just set **Settings → Pages → Source: GitHub Actions**.
+The Actions token can't enable Pages on its own, so this is a one-time setup:
+set **Settings → Pages → Source: GitHub Actions**, then run the
+[`pages.yml`](.github/workflows/pages.yml) workflow (Actions tab → *Deploy to
+GitHub Pages* → *Run workflow*). It builds with the correct `/<repo>/` base and
+publishes to `https://<owner>.github.io/<repo>/`.
 
 ### Scheduled data refresh
 

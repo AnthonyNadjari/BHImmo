@@ -1,15 +1,17 @@
-name: Deploy frontend to GitHub Pages
+name: Publish static site
 
-# Builds the static React app (bundling the latest committed dataset) and
-# publishes it to GitHub Pages. Triggers on:
-#   - pushes that touch the frontend or the dataset,
-#   - completion of the data pipeline (so fresh data redeploys automatically),
-#   - manual dispatch.
+# Builds the React app (bundling the latest committed dataset) and publishes
+# it to the `live` branch, which is served as a static site by the raw.githack
+# CDN at:
+#   https://raw.githack.com/<owner>/<repo>/live/index.html
+#
+# This path needs only `contents: write` (no Pages-API permission), so it works
+# without any repo admin action. For a GitHub Pages URL instead, enable
+# Settings → Pages → Source: "Deploy from a branch" → live, or use Vercel
+# (see README + vercel.json).
 on:
   push:
-    branches:
-      - main
-      - claude/paris-real-estate-radar-apil7n
+    branches: [main]
     paths:
       - "frontend/**"
       - "data/**"
@@ -19,27 +21,23 @@ on:
     types: [completed]
   workflow_dispatch:
 
-# Allow one concurrent deployment; let a newer one supersede an in-flight one.
 concurrency:
-  group: pages
+  group: publish-live
   cancel-in-progress: true
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
-    # When triggered by the pipeline finishing, only deploy a successful run.
+    # On a pipeline-triggered run, only publish a successful data refresh.
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # Deploy the exact commit the pipeline just produced (avoids serving
-          # stale data on workflow_run-triggered deploys).
+          # Deploy the exact commit the pipeline produced (avoids stale data).
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
       - name: Setup Node
@@ -49,36 +47,23 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
 
-      # Enables GitHub Pages (GitHub Actions source) on first run and exposes
-      # the correct base path for the Vite build.
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
       - name: Install frontend dependencies
         working-directory: frontend
         run: npm ci
 
-      - name: Build
+      - name: Build (base path matches the githack /<owner>/<repo>/live/ URL)
         working-directory: frontend
         env:
-          PRER_BASE: ${{ steps.pages.outputs.base_path }}/
-        run: npm run build
+          PRER_BASE: /${{ github.repository }}/live/
+        run: |
+          npm run build
+          touch dist/.nojekyll
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Publish to live branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: frontend/dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: frontend/dist
+          publish_branch: live
+          force_orphan: true
+          commit_message: "deploy: publish static site"

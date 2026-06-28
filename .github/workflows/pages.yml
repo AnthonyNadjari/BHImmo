@@ -1,0 +1,55 @@
+name: Deploy to GitHub Pages (optional)
+
+# Optional, manual GitHub Pages deploy producing the clean URL
+#   https://<owner>.github.io/<repo>/
+#
+# Prerequisite (one-time, repo admin): Settings → Pages → Source: "GitHub
+# Actions". The Actions token cannot enable Pages itself, so this runs on
+# demand rather than on every push (the auto, zero-setup deploy is the `live`
+# branch / githack — see deploy.yml).
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Install
+        working-directory: frontend
+        run: npm ci
+      - name: Build
+        working-directory: frontend
+        env:
+          PRER_BASE: ${{ steps.pages.outputs.base_path }}/
+        run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
