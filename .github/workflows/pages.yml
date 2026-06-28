@@ -1,13 +1,12 @@
 name: GitHub Pages
 
-# Publishes the app to GitHub Pages — https://<owner>.github.io/<repo>/ —
-# in parallel with Vercel and the githack (live branch) deployment, so there is
-# always an up-to-date, independent URL. Auto-deploys on every push to main and
-# after each data-pipeline run.
+# Publishes the app to GitHub Pages — https://<owner>.github.io/<repo>/ — in
+# parallel with Vercel, as a redundant always-on URL. Uses the robust
+# "deploy from a branch" method: it builds with the Pages base path and pushes
+# the result to the `gh-pages` branch (no fragile Pages-deployment API).
 #
-# `actions/configure-pages` with `enablement: true` turns Pages on automatically
-# (source = GitHub Actions). If your org/account blocks that, enable it once via
-# Settings → Pages → Source: "GitHub Actions", then re-run this workflow.
+# ONE-TIME setup: Settings → Pages → Source: "Deploy from a branch" →
+# Branch: `gh-pages` → folder `/ (root)` → Save. Then it auto-updates forever.
 on:
   push:
     branches: [main]
@@ -21,16 +20,14 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: github-pages
+  group: gh-pages-branch
   cancel-in-progress: true
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -39,29 +36,22 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: frontend/package-lock.json
-      - name: Configure Pages
-        id: pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - name: Install
         working-directory: frontend
         run: npm ci
-      - name: Build
+      - name: Build (base path = /<repo>/)
         working-directory: frontend
         env:
-          PRER_BASE: ${{ steps.pages.outputs.base_path }}/
-        run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+          PRER_BASE: /${{ github.event.repository.name }}/
+        run: |
+          npm run build
+          cp dist/index.html dist/404.html
+          touch dist/.nojekyll
+      - name: Publish to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: frontend/dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: frontend/dist
+          publish_branch: gh-pages
+          force_orphan: true
+          commit_message: "deploy: github pages"
