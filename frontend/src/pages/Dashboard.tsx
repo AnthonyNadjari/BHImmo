@@ -250,6 +250,22 @@ export function Dashboard() {
         >
           <Icon name="clock" size={13} /> Long on market
         </button>
+        <select
+          className="input"
+          aria-label="Sort listings"
+          value={`${sort.key}:${sort.dir}`}
+          onChange={(e) => {
+            const [key, dir] = e.target.value.split(":") as [SortKey, "asc" | "desc"];
+            setSort({ key, dir });
+          }}
+        >
+          <option value="opportunity_score:desc">Sort: Best score</option>
+          <option value="net_yield:desc">Sort: Highest yield</option>
+          <option value="current_price:asc">Sort: Price ↑</option>
+          <option value="current_price:desc">Sort: Price ↓</option>
+          <option value="price_per_m2:asc">Sort: €/m² ↑</option>
+          <option value="surface_m2:desc">Sort: Surface ↓</option>
+        </select>
         <div className="view-toggle" role="group" aria-label="View mode">
           <button
             type="button"
