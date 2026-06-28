@@ -195,11 +195,11 @@ export async function runPipeline(config: PipelineConfig): Promise<PipelineSumma
   const { cityMedianTrend } = scoreDataset(all);
 
   // Step 7 — export.
-  // Use day-granularity for generated_at so a no-change run produces
-  // byte-identical JSON (the scheduled workflow then commits nothing instead
-  // of churning an empty diff 4× a day).
+  // Stamp the real run time so the UI's "Updated N ago" reflects genuine
+  // freshness (a day-granularity stamp read as "21 h ago" all day). Each
+  // scheduled run now produces a fresh timestamp and triggers a redeploy.
   log.step(7, "Export datasets");
-  await exportDatasets(all, `${isoDay(config.now)}T00:00:00.000Z`, cityMedianTrend);
+  await exportDatasets(all, config.now.toISOString(), cityMedianTrend);
 
   const active = all.filter((p) => p.status === "active").length;
   const opportunities = all.filter((p) => p.score.opportunity_score >= 68).length;

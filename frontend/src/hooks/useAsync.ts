@@ -27,10 +27,13 @@ export function useAsync<T>(factory: () => Promise<T>, deps: unknown[] = []): As
 
   useEffect(() => {
     let alive = true;
-    setState({ loading: true, error: null, data: null });
+    // Keep any previously-loaded data on screen while refetching, so a manual
+    // refresh updates in place instead of flashing the whole page to a skeleton
+    // (which would also re-mount the lazy Leaflet maps).
+    setState((s) => ({ loading: true, error: null, data: s.data }));
     factory()
       .then((data) => alive && setState({ loading: false, error: null, data }))
-      .catch((error: Error) => alive && setState({ loading: false, error, data: null }));
+      .catch((error: Error) => alive && setState((s) => ({ loading: false, error, data: s.data })));
     return () => {
       alive = false;
     };

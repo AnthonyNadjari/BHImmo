@@ -12,10 +12,7 @@ export function ScoreBar({ score, width = 132 }: Props) {
   return (
     <div className="score-bar" style={{ width }}>
       <div className="score-bar-track">
-        <div
-          className="score-bar-fill"
-          style={{ width: `${score}%`, background: color, boxShadow: `0 0 8px -1px ${color}` }}
-        />
+        <div className="score-bar-fill" style={{ width: `${score}%`, background: color }} />
       </div>
       <span className="score-bar-value" style={{ color }}>
         {score}
@@ -34,10 +31,7 @@ export function ScoreGauge({ label, score }: { label: string; score: number }) {
         <strong style={{ color }}>{score}</strong>
       </div>
       <div className="score-bar-track">
-        <div
-          className="score-bar-fill"
-          style={{ width: `${score}%`, background: color, boxShadow: `0 0 8px -1px ${color}` }}
-        />
+        <div className="score-bar-fill" style={{ width: `${score}%`, background: color }} />
       </div>
     </div>
   );

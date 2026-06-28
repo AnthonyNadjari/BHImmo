@@ -40,7 +40,7 @@ export function Watchlist() {
     };
   }, []);
 
-  if (loading) return <Loading label="Loading watchlist…" />;
+  if (loading && !properties) return <Loading label="Loading watchlist…" />;
   if (error) return <ErrorState error={error} onRetry={reload} />;
 
   const ids = Object.keys(watch);

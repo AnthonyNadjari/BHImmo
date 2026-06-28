@@ -5,7 +5,7 @@
  * gradient.
  */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   src: string;
@@ -22,6 +22,14 @@ export function Img({ src, alt, seed, className, eager }: Props) {
   const [current, setCurrent] = useState(src);
   const [failed, setFailed] = useState(false);
   const [loaded, setLoaded] = useState(false);
+
+  // When the `src` prop changes (e.g. gallery next/prev swaps the active photo)
+  // re-sync internal state — otherwise the first image stays pinned forever.
+  useEffect(() => {
+    setCurrent(src);
+    setFailed(false);
+    setLoaded(false);
+  }, [src]);
 
   if (failed) {
     return <div className={`img-fallback ${className ?? ""}`} role="img" aria-label={alt} />;

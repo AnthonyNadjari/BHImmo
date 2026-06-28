@@ -1,9 +1,9 @@
 /** Rental-yield formatting + color bands. */
 
 export function yieldColor(netYield: number): string {
-  if (netYield >= 2.5) return "#2dd4bf";
-  if (netYield >= 2.0) return "#38bdf8";
-  return "#6c7f9a";
+  if (netYield >= 2.5) return "#0e9488";
+  if (netYield >= 2.0) return "#2563eb";
+  return "#64748b";
 }
 
 export function yieldLabel(netYield: number): string {

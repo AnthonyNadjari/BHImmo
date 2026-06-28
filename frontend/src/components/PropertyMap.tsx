@@ -21,7 +21,7 @@ export default function PropertyMap({ entries }: { entries: IndexEntry[] }) {
     <MapContainer center={PARIS} zoom={12} className="leaflet-map" scrollWheelZoom>
       <TileLayer
         attribution='&copy; OpenStreetMap &copy; CARTO'
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
       />
       {sorted.map((e) => (
         <CircleMarker
@@ -29,10 +29,10 @@ export default function PropertyMap({ entries }: { entries: IndexEntry[] }) {
           center={[e.lat, e.lng]}
           radius={5 + (e.opportunity_score / 100) * 7}
           pathOptions={{
-            color: "rgba(226,236,248,0.6)",
-            weight: 1,
+            color: "#ffffff",
+            weight: 1.5,
             fillColor: scoreColor(e.opportunity_score),
-            fillOpacity: 0.9,
+            fillOpacity: 0.92,
           }}
         >
           <Popup>
@@ -50,7 +50,7 @@ export default function PropertyMap({ entries }: { entries: IndexEntry[] }) {
                 <span className="map-popup-score" style={{ color: scoreColor(e.opportunity_score) }}>
                   Score {e.opportunity_score}
                 </span>
-                <span style={{ color: "#2dd4bf" }}>{e.net_yield.toFixed(1)}% net</span>
+                <span style={{ color: "#0e9488" }}>{e.net_yield.toFixed(1)}% net</span>
               </div>
             </div>
           </Popup>

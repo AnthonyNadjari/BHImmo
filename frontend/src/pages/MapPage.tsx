@@ -17,7 +17,7 @@ const PropertyMap = lazy(() => import("../components/PropertyMap"));
 export function MapPage() {
   const { loading, error, data, reload } = useAsync(fetchIndex, []);
 
-  if (loading) return <Loading label="Loading map…" />;
+  if (loading && !data) return <Loading label="Loading map…" />;
   if (error) return <ErrorState error={error} onRetry={reload} />;
 
   const active = (data?.properties ?? []).filter((e) => e.status === "active");

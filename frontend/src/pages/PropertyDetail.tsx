@@ -34,7 +34,7 @@ export function PropertyDetail() {
   const { id = "" } = useParams();
   const { loading, error, data: p, reload } = useAsync(() => fetchProperty(id), [id]);
 
-  if (loading) return <Loading label="Loading property…" />;
+  if (loading && !p) return <Loading label="Loading property…" />;
   if (error) return <ErrorState error={error} onRetry={reload} />;
   if (!p) return <NotFound />;
 
@@ -181,9 +181,9 @@ export function PropertyDetail() {
             <MiniMap property={p} />
           </Suspense>
           <div className="minimap-legend">
-            <span><i style={{ background: "#38bdf8" }} /> Transport</span>
-            <span><i style={{ background: "#2dd4bf" }} /> Park</span>
-            <span><i style={{ background: "#22d3ee" }} /> Vélib'</span>
+            <span><i style={{ background: "#2563eb" }} /> Transport</span>
+            <span><i style={{ background: "#0e9488" }} /> Park</span>
+            <span><i style={{ background: "#0891b2" }} /> Vélib'</span>
           </div>
         </div>
 

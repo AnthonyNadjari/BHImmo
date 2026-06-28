@@ -105,7 +105,7 @@ export function Dashboard() {
           : cur,
     );
 
-  if (loading)
+  if (loading && !data)
     return (
       <section>
         <div className="page-head">

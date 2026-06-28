@@ -20,7 +20,7 @@ import {
 export function Market() {
   const { loading, error, data, reload } = useAsync(fetchMarket, []);
 
-  if (loading) return <Loading label="Loading market model…" />;
+  if (loading && !data) return <Loading label="Loading market model…" />;
   if (error) return <ErrorState error={error} onRetry={reload} />;
   if (!data || data.arrondissements.length === 0)
     return <Empty>No market data available yet.</Empty>;

@@ -54,12 +54,12 @@ export function districtLabel(district: string): string {
   return `${n}${n === 1 ? "er" : "e"}`;
 }
 
-/** Color ramp for an opportunity score (0–100). Synced to the cold terminal palette. */
+/** Color ramp for an opportunity score (0–100). Cold ramp, AA-legible on light. */
 export function scoreColor(score: number): string {
-  if (score >= 68) return "#2dd4bf"; // --score-high (teal)
-  if (score >= 50) return "#38bdf8"; // --score-mid (azure)
-  if (score >= 45) return "#818cf8"; // --score-low (indigo)
-  return "#fb5a78"; // --score-bad (rose)
+  if (score >= 68) return "#0e9488"; // --score-high (teal)
+  if (score >= 50) return "#2563eb"; // --score-mid (azure)
+  if (score >= 45) return "#4f46e5"; // --score-low (indigo)
+  return "#e11d48"; // --score-bad (rose)
 }
 
 export interface BadgeMeta {
