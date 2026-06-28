@@ -26,6 +26,7 @@ import type {
 export function buildMarket(
   properties: Property[],
   generatedAt: string,
+  cityMedianTrend: number,
 ): MarketFile {
   const active = properties.filter((p) => p.status === "active");
   const byDistrict = new Map<string, Property[]>();
@@ -67,6 +68,8 @@ export function buildMarket(
       avg_walk_score: round(
         mean(list.map((p) => p.neighborhood?.walk_score ?? 0)),
       ),
+      median_yield: round(median(list.map((p) => p.investment?.gross_yield ?? 0)), 2),
+      safety_index: getInseeProfile(arr.district).safety,
     });
   }
 
@@ -75,6 +78,7 @@ export function buildMarket(
   return {
     generated_at: generatedAt,
     city_avg_price_m2: CITY_AVG_PRICE_M2,
+    city_median_trend: cityMedianTrend,
     arrondissements,
   };
 }

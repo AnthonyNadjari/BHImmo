@@ -63,6 +63,15 @@ export const ENDPOINTS = {
   /** opendata.paris.fr — street trees (green-canopy proxy). */
   trees:
     "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/les-arbres/records",
+  /** opendata.paris.fr — encadrement des loyers (reference rents €/m²/month). */
+  encadrementLoyers:
+    "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/logement-encadrement-des-loyers/records",
+  /** IDFM — métro/RER/tram station locations (Opendatasoft). */
+  idfmStations:
+    "https://data.iledefrance-mobilites.fr/api/explore/v2.1/catalog/datasets/emplacement-des-gares-idf/records",
+  /** opendata.paris.fr — green spaces (parks/gardens). */
+  espacesVerts:
+    "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/espaces_verts/records",
 } as const;
 
 export const DATA_DIR = "data";

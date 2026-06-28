@@ -13,16 +13,19 @@ import { enrichRisks } from "./georisques.ts";
 import { enrichTransport } from "./transport.ts";
 import { enrichDpe, type DpeResult } from "./dpe.ts";
 import { enrichNeighborhood } from "./neighborhood.ts";
+import { enrichRent, type RentResult } from "./rent.ts";
 
 export { geocode } from "./geocode.ts";
 export type { GeocodeResult } from "./geocode.ts";
 export { getInseeProfile } from "./insee.ts";
+export { nearbyPois } from "./pois.ts";
 
 export interface EnrichmentContext {
   id: string;
   lat: number;
   lng: number;
   district: string;
+  rooms: number;
 }
 
 export interface EnrichmentResult {
@@ -31,18 +34,20 @@ export interface EnrichmentResult {
   transport_score: number;
   dpe: DpeResult;
   neighborhood: Neighborhood;
+  rent: RentResult;
 }
 
 export async function enrichProperty(
   ctx: EnrichmentContext,
   config: PipelineConfig,
 ): Promise<EnrichmentResult> {
-  const [dvf, risks, transport_score, dpe, neighborhood] = await Promise.all([
+  const [dvf, risks, transport_score, dpe, neighborhood, rent] = await Promise.all([
     enrichDvf(ctx, config),
     enrichRisks(ctx, config),
     enrichTransport(ctx, config),
     enrichDpe(ctx, config),
     enrichNeighborhood(ctx, config),
+    enrichRent({ ...ctx }, config),
   ]);
-  return { dvf, risks, transport_score, dpe, neighborhood };
+  return { dvf, risks, transport_score, dpe, neighborhood, rent };
 }

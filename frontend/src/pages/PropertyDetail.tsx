@@ -4,6 +4,7 @@
  * OSM map, risk exposure, explainable signals, sub-scores and comparable sales.
  */
 
+import { Suspense, lazy } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
 import { fetchProperty } from "../services/data";
@@ -18,13 +19,16 @@ import {
 import { PriceChart } from "../components/PriceChart";
 import { Gallery } from "../components/Gallery";
 import { RiskBars } from "../components/RiskBars";
-import { ScoreGauge } from "../components/ScoreBar";
-import { MapEmbed } from "../components/MapEmbed";
+import { RadarChart } from "../components/RadarChart";
+import { PriceDistribution } from "../components/PriceDistribution";
+import { YieldBadge } from "../components/YieldBadge";
 import { WatchButton } from "../components/WatchButton";
 import { NeighborhoodCard } from "../components/NeighborhoodCard";
 import { ScoreRing } from "../components/ScoreRing";
 import { Badge, badgeFromScore } from "../components/Badge";
 import { ErrorState, Loading } from "../components/States";
+
+const MiniMap = lazy(() => import("../components/MiniMap"));
 
 export function PropertyDetail() {
   const { id = "" } = useParams();
@@ -40,6 +44,15 @@ export function PropertyDetail() {
       : p.dvf.avg_price_m2_500m || p.dvf.avg_price_m2_100m;
   const gapPct = dvfRef > 0 ? ((dvfRef - p.pricing.price_per_m2) / dvfRef) * 100 : 0;
   const dropPct = p.signals.total_drop_percent;
+
+  const radarAxes = [
+    { label: "Value", value: p.score.value_score },
+    { label: "Yield", value: p.score.yield_score },
+    { label: "Negotiation", value: p.score.negotiation_score },
+    { label: "Liquidity", value: p.score.liquidity_score },
+    { label: "Gentrif.", value: p.score.gentrification_score },
+    { label: "Low-risk", value: Math.round(100 - 100 * Math.max(p.risks.flood, p.risks.clay, p.risks.noise)) },
+  ];
 
   return (
     <section className="detail">
@@ -76,6 +89,7 @@ export function PropertyDetail() {
             </div>
             <ScoreRing score={p.score.opportunity_score} />
           </div>
+          <YieldBadge inv={p.investment} rent={p.rent} />
           <WatchButton property={p} />
         </aside>
       </div>
@@ -107,7 +121,7 @@ export function PropertyDetail() {
         {/* Market comparison */}
         <div className="card">
           <h2>Market comparison (DVF)</h2>
-          <div className="kv-row vertical">
+          <div className="kv-row vertical compact-kv">
             <KV label="Listing €/m²" value={formatPerM2(p.pricing.price_per_m2)} />
             <KV label="DVF avg · 100 m" value={formatPerM2(p.dvf.avg_price_m2_100m)} />
             <KV label="DVF avg · 500 m" value={formatPerM2(p.dvf.avg_price_m2_500m)} />
@@ -117,15 +131,18 @@ export function PropertyDetail() {
               accent={gapPct >= 0}
             />
           </div>
+          <PriceDistribution
+            district={p.address.district}
+            value={p.pricing.price_per_m2}
+            dvfRef={Math.round(dvfRef)}
+            percentile={p.investment.ppm2_percentile}
+          />
         </div>
 
-        {/* Sub-scores */}
+        {/* Deal profile (radar) */}
         <div className="card">
-          <h2>Score breakdown</h2>
-          <ScoreGauge label="Market gap" score={p.score.market_gap_score} />
-          <ScoreGauge label="Price vs arrondissement" score={p.score.price_score} />
-          <ScoreGauge label="Liquidity" score={p.score.liquidity_score} />
-          <ScoreGauge label="Transport" score={p.transport_score} />
+          <h2>Deal profile</h2>
+          <RadarChart axes={radarAxes} />
         </div>
 
         {/* Risks */}
@@ -133,12 +150,21 @@ export function PropertyDetail() {
           <h2>Risks</h2>
           <RiskBars flood={p.risks.flood} clay={p.risks.clay} noise={p.risks.noise} />
           {p.dpe && (
-            <div className="dpe">
-              <span>Energy (DPE)</span>
-              <strong className={`dpe-class dpe-${p.dpe.energy_class}`}>{p.dpe.energy_class}</strong>
-              <span>GHG</span>
-              <strong className={`dpe-class dpe-${p.dpe.ghg_class}`}>{p.dpe.ghg_class}</strong>
-            </div>
+            <>
+              <div className="dpe">
+                <span>Energy (DPE)</span>
+                <strong className={`dpe-class dpe-${p.dpe.energy_class}`}>{p.dpe.energy_class}</strong>
+                <span>GHG</span>
+                <strong className={`dpe-class dpe-${p.dpe.ghg_class}`}>{p.dpe.ghg_class}</strong>
+              </div>
+              {(p.dpe.energy_class === "F" || p.dpe.energy_class === "G") && (
+                <p className={`dpe-note ${p.investment.value_add_flag ? "good" : ""}`}>
+                  {p.investment.value_add_flag
+                    ? "Value-add: discount exceeds renovation cost — reno-arbitrage."
+                    : `Class ${p.dpe.energy_class} — rental restrictions apply (G banned since 2025, F from 2028).`}
+                </p>
+              )}
+            </>
           )}
         </div>
 
@@ -150,8 +176,15 @@ export function PropertyDetail() {
 
         {/* Map */}
         <div className="card">
-          <h2>Location</h2>
-          <MapEmbed lat={p.address.lat} lng={p.address.lng} label={p.address.normalized} />
+          <h2>Location & amenities</h2>
+          <Suspense fallback={<div className="map-loading">Loading map…</div>}>
+            <MiniMap property={p} />
+          </Suspense>
+          <div className="minimap-legend">
+            <span><i style={{ background: "#34357a" }} /> Transport</span>
+            <span><i style={{ background: "#0f7a4d" }} /> Park</span>
+            <span><i style={{ background: "#0e8f8f" }} /> Vélib'</span>
+          </div>
         </div>
 
         {/* Comparable sales */}

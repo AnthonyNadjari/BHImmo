@@ -20,6 +20,7 @@ import { ScoreBar } from "../components/ScoreBar";
 import { Badge } from "../components/Badge";
 import { Img } from "../components/Img";
 import { Icon } from "../components/Icon";
+import { YieldCell } from "../components/YieldBadge";
 import { DataFreshness } from "../components/DataFreshness";
 import { ErrorState, TableSkeleton } from "../components/States";
 import { mean, median } from "../services/stats";
@@ -30,6 +31,7 @@ type SortKey =
   | "opportunity_score"
   | "current_price"
   | "price_per_m2"
+  | "net_yield"
   | "surface_m2"
   | "days_on_market"
   | "price_drops"
@@ -121,7 +123,7 @@ export function Dashboard() {
     { label: "Active listings", value: String(active.length), rail: "primary" },
     { label: "Opportunities", value: String(active.filter((e) => e.opportunity_score >= 68).length), rail: "good" },
     { label: "Median €/m²", value: formatPerM2(Math.round(median(active.map((e) => e.price_per_m2)))), rail: "" },
-    { label: "With price drops", value: String(active.filter((e) => e.price_drops > 0).length), rail: "warn" },
+    { label: "Median net yield", value: `${median(active.map((e) => e.net_yield)).toFixed(1)}%`, rail: "warn" },
     { label: "Avg score", value: String(Math.round(mean(active.map((e) => e.opportunity_score)))), rail: "primary" },
   ];
 
@@ -214,7 +216,9 @@ export function Dashboard() {
               <SortableTh label="Arr." k="district" sort={sort} onClick={toggleSort} />
               <SortableTh label="Price" k="current_price" sort={sort} onClick={toggleSort} />
               <SortableTh label="€/m²" k="price_per_m2" sort={sort} onClick={toggleSort} />
+              <SortableTh label="Net yield" k="net_yield" sort={sort} onClick={toggleSort} />
               <SortableTh label="Surface" k="surface_m2" sort={sort} onClick={toggleSort} />
+              <th>DPE</th>
               <SortableTh label="DOM" k="days_on_market" sort={sort} onClick={toggleSort} />
               <th>Trend</th>
               <SortableTh label="Score" k="opportunity_score" sort={sort} onClick={toggleSort} />
@@ -246,7 +250,13 @@ export function Dashboard() {
                 <td>{districtLabel(e.district)}</td>
                 <td className="num">{formatEuro(e.current_price)}</td>
                 <td className="num">{formatPerM2(e.price_per_m2)}</td>
+                <td className="num"><YieldCell net={e.net_yield} /></td>
                 <td className="num">{e.surface_m2} m²</td>
+                <td>
+                  {e.dpe_energy && (
+                    <span className={`dpe-chip dpe-${e.dpe_energy}`}>{e.dpe_energy}</span>
+                  )}
+                </td>
                 <td className="num">{e.days_on_market} d</td>
                 <td>
                   <Sparkline values={e.spark} />

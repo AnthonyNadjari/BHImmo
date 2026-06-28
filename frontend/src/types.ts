@@ -48,14 +48,32 @@ export interface Property {
     trees_150m: number;
     amenities: { food: number; health: number; green: number; culture: number };
   };
+  rent: {
+    ref_m2: number;
+    max_m2: number;
+    min_m2: number;
+    monthly_est: number;
+    quartier: string;
+  };
+  investment: {
+    gross_yield: number;
+    net_yield: number;
+    ppm2_percentile: number;
+    negotiation_margin_pct: number;
+    dpe_risk_score: number;
+    value_add_flag: boolean;
+  };
+  pois: Array<{ type: "transport" | "park" | "velib"; lat: number; lng: number; label: string }>;
   images: string[];
   thumb: string;
   dpe?: { energy_class: string; ghg_class: string };
   score: {
     opportunity_score: number;
-    price_score: number;
-    market_gap_score: number;
+    value_score: number;
+    yield_score: number;
+    negotiation_score: number;
     liquidity_score: number;
+    gentrification_score: number;
   };
   signals: {
     price_drops: number;
@@ -87,6 +105,10 @@ export interface IndexEntry {
   badge: Badge;
   image: string;
   walk_score: number;
+  gross_yield: number;
+  net_yield: number;
+  ppm2_percentile: number;
+  dpe_energy?: string;
 }
 
 export interface IndexFile {
@@ -108,10 +130,13 @@ export interface MarketArrondissement {
   avg_opportunity_score: number;
   median_income: number;
   avg_walk_score: number;
+  median_yield: number;
+  safety_index: number;
 }
 
 export interface MarketFile {
   generated_at: string;
   city_avg_price_m2: number;
+  city_median_trend: number;
   arrondissements: MarketArrondissement[];
 }

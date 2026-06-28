@@ -38,6 +38,31 @@ const MEDIAN_INCOME: Record<string, number> = {
   "75020": 25000,
 };
 
+/**
+ * Loyer de référence (median rent €/m²/month) per arrondissement — Paris
+ * "encadrement des loyers" order of magnitude. The legal ceiling ("majoré") is
+ * ≈ ref × 1.2 and is the realistically achievable rent. Live pipeline refines
+ * this per quartier via opendata.paris.fr; this static table is the fallback.
+ */
+const LOYER_REF_M2: Record<string, number> = {
+  "75001": 30.5, "75002": 30.0, "75003": 30.5, "75004": 31.0, "75005": 30.0,
+  "75006": 32.0, "75007": 31.0, "75008": 29.5, "75009": 29.0, "75010": 28.0,
+  "75011": 28.5, "75012": 27.0, "75013": 26.5, "75014": 28.0, "75015": 28.5,
+  "75016": 28.5, "75017": 28.5, "75018": 27.0, "75019": 25.5, "75020": 26.0,
+};
+
+/**
+ * Resident-safety index 0–100 (higher = safer), an order-of-magnitude proxy
+ * derived from SSMSI burglary+violence rates. Live pipeline can refine per
+ * arrondissement; central/tourist + north-east areas score a bit lower.
+ */
+const SAFETY_INDEX: Record<string, number> = {
+  "75001": 62, "75002": 66, "75003": 72, "75004": 70, "75005": 78,
+  "75006": 82, "75007": 84, "75008": 64, "75009": 68, "75010": 55,
+  "75011": 66, "75012": 72, "75013": 67, "75014": 75, "75015": 80,
+  "75016": 85, "75017": 73, "75018": 52, "75019": 54, "75020": 60,
+};
+
 /** Approximate population density per arrondissement (inhabitants / km²). */
 const DENSITY: Record<string, number> = {
   "75001": 8600,
@@ -69,6 +94,10 @@ export interface InseeProfile {
   density: number;
   /** Median disposable household income, € / year. */
   income: number;
+  /** Median rent reference, € / m² / month. */
+  loyerRefM2: number;
+  /** Resident-safety index, 0–100 (higher = safer). */
+  safety: number;
 }
 
 export function getInseeProfile(district: string): InseeProfile {
@@ -79,5 +108,7 @@ export function getInseeProfile(district: string): InseeProfile {
     refPriceM2: arr?.refPriceM2 ?? 10500,
     density: DENSITY[district] ?? 25000,
     income: MEDIAN_INCOME[district] ?? 30000,
+    loyerRefM2: LOYER_REF_M2[district] ?? 27,
+    safety: SAFETY_INDEX[district] ?? 65,
   };
 }

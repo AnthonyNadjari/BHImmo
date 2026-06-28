@@ -49,12 +49,17 @@ function toIndexEntry(p: Property): IndexEntry {
     badge: badgeFor(p.score.opportunity_score),
     image: p.thumb,
     walk_score: p.neighborhood?.walk_score ?? 0,
+    gross_yield: p.investment?.gross_yield ?? 0,
+    net_yield: p.investment?.net_yield ?? 0,
+    ppm2_percentile: p.investment?.ppm2_percentile ?? 50,
+    dpe_energy: p.dpe?.energy_class,
   };
 }
 
 export async function exportDatasets(
   properties: Property[],
   generatedAt: string,
+  cityMedianTrend: number,
 ): Promise<void> {
   // Full records.
   await saveProperties(properties, generatedAt);
@@ -72,7 +77,7 @@ export async function exportDatasets(
   log.ok(`Wrote ${FILES.index} (${entries.length} rows)`);
 
   // Market model.
-  const market = buildMarket(properties, generatedAt);
+  const market = buildMarket(properties, generatedAt, cityMedianTrend);
   await writeJson(join(DATA_DIR, FILES.market), market);
   log.ok(`Wrote ${FILES.market} (${market.arrondissements.length} arrondissements)`);
 }

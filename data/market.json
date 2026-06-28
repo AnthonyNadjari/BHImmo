@@ -1,6 +1,7 @@
 {
   "generated_at": "2026-06-28T00:00:00.000Z",
   "city_avg_price_m2": 11695,
+  "city_median_trend": -1.3,
   "arrondissements": [
     {
       "district": "75001",
@@ -12,9 +13,11 @@
       "dvf_avg_price_m2": 13594,
       "trend_1y_percent": -1.2,
       "volatility": 0.185,
-      "avg_opportunity_score": 40,
+      "avg_opportunity_score": 46,
       "median_income": 36000,
-      "avg_walk_score": 37
+      "avg_walk_score": 37,
+      "median_yield": 3.42,
+      "safety_index": 62
     },
     {
       "district": "75002",
@@ -28,7 +31,9 @@
       "volatility": 0.094,
       "avg_opportunity_score": 37,
       "median_income": 34000,
-      "avg_walk_score": 71
+      "avg_walk_score": 71,
+      "median_yield": 3.34,
+      "safety_index": 66
     },
     {
       "district": "75003",
@@ -40,9 +45,11 @@
       "dvf_avg_price_m2": 13139,
       "trend_1y_percent": -1.6,
       "volatility": 0.118,
-      "avg_opportunity_score": 44,
+      "avg_opportunity_score": 41,
       "median_income": 35000,
-      "avg_walk_score": 78
+      "avg_walk_score": 78,
+      "median_yield": 3.29,
+      "safety_index": 72
     },
     {
       "district": "75004",
@@ -54,9 +61,11 @@
       "dvf_avg_price_m2": 14001,
       "trend_1y_percent": -1.8,
       "volatility": 0.129,
-      "avg_opportunity_score": 45,
+      "avg_opportunity_score": 42,
       "median_income": 38000,
-      "avg_walk_score": 49
+      "avg_walk_score": 49,
+      "median_yield": 3.16,
+      "safety_index": 70
     },
     {
       "district": "75005",
@@ -68,9 +77,11 @@
       "dvf_avg_price_m2": 13120,
       "trend_1y_percent": -1.1,
       "volatility": 0.099,
-      "avg_opportunity_score": 41,
+      "avg_opportunity_score": 36,
       "median_income": 37000,
-      "avg_walk_score": 74
+      "avg_walk_score": 74,
+      "median_yield": 3.55,
+      "safety_index": 78
     },
     {
       "district": "75006",
@@ -84,7 +95,9 @@
       "volatility": 0,
       "avg_opportunity_score": 46,
       "median_income": 43000,
-      "avg_walk_score": 65
+      "avg_walk_score": 65,
+      "median_yield": 3.7,
+      "safety_index": 82
     },
     {
       "district": "75008",
@@ -98,7 +111,9 @@
       "volatility": 0.104,
       "avg_opportunity_score": 50,
       "median_income": 45000,
-      "avg_walk_score": 26
+      "avg_walk_score": 26,
+      "median_yield": 3.74,
+      "safety_index": 64
     },
     {
       "district": "75010",
@@ -110,9 +125,11 @@
       "dvf_avg_price_m2": 10909,
       "trend_1y_percent": -1.6,
       "volatility": 0,
-      "avg_opportunity_score": 36,
+      "avg_opportunity_score": 37,
       "median_income": 29000,
-      "avg_walk_score": 66
+      "avg_walk_score": 66,
+      "median_yield": 3.59,
+      "safety_index": 55
     },
     {
       "district": "75011",
@@ -124,9 +141,11 @@
       "dvf_avg_price_m2": 10620,
       "trend_1y_percent": -1.5,
       "volatility": 0.156,
-      "avg_opportunity_score": 44,
+      "avg_opportunity_score": 32,
       "median_income": 30000,
-      "avg_walk_score": 94
+      "avg_walk_score": 94,
+      "median_yield": 4.09,
+      "safety_index": 66
     },
     {
       "district": "75012",
@@ -138,9 +157,11 @@
       "dvf_avg_price_m2": 10232,
       "trend_1y_percent": -1.7,
       "volatility": 0.071,
-      "avg_opportunity_score": 47,
+      "avg_opportunity_score": 35,
       "median_income": 31000,
-      "avg_walk_score": 58
+      "avg_walk_score": 58,
+      "median_yield": 4.26,
+      "safety_index": 72
     },
     {
       "district": "75013",
@@ -152,9 +173,11 @@
       "dvf_avg_price_m2": 9730,
       "trend_1y_percent": -2.4,
       "volatility": 0.098,
-      "avg_opportunity_score": 52,
+      "avg_opportunity_score": 42,
       "median_income": 27000,
-      "avg_walk_score": 70
+      "avg_walk_score": 70,
+      "median_yield": 3.99,
+      "safety_index": 67
     },
     {
       "district": "75014",
@@ -166,9 +189,11 @@
       "dvf_avg_price_m2": 10132,
       "trend_1y_percent": -1.6,
       "volatility": 0.028,
-      "avg_opportunity_score": 38,
+      "avg_opportunity_score": 31,
       "median_income": 32000,
-      "avg_walk_score": 63
+      "avg_walk_score": 63,
+      "median_yield": 3.61,
+      "safety_index": 75
     },
     {
       "district": "75015",
@@ -180,9 +205,11 @@
       "dvf_avg_price_m2": 10345,
       "trend_1y_percent": -2,
       "volatility": 0.191,
-      "avg_opportunity_score": 45,
+      "avg_opportunity_score": 55,
       "median_income": 33000,
-      "avg_walk_score": 88
+      "avg_walk_score": 88,
+      "median_yield": 4.22,
+      "safety_index": 80
     },
     {
       "district": "75016",
@@ -194,9 +221,11 @@
       "dvf_avg_price_m2": 11444,
       "trend_1y_percent": -1,
       "volatility": 0,
-      "avg_opportunity_score": 35,
+      "avg_opportunity_score": 61,
       "median_income": 44000,
-      "avg_walk_score": 42
+      "avg_walk_score": 42,
+      "median_yield": 3.85,
+      "safety_index": 85
     },
     {
       "district": "75017",
@@ -208,9 +237,11 @@
       "dvf_avg_price_m2": 11357,
       "trend_1y_percent": -2.1,
       "volatility": 0,
-      "avg_opportunity_score": 29,
+      "avg_opportunity_score": 36,
       "median_income": 35000,
-      "avg_walk_score": 75
+      "avg_walk_score": 75,
+      "median_yield": 3.21,
+      "safety_index": 73
     },
     {
       "district": "75018",
@@ -222,9 +253,11 @@
       "dvf_avg_price_m2": 9543,
       "trend_1y_percent": -3,
       "volatility": 0.056,
-      "avg_opportunity_score": 45,
+      "avg_opportunity_score": 37,
       "median_income": 26000,
-      "avg_walk_score": 84
+      "avg_walk_score": 84,
+      "median_yield": 3.92,
+      "safety_index": 52
     },
     {
       "district": "75019",
@@ -236,9 +269,11 @@
       "dvf_avg_price_m2": 8847,
       "trend_1y_percent": -2.2,
       "volatility": 0.042,
-      "avg_opportunity_score": 33,
+      "avg_opportunity_score": 58,
       "median_income": 23000,
-      "avg_walk_score": 83
+      "avg_walk_score": 83,
+      "median_yield": 4.15,
+      "safety_index": 54
     },
     {
       "district": "75020",
@@ -250,9 +285,11 @@
       "dvf_avg_price_m2": 8860,
       "trend_1y_percent": -3.6,
       "volatility": 0,
-      "avg_opportunity_score": 48,
+      "avg_opportunity_score": 59,
       "median_income": 25000,
-      "avg_walk_score": 81
+      "avg_walk_score": 81,
+      "median_yield": 3.98,
+      "safety_index": 60
     }
   ]
 }

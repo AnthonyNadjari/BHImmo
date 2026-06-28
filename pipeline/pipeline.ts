@@ -18,8 +18,8 @@ import { imageSet } from "../shared/images.ts";
 import type { NormalizedListing } from "../scraper/index.ts";
 import { ingestListings, listingEndedInSale } from "../scraper/index.ts";
 import { matchListings, propertyId } from "../scraper/match.ts";
-import { enrichProperty, geocode } from "../enrichment/index.ts";
-import { scoreProperty } from "../scoring/index.ts";
+import { enrichProperty, geocode, nearbyPois } from "../enrichment/index.ts";
+import { scoreDataset } from "../scoring/index.ts";
 import { exportDatasets, loadProperties } from "../storage/index.ts";
 import type { Property } from "../shared/types.ts";
 
@@ -52,11 +52,13 @@ async function buildNewProperty(
 
   // Step 3 — enrichment.
   const enrichment = await enrichProperty(
-    { id, lat: geo.lat, lng: geo.lng, district: geo.district },
+    { id, lat: geo.lat, lng: geo.lng, district: geo.district, rooms: listing.rooms },
     config,
   );
 
   const gallery = imageSet(id);
+  const monthlyEst = Math.round(enrichment.rent.max_m2 * listing.surface_m2);
+  const pois = nearbyPois({ id, lat: geo.lat, lng: geo.lng });
 
   return {
     id,
@@ -84,11 +86,20 @@ async function buildNewProperty(
     risks: enrichment.risks,
     transport_score: enrichment.transport_score,
     neighborhood: enrichment.neighborhood,
+    rent: { ...enrichment.rent, monthly_est: monthlyEst },
+    investment: {
+      gross_yield: 0, net_yield: 0, ppm2_percentile: 0,
+      negotiation_margin_pct: 0, dpe_risk_score: 0, value_add_flag: false,
+    },
+    pois,
     dpe: enrichment.dpe,
     images: gallery.images,
     thumb: gallery.thumb,
-    // Filled by the scoring pass below.
-    score: { opportunity_score: 0, price_score: 0, market_gap_score: 0, liquidity_score: 0 },
+    // Filled by the dataset scoring pass below.
+    score: {
+      opportunity_score: 0, value_score: 0, yield_score: 0,
+      negotiation_score: 0, liquidity_score: 0, gentrification_score: 0,
+    },
     signals: { price_drops: 0, total_drop_percent: 0, long_time_on_market: false, explanations: [] },
     source: listing.source,
     url: listing.url,
@@ -180,17 +191,15 @@ export async function runPipeline(config: PipelineConfig): Promise<PipelineSumma
       property.images = gallery.images;
       property.thumb = gallery.thumb;
     }
-    const { score, signals } = scoreProperty(property);
-    property.score = score;
-    property.signals = signals;
   }
+  const { cityMedianTrend } = scoreDataset(all);
 
   // Step 7 — export.
   // Use day-granularity for generated_at so a no-change run produces
   // byte-identical JSON (the scheduled workflow then commits nothing instead
   // of churning an empty diff 4× a day).
   log.step(7, "Export datasets");
-  await exportDatasets(all, `${isoDay(config.now)}T00:00:00.000Z`);
+  await exportDatasets(all, `${isoDay(config.now)}T00:00:00.000Z`, cityMedianTrend);
 
   const active = all.filter((p) => p.status === "active").length;
   const opportunities = all.filter((p) => p.score.opportunity_score >= 68).length;

@@ -97,14 +97,51 @@ export interface Neighborhood {
 }
 
 export interface Score {
-  /** Headline opportunity score, 0–100. */
+  /** Headline deal score, 0–100. */
   opportunity_score: number;
-  /** Sub-score: how cheap vs. DVF, 0–100. */
-  price_score: number;
-  /** Sub-score: gap vs. local market, 0–100. */
-  market_gap_score: number;
-  /** Sub-score: how easily it should resell, 0–100. */
+  /** Cheapness vs. DVF + €/m² percentile, 0–100. */
+  value_score: number;
+  /** Rental-yield strength, 0–100. */
+  yield_score: number;
+  /** Negotiation leverage (drops + time on market), 0–100. */
+  negotiation_score: number;
+  /** Resale liquidity, 0–100. */
   liquidity_score: number;
+  /** Neighbourhood gentrification momentum, 0–100. */
+  gentrification_score: number;
+}
+
+export interface Rent {
+  /** Reference rent €/m²/month. */
+  ref_m2: number;
+  /** Legal ceiling (majoré) €/m²/month — achievable market rent. */
+  max_m2: number;
+  min_m2: number;
+  /** Estimated monthly rent for this unit, €. */
+  monthly_est: number;
+  quartier: string;
+}
+
+export interface Investment {
+  /** Gross rental yield, %. */
+  gross_yield: number;
+  /** Net rental yield (after costs & acquisition fees), %. */
+  net_yield: number;
+  /** €/m² percentile within the arrondissement (0 = cheapest). */
+  ppm2_percentile: number;
+  /** Estimated total negotiation margin, %. */
+  negotiation_margin_pct: number;
+  /** DPE regulatory health 0–100 (100 = A, 10 = G). */
+  dpe_risk_score: number;
+  /** Renovation-arbitrage opportunity on an F/G priced well below market. */
+  value_add_flag: boolean;
+}
+
+export interface Poi {
+  type: "transport" | "park" | "velib";
+  lat: number;
+  lng: number;
+  label: string;
 }
 
 export interface Signals {
@@ -137,6 +174,13 @@ export interface Property {
 
   /** Walkability, schools, income & amenities for the surrounding area. */
   neighborhood: Neighborhood;
+
+  /** Rental reference + estimated rent. */
+  rent: Rent;
+  /** Derived investment metrics. */
+  investment: Investment;
+  /** Nearby points of interest for the detail mini-map. */
+  pois: Poi[];
 
   /** Listing photo gallery (deterministic, hot-linkable URLs). */
   images: string[];
@@ -186,6 +230,14 @@ export interface IndexEntry {
   image: string;
   /** Walkability score 0–100 (surfaced for sorting/filtering). */
   walk_score: number;
+  /** Gross rental yield, % (sortable). */
+  gross_yield: number;
+  /** Net rental yield, %. */
+  net_yield: number;
+  /** €/m² percentile within arrondissement. */
+  ppm2_percentile: number;
+  /** DPE energy class A–G (promoted for the dashboard chip). */
+  dpe_energy?: string;
 }
 
 export interface IndexFile {
@@ -213,11 +265,17 @@ export interface MarketArrondissement {
   median_income: number;
   /** Average walkability score of active listings, 0–100. */
   avg_walk_score: number;
+  /** Median gross rental yield of active listings, %. */
+  median_yield: number;
+  /** Resident-safety index 0–100. */
+  safety_index: number;
 }
 
 export interface MarketFile {
   generated_at: string;
   city_avg_price_m2: number;
+  /** City-wide median 1-year price trend (gentrification baseline). */
+  city_median_trend: number;
   arrondissements: MarketArrondissement[];
 }
 
