@@ -426,44 +426,51 @@ h2 { font-size: 15px; font-weight: 640; letter-spacing: -0.01em; margin: 0 0 12p
 }
 
 /* ============================================================
-   Modernity layer — gradients, depth, score ring, hero overlay
+   Professional refinement layer — flat surfaces, SVG icons, depth
    ============================================================ */
 
-body {
-  background:
-    radial-gradient(1200px 600px at 100% -10%, rgba(67,56,202,0.06), transparent 60%),
-    radial-gradient(900px 500px at -10% 0%, rgba(67,56,202,0.05), transparent 55%),
-    var(--bg);
-  background-attachment: fixed;
+/* Deeper, more serious palette (less "bright AI indigo"). */
+:root {
+  --primary: #34357a;
+  --primary-hover: #2b2c69;
+  --primary-active: #232357;
+  --primary-soft: #ecedf6;
+  --primary-softer: #f5f5fb;
+  --primary-text: #3a3b86;
+  --nav-bg: #11151f;
+  --nav-bg-2: #1a1f2c;
+  --nav-mark: #aeb6ff;
+  --bg: #f3f4f7;
+  --surface-2: #fafbfc;
 }
 
-/* Topbar — indigo-navy gradient with a faint sheen */
-.topbar {
-  background: linear-gradient(105deg, #11142340 0%, transparent 60%), linear-gradient(90deg, var(--nav-bg), var(--nav-bg-2));
-}
-.brand-mark {
-  background: linear-gradient(135deg, #a7b0ff, #6c78ff);
-  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-}
+/* No glow, no gradient on the canvas — clean and calm. */
+body { background: var(--bg); }
 
-/* Primary buttons / score pills — subtle gradient + depth */
-.btn:not(.ghost) {
-  background: linear-gradient(135deg, #5145d6, var(--primary));
-  box-shadow: 0 1px 2px rgba(46,39,150,0.25), inset 0 1px 0 rgba(255,255,255,0.12);
-}
-.btn:not(.ghost):hover { background: linear-gradient(135deg, var(--primary), var(--primary-active)); }
+/* Topbar: solid ink, hairline edge. */
+.topbar { background: var(--nav-bg); }
+.brand { gap: 9px; text-decoration: none; }
+.brand:hover { text-decoration: none; }
+.brand-mark { color: var(--nav-mark); display: inline-flex; align-items: center; -webkit-text-fill-color: currentColor; }
+.brand-name { color: #fff; }
 
-/* KPI cards — gradient rails + faint top sheen */
-.kpi { background: linear-gradient(180deg, #ffffff, #fcfcff); }
-.kpi.kpi-primary::before { background: linear-gradient(180deg, #6a5cf0, var(--primary)); }
-.kpi.kpi-good::before { background: linear-gradient(180deg, #2bb673, var(--success)); }
-.kpi.kpi-warn::before { background: linear-gradient(180deg, #d39a2a, var(--warn)); }
-.kpi::before { width: 4px; }
+/* Solid buttons — no gradient. */
+.btn:not(.ghost) { background: var(--primary); box-shadow: var(--shadow-xs); }
+.btn:not(.ghost):hover { background: var(--primary-hover); }
 
-/* Cards lift a touch more for depth */
-.card { border-radius: 14px; }
+/* KPI cards: flat white, solid accent rail. */
+.kpi { background: var(--surface); }
+.kpi::before { width: 3px; }
 
-/* Amenity grid: wrap nicely for 6 items */
+/* Icons sit inline with text. */
+.btn svg, .chip svg, .badge svg, .watch-btn svg, .refresh-btn svg, .nav svg { flex: 0 0 auto; }
+.btn, .chip, .badge, .watch-btn, .refresh-btn { display: inline-flex; align-items: center; gap: 6px; }
+.badge { gap: 5px; }
+.badge svg { stroke-width: 2; }
+.amenity-icon { color: var(--muted); margin-bottom: 2px; }
+
+/* Cards: restrained radius. */
+.card { border-radius: 12px; }
 .amenity-grid { grid-template-columns: repeat(6, 1fr); }
 
 /* ---- Score ring (detail hero) ---- */
@@ -473,21 +480,14 @@ body {
 .score-ring-center { position: absolute; top: 0; left: 0; width: 100%; height: 108px; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1; }
 .score-ring-center strong { font-family: var(--mono); font-size: 30px; font-weight: 700; }
 .score-ring-center span { font-size: 10px; color: var(--muted); margin-top: 2px; }
-.score-ring-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 4px; }
-
+.score-ring-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 5px; }
 .hero-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 4px; }
 
-/* ---- Hero photo overlay ---- */
+/* ---- Hero photo overlay (subtle) ---- */
 .detail-hero-media { position: relative; border-radius: var(--r-md); overflow: hidden; }
-.hero-photo-scrim { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(20,24,42,0.18) 0%, transparent 28%, transparent 72%, rgba(20,24,42,0.30) 100%); border-radius: var(--r-md); }
+.hero-photo-scrim { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(17,21,31,0.16) 0%, transparent 26%, transparent 78%, rgba(17,21,31,0.20) 100%); }
 .hero-photo-badge { position: absolute; top: 12px; left: 12px; }
-.hero-photo-badge .badge { background: rgba(255,255,255,0.92); box-shadow: var(--shadow-md); backdrop-filter: blur(4px); }
-
-/* Nav active gets a faint gradient glow */
-.nav a.active { background: linear-gradient(180deg, rgba(139,149,255,0.22), rgba(139,149,255,0.12)); }
-
-/* Score pills on the market page — gradient sheen */
-.score-pill { box-shadow: inset 0 1px 0 rgba(255,255,255,0.25); }
+.hero-photo-badge .badge { background: rgba(255,255,255,0.94); box-shadow: var(--shadow-md); }
 
 @media (max-width: 980px) {
   .amenity-grid { grid-template-columns: repeat(3, 1fr); }

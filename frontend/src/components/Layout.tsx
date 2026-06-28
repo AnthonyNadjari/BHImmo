@@ -1,7 +1,8 @@
 /** App shell: top navigation + routed content. */
 
 import { useEffect, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import { Icon } from "./Icon";
 import { watchCount } from "../services/watchlist";
 
 export function Layout() {
@@ -21,11 +22,13 @@ export function Layout() {
   return (
     <div className="app">
       <header className="topbar">
-        <div className="brand">
-          <span className="brand-mark">◢◣</span>
+        <Link to="/" className="brand" aria-label="Paris Real Estate Radar — home">
+          <span className="brand-mark">
+            <Icon name="radar" size={20} strokeWidth={2} />
+          </span>
           <span className="brand-name">Paris Real Estate Radar</span>
-          <span className="brand-tag">P.R.E.R</span>
-        </div>
+          <span className="brand-tag">PRER</span>
+        </Link>
         <nav className="nav">
           <NavLink to="/" end>
             Dashboard

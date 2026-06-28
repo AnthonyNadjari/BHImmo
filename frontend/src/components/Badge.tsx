@@ -1,13 +1,21 @@
 /** Opportunity / watch / overvalued badge. */
 
+import { Icon } from "./Icon";
 import { BADGES } from "../services/format";
 import type { Badge as BadgeType } from "../types";
+
+const ICON = {
+  opportunity: "trending-up",
+  watch: "eye",
+  overvalued: "trending-down",
+} as const;
 
 export function Badge({ badge }: { badge: BadgeType }) {
   const meta = BADGES[badge];
   return (
     <span className={`badge ${meta.className}`} title={meta.label}>
-      <span aria-hidden="true">{meta.emoji}</span> {meta.label}
+      <Icon name={ICON[badge]} size={13} />
+      {meta.label}
     </span>
   );
 }

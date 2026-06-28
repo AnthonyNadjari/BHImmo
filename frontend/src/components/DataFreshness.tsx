@@ -8,6 +8,7 @@
  */
 
 import { useState } from "react";
+import { Icon } from "./Icon";
 import { clearDataCache } from "../services/data";
 import { timeAgo } from "../services/format";
 
@@ -36,7 +37,7 @@ export function DataFreshness({ generatedAt }: { generatedAt?: string }) {
         aria-label="Refresh data"
         title="Re-fetch the latest dataset"
       >
-        <span className="refresh-icon" aria-hidden="true">↻</span>
+        <Icon name="refresh" size={14} className="refresh-icon" />
         Refresh
       </button>
     </div>

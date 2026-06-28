@@ -19,6 +19,7 @@ import { Sparkline } from "../components/Sparkline";
 import { ScoreBar } from "../components/ScoreBar";
 import { Badge } from "../components/Badge";
 import { Img } from "../components/Img";
+import { Icon } from "../components/Icon";
 import { DataFreshness } from "../components/DataFreshness";
 import { ErrorState, TableSkeleton } from "../components/States";
 import { mean, median } from "../services/stats";
@@ -136,7 +137,7 @@ export function Dashboard() {
         <div className="head-actions">
           <DataFreshness generatedAt={data?.generated_at} />
           <button className="btn" onClick={() => downloadCsv(filtered)}>
-            ⬇ Export CSV
+            <Icon name="download" size={15} /> Export CSV
           </button>
         </div>
       </div>
@@ -185,21 +186,21 @@ export function Dashboard() {
           aria-pressed={onlyHighScore}
           onClick={() => setOnlyHighScore((v) => !v)}
         >
-          🔥 High score
+          <Icon name="star" size={13} /> High score
         </button>
         <button
           className={`chip ${onlyDrops ? "on" : ""}`}
           aria-pressed={onlyDrops}
           onClick={() => setOnlyDrops((v) => !v)}
         >
-          ↓ Price drops
+          <Icon name="arrow-down" size={13} /> Price drops
         </button>
         <button
           className={`chip ${onlyLongMarket ? "on" : ""}`}
           aria-pressed={onlyLongMarket}
           onClick={() => setOnlyLongMarket((v) => !v)}
         >
-          ⏳ Long on market
+          <Icon name="clock" size={13} /> Long on market
         </button>
       </div>
 

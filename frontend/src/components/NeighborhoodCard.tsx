@@ -4,20 +4,21 @@
  */
 
 import { ScoreGauge } from "./ScoreBar";
+import { Icon } from "./Icon";
 import { formatIncome } from "../services/format";
 import type { Property } from "../types";
 
 export function NeighborhoodCard({ hood }: { hood: Property["neighborhood"] }) {
   if (!hood) return null;
   const a = hood.amenities;
-  const items: Array<{ icon: string; label: string; value: number }> = [
-    { icon: "🛒", label: "Shops", value: a.food },
-    { icon: "⚕️", label: "Health", value: a.health },
-    { icon: "🎭", label: "Culture", value: a.culture },
-    { icon: "🎓", label: "Schools", value: hood.schools_500m },
-    { icon: "🚲", label: "Vélib'", value: hood.velib_400m },
-    { icon: "🌳", label: "Trees", value: hood.trees_150m },
-  ];
+  const items = [
+    { icon: "bag", label: "Shops", value: a.food },
+    { icon: "pulse", label: "Health", value: a.health },
+    { icon: "ticket", label: "Culture", value: a.culture },
+    { icon: "school", label: "Schools", value: hood.schools_500m },
+    { icon: "bike", label: "Vélib'", value: hood.velib_400m },
+    { icon: "tree", label: "Trees", value: hood.trees_150m },
+  ] as const;
 
   return (
     <>
@@ -25,7 +26,7 @@ export function NeighborhoodCard({ hood }: { hood: Property["neighborhood"] }) {
       <div className="amenity-grid">
         {items.map((it) => (
           <div className="amenity" key={it.label}>
-            <span className="amenity-icon" aria-hidden="true">{it.icon}</span>
+            <Icon name={it.icon} size={17} className="amenity-icon" />
             <strong>{it.value}</strong>
             <span className="amenity-label">{it.label}</span>
           </div>

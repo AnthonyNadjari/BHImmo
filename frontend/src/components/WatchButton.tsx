@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Property } from "../types";
+import { Icon } from "./Icon";
 import { isWatched, toggleWatchlist } from "../services/watchlist";
 
 export function WatchButton({ property }: { property: Property }) {
@@ -26,7 +27,8 @@ export function WatchButton({ property }: { property: Property }) {
       aria-pressed={watched}
       onClick={() => setWatched(toggleWatchlist(property))}
     >
-      {watched ? "★ Watching" : "☆ Add to watchlist"}
+      <Icon name={watched ? "bookmark-filled" : "bookmark"} size={15} />
+      {watched ? "Watching" : "Add to watchlist"}
     </button>
   );
 }
