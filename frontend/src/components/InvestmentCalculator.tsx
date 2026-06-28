@@ -77,7 +77,7 @@ function Output({
 
 export function InvestmentCalculator({ property }: { property: Property }) {
   const price = property.pricing.current_price;
-  const defaultRent = Math.round(property.rent.monthly_est);
+  const defaultRent = Math.round(property.rent?.monthly_est) || 0;
 
   const [downPct, setDownPct] = useState(20);
   const [ratePct, setRatePct] = useState(3.5);

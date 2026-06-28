@@ -213,15 +213,21 @@ export async function liveDvfListings(config: PipelineConfig): Promise<RawListin
   return out;
 }
 
-/** Comparable apartment sales within `maxDist` m, from the loaded real data. */
+/**
+ * Comparable apartment sales within `maxDist` m, from the loaded real data.
+ * `excludeId` drops a transaction (e.g. the property's own sale) so it isn't
+ * listed as its own comparable / biasing the local average.
+ */
 export function nearbyDvfComps(
   lat: number,
   lng: number,
   maxDist = 500,
+  excludeId?: string,
 ): Array<{ price: number; date: string; distance_m: number; pricePerM2: number }> {
   if (!CACHE) return [];
   const out: Array<{ price: number; date: string; distance_m: number; pricePerM2: number }> = [];
   for (const t of CACHE) {
+    if (excludeId && t.id === excludeId) continue;
     const d = haversineMeters(lat, lng, t.lat, t.lng);
     if (d <= maxDist) out.push({ price: t.price, date: t.date, distance_m: round(d), pricePerM2: t.ppm2 });
   }

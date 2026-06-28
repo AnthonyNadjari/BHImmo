@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-28T21:31:45.712Z",
+  "generated_at": "2026-06-28T21:46:19.245Z",
   "count": 1000,
   "properties": [
     {
@@ -81,6 +81,33 @@
       "gross_yield": 4.67,
       "net_yield": 3.22,
       "ppm2_percentile": 2,
+      "dpe_energy": "F"
+    },
+    {
+      "id": "dvf-2024-1209758",
+      "address": "17 Rue De Berne, 75008 Paris",
+      "district": "75008",
+      "lat": 48.880838,
+      "lng": 2.322972,
+      "surface_m2": 46,
+      "rooms": 2,
+      "current_price": 398000,
+      "price_per_m2": 8652,
+      "opportunity_score": 76,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        398000
+      ],
+      "badge": "opportunity",
+      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 52,
+      "gross_yield": 4.91,
+      "net_yield": 3.45,
+      "ppm2_percentile": 10,
       "dpe_energy": "F"
     },
     {
@@ -435,6 +462,33 @@
       "dpe_energy": "F"
     },
     {
+      "id": "dvf-2024-1209820",
+      "address": "21 Rue Ruhmkorff, 75017 Paris",
+      "district": "75017",
+      "lat": 48.881195,
+      "lng": 2.286265,
+      "surface_m2": 52,
+      "rooms": 3,
+      "current_price": 415000,
+      "price_per_m2": 7981,
+      "opportunity_score": 74,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        415000
+      ],
+      "badge": "opportunity",
+      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 84,
+      "gross_yield": 5.14,
+      "net_yield": 3.67,
+      "ppm2_percentile": 12,
+      "dpe_energy": "G"
+    },
+    {
       "id": "dvf-2024-1207288",
       "address": "26 Rue Montmartre, 75001 Paris",
       "district": "75001",
@@ -486,6 +540,33 @@
       "gross_yield": 4.56,
       "net_yield": 3.13,
       "ppm2_percentile": 16,
+      "dpe_energy": "A"
+    },
+    {
+      "id": "dvf-2024-1210323",
+      "address": "35 Rue D Amsterdam, 75008 Paris",
+      "district": "75008",
+      "lat": 48.878862,
+      "lng": 2.326613,
+      "surface_m2": 16,
+      "rooms": 1,
+      "current_price": 143350,
+      "price_per_m2": 8959,
+      "opportunity_score": 73,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        143350
+      ],
+      "badge": "opportunity",
+      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 58,
+      "gross_yield": 4.74,
+      "net_yield": 3.29,
+      "ppm2_percentile": 12,
       "dpe_energy": "A"
     },
     {
@@ -624,15 +705,15 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1210323",
-      "address": "35 Rue D Amsterdam, 75008 Paris",
-      "district": "75008",
-      "lat": 48.878862,
-      "lng": 2.326613,
-      "surface_m2": 16,
-      "rooms": 1,
-      "current_price": 143350,
-      "price_per_m2": 8959,
+      "id": "dvf-2024-1210385",
+      "address": "7 Rue De Montyon, 75009 Paris",
+      "district": "75009",
+      "lat": 48.872888,
+      "lng": 2.344336,
+      "surface_m2": 100,
+      "rooms": 4,
+      "current_price": 866667,
+      "price_per_m2": 8667,
       "opportunity_score": 72,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -640,14 +721,14 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        143350
+        866667
       ],
       "badge": "opportunity",
-      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 58,
-      "gross_yield": 4.74,
-      "net_yield": 3.29,
-      "ppm2_percentile": 12,
+      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 76,
+      "gross_yield": 4.82,
+      "net_yield": 3.37,
+      "ppm2_percentile": 16,
       "dpe_energy": "A"
     },
     {
@@ -892,33 +973,6 @@
       "net_yield": 3.8,
       "ppm2_percentile": 8,
       "dpe_energy": "C"
-    },
-    {
-      "id": "dvf-2024-1210385",
-      "address": "7 Rue De Montyon, 75009 Paris",
-      "district": "75009",
-      "lat": 48.872888,
-      "lng": 2.344336,
-      "surface_m2": 100,
-      "rooms": 4,
-      "current_price": 866667,
-      "price_per_m2": 8667,
-      "opportunity_score": 71,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        866667
-      ],
-      "badge": "opportunity",
-      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 76,
-      "gross_yield": 4.82,
-      "net_yield": 3.37,
-      "ppm2_percentile": 16,
-      "dpe_energy": "A"
     },
     {
       "id": "dvf-2024-1209296",
@@ -1515,6 +1569,33 @@
       "dpe_energy": "C"
     },
     {
+      "id": "dvf-2024-1228917",
+      "address": "38 A Rue Du Fer A Moulin, 75005 Paris",
+      "district": "75005",
+      "lat": 48.839096,
+      "lng": 2.352421,
+      "surface_m2": 30,
+      "rooms": 1,
+      "current_price": 287000,
+      "price_per_m2": 9567,
+      "opportunity_score": 68,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        287000
+      ],
+      "badge": "opportunity",
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 60,
+      "gross_yield": 4.52,
+      "net_yield": 3.08,
+      "ppm2_percentile": 8,
+      "dpe_energy": "B"
+    },
+    {
       "id": "dvf-2024-1228077",
       "address": "6 Rue Jacob, 75006 Paris",
       "district": "75006",
@@ -1540,6 +1621,60 @@
       "net_yield": 2.68,
       "ppm2_percentile": 8,
       "dpe_energy": "F"
+    },
+    {
+      "id": "dvf-2024-1209036",
+      "address": "3 Rue De L Isly, 75008 Paris",
+      "district": "75008",
+      "lat": 48.874609,
+      "lng": 2.32618,
+      "surface_m2": 30,
+      "rooms": 2,
+      "current_price": 270000,
+      "price_per_m2": 9000,
+      "opportunity_score": 68,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        270000
+      ],
+      "badge": "opportunity",
+      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 43,
+      "gross_yield": 4.72,
+      "net_yield": 3.27,
+      "ppm2_percentile": 14,
+      "dpe_energy": "C"
+    },
+    {
+      "id": "dvf-2024-1228716",
+      "address": "131 Bd Voltaire, 75011 Paris",
+      "district": "75011",
+      "lat": 48.856488,
+      "lng": 2.382894,
+      "surface_m2": 80,
+      "rooms": 4,
+      "current_price": 690000,
+      "price_per_m2": 8625,
+      "opportunity_score": 68,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        690000
+      ],
+      "badge": "opportunity",
+      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 88,
+      "gross_yield": 4.76,
+      "net_yield": 3.31,
+      "ppm2_percentile": 10,
+      "dpe_energy": "B"
     },
     {
       "id": "dvf-2024-1229290",
@@ -1812,33 +1947,6 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1228917",
-      "address": "38 A Rue Du Fer A Moulin, 75005 Paris",
-      "district": "75005",
-      "lat": 48.839096,
-      "lng": 2.352421,
-      "surface_m2": 30,
-      "rooms": 1,
-      "current_price": 287000,
-      "price_per_m2": 9567,
-      "opportunity_score": 67,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        287000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 60,
-      "gross_yield": 4.52,
-      "net_yield": 3.08,
-      "ppm2_percentile": 8,
-      "dpe_energy": "B"
-    },
-    {
       "id": "dvf-2024-1209145",
       "address": "87 Rue De Monceau, 75008 Paris",
       "district": "75008",
@@ -1866,60 +1974,6 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1209036",
-      "address": "3 Rue De L Isly, 75008 Paris",
-      "district": "75008",
-      "lat": 48.874609,
-      "lng": 2.32618,
-      "surface_m2": 30,
-      "rooms": 2,
-      "current_price": 270000,
-      "price_per_m2": 9000,
-      "opportunity_score": 67,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        270000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 43,
-      "gross_yield": 4.72,
-      "net_yield": 3.27,
-      "ppm2_percentile": 14,
-      "dpe_energy": "C"
-    },
-    {
-      "id": "dvf-2024-1228716",
-      "address": "131 Bd Voltaire, 75011 Paris",
-      "district": "75011",
-      "lat": 48.856488,
-      "lng": 2.382894,
-      "surface_m2": 80,
-      "rooms": 4,
-      "current_price": 690000,
-      "price_per_m2": 8625,
-      "opportunity_score": 67,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        690000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 88,
-      "gross_yield": 4.76,
-      "net_yield": 3.31,
-      "ppm2_percentile": 10,
-      "dpe_energy": "B"
-    },
-    {
       "id": "dvf-2024-1228422",
       "address": "137 Rue Du Ranelagh, 75016 Paris",
       "district": "75016",
@@ -1945,6 +1999,33 @@
       "net_yield": 3.57,
       "ppm2_percentile": 14,
       "dpe_energy": "D"
+    },
+    {
+      "id": "dvf-2024-1229090",
+      "address": "42 Rue Chardon Lagache, 75016 Paris",
+      "district": "75016",
+      "lat": 48.843757,
+      "lng": 2.264982,
+      "surface_m2": 110,
+      "rooms": 3,
+      "current_price": 930000,
+      "price_per_m2": 8455,
+      "opportunity_score": 67,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        930000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 42,
+      "gross_yield": 4.85,
+      "net_yield": 3.4,
+      "ppm2_percentile": 16,
+      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1228768",
@@ -2163,6 +2244,33 @@
       "dpe_energy": "C"
     },
     {
+      "id": "dvf-2024-1228668",
+      "address": "80 Rue Bobillot, 75013 Paris",
+      "district": "75013",
+      "lat": 48.824308,
+      "lng": 2.348566,
+      "surface_m2": 44,
+      "rooms": 3,
+      "current_price": 343000,
+      "price_per_m2": 7795,
+      "opportunity_score": 66,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        343000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 80,
+      "gross_yield": 4.9,
+      "net_yield": 3.44,
+      "ppm2_percentile": 28,
+      "dpe_energy": "B"
+    },
+    {
       "id": "dvf-2024-1228893",
       "address": "6 Rue Morere, 75014 Paris",
       "district": "75014",
@@ -2190,15 +2298,15 @@
       "dpe_energy": "B"
     },
     {
-      "id": "dvf-2024-1229090",
-      "address": "42 Rue Chardon Lagache, 75016 Paris",
-      "district": "75016",
-      "lat": 48.843757,
-      "lng": 2.264982,
-      "surface_m2": 110,
-      "rooms": 3,
-      "current_price": 930000,
-      "price_per_m2": 8455,
+      "id": "dvf-2024-1209768",
+      "address": "17 Rue Jouffroy D'Abbans, 75017 Paris",
+      "district": "75017",
+      "lat": 48.886445,
+      "lng": 2.311593,
+      "surface_m2": 39,
+      "rooms": 2,
+      "current_price": 347970,
+      "price_per_m2": 8922,
       "opportunity_score": 66,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -2206,14 +2314,14 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        930000
+        347970
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 42,
-      "gross_yield": 4.85,
-      "net_yield": 3.4,
-      "ppm2_percentile": 16,
+      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 89,
+      "gross_yield": 4.6,
+      "net_yield": 3.16,
+      "ppm2_percentile": 32,
       "dpe_energy": "C"
     },
     {
@@ -2350,6 +2458,33 @@
       "net_yield": 3.89,
       "ppm2_percentile": 8,
       "dpe_energy": "C"
+    },
+    {
+      "id": "dvf-2024-1209688",
+      "address": "18 Rue Volney, 75002 Paris",
+      "district": "75002",
+      "lat": 48.869712,
+      "lng": 2.3306,
+      "surface_m2": 102,
+      "rooms": 1,
+      "current_price": 1050000,
+      "price_per_m2": 10294,
+      "opportunity_score": 65,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1050000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 63,
+      "gross_yield": 4.2,
+      "net_yield": 2.79,
+      "ppm2_percentile": 36,
+      "dpe_energy": "B"
     },
     {
       "id": "dvf-2024-1207659",
@@ -2514,33 +2649,6 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1228668",
-      "address": "80 Rue Bobillot, 75013 Paris",
-      "district": "75013",
-      "lat": 48.824308,
-      "lng": 2.348566,
-      "surface_m2": 44,
-      "rooms": 3,
-      "current_price": 343000,
-      "price_per_m2": 7795,
-      "opportunity_score": 65,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        343000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 80,
-      "gross_yield": 4.9,
-      "net_yield": 3.44,
-      "ppm2_percentile": 28,
-      "dpe_energy": "B"
-    },
-    {
       "id": "dvf-2024-1229254",
       "address": "133 Av De Versailles, 75016 Paris",
       "district": "75016",
@@ -2566,33 +2674,6 @@
       "net_yield": 4.17,
       "ppm2_percentile": 0,
       "dpe_energy": "D"
-    },
-    {
-      "id": "dvf-2024-1209768",
-      "address": "17 Rue Jouffroy D'Abbans, 75017 Paris",
-      "district": "75017",
-      "lat": 48.886445,
-      "lng": 2.311593,
-      "surface_m2": 39,
-      "rooms": 2,
-      "current_price": 347970,
-      "price_per_m2": 8922,
-      "opportunity_score": 65,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        347970
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 89,
-      "gross_yield": 4.6,
-      "net_yield": 3.16,
-      "ppm2_percentile": 32,
-      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1210032",
@@ -2838,6 +2919,33 @@
       "dpe_energy": "C"
     },
     {
+      "id": "dvf-2024-1229331",
+      "address": "3 Rue Du Dahomey, 75011 Paris",
+      "district": "75011",
+      "lat": 48.851489,
+      "lng": 2.382578,
+      "surface_m2": 72,
+      "rooms": 3,
+      "current_price": 604167,
+      "price_per_m2": 8391,
+      "opportunity_score": 64,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        604167
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 94,
+      "gross_yield": 4.89,
+      "net_yield": 3.43,
+      "ppm2_percentile": 8,
+      "dpe_energy": "D"
+    },
+    {
       "id": "dvf-2024-1228854",
       "address": "26 Rue Du Rendez Vous, 75012 Paris",
       "district": "75012",
@@ -2943,6 +3051,33 @@
       "gross_yield": 5.73,
       "net_yield": 4.21,
       "ppm2_percentile": 2,
+      "dpe_energy": "D"
+    },
+    {
+      "id": "dvf-2024-1229243",
+      "address": "34 Bd De Grenelle, 75015 Paris",
+      "district": "75015",
+      "lat": 48.851861,
+      "lng": 2.29075,
+      "surface_m2": 75,
+      "rooms": 3,
+      "current_price": 600000,
+      "price_per_m2": 8000,
+      "opportunity_score": 64,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        600000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 82,
+      "gross_yield": 5.13,
+      "net_yield": 3.66,
+      "ppm2_percentile": 14,
       "dpe_energy": "D"
     },
     {
@@ -3081,15 +3216,15 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1209688",
-      "address": "18 Rue Volney, 75002 Paris",
+      "id": "dvf-2024-1207470",
+      "address": "37 Rue Du Sentier, 75002 Paris",
       "district": "75002",
-      "lat": 48.869712,
-      "lng": 2.3306,
-      "surface_m2": 102,
+      "lat": 48.870113,
+      "lng": 2.346096,
+      "surface_m2": 18,
       "rooms": 1,
-      "current_price": 1050000,
-      "price_per_m2": 10294,
+      "current_price": 200000,
+      "price_per_m2": 11111,
       "opportunity_score": 63,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -3097,15 +3232,15 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        1050000
+        200000
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
       "walk_score": 63,
-      "gross_yield": 4.2,
-      "net_yield": 2.79,
-      "ppm2_percentile": 36,
-      "dpe_energy": "B"
+      "gross_yield": 3.89,
+      "net_yield": 2.5,
+      "ppm2_percentile": 54,
+      "dpe_energy": "A"
     },
     {
       "id": "dvf-2024-1210207",
@@ -3216,60 +3351,6 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1229331",
-      "address": "3 Rue Du Dahomey, 75011 Paris",
-      "district": "75011",
-      "lat": 48.851489,
-      "lng": 2.382578,
-      "surface_m2": 72,
-      "rooms": 3,
-      "current_price": 604167,
-      "price_per_m2": 8391,
-      "opportunity_score": 63,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        604167
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 94,
-      "gross_yield": 4.89,
-      "net_yield": 3.43,
-      "ppm2_percentile": 8,
-      "dpe_energy": "D"
-    },
-    {
-      "id": "dvf-2024-1229243",
-      "address": "34 Bd De Grenelle, 75015 Paris",
-      "district": "75015",
-      "lat": 48.851861,
-      "lng": 2.29075,
-      "surface_m2": 75,
-      "rooms": 3,
-      "current_price": 600000,
-      "price_per_m2": 8000,
-      "opportunity_score": 63,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        600000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 82,
-      "gross_yield": 5.13,
-      "net_yield": 3.66,
-      "ppm2_percentile": 14,
-      "dpe_energy": "D"
-    },
-    {
       "id": "dvf-2024-1228361",
       "address": "105 Bd Murat, 75016 Paris",
       "district": "75016",
@@ -3322,6 +3403,33 @@
       "net_yield": 3.4,
       "ppm2_percentile": 24,
       "dpe_energy": "C"
+    },
+    {
+      "id": "dvf-2024-1210063",
+      "address": "154 Rue Championnet, 75018 Paris",
+      "district": "75018",
+      "lat": 48.89555,
+      "lng": 2.335987,
+      "surface_m2": 89,
+      "rooms": 3,
+      "current_price": 665000,
+      "price_per_m2": 7472,
+      "opportunity_score": 63,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        665000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 89,
+      "gross_yield": 5.2,
+      "net_yield": 3.72,
+      "ppm2_percentile": 24,
+      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1210104",
@@ -3540,6 +3648,33 @@
       "dpe_energy": "B"
     },
     {
+      "id": "dvf-2024-1210353",
+      "address": "12 Rue De Trevise, 75009 Paris",
+      "district": "75009",
+      "lat": 48.873352,
+      "lng": 2.345343,
+      "surface_m2": 17,
+      "rooms": 1,
+      "current_price": 150000,
+      "price_per_m2": 8824,
+      "opportunity_score": 62,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        150000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 85,
+      "gross_yield": 4.73,
+      "net_yield": 3.29,
+      "ppm2_percentile": 18,
+      "dpe_energy": "D"
+    },
+    {
       "id": "dvf-2024-1210434",
       "address": "207 Rue La Fayette, 75010 Paris",
       "district": "75010",
@@ -3592,6 +3727,60 @@
       "net_yield": 3.33,
       "ppm2_percentile": 32,
       "dpe_energy": "B"
+    },
+    {
+      "id": "dvf-2024-1209706",
+      "address": "1 Pl Robert Desnos, 75010 Paris",
+      "district": "75010",
+      "lat": 48.878191,
+      "lng": 2.368242,
+      "surface_m2": 67,
+      "rooms": 3,
+      "current_price": 559000,
+      "price_per_m2": 8343,
+      "opportunity_score": 62,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        559000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 83,
+      "gross_yield": 4.83,
+      "net_yield": 3.38,
+      "ppm2_percentile": 26,
+      "dpe_energy": "C"
+    },
+    {
+      "id": "dvf-2024-1229300",
+      "address": "27 Rue Des Meuniers, 75012 Paris",
+      "district": "75012",
+      "lat": 48.833505,
+      "lng": 2.39773,
+      "surface_m2": 89,
+      "rooms": 4,
+      "current_price": 700000,
+      "price_per_m2": 7865,
+      "opportunity_score": 62,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        700000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 59,
+      "gross_yield": 4.94,
+      "net_yield": 3.48,
+      "ppm2_percentile": 16,
+      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1228837",
@@ -3699,33 +3888,6 @@
       "gross_yield": 4.51,
       "net_yield": 3.08,
       "ppm2_percentile": 28,
-      "dpe_energy": "D"
-    },
-    {
-      "id": "dvf-2024-1210063",
-      "address": "154 Rue Championnet, 75018 Paris",
-      "district": "75018",
-      "lat": 48.89555,
-      "lng": 2.335987,
-      "surface_m2": 89,
-      "rooms": 3,
-      "current_price": 665000,
-      "price_per_m2": 7472,
-      "opportunity_score": 62,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        665000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 89,
-      "gross_yield": 5.2,
-      "net_yield": 3.72,
-      "ppm2_percentile": 24,
       "dpe_energy": "D"
     },
     {
@@ -3891,60 +4053,6 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1207470",
-      "address": "37 Rue Du Sentier, 75002 Paris",
-      "district": "75002",
-      "lat": 48.870113,
-      "lng": 2.346096,
-      "surface_m2": 18,
-      "rooms": 1,
-      "current_price": 200000,
-      "price_per_m2": 11111,
-      "opportunity_score": 61,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        200000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 63,
-      "gross_yield": 3.89,
-      "net_yield": 2.5,
-      "ppm2_percentile": 54,
-      "dpe_energy": "A"
-    },
-    {
-      "id": "dvf-2024-1210353",
-      "address": "12 Rue De Trevise, 75009 Paris",
-      "district": "75009",
-      "lat": 48.873352,
-      "lng": 2.345343,
-      "surface_m2": 17,
-      "rooms": 1,
-      "current_price": 150000,
-      "price_per_m2": 8824,
-      "opportunity_score": 61,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        150000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 85,
-      "gross_yield": 4.73,
-      "net_yield": 3.29,
-      "ppm2_percentile": 18,
-      "dpe_energy": "D"
-    },
-    {
       "id": "dvf-2024-1210337",
       "address": "7 Rue Beaurepaire, 75010 Paris",
       "district": "75010",
@@ -3970,60 +4078,6 @@
       "net_yield": 3.01,
       "ppm2_percentile": 42,
       "dpe_energy": "C"
-    },
-    {
-      "id": "dvf-2024-1209706",
-      "address": "1 Pl Robert Desnos, 75010 Paris",
-      "district": "75010",
-      "lat": 48.878191,
-      "lng": 2.368242,
-      "surface_m2": 67,
-      "rooms": 3,
-      "current_price": 559000,
-      "price_per_m2": 8343,
-      "opportunity_score": 61,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        559000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 83,
-      "gross_yield": 4.83,
-      "net_yield": 3.38,
-      "ppm2_percentile": 26,
-      "dpe_energy": "C"
-    },
-    {
-      "id": "dvf-2024-1229300",
-      "address": "27 Rue Des Meuniers, 75012 Paris",
-      "district": "75012",
-      "lat": 48.833505,
-      "lng": 2.39773,
-      "surface_m2": 89,
-      "rooms": 4,
-      "current_price": 700000,
-      "price_per_m2": 7865,
-      "opportunity_score": 61,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        700000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 59,
-      "gross_yield": 4.94,
-      "net_yield": 3.48,
-      "ppm2_percentile": 16,
-      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1228449",
@@ -4539,6 +4593,33 @@
       "dpe_energy": "C"
     },
     {
+      "id": "dvf-2024-1228862",
+      "address": "110 Rue Raymond Losserand, 75014 Paris",
+      "district": "75014",
+      "lat": 48.832451,
+      "lng": 2.315064,
+      "surface_m2": 16,
+      "rooms": 1,
+      "current_price": 120000,
+      "price_per_m2": 7500,
+      "opportunity_score": 59,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        120000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 80,
+      "gross_yield": 5.38,
+      "net_yield": 3.88,
+      "ppm2_percentile": 8,
+      "dpe_energy": "E"
+    },
+    {
       "id": "dvf-2024-1228975",
       "address": "23 Rue Francois Bonvin, 75015 Paris",
       "district": "75015",
@@ -4780,6 +4861,33 @@
       "net_yield": 3.3,
       "ppm2_percentile": 0,
       "dpe_energy": "E"
+    },
+    {
+      "id": "dvf-2024-1228384",
+      "address": "40 Av Charles Floquet, 75007 Paris",
+      "district": "75007",
+      "lat": 48.853146,
+      "lng": 2.298569,
+      "surface_m2": 62,
+      "rooms": 2,
+      "current_price": 656500,
+      "price_per_m2": 10589,
+      "opportunity_score": 58,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        656500
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 57,
+      "gross_yield": 4.22,
+      "net_yield": 2.81,
+      "ppm2_percentile": 10,
+      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1209875",
@@ -5025,33 +5133,6 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1228862",
-      "address": "110 Rue Raymond Losserand, 75014 Paris",
-      "district": "75014",
-      "lat": 48.832451,
-      "lng": 2.315064,
-      "surface_m2": 16,
-      "rooms": 1,
-      "current_price": 120000,
-      "price_per_m2": 7500,
-      "opportunity_score": 58,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        120000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 80,
-      "gross_yield": 5.38,
-      "net_yield": 3.88,
-      "ppm2_percentile": 8,
-      "dpe_energy": "E"
-    },
-    {
       "id": "dvf-2024-1229087",
       "address": "72 Rue Falguiere, 75015 Paris",
       "district": "75015",
@@ -5268,6 +5349,33 @@
       "dpe_energy": "E"
     },
     {
+      "id": "dvf-2024-1210167",
+      "address": "11 Rue Des Cloys, 75018 Paris",
+      "district": "75018",
+      "lat": 48.892446,
+      "lng": 2.34034,
+      "surface_m2": 29,
+      "rooms": 2,
+      "current_price": 240660,
+      "price_per_m2": 8299,
+      "opportunity_score": 58,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        240660
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 81,
+      "gross_yield": 4.69,
+      "net_yield": 3.24,
+      "ppm2_percentile": 42,
+      "dpe_energy": "D"
+    },
+    {
       "id": "dvf-2024-1210159",
       "address": "56 Rue Du Mont Cenis, 75018 Paris",
       "district": "75018",
@@ -5457,33 +5565,6 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1228384",
-      "address": "40 Av Charles Floquet, 75007 Paris",
-      "district": "75007",
-      "lat": 48.853146,
-      "lng": 2.298569,
-      "surface_m2": 62,
-      "rooms": 2,
-      "current_price": 656500,
-      "price_per_m2": 10589,
-      "opportunity_score": 57,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        656500
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 57,
-      "gross_yield": 4.22,
-      "net_yield": 2.81,
-      "ppm2_percentile": 10,
-      "dpe_energy": "D"
-    },
-    {
       "id": "dvf-2024-1227734",
       "address": "258 Bd Saint Germain, 75007 Paris",
       "district": "75007",
@@ -5563,6 +5644,33 @@
       "net_yield": 2.8,
       "ppm2_percentile": 20,
       "dpe_energy": "C"
+    },
+    {
+      "id": "dvf-2024-1210202",
+      "address": "223 Rue La Fayette, 75010 Paris",
+      "district": "75010",
+      "lat": 48.881807,
+      "lng": 2.365515,
+      "surface_m2": 25,
+      "rooms": 1,
+      "current_price": 192800,
+      "price_per_m2": 7712,
+      "opportunity_score": 57,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        192800
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 90,
+      "gross_yield": 5.23,
+      "net_yield": 3.75,
+      "ppm2_percentile": 14,
+      "dpe_energy": "E"
     },
     {
       "id": "dvf-2024-1228992",
@@ -5698,33 +5806,6 @@
       "net_yield": 2.98,
       "ppm2_percentile": 36,
       "dpe_energy": "B"
-    },
-    {
-      "id": "dvf-2024-1210167",
-      "address": "11 Rue Des Cloys, 75018 Paris",
-      "district": "75018",
-      "lat": 48.892446,
-      "lng": 2.34034,
-      "surface_m2": 29,
-      "rooms": 2,
-      "current_price": 240660,
-      "price_per_m2": 8299,
-      "opportunity_score": 57,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        240660
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 81,
-      "gross_yield": 4.69,
-      "net_yield": 3.24,
-      "ppm2_percentile": 42,
-      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1209769",
@@ -5997,6 +6078,33 @@
       "dpe_energy": "C"
     },
     {
+      "id": "dvf-2024-1209550",
+      "address": "46 Rue D Artois, 75008 Paris",
+      "district": "75008",
+      "lat": 48.874527,
+      "lng": 2.305373,
+      "surface_m2": 36,
+      "rooms": 2,
+      "current_price": 395000,
+      "price_per_m2": 10972,
+      "opportunity_score": 56,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        395000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 49,
+      "gross_yield": 3.87,
+      "net_yield": 2.49,
+      "ppm2_percentile": 30,
+      "dpe_energy": "C"
+    },
+    {
       "id": "dvf-2024-1209415",
       "address": "5 Rue De Teheran, 75008 Paris",
       "district": "75008",
@@ -6022,33 +6130,6 @@
       "net_yield": 2.56,
       "ppm2_percentile": 26,
       "dpe_energy": "D"
-    },
-    {
-      "id": "dvf-2024-1210202",
-      "address": "223 Rue La Fayette, 75010 Paris",
-      "district": "75010",
-      "lat": 48.881807,
-      "lng": 2.365515,
-      "surface_m2": 25,
-      "rooms": 1,
-      "current_price": 192800,
-      "price_per_m2": 7712,
-      "opportunity_score": 56,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        192800
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 90,
-      "gross_yield": 5.23,
-      "net_yield": 3.75,
-      "ppm2_percentile": 14,
-      "dpe_energy": "E"
     },
     {
       "id": "dvf-2024-1229275",
@@ -6211,6 +6292,33 @@
       "net_yield": 2.7,
       "ppm2_percentile": 40,
       "dpe_energy": "D"
+    },
+    {
+      "id": "dvf-2024-1209912",
+      "address": "34 Rue Laugier, 75017 Paris",
+      "district": "75017",
+      "lat": 48.882075,
+      "lng": 2.295071,
+      "surface_m2": 117,
+      "rooms": 4,
+      "current_price": 1183600,
+      "price_per_m2": 10116,
+      "opportunity_score": 56,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1183600
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 70,
+      "gross_yield": 4.06,
+      "net_yield": 2.66,
+      "ppm2_percentile": 46,
+      "dpe_energy": "A"
     },
     {
       "id": "dvf-2024-1210361",
@@ -6400,6 +6508,33 @@
       "net_yield": 2.82,
       "ppm2_percentile": 30,
       "dpe_energy": "D"
+    },
+    {
+      "id": "dvf-2024-1228896",
+      "address": "2 Rue Cler, 75007 Paris",
+      "district": "75007",
+      "lat": 48.859007,
+      "lng": 2.305041,
+      "surface_m2": 60,
+      "rooms": 3,
+      "current_price": 700000,
+      "price_per_m2": 11667,
+      "opportunity_score": 55,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        700000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 51,
+      "gross_yield": 3.83,
+      "net_yield": 2.44,
+      "ppm2_percentile": 20,
+      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1228528",
@@ -6672,6 +6807,33 @@
       "dpe_energy": "E"
     },
     {
+      "id": "dvf-2024-1229163",
+      "address": "45 Bd De Montmorency, 75016 Paris",
+      "district": "75016",
+      "lat": 48.852324,
+      "lng": 2.262913,
+      "surface_m2": 85,
+      "rooms": 3,
+      "current_price": 830000,
+      "price_per_m2": 9765,
+      "opportunity_score": 55,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        830000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 49,
+      "gross_yield": 4.2,
+      "net_yield": 2.79,
+      "ppm2_percentile": 38,
+      "dpe_energy": "C"
+    },
+    {
       "id": "dvf-2024-1228761",
       "address": "19 Rue Leroux, 75016 Paris",
       "district": "75016",
@@ -6697,33 +6859,6 @@
       "net_yield": 2.61,
       "ppm2_percentile": 52,
       "dpe_energy": "D"
-    },
-    {
-      "id": "dvf-2024-1209912",
-      "address": "34 Rue Laugier, 75017 Paris",
-      "district": "75017",
-      "lat": 48.882075,
-      "lng": 2.295071,
-      "surface_m2": 117,
-      "rooms": 4,
-      "current_price": 1183600,
-      "price_per_m2": 10116,
-      "opportunity_score": 55,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        1183600
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 70,
-      "gross_yield": 4.06,
-      "net_yield": 2.66,
-      "ppm2_percentile": 46,
-      "dpe_energy": "A"
     },
     {
       "id": "dvf-2024-1210165",
@@ -6915,6 +7050,33 @@
       "dpe_energy": "D"
     },
     {
+      "id": "dvf-2024-1228894",
+      "address": "11 Rue Rataud, 75005 Paris",
+      "district": "75005",
+      "lat": 48.840808,
+      "lng": 2.345593,
+      "surface_m2": 62,
+      "rooms": 4,
+      "current_price": 656000,
+      "price_per_m2": 10581,
+      "opportunity_score": 54,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        656000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 68,
+      "gross_yield": 4.08,
+      "net_yield": 2.68,
+      "ppm2_percentile": 18,
+      "dpe_energy": "D"
+    },
+    {
       "id": "dvf-2024-1228238",
       "address": "7 Rue Des Fosses St Marcel, 75005 Paris",
       "district": "75005",
@@ -6967,60 +7129,6 @@
       "net_yield": 2.93,
       "ppm2_percentile": 6,
       "dpe_energy": "E"
-    },
-    {
-      "id": "dvf-2024-1228896",
-      "address": "2 Rue Cler, 75007 Paris",
-      "district": "75007",
-      "lat": 48.859007,
-      "lng": 2.305041,
-      "surface_m2": 60,
-      "rooms": 3,
-      "current_price": 700000,
-      "price_per_m2": 11667,
-      "opportunity_score": 54,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        700000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 51,
-      "gross_yield": 3.83,
-      "net_yield": 2.44,
-      "ppm2_percentile": 20,
-      "dpe_energy": "C"
-    },
-    {
-      "id": "dvf-2024-1209550",
-      "address": "46 Rue D Artois, 75008 Paris",
-      "district": "75008",
-      "lat": 48.874527,
-      "lng": 2.305373,
-      "surface_m2": 36,
-      "rooms": 2,
-      "current_price": 395000,
-      "price_per_m2": 10972,
-      "opportunity_score": 54,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        395000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 49,
-      "gross_yield": 3.87,
-      "net_yield": 2.49,
-      "ppm2_percentile": 30,
-      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1209974",
@@ -7158,33 +7266,6 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1229163",
-      "address": "45 Bd De Montmorency, 75016 Paris",
-      "district": "75016",
-      "lat": 48.852324,
-      "lng": 2.262913,
-      "surface_m2": 85,
-      "rooms": 3,
-      "current_price": 830000,
-      "price_per_m2": 9765,
-      "opportunity_score": 54,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        830000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 49,
-      "gross_yield": 4.2,
-      "net_yield": 2.79,
-      "ppm2_percentile": 38,
-      "dpe_energy": "C"
-    },
-    {
       "id": "dvf-2024-1228729",
       "address": "5 Sq Mignot, 75016 Paris",
       "district": "75016",
@@ -7237,6 +7318,33 @@
       "net_yield": 3.02,
       "ppm2_percentile": 36,
       "dpe_energy": "D"
+    },
+    {
+      "id": "dvf-2024-1209732",
+      "address": "5 Rue De Soissons, 75019 Paris",
+      "district": "75019",
+      "lat": 48.8854,
+      "lng": 2.37118,
+      "surface_m2": 21,
+      "rooms": 1,
+      "current_price": 149500,
+      "price_per_m2": 7119,
+      "opportunity_score": 54,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        149500
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 83,
+      "gross_yield": 5.16,
+      "net_yield": 3.68,
+      "ppm2_percentile": 20,
+      "dpe_energy": "E"
     },
     {
       "id": "dvf-2024-1210349",
@@ -7347,6 +7455,33 @@
       "dpe_energy": "E"
     },
     {
+      "id": "dvf-2024-1210428",
+      "address": "11 Rue Des Tournelles, 75004 Paris",
+      "district": "75004",
+      "lat": 48.854271,
+      "lng": 2.367051,
+      "surface_m2": 47,
+      "rooms": 2,
+      "current_price": 480000,
+      "price_per_m2": 10213,
+      "opportunity_score": 53,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        480000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 64,
+      "gross_yield": 4.37,
+      "net_yield": 2.95,
+      "ppm2_percentile": 12,
+      "dpe_energy": "E"
+    },
+    {
       "id": "dvf-2024-1208816",
       "address": "52 Rue Ste Croix Bretonnerie, 75004 Paris",
       "district": "75004",
@@ -7374,15 +7509,15 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1228894",
-      "address": "11 Rue Rataud, 75005 Paris",
+      "id": "dvf-2024-1228128",
+      "address": "15 Rue Buffon, 75005 Paris",
       "district": "75005",
-      "lat": 48.840808,
-      "lng": 2.345593,
-      "surface_m2": 62,
-      "rooms": 4,
-      "current_price": 656000,
-      "price_per_m2": 10581,
+      "lat": 48.842209,
+      "lng": 2.362593,
+      "surface_m2": 69,
+      "rooms": 3,
+      "current_price": 730000,
+      "price_per_m2": 10580,
       "opportunity_score": 53,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -7390,14 +7525,14 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        656000
+        730000
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 68,
+      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 73,
       "gross_yield": 4.08,
       "net_yield": 2.68,
-      "ppm2_percentile": 18,
+      "ppm2_percentile": 16,
       "dpe_energy": "D"
     },
     {
@@ -7752,33 +7887,6 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1209732",
-      "address": "5 Rue De Soissons, 75019 Paris",
-      "district": "75019",
-      "lat": 48.8854,
-      "lng": 2.37118,
-      "surface_m2": 21,
-      "rooms": 1,
-      "current_price": 149500,
-      "price_per_m2": 7119,
-      "opportunity_score": 53,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        149500
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 83,
-      "gross_yield": 5.16,
-      "net_yield": 3.68,
-      "ppm2_percentile": 20,
-      "dpe_energy": "E"
-    },
-    {
       "id": "dvf-2024-1210150",
       "address": "146 Bd Macdonald, 75019 Paris",
       "district": "75019",
@@ -7804,6 +7912,33 @@
       "net_yield": 3.92,
       "ppm2_percentile": 12,
       "dpe_energy": "E"
+    },
+    {
+      "id": "dvf-2024-1208806",
+      "address": "206 Rue De Rivoli, 75001 Paris",
+      "district": "75001",
+      "lat": 48.864542,
+      "lng": 2.330586,
+      "surface_m2": 124,
+      "rooms": 4,
+      "current_price": 1505660,
+      "price_per_m2": 12142,
+      "opportunity_score": 52,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1505660
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 24,
+      "gross_yield": 3.62,
+      "net_yield": 2.25,
+      "ppm2_percentile": 48,
+      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1209134",
@@ -7833,42 +7968,15 @@
       "dpe_energy": "B"
     },
     {
-      "id": "dvf-2024-1210428",
-      "address": "11 Rue Des Tournelles, 75004 Paris",
-      "district": "75004",
-      "lat": 48.854271,
-      "lng": 2.367051,
-      "surface_m2": 47,
-      "rooms": 2,
-      "current_price": 480000,
-      "price_per_m2": 10213,
-      "opportunity_score": 52,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        480000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 64,
-      "gross_yield": 4.37,
-      "net_yield": 2.95,
-      "ppm2_percentile": 12,
-      "dpe_energy": "E"
-    },
-    {
-      "id": "dvf-2024-1228128",
-      "address": "15 Rue Buffon, 75005 Paris",
+      "id": "dvf-2024-1228794",
+      "address": "240 Rue Saint Jacques, 75005 Paris",
       "district": "75005",
-      "lat": 48.842209,
-      "lng": 2.362593,
-      "surface_m2": 69,
+      "lat": 48.844281,
+      "lng": 2.341505,
+      "surface_m2": 39,
       "rooms": 3,
-      "current_price": 730000,
-      "price_per_m2": 10580,
+      "current_price": 442308,
+      "price_per_m2": 11341,
       "opportunity_score": 52,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -7876,15 +7984,15 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        730000
+        442308
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 73,
-      "gross_yield": 4.08,
-      "net_yield": 2.68,
-      "ppm2_percentile": 16,
-      "dpe_energy": "D"
+      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 78,
+      "gross_yield": 3.81,
+      "net_yield": 2.43,
+      "ppm2_percentile": 28,
+      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1228907",
@@ -7939,6 +8047,33 @@
       "net_yield": 3.13,
       "ppm2_percentile": 34,
       "dpe_energy": "D"
+    },
+    {
+      "id": "dvf-2024-1229326",
+      "address": "62 B Rue Des Belles Feuilles, 75016 Paris",
+      "district": "75016",
+      "lat": 48.869367,
+      "lng": 2.280305,
+      "surface_m2": 115,
+      "rooms": 3,
+      "current_price": 1200000,
+      "price_per_m2": 10435,
+      "opportunity_score": 52,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1200000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 27,
+      "gross_yield": 3.93,
+      "net_yield": 2.54,
+      "ppm2_percentile": 56,
+      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1228900",
@@ -8103,33 +8238,6 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1208806",
-      "address": "206 Rue De Rivoli, 75001 Paris",
-      "district": "75001",
-      "lat": 48.864542,
-      "lng": 2.330586,
-      "surface_m2": 124,
-      "rooms": 4,
-      "current_price": 1505660,
-      "price_per_m2": 12142,
-      "opportunity_score": 51,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        1505660
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 24,
-      "gross_yield": 3.62,
-      "net_yield": 2.25,
-      "ppm2_percentile": 48,
-      "dpe_energy": "C"
-    },
-    {
       "id": "dvf-2024-1207669",
       "address": "183 A Rue Saint-Denis, 75002 Paris",
       "district": "75002",
@@ -8184,15 +8292,15 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1228794",
-      "address": "240 Rue Saint Jacques, 75005 Paris",
-      "district": "75005",
-      "lat": 48.844281,
-      "lng": 2.341505,
-      "surface_m2": 39,
-      "rooms": 3,
-      "current_price": 442308,
-      "price_per_m2": 11341,
+      "id": "dvf-2024-1210235",
+      "address": "14 Bd Morland, 75004 Paris",
+      "district": "75004",
+      "lat": 48.849273,
+      "lng": 2.364736,
+      "surface_m2": 48,
+      "rooms": 2,
+      "current_price": 500000,
+      "price_per_m2": 10417,
       "opportunity_score": 51,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -8200,15 +8308,15 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        442308
+        500000
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 78,
-      "gross_yield": 3.81,
-      "net_yield": 2.43,
-      "ppm2_percentile": 28,
-      "dpe_energy": "C"
+      "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 44,
+      "gross_yield": 4.29,
+      "net_yield": 2.87,
+      "ppm2_percentile": 16,
+      "dpe_energy": "E"
     },
     {
       "id": "dvf-2024-1229288",
@@ -8454,6 +8562,33 @@
       "dpe_energy": "C"
     },
     {
+      "id": "dvf-2024-1228440",
+      "address": "10 Rue Bobillot, 75013 Paris",
+      "district": "75013",
+      "lat": 48.829989,
+      "lng": 2.354017,
+      "surface_m2": 20,
+      "rooms": 1,
+      "current_price": 165000,
+      "price_per_m2": 8250,
+      "opportunity_score": 51,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        165000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 70,
+      "gross_yield": 4.63,
+      "net_yield": 3.19,
+      "ppm2_percentile": 38,
+      "dpe_energy": "E"
+    },
+    {
       "id": "dvf-2024-1228702",
       "address": "13 Rue Des Gobelins, 75013 Paris",
       "district": "75013",
@@ -8481,15 +8616,15 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1229326",
-      "address": "62 B Rue Des Belles Feuilles, 75016 Paris",
-      "district": "75016",
-      "lat": 48.869367,
-      "lng": 2.280305,
-      "surface_m2": 115,
-      "rooms": 3,
-      "current_price": 1200000,
-      "price_per_m2": 10435,
+      "id": "dvf-2024-1210177",
+      "address": "30 Rue Clavel, 75019 Paris",
+      "district": "75019",
+      "lat": 48.876496,
+      "lng": 2.384083,
+      "surface_m2": 11,
+      "rooms": 1,
+      "current_price": 88000,
+      "price_per_m2": 8000,
       "opportunity_score": 51,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -8497,15 +8632,15 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        1200000
+        88000
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 27,
-      "gross_yield": 3.93,
-      "net_yield": 2.54,
-      "ppm2_percentile": 56,
-      "dpe_energy": "C"
+      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 64,
+      "gross_yield": 4.59,
+      "net_yield": 3.15,
+      "ppm2_percentile": 30,
+      "dpe_energy": "E"
     },
     {
       "id": "dvf-2024-1210088",
@@ -8535,15 +8670,15 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1210235",
-      "address": "14 Bd Morland, 75004 Paris",
-      "district": "75004",
-      "lat": 48.849273,
-      "lng": 2.364736,
-      "surface_m2": 48,
+      "id": "dvf-2024-1209938",
+      "address": "15 Rue Jean Jacques Rousseau, 75001 Paris",
+      "district": "75001",
+      "lat": 48.862656,
+      "lng": 2.340218,
+      "surface_m2": 45,
       "rooms": 2,
-      "current_price": 500000,
-      "price_per_m2": 10417,
+      "current_price": 480000,
+      "price_per_m2": 10667,
       "opportunity_score": 50,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -8551,15 +8686,69 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        500000
+        480000
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 44,
-      "gross_yield": 4.29,
-      "net_yield": 2.87,
-      "ppm2_percentile": 16,
+      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 31,
+      "gross_yield": 4.12,
+      "net_yield": 2.71,
+      "ppm2_percentile": 34,
       "dpe_energy": "E"
+    },
+    {
+      "id": "dvf-2024-1228998",
+      "address": "40 Bd Des Invalides, 75007 Paris",
+      "district": "75007",
+      "lat": 48.84978,
+      "lng": 2.314229,
+      "surface_m2": 238,
+      "rooms": 7,
+      "current_price": 3285025,
+      "price_per_m2": 13803,
+      "opportunity_score": 50,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        3285025
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 62,
+      "gross_yield": 3.23,
+      "net_yield": 1.89,
+      "ppm2_percentile": 54,
+      "dpe_energy": "G"
+    },
+    {
+      "id": "dvf-2024-1229311",
+      "address": "66 Av De Breteuil, 75007 Paris",
+      "district": "75007",
+      "lat": 48.848535,
+      "lng": 2.31088,
+      "surface_m2": 22,
+      "rooms": 1,
+      "current_price": 281063,
+      "price_per_m2": 12776,
+      "opportunity_score": 50,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        281063
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 50,
+      "gross_yield": 3.49,
+      "net_yield": 2.13,
+      "ppm2_percentile": 38,
+      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1209487",
@@ -8668,33 +8857,6 @@
       "net_yield": 3.09,
       "ppm2_percentile": 34,
       "dpe_energy": "D"
-    },
-    {
-      "id": "dvf-2024-1228440",
-      "address": "10 Rue Bobillot, 75013 Paris",
-      "district": "75013",
-      "lat": 48.829989,
-      "lng": 2.354017,
-      "surface_m2": 20,
-      "rooms": 1,
-      "current_price": 165000,
-      "price_per_m2": 8250,
-      "opportunity_score": 50,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        165000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 70,
-      "gross_yield": 4.63,
-      "net_yield": 3.19,
-      "ppm2_percentile": 38,
-      "dpe_energy": "E"
     },
     {
       "id": "dvf-2024-1228647",
@@ -8830,60 +8992,6 @@
       "net_yield": 2.79,
       "ppm2_percentile": 54,
       "dpe_energy": "C"
-    },
-    {
-      "id": "dvf-2024-1210177",
-      "address": "30 Rue Clavel, 75019 Paris",
-      "district": "75019",
-      "lat": 48.876496,
-      "lng": 2.384083,
-      "surface_m2": 11,
-      "rooms": 1,
-      "current_price": 88000,
-      "price_per_m2": 8000,
-      "opportunity_score": 50,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        88000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 64,
-      "gross_yield": 4.59,
-      "net_yield": 3.15,
-      "ppm2_percentile": 30,
-      "dpe_energy": "E"
-    },
-    {
-      "id": "dvf-2024-1209938",
-      "address": "15 Rue Jean Jacques Rousseau, 75001 Paris",
-      "district": "75001",
-      "lat": 48.862656,
-      "lng": 2.340218,
-      "surface_m2": 45,
-      "rooms": 2,
-      "current_price": 480000,
-      "price_per_m2": 10667,
-      "opportunity_score": 49,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        480000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 31,
-      "gross_yield": 4.12,
-      "net_yield": 2.71,
-      "ppm2_percentile": 34,
-      "dpe_energy": "E"
     },
     {
       "id": "dvf-2024-1207023",
@@ -9048,60 +9156,6 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1229311",
-      "address": "66 Av De Breteuil, 75007 Paris",
-      "district": "75007",
-      "lat": 48.848535,
-      "lng": 2.31088,
-      "surface_m2": 22,
-      "rooms": 1,
-      "current_price": 281063,
-      "price_per_m2": 12776,
-      "opportunity_score": 49,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        281063
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 50,
-      "gross_yield": 3.49,
-      "net_yield": 2.13,
-      "ppm2_percentile": 38,
-      "dpe_energy": "C"
-    },
-    {
-      "id": "dvf-2024-1209758",
-      "address": "17 Rue De Berne, 75008 Paris",
-      "district": "75008",
-      "lat": 48.880838,
-      "lng": 2.322972,
-      "surface_m2": 46,
-      "rooms": 2,
-      "current_price": 398000,
-      "price_per_m2": 8652,
-      "opportunity_score": 49,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        398000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 52,
-      "gross_yield": 4.91,
-      "net_yield": 3.45,
-      "ppm2_percentile": 10,
-      "dpe_energy": "F"
-    },
-    {
       "id": "dvf-2024-1210204",
       "address": "2 Rue Richer, 75009 Paris",
       "district": "75009",
@@ -9154,6 +9208,33 @@
       "net_yield": 3.45,
       "ppm2_percentile": 14,
       "dpe_energy": "F"
+    },
+    {
+      "id": "dvf-2024-1210311",
+      "address": "10 Rue De Paradis, 75010 Paris",
+      "district": "75010",
+      "lat": 48.874933,
+      "lng": 2.354498,
+      "surface_m2": 25,
+      "rooms": 2,
+      "current_price": 240000,
+      "price_per_m2": 9600,
+      "opportunity_score": 49,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        240000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 68,
+      "gross_yield": 4.2,
+      "net_yield": 2.79,
+      "ppm2_percentile": 50,
+      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1210286",
@@ -9453,6 +9534,33 @@
       "dpe_energy": "E"
     },
     {
+      "id": "dvf-2024-1209868",
+      "address": "12 Rue Caffarelli, 75003 Paris",
+      "district": "75003",
+      "lat": 48.863657,
+      "lng": 2.362182,
+      "surface_m2": 11,
+      "rooms": 1,
+      "current_price": 137090,
+      "price_per_m2": 12463,
+      "opportunity_score": 48,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        137090
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 74,
+      "gross_yield": 3.52,
+      "net_yield": 2.16,
+      "ppm2_percentile": 50,
+      "dpe_energy": "A"
+    },
+    {
       "id": "dvf-2024-1209830",
       "address": "19 Bd Saint Martin, 75003 Paris",
       "district": "75003",
@@ -9534,15 +9642,15 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1210311",
-      "address": "10 Rue De Paradis, 75010 Paris",
-      "district": "75010",
-      "lat": 48.874933,
-      "lng": 2.354498,
-      "surface_m2": 25,
-      "rooms": 2,
-      "current_price": 240000,
-      "price_per_m2": 9600,
+      "id": "dvf-2024-1228244",
+      "address": "183 Rue De L Universite, 75007 Paris",
+      "district": "75007",
+      "lat": 48.860898,
+      "lng": 2.301566,
+      "surface_m2": 71,
+      "rooms": 3,
+      "current_price": 900000,
+      "price_per_m2": 12676,
       "opportunity_score": 48,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -9550,15 +9658,15 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        240000
+        900000
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 68,
-      "gross_yield": 4.2,
-      "net_yield": 2.79,
-      "ppm2_percentile": 50,
-      "dpe_energy": "D"
+      "image": "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 51,
+      "gross_yield": 3.52,
+      "net_yield": 2.16,
+      "ppm2_percentile": 34,
+      "dpe_energy": "B"
     },
     {
       "id": "dvf-2024-1228996",
@@ -9721,6 +9829,33 @@
       "net_yield": 3.33,
       "ppm2_percentile": 34,
       "dpe_energy": "E"
+    },
+    {
+      "id": "dvf-2024-1228927",
+      "address": "54 Av D Italie, 75013 Paris",
+      "district": "75013",
+      "lat": 48.82751,
+      "lng": 2.356406,
+      "surface_m2": 16,
+      "rooms": 1,
+      "current_price": 120000,
+      "price_per_m2": 7500,
+      "opportunity_score": 48,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        120000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 77,
+      "gross_yield": 5.09,
+      "net_yield": 3.62,
+      "ppm2_percentile": 12,
+      "dpe_energy": "F"
     },
     {
       "id": "dvf-2024-1229040",
@@ -10047,33 +10182,6 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1209868",
-      "address": "12 Rue Caffarelli, 75003 Paris",
-      "district": "75003",
-      "lat": 48.863657,
-      "lng": 2.362182,
-      "surface_m2": 11,
-      "rooms": 1,
-      "current_price": 137090,
-      "price_per_m2": 12463,
-      "opportunity_score": 47,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        137090
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 74,
-      "gross_yield": 3.52,
-      "net_yield": 2.16,
-      "ppm2_percentile": 50,
-      "dpe_energy": "A"
-    },
-    {
       "id": "dvf-2024-1209108",
       "address": "38 Rue De Montmorency, 75003 Paris",
       "district": "75003",
@@ -10155,15 +10263,15 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1228244",
-      "address": "183 Rue De L Universite, 75007 Paris",
+      "id": "dvf-2024-1229216",
+      "address": "47 Quai D Orsay, 75007 Paris",
       "district": "75007",
-      "lat": 48.860898,
-      "lng": 2.301566,
-      "surface_m2": 71,
-      "rooms": 3,
-      "current_price": 900000,
-      "price_per_m2": 12676,
+      "lat": 48.862042,
+      "lng": 2.309533,
+      "surface_m2": 18,
+      "rooms": 1,
+      "current_price": 250000,
+      "price_per_m2": 13889,
       "opportunity_score": 47,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -10171,15 +10279,15 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        900000
+        250000
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 51,
-      "gross_yield": 3.52,
-      "net_yield": 2.16,
-      "ppm2_percentile": 34,
-      "dpe_energy": "B"
+      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 60,
+      "gross_yield": 3.21,
+      "net_yield": 1.87,
+      "ppm2_percentile": 56,
+      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1210309",
@@ -10290,33 +10398,6 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1228927",
-      "address": "54 Av D Italie, 75013 Paris",
-      "district": "75013",
-      "lat": 48.82751,
-      "lng": 2.356406,
-      "surface_m2": 16,
-      "rooms": 1,
-      "current_price": 120000,
-      "price_per_m2": 7500,
-      "opportunity_score": 47,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        120000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 77,
-      "gross_yield": 5.09,
-      "net_yield": 3.62,
-      "ppm2_percentile": 12,
-      "dpe_energy": "F"
-    },
-    {
       "id": "dvf-2024-1228771",
       "address": "137 Av De Choisy, 75013 Paris",
       "district": "75013",
@@ -10396,6 +10477,33 @@
       "net_yield": 2.87,
       "ppm2_percentile": 46,
       "dpe_energy": "D"
+    },
+    {
+      "id": "dvf-2024-1209993",
+      "address": "34 Rue Poncelet, 75017 Paris",
+      "district": "75017",
+      "lat": 48.87964,
+      "lng": 2.298636,
+      "surface_m2": 142,
+      "rooms": 5,
+      "current_price": 1529998,
+      "price_per_m2": 10775,
+      "opportunity_score": 47,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1529998
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 91,
+      "gross_yield": 3.81,
+      "net_yield": 2.43,
+      "ppm2_percentile": 58,
+      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1210346",
@@ -10479,6 +10587,33 @@
       "dpe_energy": "F"
     },
     {
+      "id": "dvf-2024-1210076",
+      "address": "117 Rue D Aboukir, 75002 Paris",
+      "district": "75002",
+      "lat": 48.868822,
+      "lng": 2.349941,
+      "surface_m2": 15,
+      "rooms": 1,
+      "current_price": 154000,
+      "price_per_m2": 10267,
+      "opportunity_score": 46,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        154000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 42,
+      "gross_yield": 4.21,
+      "net_yield": 2.8,
+      "ppm2_percentile": 34,
+      "dpe_energy": "E"
+    },
+    {
       "id": "dvf-2024-1207898",
       "address": "2 Rue Brongniart, 75002 Paris",
       "district": "75002",
@@ -10531,6 +10666,33 @@
       "net_yield": 2.05,
       "ppm2_percentile": 54,
       "dpe_energy": "C"
+    },
+    {
+      "id": "dvf-2024-1208939",
+      "address": "1 Rue De Rivoli, 75004 Paris",
+      "district": "75004",
+      "lat": 48.85549,
+      "lng": 2.359223,
+      "surface_m2": 163,
+      "rooms": 6,
+      "current_price": 1855000,
+      "price_per_m2": 11380,
+      "opportunity_score": 46,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1855000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 51,
+      "gross_yield": 3.92,
+      "net_yield": 2.53,
+      "ppm2_percentile": 32,
+      "dpe_energy": "E"
     },
     {
       "id": "dvf-2024-1208398",
@@ -10587,15 +10749,15 @@
       "dpe_energy": "B"
     },
     {
-      "id": "dvf-2024-1229216",
-      "address": "47 Quai D Orsay, 75007 Paris",
-      "district": "75007",
-      "lat": 48.862042,
-      "lng": 2.309533,
-      "surface_m2": 18,
-      "rooms": 1,
-      "current_price": 250000,
-      "price_per_m2": 13889,
+      "id": "dvf-2024-1227736",
+      "address": "9 Rue Saint Sulpice, 75006 Paris",
+      "district": "75006",
+      "lat": 48.851323,
+      "lng": 2.3377,
+      "surface_m2": 25,
+      "rooms": 2,
+      "current_price": 370000,
+      "price_per_m2": 14800,
       "opportunity_score": 46,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -10603,15 +10765,15 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        250000
+        370000
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 60,
-      "gross_yield": 3.21,
-      "net_yield": 1.87,
-      "ppm2_percentile": 56,
-      "dpe_energy": "C"
+      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 78,
+      "gross_yield": 3.11,
+      "net_yield": 1.78,
+      "ppm2_percentile": 50,
+      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1229303",
@@ -10638,6 +10800,33 @@
       "gross_yield": 3.42,
       "net_yield": 2.06,
       "ppm2_percentile": 46,
+      "dpe_energy": "C"
+    },
+    {
+      "id": "dvf-2024-1228877",
+      "address": "3 Rue Paul Louis Courier, 75007 Paris",
+      "district": "75007",
+      "lat": 48.855871,
+      "lng": 2.325057,
+      "surface_m2": 180,
+      "rooms": 6,
+      "current_price": 2465000,
+      "price_per_m2": 13694,
+      "opportunity_score": 46,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        2465000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 65,
+      "gross_yield": 3.26,
+      "net_yield": 1.92,
+      "ppm2_percentile": 52,
       "dpe_energy": "C"
     },
     {
@@ -10803,6 +10992,33 @@
       "dpe_energy": "B"
     },
     {
+      "id": "dvf-2024-1229193",
+      "address": "52 Rue Damesme, 75013 Paris",
+      "district": "75013",
+      "lat": 48.821938,
+      "lng": 2.354903,
+      "surface_m2": 37,
+      "rooms": 2,
+      "current_price": 288000,
+      "price_per_m2": 7784,
+      "opportunity_score": 46,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        288000
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 75,
+      "gross_yield": 4.9,
+      "net_yield": 3.44,
+      "ppm2_percentile": 26,
+      "dpe_energy": "F"
+    },
+    {
       "id": "dvf-2024-1229242",
       "address": "18 Rue Benard, 75014 Paris",
       "district": "75014",
@@ -10935,33 +11151,6 @@
       "gross_yield": 3.76,
       "net_yield": 2.38,
       "ppm2_percentile": 64,
-      "dpe_energy": "C"
-    },
-    {
-      "id": "dvf-2024-1209993",
-      "address": "34 Rue Poncelet, 75017 Paris",
-      "district": "75017",
-      "lat": 48.87964,
-      "lng": 2.298636,
-      "surface_m2": 142,
-      "rooms": 5,
-      "current_price": 1529998,
-      "price_per_m2": 10775,
-      "opportunity_score": 46,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        1529998
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 91,
-      "gross_yield": 3.81,
-      "net_yield": 2.43,
-      "ppm2_percentile": 58,
       "dpe_energy": "C"
     },
     {
@@ -11100,15 +11289,15 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1210076",
-      "address": "117 Rue D Aboukir, 75002 Paris",
-      "district": "75002",
-      "lat": 48.868822,
-      "lng": 2.349941,
-      "surface_m2": 15,
-      "rooms": 1,
-      "current_price": 154000,
-      "price_per_m2": 10267,
+      "id": "dvf-2024-1208962",
+      "address": "26 Rue Des Francs Bourgeois, 75003 Paris",
+      "district": "75003",
+      "lat": 48.858043,
+      "lng": 2.3608,
+      "surface_m2": 110,
+      "rooms": 5,
+      "current_price": 1450000,
+      "price_per_m2": 13182,
       "opportunity_score": 45,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -11116,42 +11305,15 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        154000
+        1450000
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 42,
-      "gross_yield": 4.21,
-      "net_yield": 2.8,
-      "ppm2_percentile": 34,
-      "dpe_energy": "E"
-    },
-    {
-      "id": "dvf-2024-1208939",
-      "address": "1 Rue De Rivoli, 75004 Paris",
-      "district": "75004",
-      "lat": 48.85549,
-      "lng": 2.359223,
-      "surface_m2": 163,
-      "rooms": 6,
-      "current_price": 1855000,
-      "price_per_m2": 11380,
-      "opportunity_score": 45,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        1855000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 51,
-      "gross_yield": 3.92,
-      "net_yield": 2.53,
-      "ppm2_percentile": 32,
-      "dpe_energy": "E"
+      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 91,
+      "gross_yield": 3.33,
+      "net_yield": 1.98,
+      "ppm2_percentile": 70,
+      "dpe_energy": "B"
     },
     {
       "id": "dvf-2024-1228066",
@@ -11235,33 +11397,6 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1227736",
-      "address": "9 Rue Saint Sulpice, 75006 Paris",
-      "district": "75006",
-      "lat": 48.851323,
-      "lng": 2.3377,
-      "surface_m2": 25,
-      "rooms": 2,
-      "current_price": 370000,
-      "price_per_m2": 14800,
-      "opportunity_score": 45,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        370000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 78,
-      "gross_yield": 3.11,
-      "net_yield": 1.78,
-      "ppm2_percentile": 50,
-      "dpe_energy": "D"
-    },
-    {
       "id": "dvf-2024-1227904",
       "address": "1 Rue Du Regard, 75006 Paris",
       "district": "75006",
@@ -11289,33 +11424,6 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1228877",
-      "address": "3 Rue Paul Louis Courier, 75007 Paris",
-      "district": "75007",
-      "lat": 48.855871,
-      "lng": 2.325057,
-      "surface_m2": 180,
-      "rooms": 6,
-      "current_price": 2465000,
-      "price_per_m2": 13694,
-      "opportunity_score": 45,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        2465000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 65,
-      "gross_yield": 3.26,
-      "net_yield": 1.92,
-      "ppm2_percentile": 52,
-      "dpe_energy": "C"
-    },
-    {
       "id": "dvf-2024-1229067",
       "address": "49 Av De Segur, 75007 Paris",
       "district": "75007",
@@ -11341,6 +11449,33 @@
       "net_yield": 2.38,
       "ppm2_percentile": 24,
       "dpe_energy": "E"
+    },
+    {
+      "id": "dvf-2024-1210446",
+      "address": "7 Rue Jean Goujon, 75008 Paris",
+      "district": "75008",
+      "lat": 48.866362,
+      "lng": 2.30927,
+      "surface_m2": 100,
+      "rooms": 3,
+      "current_price": 1271551,
+      "price_per_m2": 12716,
+      "opportunity_score": 45,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1271551
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 40,
+      "gross_yield": 3.34,
+      "net_yield": 1.99,
+      "ppm2_percentile": 54,
+      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1210281",
@@ -11397,33 +11532,6 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1229193",
-      "address": "52 Rue Damesme, 75013 Paris",
-      "district": "75013",
-      "lat": 48.821938,
-      "lng": 2.354903,
-      "surface_m2": 37,
-      "rooms": 2,
-      "current_price": 288000,
-      "price_per_m2": 7784,
-      "opportunity_score": 45,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        288000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 75,
-      "gross_yield": 4.9,
-      "net_yield": 3.44,
-      "ppm2_percentile": 26,
-      "dpe_energy": "F"
-    },
-    {
       "id": "dvf-2024-1229195",
       "address": "3 Rue De Chatillon, 75014 Paris",
       "district": "75014",
@@ -11478,6 +11586,33 @@
       "dpe_energy": "D"
     },
     {
+      "id": "dvf-2024-1228289",
+      "address": "47 Rue Erlanger, 75016 Paris",
+      "district": "75016",
+      "lat": 48.845026,
+      "lng": 2.260636,
+      "surface_m2": 46,
+      "rooms": 1,
+      "current_price": 403500,
+      "price_per_m2": 8772,
+      "opportunity_score": 45,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        403500
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 28,
+      "gross_yield": 4.68,
+      "net_yield": 3.24,
+      "ppm2_percentile": 20,
+      "dpe_energy": "F"
+    },
+    {
       "id": "dvf-2024-1209856",
       "address": "305 Rue Des Pyrenees, 75020 Paris",
       "district": "75020",
@@ -11502,33 +11637,6 @@
       "gross_yield": 4.19,
       "net_yield": 2.78,
       "ppm2_percentile": 64,
-      "dpe_energy": "D"
-    },
-    {
-      "id": "dvf-2024-1210390",
-      "address": "8 Rue D Annam, 75020 Paris",
-      "district": "75020",
-      "lat": 48.866278,
-      "lng": 2.394162,
-      "surface_m2": 23,
-      "rooms": 1,
-      "current_price": 203000,
-      "price_per_m2": 8826,
-      "opportunity_score": 45,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        203000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 92,
-      "gross_yield": 4.24,
-      "net_yield": 2.83,
-      "ppm2_percentile": 58,
       "dpe_energy": "D"
     },
     {
@@ -11559,15 +11667,15 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1208962",
-      "address": "26 Rue Des Francs Bourgeois, 75003 Paris",
-      "district": "75003",
-      "lat": 48.858043,
-      "lng": 2.3608,
-      "surface_m2": 110,
-      "rooms": 5,
-      "current_price": 1450000,
-      "price_per_m2": 13182,
+      "id": "dvf-2024-1208938",
+      "address": "116 Rue Montmartre, 75002 Paris",
+      "district": "75002",
+      "lat": 48.867754,
+      "lng": 2.344066,
+      "surface_m2": 24,
+      "rooms": 1,
+      "current_price": 245100,
+      "price_per_m2": 10213,
       "opportunity_score": 44,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -11575,15 +11683,42 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        1450000
+        245100
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 91,
-      "gross_yield": 3.33,
-      "net_yield": 1.98,
-      "ppm2_percentile": 70,
-      "dpe_energy": "B"
+      "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 83,
+      "gross_yield": 4.23,
+      "net_yield": 2.82,
+      "ppm2_percentile": 32,
+      "dpe_energy": "F"
+    },
+    {
+      "id": "dvf-2024-1210369",
+      "address": "9 Rue Barbette, 75003 Paris",
+      "district": "75003",
+      "lat": 48.858682,
+      "lng": 2.360785,
+      "surface_m2": 15,
+      "rooms": 1,
+      "current_price": 195400,
+      "price_per_m2": 13027,
+      "opportunity_score": 44,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        195400
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 90,
+      "gross_yield": 3.37,
+      "net_yield": 2.02,
+      "ppm2_percentile": 68,
+      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1208830",
@@ -11748,15 +11883,15 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1210446",
-      "address": "7 Rue Jean Goujon, 75008 Paris",
-      "district": "75008",
-      "lat": 48.866362,
-      "lng": 2.30927,
-      "surface_m2": 100,
-      "rooms": 3,
-      "current_price": 1271551,
-      "price_per_m2": 12716,
+      "id": "dvf-2024-1210418",
+      "address": "19 Rue Yves Toudic, 75010 Paris",
+      "district": "75010",
+      "lat": 48.87046,
+      "lng": 2.363065,
+      "surface_m2": 104,
+      "rooms": 4,
+      "current_price": 925000,
+      "price_per_m2": 8894,
       "opportunity_score": 44,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -11764,15 +11899,15 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        1271551
+        925000
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 40,
-      "gross_yield": 3.34,
-      "net_yield": 1.99,
-      "ppm2_percentile": 54,
-      "dpe_energy": "D"
+      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 65,
+      "gross_yield": 4.53,
+      "net_yield": 3.1,
+      "ppm2_percentile": 40,
+      "dpe_energy": "F"
     },
     {
       "id": "dvf-2024-1209946",
@@ -11910,33 +12045,6 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1228289",
-      "address": "47 Rue Erlanger, 75016 Paris",
-      "district": "75016",
-      "lat": 48.845026,
-      "lng": 2.260636,
-      "surface_m2": 46,
-      "rooms": 1,
-      "current_price": 403500,
-      "price_per_m2": 8772,
-      "opportunity_score": 44,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        403500
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 28,
-      "gross_yield": 4.68,
-      "net_yield": 3.24,
-      "ppm2_percentile": 20,
-      "dpe_energy": "F"
-    },
-    {
       "id": "dvf-2024-1210252",
       "address": "70 Rue Curial, 75019 Paris",
       "district": "75019",
@@ -12018,6 +12126,33 @@
       "dpe_energy": "B"
     },
     {
+      "id": "dvf-2024-1210390",
+      "address": "8 Rue D Annam, 75020 Paris",
+      "district": "75020",
+      "lat": 48.866278,
+      "lng": 2.394162,
+      "surface_m2": 23,
+      "rooms": 1,
+      "current_price": 203000,
+      "price_per_m2": 8826,
+      "opportunity_score": 44,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        203000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 92,
+      "gross_yield": 4.24,
+      "net_yield": 2.83,
+      "ppm2_percentile": 58,
+      "dpe_energy": "D"
+    },
+    {
       "id": "dvf-2024-1208301",
       "address": "11 Rue De La Sourdiere, 75001 Paris",
       "district": "75001",
@@ -12043,33 +12178,6 @@
       "net_yield": 2.19,
       "ppm2_percentile": 52,
       "dpe_energy": "D"
-    },
-    {
-      "id": "dvf-2024-1208938",
-      "address": "116 Rue Montmartre, 75002 Paris",
-      "district": "75002",
-      "lat": 48.867754,
-      "lng": 2.344066,
-      "surface_m2": 24,
-      "rooms": 1,
-      "current_price": 245100,
-      "price_per_m2": 10213,
-      "opportunity_score": 43,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        245100
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 83,
-      "gross_yield": 4.23,
-      "net_yield": 2.82,
-      "ppm2_percentile": 32,
-      "dpe_energy": "F"
     },
     {
       "id": "dvf-2024-1210188",
@@ -12153,15 +12261,15 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1210418",
-      "address": "19 Rue Yves Toudic, 75010 Paris",
-      "district": "75010",
-      "lat": 48.87046,
-      "lng": 2.363065,
-      "surface_m2": 104,
-      "rooms": 4,
-      "current_price": 925000,
-      "price_per_m2": 8894,
+      "id": "dvf-2024-1227770",
+      "address": "86 Bd Saint Germain, 75005 Paris",
+      "district": "75005",
+      "lat": 48.851116,
+      "lng": 2.34526,
+      "surface_m2": 96,
+      "rooms": 5,
+      "current_price": 1200000,
+      "price_per_m2": 12500,
       "opportunity_score": 43,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -12169,15 +12277,42 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        925000
+        1200000
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 65,
-      "gross_yield": 4.53,
-      "net_yield": 3.1,
-      "ppm2_percentile": 40,
-      "dpe_energy": "F"
+      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 51,
+      "gross_yield": 3.46,
+      "net_yield": 2.1,
+      "ppm2_percentile": 56,
+      "dpe_energy": "C"
+    },
+    {
+      "id": "dvf-2024-1227725",
+      "address": "102 Rue De Vaugirard, 75006 Paris",
+      "district": "75006",
+      "lat": 48.846306,
+      "lng": 2.32378,
+      "surface_m2": 148,
+      "rooms": 6,
+      "current_price": 1825000,
+      "price_per_m2": 12331,
+      "opportunity_score": 43,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1825000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 63,
+      "gross_yield": 3.74,
+      "net_yield": 2.36,
+      "ppm2_percentile": 18,
+      "dpe_energy": "E"
     },
     {
       "id": "dvf-2024-1228504",
@@ -12232,6 +12367,33 @@
       "net_yield": 2.66,
       "ppm2_percentile": 34,
       "dpe_energy": "E"
+    },
+    {
+      "id": "dvf-2024-1228662",
+      "address": "16 Rue Albert Bayet, 75013 Paris",
+      "district": "75013",
+      "lat": 48.831541,
+      "lng": 2.360024,
+      "surface_m2": 48,
+      "rooms": 2,
+      "current_price": 374581,
+      "price_per_m2": 7804,
+      "opportunity_score": 43,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        374581
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 80,
+      "gross_yield": 4.89,
+      "net_yield": 3.43,
+      "ppm2_percentile": 30,
+      "dpe_energy": "F"
     },
     {
       "id": "dvf-2024-1228735",
@@ -12558,33 +12720,6 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1210369",
-      "address": "9 Rue Barbette, 75003 Paris",
-      "district": "75003",
-      "lat": 48.858682,
-      "lng": 2.360785,
-      "surface_m2": 15,
-      "rooms": 1,
-      "current_price": 195400,
-      "price_per_m2": 13027,
-      "opportunity_score": 42,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        195400
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 90,
-      "gross_yield": 3.37,
-      "net_yield": 2.02,
-      "ppm2_percentile": 68,
-      "dpe_energy": "D"
-    },
-    {
       "id": "dvf-2024-1209326",
       "address": "69 Rue Charlot, 75003 Paris",
       "district": "75003",
@@ -12666,33 +12801,6 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1227770",
-      "address": "86 Bd Saint Germain, 75005 Paris",
-      "district": "75005",
-      "lat": 48.851116,
-      "lng": 2.34526,
-      "surface_m2": 96,
-      "rooms": 5,
-      "current_price": 1200000,
-      "price_per_m2": 12500,
-      "opportunity_score": 42,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        1200000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 51,
-      "gross_yield": 3.46,
-      "net_yield": 2.1,
-      "ppm2_percentile": 56,
-      "dpe_energy": "C"
-    },
-    {
       "id": "dvf-2024-1228313",
       "address": "7 Rue Royer-Collard, 75005 Paris",
       "district": "75005",
@@ -12744,33 +12852,6 @@
       "gross_yield": 3.82,
       "net_yield": 2.44,
       "ppm2_percentile": 26,
-      "dpe_energy": "E"
-    },
-    {
-      "id": "dvf-2024-1227725",
-      "address": "102 Rue De Vaugirard, 75006 Paris",
-      "district": "75006",
-      "lat": 48.846306,
-      "lng": 2.32378,
-      "surface_m2": 148,
-      "rooms": 6,
-      "current_price": 1825000,
-      "price_per_m2": 12331,
-      "opportunity_score": 42,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        1825000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 63,
-      "gross_yield": 3.74,
-      "net_yield": 2.36,
-      "ppm2_percentile": 18,
       "dpe_energy": "E"
     },
     {
@@ -13017,33 +13098,6 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1228662",
-      "address": "16 Rue Albert Bayet, 75013 Paris",
-      "district": "75013",
-      "lat": 48.831541,
-      "lng": 2.360024,
-      "surface_m2": 48,
-      "rooms": 2,
-      "current_price": 374581,
-      "price_per_m2": 7804,
-      "opportunity_score": 42,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        374581
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 80,
-      "gross_yield": 4.89,
-      "net_yield": 3.43,
-      "ppm2_percentile": 30,
-      "dpe_energy": "F"
-    },
-    {
       "id": "dvf-2024-1229057",
       "address": "21 Av Villemain, 75014 Paris",
       "district": "75014",
@@ -13206,6 +13260,33 @@
       "dpe_energy": "D"
     },
     {
+      "id": "dvf-2024-1208998",
+      "address": "10 Rue Coquilliere, 75001 Paris",
+      "district": "75001",
+      "lat": 48.863762,
+      "lng": 2.343699,
+      "surface_m2": 43,
+      "rooms": 2,
+      "current_price": 550000,
+      "price_per_m2": 12791,
+      "opportunity_score": 41,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        550000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 25,
+      "gross_yield": 3.43,
+      "net_yield": 2.08,
+      "ppm2_percentile": 60,
+      "dpe_energy": "C"
+    },
+    {
       "id": "dvf-2024-1208255",
       "address": "16 Rue De La Grande Truanderie, 75001 Paris",
       "district": "75001",
@@ -13314,6 +13395,60 @@
       "dpe_energy": "B"
     },
     {
+      "id": "dvf-2024-1229279",
+      "address": "72 Rue De Sevres, 75007 Paris",
+      "district": "75007",
+      "lat": 48.848022,
+      "lng": 2.318521,
+      "surface_m2": 123,
+      "rooms": 4,
+      "current_price": 1496000,
+      "price_per_m2": 12163,
+      "opportunity_score": 41,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1496000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 21,
+      "gross_yield": 3.67,
+      "net_yield": 2.3,
+      "ppm2_percentile": 28,
+      "dpe_energy": "E"
+    },
+    {
+      "id": "dvf-2024-1208810",
+      "address": "67 Rue De Monceau, 75008 Paris",
+      "district": "75008",
+      "lat": 48.879189,
+      "lng": 2.313132,
+      "surface_m2": 31,
+      "rooms": 1,
+      "current_price": 385000,
+      "price_per_m2": 12419,
+      "opportunity_score": 41,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        385000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 38,
+      "gross_yield": 3.42,
+      "net_yield": 2.07,
+      "ppm2_percentile": 50,
+      "dpe_energy": "E"
+    },
+    {
       "id": "dvf-2024-1210023",
       "address": "5 Rue Des Recollets, 75010 Paris",
       "district": "75010",
@@ -13338,6 +13473,33 @@
       "gross_yield": 4.78,
       "net_yield": 3.33,
       "ppm2_percentile": 28,
+      "dpe_energy": "G"
+    },
+    {
+      "id": "dvf-2024-1209862",
+      "address": "11 Rue De Nancy, 75010 Paris",
+      "district": "75010",
+      "lat": 48.872069,
+      "lng": 2.358836,
+      "surface_m2": 30,
+      "rooms": 2,
+      "current_price": 247000,
+      "price_per_m2": 8233,
+      "opportunity_score": 41,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        247000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 85,
+      "gross_yield": 4.9,
+      "net_yield": 3.44,
+      "ppm2_percentile": 22,
       "dpe_energy": "G"
     },
     {
@@ -13503,33 +13665,6 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1228649",
-      "address": "80 Rue De L Abbe Carton, 75014 Paris",
-      "district": "75014",
-      "lat": 48.827498,
-      "lng": 2.320098,
-      "surface_m2": 52,
-      "rooms": 2,
-      "current_price": 517200,
-      "price_per_m2": 9946,
-      "opportunity_score": 41,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        517200
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 67,
-      "gross_yield": 4.05,
-      "net_yield": 2.65,
-      "ppm2_percentile": 58,
-      "dpe_energy": "D"
-    },
-    {
       "id": "dvf-2024-1229220",
       "address": "5 Rue Saint Saens, 75015 Paris",
       "district": "75015",
@@ -13611,33 +13746,6 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1209820",
-      "address": "21 Rue Ruhmkorff, 75017 Paris",
-      "district": "75017",
-      "lat": 48.881195,
-      "lng": 2.286265,
-      "surface_m2": 52,
-      "rooms": 3,
-      "current_price": 415000,
-      "price_per_m2": 7981,
-      "opportunity_score": 41,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        415000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 84,
-      "gross_yield": 5.14,
-      "net_yield": 3.67,
-      "ppm2_percentile": 12,
-      "dpe_energy": "G"
-    },
-    {
       "id": "dvf-2024-1209556",
       "address": "1 Rue Gauthey, 75017 Paris",
       "district": "75017",
@@ -13692,15 +13800,15 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1208998",
-      "address": "10 Rue Coquilliere, 75001 Paris",
+      "id": "dvf-2024-1210020",
+      "address": "12 Rue Berger, 75001 Paris",
       "district": "75001",
-      "lat": 48.863762,
-      "lng": 2.343699,
-      "surface_m2": 43,
-      "rooms": 2,
-      "current_price": 550000,
-      "price_per_m2": 12791,
+      "lat": 48.861062,
+      "lng": 2.348303,
+      "surface_m2": 36,
+      "rooms": 1,
+      "current_price": 374000,
+      "price_per_m2": 10389,
       "opportunity_score": 40,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -13708,15 +13816,15 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        550000
+        374000
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 25,
-      "gross_yield": 3.43,
-      "net_yield": 2.08,
-      "ppm2_percentile": 60,
-      "dpe_energy": "C"
+      "image": "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 24,
+      "gross_yield": 4.23,
+      "net_yield": 2.82,
+      "ppm2_percentile": 28,
+      "dpe_energy": "F"
     },
     {
       "id": "dvf-2024-1208768",
@@ -13854,15 +13962,15 @@
       "dpe_energy": "B"
     },
     {
-      "id": "dvf-2024-1229279",
-      "address": "72 Rue De Sevres, 75007 Paris",
-      "district": "75007",
-      "lat": 48.848022,
-      "lng": 2.318521,
-      "surface_m2": 123,
-      "rooms": 4,
-      "current_price": 1496000,
-      "price_per_m2": 12163,
+      "id": "dvf-2024-1228929",
+      "address": "12 Rue De Vaugirard, 75006 Paris",
+      "district": "75006",
+      "lat": 48.849165,
+      "lng": 2.339635,
+      "surface_m2": 12,
+      "rooms": 1,
+      "current_price": 161905,
+      "price_per_m2": 13492,
       "opportunity_score": 40,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -13870,14 +13978,14 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        1496000
+        161905
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 21,
-      "gross_yield": 3.67,
-      "net_yield": 2.3,
-      "ppm2_percentile": 28,
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 66,
+      "gross_yield": 3.42,
+      "net_yield": 2.06,
+      "ppm2_percentile": 30,
       "dpe_energy": "E"
     },
     {
@@ -13962,33 +14070,6 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1208810",
-      "address": "67 Rue De Monceau, 75008 Paris",
-      "district": "75008",
-      "lat": 48.879189,
-      "lng": 2.313132,
-      "surface_m2": 31,
-      "rooms": 1,
-      "current_price": 385000,
-      "price_per_m2": 12419,
-      "opportunity_score": 40,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        385000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 38,
-      "gross_yield": 3.42,
-      "net_yield": 2.07,
-      "ppm2_percentile": 50,
-      "dpe_energy": "E"
-    },
-    {
       "id": "dvf-2024-1209681",
       "address": "70 Rue De Clichy, 75009 Paris",
       "district": "75009",
@@ -14070,33 +14151,6 @@
       "dpe_energy": "G"
     },
     {
-      "id": "dvf-2024-1209862",
-      "address": "11 Rue De Nancy, 75010 Paris",
-      "district": "75010",
-      "lat": 48.872069,
-      "lng": 2.358836,
-      "surface_m2": 30,
-      "rooms": 2,
-      "current_price": 247000,
-      "price_per_m2": 8233,
-      "opportunity_score": 40,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        247000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 85,
-      "gross_yield": 4.9,
-      "net_yield": 3.44,
-      "ppm2_percentile": 22,
-      "dpe_energy": "G"
-    },
-    {
       "id": "dvf-2024-1228375",
       "address": "16 Rue Lacharriere, 75011 Paris",
       "district": "75011",
@@ -14149,6 +14203,33 @@
       "net_yield": 3.45,
       "ppm2_percentile": 22,
       "dpe_energy": "G"
+    },
+    {
+      "id": "dvf-2024-1228649",
+      "address": "80 Rue De L Abbe Carton, 75014 Paris",
+      "district": "75014",
+      "lat": 48.827498,
+      "lng": 2.320098,
+      "surface_m2": 52,
+      "rooms": 2,
+      "current_price": 517200,
+      "price_per_m2": 9946,
+      "opportunity_score": 40,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        517200
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 67,
+      "gross_yield": 4.05,
+      "net_yield": 2.65,
+      "ppm2_percentile": 58,
+      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1229004",
@@ -14367,33 +14448,6 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1210020",
-      "address": "12 Rue Berger, 75001 Paris",
-      "district": "75001",
-      "lat": 48.861062,
-      "lng": 2.348303,
-      "surface_m2": 36,
-      "rooms": 1,
-      "current_price": 374000,
-      "price_per_m2": 10389,
-      "opportunity_score": 39,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        374000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 24,
-      "gross_yield": 4.23,
-      "net_yield": 2.82,
-      "ppm2_percentile": 28,
-      "dpe_energy": "F"
-    },
-    {
       "id": "dvf-2024-1208595",
       "address": "5 Rue Coq Heron, 75001 Paris",
       "district": "75001",
@@ -14583,33 +14637,6 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1228929",
-      "address": "12 Rue De Vaugirard, 75006 Paris",
-      "district": "75006",
-      "lat": 48.849165,
-      "lng": 2.339635,
-      "surface_m2": 12,
-      "rooms": 1,
-      "current_price": 161905,
-      "price_per_m2": 13492,
-      "opportunity_score": 39,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        161905
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 66,
-      "gross_yield": 3.42,
-      "net_yield": 2.06,
-      "ppm2_percentile": 30,
-      "dpe_energy": "E"
-    },
-    {
       "id": "dvf-2024-1228346",
       "address": "59 Bd De Menilmontant, 75011 Paris",
       "district": "75011",
@@ -14689,6 +14716,33 @@
       "net_yield": 2.7,
       "ppm2_percentile": 60,
       "dpe_energy": "D"
+    },
+    {
+      "id": "dvf-2024-1229053",
+      "address": "93 Av Du General Leclerc, 75014 Paris",
+      "district": "75014",
+      "lat": 48.826191,
+      "lng": 2.327292,
+      "surface_m2": 25,
+      "rooms": 1,
+      "current_price": 208500,
+      "price_per_m2": 8340,
+      "opportunity_score": 39,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        208500
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 74,
+      "gross_yield": 4.83,
+      "net_yield": 3.38,
+      "ppm2_percentile": 18,
+      "dpe_energy": "G"
     },
     {
       "id": "dvf-2024-1229219",
@@ -14824,6 +14878,33 @@
       "net_yield": 1.97,
       "ppm2_percentile": 62,
       "dpe_energy": "C"
+    },
+    {
+      "id": "dvf-2024-1208650",
+      "address": "16 Bd Morland, 75004 Paris",
+      "district": "75004",
+      "lat": 48.849461,
+      "lng": 2.364394,
+      "surface_m2": 33,
+      "rooms": 2,
+      "current_price": 400000,
+      "price_per_m2": 12121,
+      "opportunity_score": 38,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        400000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 43,
+      "gross_yield": 3.68,
+      "net_yield": 2.31,
+      "ppm2_percentile": 40,
+      "dpe_energy": "E"
     },
     {
       "id": "dvf-2024-1228326",
@@ -15069,33 +15150,6 @@
       "dpe_energy": "F"
     },
     {
-      "id": "dvf-2024-1229053",
-      "address": "93 Av Du General Leclerc, 75014 Paris",
-      "district": "75014",
-      "lat": 48.826191,
-      "lng": 2.327292,
-      "surface_m2": 25,
-      "rooms": 1,
-      "current_price": 208500,
-      "price_per_m2": 8340,
-      "opportunity_score": 38,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        208500
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 74,
-      "gross_yield": 4.83,
-      "net_yield": 3.38,
-      "ppm2_percentile": 18,
-      "dpe_energy": "G"
-    },
-    {
       "id": "dvf-2024-1228644",
       "address": "48 B Rue De Passy, 75016 Paris",
       "district": "75016",
@@ -15283,33 +15337,6 @@
       "net_yield": 2.08,
       "ppm2_percentile": 52,
       "dpe_energy": "D"
-    },
-    {
-      "id": "dvf-2024-1208650",
-      "address": "16 Bd Morland, 75004 Paris",
-      "district": "75004",
-      "lat": 48.849461,
-      "lng": 2.364394,
-      "surface_m2": 33,
-      "rooms": 2,
-      "current_price": 400000,
-      "price_per_m2": 12121,
-      "opportunity_score": 37,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        400000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 43,
-      "gross_yield": 3.68,
-      "net_yield": 2.31,
-      "ppm2_percentile": 40,
-      "dpe_energy": "E"
     },
     {
       "id": "dvf-2024-1208752",
@@ -16068,6 +16095,33 @@
       "dpe_energy": "C"
     },
     {
+      "id": "dvf-2024-1228931",
+      "address": "109 Rue Du Cherche-Midi, 75006 Paris",
+      "district": "75006",
+      "lat": 48.845756,
+      "lng": 2.320427,
+      "surface_m2": 38,
+      "rooms": 1,
+      "current_price": 480000,
+      "price_per_m2": 12632,
+      "opportunity_score": 36,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        480000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 80,
+      "gross_yield": 3.65,
+      "net_yield": 2.28,
+      "ppm2_percentile": 22,
+      "dpe_energy": "F"
+    },
+    {
       "id": "dvf-2024-1228050",
       "address": "11 Rue Des Beaux-Arts, 75006 Paris",
       "district": "75006",
@@ -16174,6 +16228,60 @@
       "net_yield": 2.41,
       "ppm2_percentile": 22,
       "dpe_energy": "F"
+    },
+    {
+      "id": "dvf-2024-1210218",
+      "address": "22 Rue Jean Goujon, 75008 Paris",
+      "district": "75008",
+      "lat": 48.866139,
+      "lng": 2.306396,
+      "surface_m2": 19,
+      "rooms": 1,
+      "current_price": 278846,
+      "price_per_m2": 14676,
+      "opportunity_score": 36,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        278846
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 30,
+      "gross_yield": 2.89,
+      "net_yield": 1.58,
+      "ppm2_percentile": 68,
+      "dpe_energy": "E"
+    },
+    {
+      "id": "dvf-2024-1209144",
+      "address": "28 Av Montaigne, 75008 Paris",
+      "district": "75008",
+      "lat": 48.866484,
+      "lng": 2.306071,
+      "surface_m2": 110,
+      "rooms": 4,
+      "current_price": 1661000,
+      "price_per_m2": 15100,
+      "opportunity_score": 36,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1661000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 51,
+      "gross_yield": 2.81,
+      "net_yield": 1.5,
+      "ppm2_percentile": 72,
+      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1209526",
@@ -16389,6 +16497,33 @@
       "gross_yield": 4.95,
       "net_yield": 3.49,
       "ppm2_percentile": 32,
+      "dpe_energy": "G"
+    },
+    {
+      "id": "dvf-2024-1209572",
+      "address": "37 Rue St Vincent, 75018 Paris",
+      "district": "75018",
+      "lat": 48.888469,
+      "lng": 2.339287,
+      "surface_m2": 32,
+      "rooms": 1,
+      "current_price": 295000,
+      "price_per_m2": 9219,
+      "opportunity_score": 36,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        295000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 86,
+      "gross_yield": 4.22,
+      "net_yield": 2.81,
+      "ppm2_percentile": 56,
       "dpe_energy": "G"
     },
     {
@@ -16635,15 +16770,15 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1228931",
-      "address": "109 Rue Du Cherche-Midi, 75006 Paris",
-      "district": "75006",
-      "lat": 48.845756,
-      "lng": 2.320427,
-      "surface_m2": 38,
+      "id": "dvf-2024-1208740",
+      "address": "26 Rue St Louis En L Ile, 75004 Paris",
+      "district": "75004",
+      "lat": 48.851614,
+      "lng": 2.357695,
+      "surface_m2": 20,
       "rooms": 1,
-      "current_price": 480000,
-      "price_per_m2": 12632,
+      "current_price": 280000,
+      "price_per_m2": 14000,
       "opportunity_score": 35,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -16651,15 +16786,15 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        480000
+        280000
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 80,
-      "gross_yield": 3.65,
-      "net_yield": 2.28,
-      "ppm2_percentile": 22,
-      "dpe_energy": "F"
+      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 47,
+      "gross_yield": 3.19,
+      "net_yield": 1.85,
+      "ppm2_percentile": 68,
+      "dpe_energy": "E"
     },
     {
       "id": "dvf-2024-1229209",
@@ -16689,15 +16824,15 @@
       "dpe_energy": "F"
     },
     {
-      "id": "dvf-2024-1210218",
-      "address": "22 Rue Jean Goujon, 75008 Paris",
+      "id": "dvf-2024-1209886",
+      "address": "12 Av De Wagram, 75008 Paris",
       "district": "75008",
-      "lat": 48.866139,
-      "lng": 2.306396,
+      "lat": 48.87575,
+      "lng": 2.297017,
       "surface_m2": 19,
       "rooms": 1,
-      "current_price": 278846,
-      "price_per_m2": 14676,
+      "current_price": 205000,
+      "price_per_m2": 10789,
       "opportunity_score": 35,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -16705,42 +16840,15 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        278846
+        205000
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 30,
-      "gross_yield": 2.89,
-      "net_yield": 1.58,
-      "ppm2_percentile": 68,
-      "dpe_energy": "E"
-    },
-    {
-      "id": "dvf-2024-1209144",
-      "address": "28 Av Montaigne, 75008 Paris",
-      "district": "75008",
-      "lat": 48.866484,
-      "lng": 2.306071,
-      "surface_m2": 110,
-      "rooms": 4,
-      "current_price": 1661000,
-      "price_per_m2": 15100,
-      "opportunity_score": 35,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        1661000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 51,
-      "gross_yield": 2.81,
-      "net_yield": 1.5,
-      "ppm2_percentile": 72,
-      "dpe_energy": "D"
+      "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 44,
+      "gross_yield": 3.94,
+      "net_yield": 2.55,
+      "ppm2_percentile": 28,
+      "dpe_energy": "G"
     },
     {
       "id": "dvf-2024-1210366",
@@ -17013,33 +17121,6 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1209572",
-      "address": "37 Rue St Vincent, 75018 Paris",
-      "district": "75018",
-      "lat": 48.888469,
-      "lng": 2.339287,
-      "surface_m2": 32,
-      "rooms": 1,
-      "current_price": 295000,
-      "price_per_m2": 9219,
-      "opportunity_score": 35,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        295000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 86,
-      "gross_yield": 4.22,
-      "net_yield": 2.81,
-      "ppm2_percentile": 56,
-      "dpe_energy": "G"
-    },
-    {
       "id": "dvf-2024-1209631",
       "address": "4 Rue De Cambo, 75019 Paris",
       "district": "75019",
@@ -17121,33 +17202,6 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1209563",
-      "address": "5 Rue Volney, 75002 Paris",
-      "district": "75002",
-      "lat": 48.869441,
-      "lng": 2.329717,
-      "surface_m2": 62,
-      "rooms": 2,
-      "current_price": 815000,
-      "price_per_m2": 13145,
-      "opportunity_score": 34,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        815000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 68,
-      "gross_yield": 3.29,
-      "net_yield": 1.94,
-      "ppm2_percentile": 76,
-      "dpe_energy": "C"
-    },
-    {
       "id": "dvf-2024-1209661",
       "address": "11 Rue Portefoin, 75003 Paris",
       "district": "75003",
@@ -17172,33 +17226,6 @@
       "gross_yield": 3.51,
       "net_yield": 2.15,
       "ppm2_percentile": 52,
-      "dpe_energy": "E"
-    },
-    {
-      "id": "dvf-2024-1208740",
-      "address": "26 Rue St Louis En L Ile, 75004 Paris",
-      "district": "75004",
-      "lat": 48.851614,
-      "lng": 2.357695,
-      "surface_m2": 20,
-      "rooms": 1,
-      "current_price": 280000,
-      "price_per_m2": 14000,
-      "opportunity_score": 34,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        280000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 47,
-      "gross_yield": 3.19,
-      "net_yield": 1.85,
-      "ppm2_percentile": 68,
       "dpe_energy": "E"
     },
     {
@@ -17227,6 +17254,33 @@
       "net_yield": 1.96,
       "ppm2_percentile": 64,
       "dpe_energy": "E"
+    },
+    {
+      "id": "dvf-2024-1228746",
+      "address": "37 Bd Saint Michel, 75005 Paris",
+      "district": "75005",
+      "lat": 48.849429,
+      "lng": 2.342544,
+      "surface_m2": 61,
+      "rooms": 3,
+      "current_price": 750000,
+      "price_per_m2": 12295,
+      "opportunity_score": 34,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        750000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 74,
+      "gross_yield": 3.51,
+      "net_yield": 2.15,
+      "ppm2_percentile": 48,
+      "dpe_energy": "F"
     },
     {
       "id": "dvf-2024-1228549",
@@ -17310,15 +17364,15 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1209886",
-      "address": "12 Av De Wagram, 75008 Paris",
+      "id": "dvf-2024-1209668",
+      "address": "32 Av De Friedland, 75008 Paris",
       "district": "75008",
-      "lat": 48.87575,
-      "lng": 2.297017,
-      "surface_m2": 19,
-      "rooms": 1,
-      "current_price": 205000,
-      "price_per_m2": 10789,
+      "lat": 48.874585,
+      "lng": 2.298872,
+      "surface_m2": 39,
+      "rooms": 2,
+      "current_price": 510500,
+      "price_per_m2": 13090,
       "opportunity_score": 34,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -17326,15 +17380,15 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        205000
+        510500
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 44,
-      "gross_yield": 3.94,
-      "net_yield": 2.55,
-      "ppm2_percentile": 28,
-      "dpe_energy": "G"
+      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 19,
+      "gross_yield": 3.25,
+      "net_yield": 1.9,
+      "ppm2_percentile": 56,
+      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1208836",
@@ -17634,33 +17688,6 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1228746",
-      "address": "37 Bd Saint Michel, 75005 Paris",
-      "district": "75005",
-      "lat": 48.849429,
-      "lng": 2.342544,
-      "surface_m2": 61,
-      "rooms": 3,
-      "current_price": 750000,
-      "price_per_m2": 12295,
-      "opportunity_score": 33,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        750000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 74,
-      "gross_yield": 3.51,
-      "net_yield": 2.15,
-      "ppm2_percentile": 48,
-      "dpe_energy": "F"
-    },
-    {
       "id": "dvf-2024-1228484",
       "address": "11 Rue De La Huchette, 75005 Paris",
       "district": "75005",
@@ -17686,33 +17713,6 @@
       "net_yield": 1.82,
       "ppm2_percentile": 74,
       "dpe_energy": "C"
-    },
-    {
-      "id": "dvf-2024-1209668",
-      "address": "32 Av De Friedland, 75008 Paris",
-      "district": "75008",
-      "lat": 48.874585,
-      "lng": 2.298872,
-      "surface_m2": 39,
-      "rooms": 2,
-      "current_price": 510500,
-      "price_per_m2": 13090,
-      "opportunity_score": 33,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        510500
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 19,
-      "gross_yield": 3.25,
-      "net_yield": 1.9,
-      "ppm2_percentile": 56,
-      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1209261",
@@ -17766,33 +17766,6 @@
       "gross_yield": 3.92,
       "net_yield": 2.53,
       "ppm2_percentile": 64,
-      "dpe_energy": "E"
-    },
-    {
-      "id": "dvf-2024-1228734",
-      "address": "6 Crs St Eloi, 75012 Paris",
-      "district": "75012",
-      "lat": 48.846759,
-      "lng": 2.388555,
-      "surface_m2": 33,
-      "rooms": 1,
-      "current_price": 331700,
-      "price_per_m2": 10052,
-      "opportunity_score": 33,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        331700
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 36,
-      "gross_yield": 3.87,
-      "net_yield": 2.48,
-      "ppm2_percentile": 68,
       "dpe_energy": "E"
     },
     {
@@ -17956,60 +17929,6 @@
       "net_yield": 2.48,
       "ppm2_percentile": 74,
       "dpe_energy": "D"
-    },
-    {
-      "id": "dvf-2024-1210344",
-      "address": "28 Rue Etienne Dolet, 75020 Paris",
-      "district": "75020",
-      "lat": 48.86781,
-      "lng": 2.384958,
-      "surface_m2": 70,
-      "rooms": 3,
-      "current_price": 670000,
-      "price_per_m2": 9571,
-      "opportunity_score": 33,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        670000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 69,
-      "gross_yield": 3.91,
-      "net_yield": 2.52,
-      "ppm2_percentile": 78,
-      "dpe_energy": "E"
-    },
-    {
-      "id": "dvf-2024-1210355",
-      "address": "12 Rue De La Sourdiere, 75001 Paris",
-      "district": "75001",
-      "lat": 48.865627,
-      "lng": 2.332108,
-      "surface_m2": 35,
-      "rooms": 3,
-      "current_price": 510000,
-      "price_per_m2": 14571,
-      "opportunity_score": 32,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        510000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 56,
-      "gross_yield": 3.01,
-      "net_yield": 1.69,
-      "ppm2_percentile": 74,
-      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1209819",
@@ -18309,6 +18228,33 @@
       "dpe_energy": "D"
     },
     {
+      "id": "dvf-2024-1228734",
+      "address": "6 Crs St Eloi, 75012 Paris",
+      "district": "75012",
+      "lat": 48.846759,
+      "lng": 2.388555,
+      "surface_m2": 33,
+      "rooms": 1,
+      "current_price": 331700,
+      "price_per_m2": 10052,
+      "opportunity_score": 32,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        331700
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 36,
+      "gross_yield": 3.87,
+      "net_yield": 2.48,
+      "ppm2_percentile": 68,
+      "dpe_energy": "E"
+    },
+    {
       "id": "dvf-2024-1228685",
       "address": "95 Bd Poniatowski, 75012 Paris",
       "district": "75012",
@@ -18469,6 +18415,60 @@
       "net_yield": 2.58,
       "ppm2_percentile": 68,
       "dpe_energy": "E"
+    },
+    {
+      "id": "dvf-2024-1210344",
+      "address": "28 Rue Etienne Dolet, 75020 Paris",
+      "district": "75020",
+      "lat": 48.86781,
+      "lng": 2.384958,
+      "surface_m2": 70,
+      "rooms": 3,
+      "current_price": 670000,
+      "price_per_m2": 9571,
+      "opportunity_score": 32,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        670000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 69,
+      "gross_yield": 3.91,
+      "net_yield": 2.52,
+      "ppm2_percentile": 78,
+      "dpe_energy": "E"
+    },
+    {
+      "id": "dvf-2024-1210355",
+      "address": "12 Rue De La Sourdiere, 75001 Paris",
+      "district": "75001",
+      "lat": 48.865627,
+      "lng": 2.332108,
+      "surface_m2": 35,
+      "rooms": 3,
+      "current_price": 510000,
+      "price_per_m2": 14571,
+      "opportunity_score": 31,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        510000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 56,
+      "gross_yield": 3.01,
+      "net_yield": 1.69,
+      "ppm2_percentile": 74,
+      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1228956",
@@ -18984,15 +18984,15 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1209333",
-      "address": "87 Rue Saint Antoine, 75004 Paris",
-      "district": "75004",
-      "lat": 48.854548,
-      "lng": 2.362396,
-      "surface_m2": 38,
-      "rooms": 2,
-      "current_price": 535000,
-      "price_per_m2": 14079,
+      "id": "dvf-2024-1228744",
+      "address": "3 Rue Du Pont De Lodi, 75006 Paris",
+      "district": "75006",
+      "lat": 48.854657,
+      "lng": 2.340398,
+      "surface_m2": 106,
+      "rooms": 3,
+      "current_price": 1750000,
+      "price_per_m2": 16509,
       "opportunity_score": 30,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -19000,14 +19000,41 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        535000
+        1750000
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 57,
-      "gross_yield": 3.17,
-      "net_yield": 1.83,
-      "ppm2_percentile": 72,
+      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 74,
+      "gross_yield": 2.79,
+      "net_yield": 1.48,
+      "ppm2_percentile": 70,
+      "dpe_energy": "D"
+    },
+    {
+      "id": "dvf-2024-1229070",
+      "address": "30 Rue De Verneuil, 75007 Paris",
+      "district": "75007",
+      "lat": 48.857898,
+      "lng": 2.330116,
+      "surface_m2": 108,
+      "rooms": 4,
+      "current_price": 1845237,
+      "price_per_m2": 17086,
+      "opportunity_score": 30,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1845237
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 48,
+      "gross_yield": 2.61,
+      "net_yield": 1.31,
+      "ppm2_percentile": 76,
       "dpe_energy": "D"
     },
     {
@@ -19308,15 +19335,15 @@
       "dpe_energy": "G"
     },
     {
-      "id": "dvf-2024-1210226",
-      "address": "57 Rue Sainte-Anne, 75002 Paris",
-      "district": "75002",
-      "lat": 48.867934,
-      "lng": 2.335797,
-      "surface_m2": 57,
-      "rooms": 3,
-      "current_price": 725000,
-      "price_per_m2": 12719,
+      "id": "dvf-2024-1209386",
+      "address": "12 Pl Dauphine, 75001 Paris",
+      "district": "75001",
+      "lat": 48.856831,
+      "lng": 2.342856,
+      "surface_m2": 51,
+      "rooms": 2,
+      "current_price": 950000,
+      "price_per_m2": 18627,
       "opportunity_score": 29,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -19324,15 +19351,15 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        725000
+        950000
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 73,
-      "gross_yield": 3.4,
-      "net_yield": 2.04,
-      "ppm2_percentile": 72,
-      "dpe_energy": "E"
+      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 50,
+      "gross_yield": 2.36,
+      "net_yield": 1.08,
+      "ppm2_percentile": 84,
+      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1210164",
@@ -19359,6 +19386,33 @@
       "gross_yield": 3.34,
       "net_yield": 1.99,
       "ppm2_percentile": 74,
+      "dpe_energy": "C"
+    },
+    {
+      "id": "dvf-2024-1209563",
+      "address": "5 Rue Volney, 75002 Paris",
+      "district": "75002",
+      "lat": 48.869441,
+      "lng": 2.329717,
+      "surface_m2": 62,
+      "rooms": 2,
+      "current_price": 815000,
+      "price_per_m2": 13145,
+      "opportunity_score": 29,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        815000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 68,
+      "gross_yield": 3.29,
+      "net_yield": 1.94,
+      "ppm2_percentile": 76,
       "dpe_energy": "C"
     },
     {
@@ -19389,6 +19443,33 @@
       "dpe_energy": "E"
     },
     {
+      "id": "dvf-2024-1209333",
+      "address": "87 Rue Saint Antoine, 75004 Paris",
+      "district": "75004",
+      "lat": 48.854548,
+      "lng": 2.362396,
+      "surface_m2": 38,
+      "rooms": 2,
+      "current_price": 535000,
+      "price_per_m2": 14079,
+      "opportunity_score": 29,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        535000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 57,
+      "gross_yield": 3.17,
+      "net_yield": 1.83,
+      "ppm2_percentile": 72,
+      "dpe_energy": "D"
+    },
+    {
       "id": "dvf-2024-1228991",
       "address": "27 Rue Guenegaud, 75006 Paris",
       "district": "75006",
@@ -19414,33 +19495,6 @@
       "net_yield": 1.82,
       "ppm2_percentile": 46,
       "dpe_energy": "F"
-    },
-    {
-      "id": "dvf-2024-1228744",
-      "address": "3 Rue Du Pont De Lodi, 75006 Paris",
-      "district": "75006",
-      "lat": 48.854657,
-      "lng": 2.340398,
-      "surface_m2": 106,
-      "rooms": 3,
-      "current_price": 1750000,
-      "price_per_m2": 16509,
-      "opportunity_score": 29,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        1750000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 74,
-      "gross_yield": 2.79,
-      "net_yield": 1.48,
-      "ppm2_percentile": 70,
-      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1229297",
@@ -19470,15 +19524,15 @@
       "dpe_energy": "F"
     },
     {
-      "id": "dvf-2024-1229070",
-      "address": "30 Rue De Verneuil, 75007 Paris",
+      "id": "dvf-2024-1228816",
+      "address": "66 Av De Breteuil, 75007 Paris",
       "district": "75007",
-      "lat": 48.857898,
-      "lng": 2.330116,
-      "surface_m2": 108,
-      "rooms": 4,
-      "current_price": 1845237,
-      "price_per_m2": 17086,
+      "lat": 48.848535,
+      "lng": 2.31088,
+      "surface_m2": 23,
+      "rooms": 1,
+      "current_price": 345000,
+      "price_per_m2": 15000,
       "opportunity_score": 29,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -19486,15 +19540,42 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        1845237
+        345000
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 48,
-      "gross_yield": 2.61,
-      "net_yield": 1.31,
-      "ppm2_percentile": 76,
+      "image": "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 15,
+      "gross_yield": 2.98,
+      "net_yield": 1.65,
+      "ppm2_percentile": 64,
       "dpe_energy": "D"
+    },
+    {
+      "id": "dvf-2024-1209710",
+      "address": "15 Rue Du Cirque, 75008 Paris",
+      "district": "75008",
+      "lat": 48.870817,
+      "lng": 2.314618,
+      "surface_m2": 199,
+      "rooms": 5,
+      "current_price": 2773933,
+      "price_per_m2": 13939,
+      "opportunity_score": 29,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        2773933
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 62,
+      "gross_yield": 3.05,
+      "net_yield": 1.72,
+      "ppm2_percentile": 60,
+      "dpe_energy": "F"
     },
     {
       "id": "dvf-2024-1209900",
@@ -19821,15 +19902,15 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1208623",
-      "address": "13 Rue De Thorigny, 75003 Paris",
-      "district": "75003",
-      "lat": 48.860305,
-      "lng": 2.363076,
-      "surface_m2": 67,
+      "id": "dvf-2024-1210226",
+      "address": "57 Rue Sainte-Anne, 75002 Paris",
+      "district": "75002",
+      "lat": 48.867934,
+      "lng": 2.335797,
+      "surface_m2": 57,
       "rooms": 3,
-      "current_price": 909000,
-      "price_per_m2": 13567,
+      "current_price": 725000,
+      "price_per_m2": 12719,
       "opportunity_score": 28,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -19837,13 +19918,13 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        909000
+        725000
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 89,
-      "gross_yield": 3.24,
-      "net_yield": 1.9,
+      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 73,
+      "gross_yield": 3.4,
+      "net_yield": 2.04,
       "ppm2_percentile": 72,
       "dpe_energy": "E"
     },
@@ -19929,33 +20010,6 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1228816",
-      "address": "66 Av De Breteuil, 75007 Paris",
-      "district": "75007",
-      "lat": 48.848535,
-      "lng": 2.31088,
-      "surface_m2": 23,
-      "rooms": 1,
-      "current_price": 345000,
-      "price_per_m2": 15000,
-      "opportunity_score": 28,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        345000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 15,
-      "gross_yield": 2.98,
-      "net_yield": 1.65,
-      "ppm2_percentile": 64,
-      "dpe_energy": "D"
-    },
-    {
       "id": "dvf-2024-1228089",
       "address": "41 Rue De Bourgogne, 75007 Paris",
       "district": "75007",
@@ -20008,33 +20062,6 @@
       "net_yield": 1.85,
       "ppm2_percentile": 58,
       "dpe_energy": "E"
-    },
-    {
-      "id": "dvf-2024-1209748",
-      "address": "76 Av Des Champs Elysees, 75008 Paris",
-      "district": "75008",
-      "lat": 48.871669,
-      "lng": 2.304678,
-      "surface_m2": 45,
-      "rooms": 2,
-      "current_price": 679000,
-      "price_per_m2": 15089,
-      "opportunity_score": 28,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        679000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 33,
-      "gross_yield": 2.82,
-      "net_yield": 1.5,
-      "ppm2_percentile": 70,
-      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1209374",
@@ -20116,33 +20143,6 @@
       "net_yield": 2.37,
       "ppm2_percentile": 56,
       "dpe_energy": "F"
-    },
-    {
-      "id": "dvf-2024-1229225",
-      "address": "104 Bd Diderot, 75012 Paris",
-      "district": "75012",
-      "lat": 48.847,
-      "lng": 2.385759,
-      "surface_m2": 99,
-      "rooms": 1,
-      "current_price": 1061000,
-      "price_per_m2": 10717,
-      "opportunity_score": 28,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        1061000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 38,
-      "gross_yield": 3.63,
-      "net_yield": 2.26,
-      "ppm2_percentile": 86,
-      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1228827",
@@ -20307,33 +20307,6 @@
       "dpe_energy": "C"
     },
     {
-      "id": "dvf-2024-1209386",
-      "address": "12 Pl Dauphine, 75001 Paris",
-      "district": "75001",
-      "lat": 48.856831,
-      "lng": 2.342856,
-      "surface_m2": 51,
-      "rooms": 2,
-      "current_price": 950000,
-      "price_per_m2": 18627,
-      "opportunity_score": 27,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        950000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 50,
-      "gross_yield": 2.36,
-      "net_yield": 1.08,
-      "ppm2_percentile": 84,
-      "dpe_energy": "D"
-    },
-    {
       "id": "dvf-2024-1209793",
       "address": "86 Rue Quincampoix, 75003 Paris",
       "district": "75003",
@@ -20359,6 +20332,33 @@
       "net_yield": 1.77,
       "ppm2_percentile": 78,
       "dpe_energy": "C"
+    },
+    {
+      "id": "dvf-2024-1208623",
+      "address": "13 Rue De Thorigny, 75003 Paris",
+      "district": "75003",
+      "lat": 48.860305,
+      "lng": 2.363076,
+      "surface_m2": 67,
+      "rooms": 3,
+      "current_price": 909000,
+      "price_per_m2": 13567,
+      "opportunity_score": 27,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        909000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 89,
+      "gross_yield": 3.24,
+      "net_yield": 1.9,
+      "ppm2_percentile": 72,
+      "dpe_energy": "E"
     },
     {
       "id": "dvf-2024-1209569",
@@ -20469,33 +20469,6 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1228998",
-      "address": "40 Bd Des Invalides, 75007 Paris",
-      "district": "75007",
-      "lat": 48.84978,
-      "lng": 2.314229,
-      "surface_m2": 238,
-      "rooms": 7,
-      "current_price": 3285025,
-      "price_per_m2": 13803,
-      "opportunity_score": 27,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        3285025
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 62,
-      "gross_yield": 3.23,
-      "net_yield": 1.89,
-      "ppm2_percentile": 54,
-      "dpe_energy": "G"
-    },
-    {
       "id": "dvf-2024-1229334",
       "address": "57 Rue De Lille, 75007 Paris",
       "district": "75007",
@@ -20523,15 +20496,15 @@
       "dpe_energy": "D"
     },
     {
-      "id": "dvf-2024-1209710",
-      "address": "15 Rue Du Cirque, 75008 Paris",
+      "id": "dvf-2024-1209748",
+      "address": "76 Av Des Champs Elysees, 75008 Paris",
       "district": "75008",
-      "lat": 48.870817,
-      "lng": 2.314618,
-      "surface_m2": 199,
-      "rooms": 5,
-      "current_price": 2773933,
-      "price_per_m2": 13939,
+      "lat": 48.871669,
+      "lng": 2.304678,
+      "surface_m2": 45,
+      "rooms": 2,
+      "current_price": 679000,
+      "price_per_m2": 15089,
       "opportunity_score": 27,
       "price_drops": 0,
       "total_drop_percent": 0,
@@ -20539,15 +20512,15 @@
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        2773933
+        679000
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 62,
-      "gross_yield": 3.05,
-      "net_yield": 1.72,
-      "ppm2_percentile": 60,
-      "dpe_energy": "F"
+      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 33,
+      "gross_yield": 2.82,
+      "net_yield": 1.5,
+      "ppm2_percentile": 70,
+      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1209719",
@@ -20683,6 +20656,33 @@
       "net_yield": 2.26,
       "ppm2_percentile": 74,
       "dpe_energy": "E"
+    },
+    {
+      "id": "dvf-2024-1229225",
+      "address": "104 Bd Diderot, 75012 Paris",
+      "district": "75012",
+      "lat": 48.847,
+      "lng": 2.385759,
+      "surface_m2": 99,
+      "rooms": 1,
+      "current_price": 1061000,
+      "price_per_m2": 10717,
+      "opportunity_score": 27,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1061000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 38,
+      "gross_yield": 3.63,
+      "net_yield": 2.26,
+      "ppm2_percentile": 86,
+      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1228135",
@@ -20980,33 +20980,6 @@
       "net_yield": 2.5,
       "ppm2_percentile": 46,
       "dpe_energy": "G"
-    },
-    {
-      "id": "dvf-2024-1228891",
-      "address": "132 Rue Leon Maurice Nordmann, 75013 Paris",
-      "district": "75013",
-      "lat": 48.834337,
-      "lng": 2.343968,
-      "surface_m2": 29,
-      "rooms": 1,
-      "current_price": 325000,
-      "price_per_m2": 11207,
-      "opportunity_score": 26,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        325000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 76,
-      "gross_yield": 3.41,
-      "net_yield": 2.05,
-      "ppm2_percentile": 90,
-      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1228763",
@@ -21441,6 +21414,33 @@
       "dpe_energy": "E"
     },
     {
+      "id": "dvf-2024-1228891",
+      "address": "132 Rue Leon Maurice Nordmann, 75013 Paris",
+      "district": "75013",
+      "lat": 48.834337,
+      "lng": 2.343968,
+      "surface_m2": 29,
+      "rooms": 1,
+      "current_price": 325000,
+      "price_per_m2": 11207,
+      "opportunity_score": 25,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        325000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 76,
+      "gross_yield": 3.41,
+      "net_yield": 2.05,
+      "ppm2_percentile": 90,
+      "dpe_energy": "C"
+    },
+    {
       "id": "dvf-2024-1229241",
       "address": "8 Rue Philibert Lucot, 75013 Paris",
       "district": "75013",
@@ -21628,60 +21628,6 @@
       "net_yield": 1.85,
       "ppm2_percentile": 70,
       "dpe_energy": "E"
-    },
-    {
-      "id": "dvf-2024-1210333",
-      "address": "2 Rue Notre-Dame Des Victoires, 75002 Paris",
-      "district": "75002",
-      "lat": 48.866494,
-      "lng": 2.341263,
-      "surface_m2": 30,
-      "rooms": 1,
-      "current_price": 450000,
-      "price_per_m2": 15000,
-      "opportunity_score": 24,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        450000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 63,
-      "gross_yield": 2.88,
-      "net_yield": 1.56,
-      "ppm2_percentile": 86,
-      "dpe_energy": "C"
-    },
-    {
-      "id": "dvf-2024-1207967",
-      "address": "6 Rue Saint-Marc, 75002 Paris",
-      "district": "75002",
-      "lat": 48.870438,
-      "lng": 2.342152,
-      "surface_m2": 60,
-      "rooms": 3,
-      "current_price": 715000,
-      "price_per_m2": 11917,
-      "opportunity_score": 24,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        715000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 63,
-      "gross_yield": 3.63,
-      "net_yield": 2.26,
-      "ppm2_percentile": 68,
-      "dpe_energy": "G"
     },
     {
       "id": "dvf-2024-1207979",
@@ -22062,6 +22008,60 @@
       "dpe_energy": "G"
     },
     {
+      "id": "dvf-2024-1210333",
+      "address": "2 Rue Notre-Dame Des Victoires, 75002 Paris",
+      "district": "75002",
+      "lat": 48.866494,
+      "lng": 2.341263,
+      "surface_m2": 30,
+      "rooms": 1,
+      "current_price": 450000,
+      "price_per_m2": 15000,
+      "opportunity_score": 23,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        450000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 63,
+      "gross_yield": 2.88,
+      "net_yield": 1.56,
+      "ppm2_percentile": 86,
+      "dpe_energy": "C"
+    },
+    {
+      "id": "dvf-2024-1207967",
+      "address": "6 Rue Saint-Marc, 75002 Paris",
+      "district": "75002",
+      "lat": 48.870438,
+      "lng": 2.342152,
+      "surface_m2": 60,
+      "rooms": 3,
+      "current_price": 715000,
+      "price_per_m2": 11917,
+      "opportunity_score": 23,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        715000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 63,
+      "gross_yield": 3.63,
+      "net_yield": 2.26,
+      "ppm2_percentile": 68,
+      "dpe_energy": "G"
+    },
+    {
       "id": "dvf-2024-1208895",
       "address": "82 Rue Des Archives, 75003 Paris",
       "district": "75003",
@@ -22168,33 +22168,6 @@
       "net_yield": 1.3,
       "ppm2_percentile": 78,
       "dpe_energy": "C"
-    },
-    {
-      "id": "dvf-2024-1210129",
-      "address": "7 Rue Jean Goujon, 75008 Paris",
-      "district": "75008",
-      "lat": 48.866362,
-      "lng": 2.30927,
-      "surface_m2": 85,
-      "rooms": 3,
-      "current_price": 1393600,
-      "price_per_m2": 16395,
-      "opportunity_score": 23,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        1393600
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 57,
-      "gross_yield": 2.59,
-      "net_yield": 1.29,
-      "ppm2_percentile": 84,
-      "dpe_energy": "B"
     },
     {
       "id": "dvf-2024-1210367",
@@ -22494,33 +22467,6 @@
       "dpe_energy": "F"
     },
     {
-      "id": "dvf-2024-1209672",
-      "address": "20 Rue Des Maraichers, 75020 Paris",
-      "district": "75020",
-      "lat": 48.849311,
-      "lng": 2.408165,
-      "surface_m2": 87,
-      "rooms": 4,
-      "current_price": 800000,
-      "price_per_m2": 9195,
-      "opportunity_score": 23,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        800000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 72,
-      "gross_yield": 4.07,
-      "net_yield": 2.67,
-      "ppm2_percentile": 68,
-      "dpe_energy": "G"
-    },
-    {
       "id": "dvf-2024-1208784",
       "address": "18 Rue Des Deux Ponts, 75004 Paris",
       "district": "75004",
@@ -22681,6 +22627,33 @@
       "net_yield": 1.47,
       "ppm2_percentile": 74,
       "dpe_energy": "C"
+    },
+    {
+      "id": "dvf-2024-1210129",
+      "address": "7 Rue Jean Goujon, 75008 Paris",
+      "district": "75008",
+      "lat": 48.866362,
+      "lng": 2.30927,
+      "surface_m2": 85,
+      "rooms": 3,
+      "current_price": 1393600,
+      "price_per_m2": 16395,
+      "opportunity_score": 22,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1393600
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 57,
+      "gross_yield": 2.59,
+      "net_yield": 1.29,
+      "ppm2_percentile": 84,
+      "dpe_energy": "B"
     },
     {
       "id": "dvf-2024-1210431",
@@ -22845,33 +22818,6 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1228695",
-      "address": "86 Bd Diderot, 75012 Paris",
-      "district": "75012",
-      "lat": 48.846736,
-      "lng": 2.383459,
-      "surface_m2": 39,
-      "rooms": 2,
-      "current_price": 460000,
-      "price_per_m2": 11795,
-      "opportunity_score": 22,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        460000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 51,
-      "gross_yield": 3.3,
-      "net_yield": 1.95,
-      "ppm2_percentile": 96,
-      "dpe_energy": "D"
-    },
-    {
       "id": "dvf-2024-1229229",
       "address": "33 Rue Louis Morard, 75014 Paris",
       "district": "75014",
@@ -22924,6 +22870,33 @@
       "net_yield": 2.2,
       "ppm2_percentile": 86,
       "dpe_energy": "E"
+    },
+    {
+      "id": "dvf-2024-1209672",
+      "address": "20 Rue Des Maraichers, 75020 Paris",
+      "district": "75020",
+      "lat": 48.849311,
+      "lng": 2.408165,
+      "surface_m2": 87,
+      "rooms": 4,
+      "current_price": 800000,
+      "price_per_m2": 9195,
+      "opportunity_score": 22,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        800000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 72,
+      "gross_yield": 4.07,
+      "net_yield": 2.67,
+      "ppm2_percentile": 68,
+      "dpe_energy": "G"
     },
     {
       "id": "dvf-2024-1205860",
@@ -23169,6 +23142,33 @@
       "dpe_energy": "E"
     },
     {
+      "id": "dvf-2024-1227862",
+      "address": "15 Av Robert Schuman, 75007 Paris",
+      "district": "75007",
+      "lat": 48.861558,
+      "lng": 2.306939,
+      "surface_m2": 208,
+      "rooms": 8,
+      "current_price": 3280530,
+      "price_per_m2": 15772,
+      "opportunity_score": 21,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        3280530
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 66,
+      "gross_yield": 2.83,
+      "net_yield": 1.52,
+      "ppm2_percentile": 66,
+      "dpe_energy": "G"
+    },
+    {
       "id": "dvf-2024-1208766",
       "address": "15 Av De Friedland, 75008 Paris",
       "district": "75008",
@@ -23194,33 +23194,6 @@
       "net_yield": 1.39,
       "ppm2_percentile": 76,
       "dpe_energy": "D"
-    },
-    {
-      "id": "dvf-2024-1208940",
-      "address": "9 Rue De Marignan, 75008 Paris",
-      "district": "75008",
-      "lat": 48.868233,
-      "lng": 2.305663,
-      "surface_m2": 180,
-      "rooms": 5,
-      "current_price": 3100000,
-      "price_per_m2": 17222,
-      "opportunity_score": 21,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        3100000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 28,
-      "gross_yield": 2.47,
-      "net_yield": 1.18,
-      "ppm2_percentile": 90,
-      "dpe_energy": "C"
     },
     {
       "id": "dvf-2024-1228560",
@@ -23275,6 +23248,33 @@
       "net_yield": 2.44,
       "ppm2_percentile": 70,
       "dpe_energy": "G"
+    },
+    {
+      "id": "dvf-2024-1228695",
+      "address": "86 Bd Diderot, 75012 Paris",
+      "district": "75012",
+      "lat": 48.846736,
+      "lng": 2.383459,
+      "surface_m2": 39,
+      "rooms": 2,
+      "current_price": 460000,
+      "price_per_m2": 11795,
+      "opportunity_score": 21,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        460000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 51,
+      "gross_yield": 3.3,
+      "net_yield": 1.95,
+      "ppm2_percentile": 96,
+      "dpe_energy": "D"
     },
     {
       "id": "dvf-2024-1227977",
@@ -23601,33 +23601,6 @@
       "dpe_energy": "E"
     },
     {
-      "id": "dvf-2024-1227862",
-      "address": "15 Av Robert Schuman, 75007 Paris",
-      "district": "75007",
-      "lat": 48.861558,
-      "lng": 2.306939,
-      "surface_m2": 208,
-      "rooms": 8,
-      "current_price": 3280530,
-      "price_per_m2": 15772,
-      "opportunity_score": 20,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        3280530
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 66,
-      "gross_yield": 2.83,
-      "net_yield": 1.52,
-      "ppm2_percentile": 66,
-      "dpe_energy": "G"
-    },
-    {
       "id": "dvf-2024-1210250",
       "address": "16 Rue De Chabrol, 75010 Paris",
       "district": "75010",
@@ -23815,6 +23788,33 @@
       "net_yield": 2.05,
       "ppm2_percentile": 96,
       "dpe_energy": "E"
+    },
+    {
+      "id": "dvf-2024-1210234",
+      "address": "15 Rue Du Louvre, 75001 Paris",
+      "district": "75001",
+      "lat": 48.863545,
+      "lng": 2.341748,
+      "surface_m2": 122,
+      "rooms": 4,
+      "current_price": 1839200,
+      "price_per_m2": 15075,
+      "opportunity_score": 19,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1839200
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 44,
+      "gross_yield": 2.91,
+      "net_yield": 1.59,
+      "ppm2_percentile": 76,
+      "dpe_energy": "G"
     },
     {
       "id": "dvf-2024-1208868",
@@ -24030,6 +24030,33 @@
       "gross_yield": 2.46,
       "net_yield": 1.17,
       "ppm2_percentile": 92,
+      "dpe_energy": "C"
+    },
+    {
+      "id": "dvf-2024-1208940",
+      "address": "9 Rue De Marignan, 75008 Paris",
+      "district": "75008",
+      "lat": 48.868233,
+      "lng": 2.305663,
+      "surface_m2": 180,
+      "rooms": 5,
+      "current_price": 3100000,
+      "price_per_m2": 17222,
+      "opportunity_score": 19,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        3100000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 28,
+      "gross_yield": 2.47,
+      "net_yield": 1.18,
+      "ppm2_percentile": 90,
       "dpe_energy": "C"
     },
     {
@@ -24276,33 +24303,6 @@
       "dpe_energy": "F"
     },
     {
-      "id": "dvf-2024-1210234",
-      "address": "15 Rue Du Louvre, 75001 Paris",
-      "district": "75001",
-      "lat": 48.863545,
-      "lng": 2.341748,
-      "surface_m2": 122,
-      "rooms": 4,
-      "current_price": 1839200,
-      "price_per_m2": 15075,
-      "opportunity_score": 18,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        1839200
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 44,
-      "gross_yield": 2.91,
-      "net_yield": 1.59,
-      "ppm2_percentile": 76,
-      "dpe_energy": "G"
-    },
-    {
       "id": "dvf-2024-1209658",
       "address": "203 B Rue Saint Martin, 75003 Paris",
       "district": "75003",
@@ -24381,33 +24381,6 @@
       "gross_yield": 2.43,
       "net_yield": 1.15,
       "ppm2_percentile": 84,
-      "dpe_energy": "D"
-    },
-    {
-      "id": "dvf-2024-1229287",
-      "address": "81 Rue Du Bac, 75007 Paris",
-      "district": "75007",
-      "lat": 48.854385,
-      "lng": 2.324256,
-      "surface_m2": 71,
-      "rooms": 4,
-      "current_price": 1523350,
-      "price_per_m2": 21456,
-      "opportunity_score": 18,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        1523350
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 70,
-      "gross_yield": 2.08,
-      "net_yield": 0.82,
-      "ppm2_percentile": 92,
       "dpe_energy": "D"
     },
     {
@@ -24571,33 +24544,6 @@
       "net_yield": 1.7,
       "ppm2_percentile": 94,
       "dpe_energy": "D"
-    },
-    {
-      "id": "dvf-2024-1210343",
-      "address": "98 Av De Villiers, 75017 Paris",
-      "district": "75017",
-      "lat": 48.884874,
-      "lng": 2.300298,
-      "surface_m2": 106,
-      "rooms": 4,
-      "current_price": 1370000,
-      "price_per_m2": 12925,
-      "opportunity_score": 18,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 0,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        1370000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
-      "walk_score": 80,
-      "gross_yield": 3.18,
-      "net_yield": 1.84,
-      "ppm2_percentile": 88,
-      "dpe_energy": "G"
     },
     {
       "id": "dvf-2024-1210368",
@@ -24870,6 +24816,33 @@
       "dpe_energy": "E"
     },
     {
+      "id": "dvf-2024-1229287",
+      "address": "81 Rue Du Bac, 75007 Paris",
+      "district": "75007",
+      "lat": 48.854385,
+      "lng": 2.324256,
+      "surface_m2": 71,
+      "rooms": 4,
+      "current_price": 1523350,
+      "price_per_m2": 21456,
+      "opportunity_score": 17,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1523350
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 70,
+      "gross_yield": 2.08,
+      "net_yield": 0.82,
+      "ppm2_percentile": 92,
+      "dpe_energy": "D"
+    },
+    {
       "id": "dvf-2024-1229250",
       "address": "133 Rue St Dominique, 75007 Paris",
       "district": "75007",
@@ -25029,6 +25002,33 @@
       "gross_yield": 3.41,
       "net_yield": 2.05,
       "ppm2_percentile": 90,
+      "dpe_energy": "G"
+    },
+    {
+      "id": "dvf-2024-1210343",
+      "address": "98 Av De Villiers, 75017 Paris",
+      "district": "75017",
+      "lat": 48.884874,
+      "lng": 2.300298,
+      "surface_m2": 106,
+      "rooms": 4,
+      "current_price": 1370000,
+      "price_per_m2": 12925,
+      "opportunity_score": 17,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 0,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1370000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=480&h=300&q=55&auto=format&fit=crop&crop=entropy",
+      "walk_score": 80,
+      "gross_yield": 3.18,
+      "net_yield": 1.84,
+      "ppm2_percentile": 88,
       "dpe_energy": "G"
     },
     {

@@ -55,7 +55,9 @@ async function fetchLiveDvf(
   // (geo-dvf flat files), so every property is scored against genuine nearby
   // sales — available regardless of run mode, since the cache is real.
   void config;
-  const comps = nearbyDvfComps(ctx.lat, ctx.lng, 500);
+  // Exclude the property's own transaction (id is "dvf-<mutationId>").
+  const selfTxnId = ctx.id.startsWith("dvf-") ? ctx.id.slice(4) : undefined;
+  const comps = nearbyDvfComps(ctx.lat, ctx.lng, 500, selfTxnId);
   return comps.length ? comps : null;
 }
 
