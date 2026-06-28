@@ -1,17 +1,27 @@
-name: Deploy to GitHub Pages (optional)
+name: GitHub Pages
 
-# Optional, manual GitHub Pages deploy producing the clean URL
-#   https://<owner>.github.io/<repo>/
+# Publishes the app to GitHub Pages — https://<owner>.github.io/<repo>/ —
+# in parallel with Vercel and the githack (live branch) deployment, so there is
+# always an up-to-date, independent URL. Auto-deploys on every push to main and
+# after each data-pipeline run.
 #
-# Prerequisite (one-time, repo admin): Settings → Pages → Source: "GitHub
-# Actions". The Actions token cannot enable Pages itself, so this runs on
-# demand rather than on every push (the auto, zero-setup deploy is the `live`
-# branch / githack — see deploy.yml).
+# `actions/configure-pages` with `enablement: true` turns Pages on automatically
+# (source = GitHub Actions). If your org/account blocks that, enable it once via
+# Settings → Pages → Source: "GitHub Actions", then re-run this workflow.
 on:
+  push:
+    branches: [main]
+    paths:
+      - "frontend/**"
+      - "data/**"
+      - ".github/workflows/pages.yml"
+  workflow_run:
+    workflows: ["Data pipeline"]
+    types: [completed]
   workflow_dispatch:
 
 concurrency:
-  group: pages
+  group: github-pages
   cancel-in-progress: true
 
 permissions:
@@ -32,6 +42,8 @@ jobs:
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - name: Install
         working-directory: frontend
         run: npm ci
