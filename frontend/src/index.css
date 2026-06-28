@@ -748,6 +748,16 @@ h2 { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing
 .leaflet-control-attribution a { color: var(--muted) !important; }
 .leaflet-tooltip { background: var(--surface); color: var(--text); border-color: var(--border); box-shadow: var(--shadow-sm); }
 
+/* ---- Marker clusters (azure bubbles) ---- */
+.prer-cluster {
+  background: var(--primary); color: #fff; border: 2px solid #fff;
+  border-radius: 50%; display: grid; place-items: center;
+  font-family: var(--mono); font-weight: 700; font-size: 12.5px;
+  box-shadow: 0 2px 8px -2px rgba(20,38,69,0.5); transition: transform .12s;
+}
+.prer-cluster:hover { transform: scale(1.08); }
+.prer-cluster span { line-height: 1; }
+
 /* ---- Mobile: rail collapses to a top bar ---- */
 @media (max-width: 760px) {
   .app { grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; }

@@ -24,6 +24,7 @@ import { PriceDistribution } from "../components/PriceDistribution";
 import { YieldBadge } from "../components/YieldBadge";
 import { WatchButton } from "../components/WatchButton";
 import { NeighborhoodCard } from "../components/NeighborhoodCard";
+import { InvestmentCalculator } from "../components/InvestmentCalculator";
 import { ScoreRing } from "../components/ScoreRing";
 import { Badge, badgeFromScore } from "../components/Badge";
 import { ErrorState, Loading } from "../components/States";
@@ -213,6 +214,9 @@ export function PropertyDetail() {
             </table>
           )}
         </div>
+
+        {/* Investment simulator */}
+        <InvestmentCalculator property={p} />
       </div>
 
       <p className="muted source-note">

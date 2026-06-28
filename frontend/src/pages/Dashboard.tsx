@@ -57,6 +57,9 @@ export function Dashboard() {
   const [onlyHighScore, setOnlyHighScore] = useState(false);
   const [onlyDrops, setOnlyDrops] = useState(false);
   const [onlyLongMarket, setOnlyLongMarket] = useState(false);
+  const [maxPrice, setMaxPrice] = useState(0); // 0 = any
+  const [minRooms, setMinRooms] = useState(0);
+  const [minYield, setMinYield] = useState(0);
   const [sort, setSort] = useState<SortState>({ key: "opportunity_score", dir: "desc" });
   const [selected, setSelected] = useState<string[]>([]);
   const [showCompare, setShowCompare] = useState(false);
@@ -77,6 +80,9 @@ export function Dashboard() {
       if (onlyHighScore && e.opportunity_score < 68) return false;
       if (onlyDrops && e.price_drops < 1) return false;
       if (onlyLongMarket && !e.long_time_on_market) return false;
+      if (maxPrice && e.current_price > maxPrice) return false;
+      if (minRooms && e.rooms < minRooms) return false;
+      if (minYield && e.net_yield < minYield) return false;
       if (q && !e.address.toLowerCase().includes(q)) return false;
       return true;
     });
@@ -92,7 +98,7 @@ export function Dashboard() {
       return ((av as number) - (bv as number)) * factor;
     });
     return rows;
-  }, [entries, search, district, statusFilter, onlyHighScore, onlyDrops, onlyLongMarket, sort]);
+  }, [entries, search, district, statusFilter, onlyHighScore, onlyDrops, onlyLongMarket, maxPrice, minRooms, minYield, sort]);
 
   const toggleSort = (key: SortKey) =>
     setSort((s) =>
@@ -187,6 +193,41 @@ export function Dashboard() {
         >
           <option value="active">Active only</option>
           <option value="all">All statuses</option>
+        </select>
+        <select
+          className="input"
+          aria-label="Maximum budget"
+          value={maxPrice}
+          onChange={(e) => setMaxPrice(Number(e.target.value))}
+        >
+          <option value="0">Any budget</option>
+          <option value="300000">≤ 300 k€</option>
+          <option value="500000">≤ 500 k€</option>
+          <option value="750000">≤ 750 k€</option>
+          <option value="1000000">≤ 1 M€</option>
+        </select>
+        <select
+          className="input"
+          aria-label="Minimum rooms"
+          value={minRooms}
+          onChange={(e) => setMinRooms(Number(e.target.value))}
+        >
+          <option value="0">Any size</option>
+          <option value="1">1+ room</option>
+          <option value="2">2+ rooms</option>
+          <option value="3">3+ rooms</option>
+          <option value="4">4+ rooms</option>
+        </select>
+        <select
+          className="input"
+          aria-label="Minimum net yield"
+          value={minYield}
+          onChange={(e) => setMinYield(Number(e.target.value))}
+        >
+          <option value="0">Any yield</option>
+          <option value="3">≥ 3% net</option>
+          <option value="4">≥ 4% net</option>
+          <option value="5">≥ 5% net</option>
         </select>
         <button
           className={`chip ${onlyHighScore ? "on" : ""}`}

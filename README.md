@@ -1,27 +1,29 @@
-# Paris Real Estate Radar — P.R.E.R
+# BHImmobilier — Paris Real Estate Radar
 
-### ▶ Live demo: https://raw.githack.com/AnthonyNadjari/BHImmo/live/index.html
+### ▶ Live demo: https://bh-immo.vercel.app/  ·  https://anthonynadjari.github.io/BHImmo/
 
-> An opportunity scanner for Paris *intra-muros* real estate. It ingests
-> listings, enriches them with French open data (transactions, risks,
-> transport, energy), computes an **explainable** opportunity score (0–100),
-> and serves everything as a fast, static React app. No backend, no login, no
-> paid APIs — the data pipeline runs entirely in GitHub Actions and the
-> dataset is versioned JSON in the repo.
+> An opportunity scanner for Paris *intra-muros* real estate. It ingests **real
+> apartment transactions** (DVF / Etalab open data), enriches them with French
+> open data (comparables, rents, transport, energy, neighbourhood), computes an
+> **explainable** opportunity score (0–100), and serves everything as a fast,
+> static React app. No backend, no login, no paid APIs — the data pipeline runs
+> entirely in GitHub Actions and the dataset is versioned JSON in the repo.
 
 | | |
 |---|---|
 | **Frontend** | React + Vite (TypeScript), static — deployable to Vercel or GitHub Pages |
 | **Pipeline** | Node 20+/TypeScript via `tsx`, runs in GitHub Actions every 6h |
-| **Storage** | Versioned JSON in `/data` (`properties.json`, `index.json`, `market.json`) |
-| **Data sources** | BAN · DVF (Etalab) · Géorisques · ADEME/DPE · INSEE · OpenStreetMap |
+| **Data** | ~1000 **real** Paris apartment sales (the most recent per arrondissement) |
+| **Storage** | Versioned JSON in `/data`; per-property files split at build time |
+| **Data sources** | DVF (Etalab) · BAN · ADEME/DPE · INSEE · IDFM · OpenStreetMap · opendata.paris |
 | **Auth / DB / paid APIs** | none |
 
-> ⚠️ **Listings are synthetic** (no free, ToS-compatible listings API exists),
-> generated deterministically on **real Paris streets** so the enrichment
-> against real government APIs is exercised end-to-end. The scoring,
-> enrichment, and UI are production code; swap the scraper for a real
-> connector and the rest works unchanged.
+> ✅ **Listings are real transactions.** The property universe is built from the
+> official **DVF** (*Demandes de Valeurs Foncières*) geocoded flat files
+> published by Etalab — real address, price, surface, rooms, coordinates and
+> mutation date. Comparables are derived from the same dataset; secondary
+> enrichment runs deterministically for scale and reliability. No listing-portal
+> scraping (forbidden by their ToS and blocked in CI).
 
 ---
 
@@ -118,15 +120,18 @@ synthetic fallback** so the pipeline never fails when an API is down.
 
 | Source | Use | Endpoint |
 |---|---|---|
+| **DVF** (Etalab) | **real transactions** → property universe + €/m² comps | `files.data.gouv.fr/geo-dvf` |
 | **BAN** (Base Adresse Nationale) | geocoding / address normalization | `api-adresse.data.gouv.fr` |
-| **DVF** (Etalab) | nearby real transactions → €/m² 100 m & 500 m | `api.cquest.org/dvf` |
-| **Géorisques** | clay shrink-swell (RGA); flood via Seine-proximity proxy | `georisques.gouv.fr/api/v1` |
 | **ADEME / DPE** | energy + GHG class of nearby certificate | `data.ademe.fr` (`dpe03existant`) |
-| **INSEE** | static population density per arrondissement | embedded reference |
-| **OpenStreetMap** | métro count (Overpass, live mode) + map embed | `overpass-api.de`, `openstreetmap.org` |
+| **INSEE** | income / density / reference rent per arrondissement | embedded reference |
+| **IDFM** | métro/RER/tram station proximity | `data.iledefrance-mobilites.fr` |
+| **opendata.paris** | encadrement des loyers · Vélib' · trees | `opendata.paris.fr` |
+| **OpenStreetMap** | nearby amenities (Overpass) | `overpass-api.de` |
 
-`PRER_MODE` controls API usage: `mock` (offline, deterministic), `hybrid`
-(real APIs + fallback, **default**), `live` (real APIs, also queries Overpass).
+`PRER_MODE` controls **secondary** enrichment: `mock` (offline, deterministic
+— used for scale), `hybrid`/`live` (real per-property API calls). The real DVF
+universe loads in every mode (disable with `PRER_DVF=off`); `PRER_DVF_PER_ARR`
+sets how many recent transactions to surface per arrondissement.
 
 ---
 
@@ -219,10 +224,9 @@ canonical branch must be the repo default.
 
 ## Design notes
 
-- **Determinism.** No `Math.random()` / wall-clock in data: every synthetic
-  value is seeded from a stable id (`shared/prng.ts`) and `generated_at` is
-  day-granular, so a no-change run produces byte-identical JSON (no empty CI
-  commits).
+- **Determinism.** Secondary/derived values are seeded from a stable id
+  (`shared/prng.ts`), so the same DVF transaction always enriches identically;
+  `generated_at` stamps the real run time so the UI shows genuine freshness.
 - **Resilience.** Every API call has an 8s timeout and a deterministic
   fallback; the pipeline always emits a valid dataset.
 - **Performance.** Charts and sparklines are hand-rolled SVG (no chart lib);

@@ -20,6 +20,7 @@
 
 import { haversineMeters, round } from "../shared/geo.ts";
 import { SeededRandom } from "../shared/prng.ts";
+import { ARRONDISSEMENT_BY_CODE } from "../shared/paris.ts";
 import { log } from "../shared/logger.ts";
 import type { PipelineConfig } from "../shared/config.ts";
 import type { RawListing } from "./types.ts";
@@ -126,6 +127,10 @@ function parseCommuneCsv(csv: string, district: string): DvfTxn[] {
     if (!Number.isFinite(lat) || !Number.isFinite(lng)) continue;
     const ppm2 = price / surface;
     if (ppm2 < 2000 || ppm2 > 40000) continue; // drop obvious data errors
+    // Drop atypical sales (viager / nue-propriété / mispriced lots) that trade
+    // far from the arrondissement reference and would fake huge "discounts".
+    const ref = ARRONDISSEMENT_BY_CODE.get(district)?.refPriceM2 ?? 10500;
+    if (ppm2 < 0.6 * ref || ppm2 > 2.2 * ref) continue;
 
     const rooms = Math.max(1, Math.round(Number(r[I.rooms])) || 1);
     const num = (r[I.num] ?? "").trim();
