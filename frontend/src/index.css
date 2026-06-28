@@ -598,3 +598,6 @@ html, body { max-width: 100%; overflow-x: hidden; }
   .hero-bottom { flex-wrap: wrap; }
   .detail-hero-info { padding: 16px; }
 }
+
+/* Image loading shimmer (so photos never look like broken boxes) */
+.img-loading { background: linear-gradient(90deg, var(--surface-inset) 25%, var(--bg-subtle) 37%, var(--surface-inset) 63%); background-size: 400% 100%; animation: shimmer 1.3s ease infinite; }
