@@ -41,8 +41,9 @@ export function Layout() {
         <Outlet />
       </main>
       <footer className="footer">
-        Data: BAN · DVF (Etalab) · Géorisques · ADEME · OSM · INSEE — open data.
-        Synthetic listings, deterministic pipeline. No live offer.
+        Open data: BAN · DVF (Etalab) · Géorisques · ADEME DPE · INSEE · OSM ·
+        data.education · Vélib' &amp; arbres (opendata.paris.fr). Synthetic listings,
+        deterministic pipeline. No live offer.
       </footer>
     </div>
   );

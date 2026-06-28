@@ -14,7 +14,7 @@
       "volatility": 0.185,
       "avg_opportunity_score": 40,
       "median_income": 36000,
-      "avg_walk_score": 33
+      "avg_walk_score": 37
     },
     {
       "district": "75002",
@@ -28,7 +28,7 @@
       "volatility": 0.094,
       "avg_opportunity_score": 37,
       "median_income": 34000,
-      "avg_walk_score": 70
+      "avg_walk_score": 71
     },
     {
       "district": "75003",
@@ -42,7 +42,7 @@
       "volatility": 0.118,
       "avg_opportunity_score": 44,
       "median_income": 35000,
-      "avg_walk_score": 76
+      "avg_walk_score": 78
     },
     {
       "district": "75004",
@@ -56,7 +56,7 @@
       "volatility": 0.129,
       "avg_opportunity_score": 45,
       "median_income": 38000,
-      "avg_walk_score": 46
+      "avg_walk_score": 49
     },
     {
       "district": "75005",
@@ -70,7 +70,7 @@
       "volatility": 0.099,
       "avg_opportunity_score": 41,
       "median_income": 37000,
-      "avg_walk_score": 75
+      "avg_walk_score": 74
     },
     {
       "district": "75006",
@@ -84,7 +84,7 @@
       "volatility": 0,
       "avg_opportunity_score": 46,
       "median_income": 43000,
-      "avg_walk_score": 63
+      "avg_walk_score": 65
     },
     {
       "district": "75008",
@@ -98,7 +98,7 @@
       "volatility": 0.104,
       "avg_opportunity_score": 50,
       "median_income": 45000,
-      "avg_walk_score": 23
+      "avg_walk_score": 26
     },
     {
       "district": "75010",
@@ -112,7 +112,7 @@
       "volatility": 0,
       "avg_opportunity_score": 36,
       "median_income": 29000,
-      "avg_walk_score": 64
+      "avg_walk_score": 66
     },
     {
       "district": "75011",
@@ -126,7 +126,7 @@
       "volatility": 0.156,
       "avg_opportunity_score": 44,
       "median_income": 30000,
-      "avg_walk_score": 91
+      "avg_walk_score": 94
     },
     {
       "district": "75012",
@@ -140,7 +140,7 @@
       "volatility": 0.071,
       "avg_opportunity_score": 47,
       "median_income": 31000,
-      "avg_walk_score": 59
+      "avg_walk_score": 58
     },
     {
       "district": "75013",
@@ -154,7 +154,7 @@
       "volatility": 0.098,
       "avg_opportunity_score": 52,
       "median_income": 27000,
-      "avg_walk_score": 67
+      "avg_walk_score": 70
     },
     {
       "district": "75014",
@@ -168,7 +168,7 @@
       "volatility": 0.028,
       "avg_opportunity_score": 38,
       "median_income": 32000,
-      "avg_walk_score": 60
+      "avg_walk_score": 63
     },
     {
       "district": "75015",
@@ -182,7 +182,7 @@
       "volatility": 0.191,
       "avg_opportunity_score": 45,
       "median_income": 33000,
-      "avg_walk_score": 84
+      "avg_walk_score": 88
     },
     {
       "district": "75016",
@@ -196,7 +196,7 @@
       "volatility": 0,
       "avg_opportunity_score": 35,
       "median_income": 44000,
-      "avg_walk_score": 40
+      "avg_walk_score": 42
     },
     {
       "district": "75017",
@@ -210,7 +210,7 @@
       "volatility": 0,
       "avg_opportunity_score": 29,
       "median_income": 35000,
-      "avg_walk_score": 70
+      "avg_walk_score": 75
     },
     {
       "district": "75018",
@@ -224,7 +224,7 @@
       "volatility": 0.056,
       "avg_opportunity_score": 45,
       "median_income": 26000,
-      "avg_walk_score": 82
+      "avg_walk_score": 84
     },
     {
       "district": "75019",
@@ -238,7 +238,7 @@
       "volatility": 0.042,
       "avg_opportunity_score": 33,
       "median_income": 23000,
-      "avg_walk_score": 81
+      "avg_walk_score": 83
     },
     {
       "district": "75020",
@@ -252,7 +252,7 @@
       "volatility": 0,
       "avg_opportunity_score": 48,
       "median_income": 25000,
-      "avg_walk_score": 83
+      "avg_walk_score": 81
     }
   ]
 }

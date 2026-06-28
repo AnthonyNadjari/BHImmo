@@ -89,6 +89,10 @@ export interface Neighborhood {
   schools_500m: number;
   /** Median disposable household income, € / year (INSEE FiLoSoFi). */
   income: number;
+  /** Vélib' bike-share stations within ~400 m (opendata.paris.fr). */
+  velib_400m: number;
+  /** Street trees within ~150 m — green-canopy proxy (opendata.paris.fr). */
+  trees_150m: number;
   amenities: Amenities;
 }
 

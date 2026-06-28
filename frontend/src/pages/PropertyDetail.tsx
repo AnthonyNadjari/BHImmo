@@ -13,7 +13,6 @@ import {
   formatEuro,
   formatPercent,
   formatPerM2,
-  scoreColor,
   STATUS_LABEL,
 } from "../services/format";
 import { PriceChart } from "../components/PriceChart";
@@ -23,6 +22,8 @@ import { ScoreGauge } from "../components/ScoreBar";
 import { MapEmbed } from "../components/MapEmbed";
 import { WatchButton } from "../components/WatchButton";
 import { NeighborhoodCard } from "../components/NeighborhoodCard";
+import { ScoreRing } from "../components/ScoreRing";
+import { Badge, badgeFromScore } from "../components/Badge";
 import { ErrorState, Loading } from "../components/States";
 
 export function PropertyDetail() {
@@ -50,6 +51,10 @@ export function PropertyDetail() {
       <div className="detail-hero">
         <div className="detail-hero-media">
           <Gallery images={p.images} seed={p.id} alt={p.address.normalized} />
+          <div className="hero-photo-scrim" aria-hidden="true" />
+          <div className="hero-photo-badge">
+            <Badge badge={badgeFromScore(p.score.opportunity_score)} />
+          </div>
         </div>
         <aside className="detail-hero-info">
           <span className={`status-pill ${p.status}`}>{STATUS_LABEL[p.status]}</span>
@@ -64,15 +69,12 @@ export function PropertyDetail() {
               last seen {formatDate(p.timeline.last_seen)}.
             </p>
           )}
-          <div className="hero-price">
-            <strong>{formatEuro(p.pricing.current_price)}</strong>
-            <span>{formatPerM2(p.pricing.price_per_m2)}</span>
-          </div>
-          <div className="hero-score" style={{ borderColor: scoreColor(p.score.opportunity_score) }}>
-            <span>Opportunity score</span>
-            <strong style={{ color: scoreColor(p.score.opportunity_score) }}>
-              {p.score.opportunity_score}
-            </strong>
+          <div className="hero-bottom">
+            <div className="hero-price">
+              <strong>{formatEuro(p.pricing.current_price)}</strong>
+              <span>{formatPerM2(p.pricing.price_per_m2)}</span>
+            </div>
+            <ScoreRing score={p.score.opportunity_score} />
           </div>
           <WatchButton property={p} />
         </aside>

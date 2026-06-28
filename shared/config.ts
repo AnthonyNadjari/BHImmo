@@ -57,6 +57,12 @@ export const ENDPOINTS = {
   /** data.education.gouv.fr — national school directory (Opendatasoft v2.1). */
   education:
     "https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/records",
+  /** opendata.paris.fr — Vélib' stations & real-time availability. */
+  velib:
+    "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/velib-disponibilite-en-temps-reel/records",
+  /** opendata.paris.fr — street trees (green-canopy proxy). */
+  trees:
+    "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/les-arbres/records",
 } as const;
 
 export const DATA_DIR = "data";

@@ -30,15 +30,55 @@ export async function enrichNeighborhood(
   ctx: NeighborhoodContext,
   config: PipelineConfig,
 ): Promise<Neighborhood> {
-  const [schools, amenities] = await Promise.all([
+  const [schools, amenities, velib, trees] = await Promise.all([
     fetchSchoolCount(ctx, config),
     fetchAmenities(ctx, config),
+    fetchOdsCount(ENDPOINTS.velib, "coordonnees_geo", 400, `velib:${ctx.id}`, ctx, config, [1, 8]),
+    fetchOdsCount(ENDPOINTS.trees, "geo_point_2d", 150, `trees:${ctx.id}`, ctx, config, [10, 180]),
   ]);
 
   const income = getInseeProfile(ctx.district).income;
-  const walk_score = computeWalkScore(amenities, schools);
+  const walk_score = computeWalkScore(amenities, schools, velib, trees);
 
-  return { walk_score, schools_500m: schools, income, amenities };
+  return {
+    walk_score,
+    schools_500m: schools,
+    income,
+    velib_400m: velib,
+    trees_150m: trees,
+    amenities,
+  };
+}
+
+/* ----------------- generic Opendatasoft count (geo) ---------------- */
+
+interface OdsCountResponse {
+  total_count?: number;
+}
+
+/**
+ * Count Opendatasoft records within `radius` m of the property, falling back to
+ * a deterministic value in `[fallbackRange]` scaled by neighbourhood density.
+ */
+async function fetchOdsCount(
+  endpoint: string,
+  geoField: string,
+  radius: number,
+  seed: string,
+  ctx: NeighborhoodContext,
+  config: PipelineConfig,
+  fallbackRange: [number, number],
+): Promise<number> {
+  const where = `distance(${geoField}, geom'POINT(${ctx.lng} ${ctx.lat})', ${radius}m)`;
+  const url = `${endpoint}?where=${encodeURIComponent(where)}&limit=0`;
+  const data = await fetchJson<OdsCountResponse>(url, config);
+  if (data && typeof data.total_count === "number") return data.total_count;
+
+  const density = getInseeProfile(ctx.district).density;
+  const rng = new SeededRandom(seed);
+  const [lo, hi] = fallbackRange;
+  const richness = clamp(density / 32000, 0.4, 1.2);
+  return Math.round(clamp(rng.gaussian((lo + hi) / 2 * richness, (hi - lo) / 5), lo, hi));
 }
 
 /* ----------------------------- schools ----------------------------- */
@@ -121,12 +161,19 @@ function part(count: number, target: number): number {
   return clamp((count / target) * 100, 0, 100);
 }
 
-function computeWalkScore(a: Amenities, schools: number): number {
+function computeWalkScore(
+  a: Amenities,
+  schools: number,
+  velib: number,
+  trees: number,
+): number {
   const score =
-    0.3 * part(a.food, 15) +
-    0.15 * part(a.health, 8) +
-    0.2 * part(a.green, 4) +
-    0.15 * part(a.culture, 5) +
-    0.2 * part(schools, 8);
+    0.26 * part(a.food, 15) +
+    0.12 * part(a.health, 8) +
+    0.14 * part(a.green, 4) +
+    0.12 * part(a.culture, 5) +
+    0.16 * part(schools, 8) +
+    0.1 * part(velib, 4) + // bike mobility
+    0.1 * part(trees, 90); // green canopy
   return round(clamp(score, 0, 100));
 }

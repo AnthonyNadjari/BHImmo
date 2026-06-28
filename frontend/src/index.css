@@ -424,3 +424,71 @@ h2 { font-size: 15px; font-weight: 640; letter-spacing: -0.01em; margin: 0 0 12p
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* ============================================================
+   Modernity layer — gradients, depth, score ring, hero overlay
+   ============================================================ */
+
+body {
+  background:
+    radial-gradient(1200px 600px at 100% -10%, rgba(67,56,202,0.06), transparent 60%),
+    radial-gradient(900px 500px at -10% 0%, rgba(67,56,202,0.05), transparent 55%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+/* Topbar — indigo-navy gradient with a faint sheen */
+.topbar {
+  background: linear-gradient(105deg, #11142340 0%, transparent 60%), linear-gradient(90deg, var(--nav-bg), var(--nav-bg-2));
+}
+.brand-mark {
+  background: linear-gradient(135deg, #a7b0ff, #6c78ff);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* Primary buttons / score pills — subtle gradient + depth */
+.btn:not(.ghost) {
+  background: linear-gradient(135deg, #5145d6, var(--primary));
+  box-shadow: 0 1px 2px rgba(46,39,150,0.25), inset 0 1px 0 rgba(255,255,255,0.12);
+}
+.btn:not(.ghost):hover { background: linear-gradient(135deg, var(--primary), var(--primary-active)); }
+
+/* KPI cards — gradient rails + faint top sheen */
+.kpi { background: linear-gradient(180deg, #ffffff, #fcfcff); }
+.kpi.kpi-primary::before { background: linear-gradient(180deg, #6a5cf0, var(--primary)); }
+.kpi.kpi-good::before { background: linear-gradient(180deg, #2bb673, var(--success)); }
+.kpi.kpi-warn::before { background: linear-gradient(180deg, #d39a2a, var(--warn)); }
+.kpi::before { width: 4px; }
+
+/* Cards lift a touch more for depth */
+.card { border-radius: 14px; }
+
+/* Amenity grid: wrap nicely for 6 items */
+.amenity-grid { grid-template-columns: repeat(6, 1fr); }
+
+/* ---- Score ring (detail hero) ---- */
+.score-ring { position: relative; display: flex; flex-direction: column; align-items: center; flex: 0 0 auto; }
+.score-ring svg { display: block; }
+.score-ring-arc { transition: stroke-dashoffset 0.6s cubic-bezier(0.22,1,0.36,1); }
+.score-ring-center { position: absolute; top: 0; left: 0; width: 100%; height: 108px; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1; }
+.score-ring-center strong { font-family: var(--mono); font-size: 30px; font-weight: 700; }
+.score-ring-center span { font-size: 10px; color: var(--muted); margin-top: 2px; }
+.score-ring-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 4px; }
+
+.hero-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 4px; }
+
+/* ---- Hero photo overlay ---- */
+.detail-hero-media { position: relative; border-radius: var(--r-md); overflow: hidden; }
+.hero-photo-scrim { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(20,24,42,0.18) 0%, transparent 28%, transparent 72%, rgba(20,24,42,0.30) 100%); border-radius: var(--r-md); }
+.hero-photo-badge { position: absolute; top: 12px; left: 12px; }
+.hero-photo-badge .badge { background: rgba(255,255,255,0.92); box-shadow: var(--shadow-md); backdrop-filter: blur(4px); }
+
+/* Nav active gets a faint gradient glow */
+.nav a.active { background: linear-gradient(180deg, rgba(139,149,255,0.22), rgba(139,149,255,0.12)); }
+
+/* Score pills on the market page — gradient sheen */
+.score-pill { box-shadow: inset 0 1px 0 rgba(255,255,255,0.25); }
+
+@media (max-width: 980px) {
+  .amenity-grid { grid-template-columns: repeat(3, 1fr); }
+}

@@ -44,6 +44,8 @@ export interface Property {
     walk_score: number;
     schools_500m: number;
     income: number;
+    velib_400m: number;
+    trees_150m: number;
     amenities: { food: number; health: number; green: number; culture: number };
   };
   images: string[];

@@ -26,7 +26,7 @@
       ],
       "badge": "opportunity",
       "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 28
+      "walk_score": 40
     },
     {
       "id": "synthetic-lst-0086",
@@ -51,7 +51,7 @@
       ],
       "badge": "opportunity",
       "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 77
+      "walk_score": 75
     },
     {
       "id": "synthetic-lst-0007",
@@ -101,7 +101,7 @@
       ],
       "badge": "opportunity",
       "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 76
+      "walk_score": 77
     },
     {
       "id": "synthetic-lst-0061",
@@ -125,7 +125,7 @@
       ],
       "badge": "opportunity",
       "image": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 82
+      "walk_score": 85
     },
     {
       "id": "synthetic-lst-0090",
@@ -150,7 +150,7 @@
       ],
       "badge": "opportunity",
       "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 35
+      "walk_score": 42
     },
     {
       "id": "synthetic-lst-0015",
@@ -175,7 +175,7 @@
       ],
       "badge": "opportunity",
       "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 91
+      "walk_score": 93
     },
     {
       "id": "synthetic-lst-0026",
@@ -199,7 +199,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 64
+      "walk_score": 68
     },
     {
       "id": "synthetic-lst-0074",
@@ -222,7 +222,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 19
+      "walk_score": 21
     },
     {
       "id": "synthetic-lst-0057",
@@ -246,7 +246,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 85
+      "walk_score": 81
     },
     {
       "id": "synthetic-lst-0046",
@@ -271,7 +271,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 34
+      "walk_score": 36
     },
     {
       "id": "synthetic-lst-0042",
@@ -294,7 +294,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 32
+      "walk_score": 37
     },
     {
       "id": "synthetic-lst-0033",
@@ -317,7 +317,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 25
+      "walk_score": 27
     },
     {
       "id": "synthetic-lst-0063",
@@ -341,7 +341,30 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 78
+      "walk_score": 82
+    },
+    {
+      "id": "synthetic-lst-0049",
+      "address": "33 rue Bobillot, 75013 Paris",
+      "district": "75013",
+      "lat": 48.833333,
+      "lng": 2.348242,
+      "surface_m2": 23,
+      "rooms": 1,
+      "current_price": 183800,
+      "price_per_m2": 7991,
+      "opportunity_score": 57,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 126,
+      "long_time_on_market": true,
+      "status": "active",
+      "spark": [
+        183800
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 66
     },
     {
       "id": "synthetic-lst-0032",
@@ -364,30 +387,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 84
-    },
-    {
-      "id": "synthetic-lst-0049",
-      "address": "33 rue Bobillot, 75013 Paris",
-      "district": "75013",
-      "lat": 48.833333,
-      "lng": 2.348242,
-      "surface_m2": 23,
-      "rooms": 1,
-      "current_price": 183800,
-      "price_per_m2": 7991,
-      "opportunity_score": 56,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 126,
-      "long_time_on_market": true,
-      "status": "active",
-      "spark": [
-        183800
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 57
+      "walk_score": 88
     },
     {
       "id": "synthetic-lst-0060",
@@ -412,7 +412,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 90
+      "walk_score": 93
     },
     {
       "id": "synthetic-lst-0048",
@@ -435,7 +435,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 82
+      "walk_score": 86
     },
     {
       "id": "synthetic-lst-0080",
@@ -458,7 +458,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 83
+      "walk_score": 88
     },
     {
       "id": "synthetic-lst-0087",
@@ -482,7 +482,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 95
+      "walk_score": 97
     },
     {
       "id": "synthetic-lst-0068",
@@ -507,7 +507,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 48
+      "walk_score": 53
     },
     {
       "id": "synthetic-lst-0078",
@@ -556,7 +556,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 83
+      "walk_score": 84
     },
     {
       "id": "synthetic-lst-0058",
@@ -580,7 +580,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 26
+      "walk_score": 39
     },
     {
       "id": "synthetic-lst-0022",
@@ -604,7 +604,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 31
+      "walk_score": 30
     },
     {
       "id": "synthetic-lst-0077",
@@ -651,7 +651,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 65
+      "walk_score": 63
     },
     {
       "id": "synthetic-lst-0082",
@@ -674,7 +674,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 48
+      "walk_score": 49
     },
     {
       "id": "synthetic-lst-0044",
@@ -698,7 +698,30 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 80
+      "walk_score": 83
+    },
+    {
+      "id": "synthetic-lst-0056",
+      "address": "76 avenue Daumesnil, 75012 Paris",
+      "district": "75012",
+      "lat": 48.839753,
+      "lng": 2.396483,
+      "surface_m2": 30,
+      "rooms": 1,
+      "current_price": 279400,
+      "price_per_m2": 9313,
+      "opportunity_score": 49,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 130,
+      "long_time_on_market": true,
+      "status": "removed",
+      "spark": [
+        279400
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 50
     },
     {
       "id": "synthetic-lst-0039",
@@ -721,7 +744,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 49
+      "walk_score": 57
     },
     {
       "id": "synthetic-lst-0020",
@@ -744,30 +767,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 82
-    },
-    {
-      "id": "synthetic-lst-0056",
-      "address": "76 avenue Daumesnil, 75012 Paris",
-      "district": "75012",
-      "lat": 48.839753,
-      "lng": 2.396483,
-      "surface_m2": 30,
-      "rooms": 1,
-      "current_price": 279400,
-      "price_per_m2": 9313,
-      "opportunity_score": 48,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 130,
-      "long_time_on_market": true,
-      "status": "removed",
-      "spark": [
-        279400
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 39
+      "walk_score": 85
     },
     {
       "id": "synthetic-lst-0023",
@@ -790,7 +790,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 72
+      "walk_score": 63
     },
     {
       "id": "synthetic-lst-0073",
@@ -815,7 +815,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 83
+      "walk_score": 81
     },
     {
       "id": "synthetic-lst-0076",
@@ -839,7 +839,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 84
+      "walk_score": 85
     },
     {
       "id": "synthetic-lst-0027",
@@ -863,7 +863,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 72
+      "walk_score": 76
     },
     {
       "id": "synthetic-lst-0083",
@@ -887,7 +887,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 75
+      "walk_score": 77
     },
     {
       "id": "synthetic-lst-0053",
@@ -910,7 +910,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 60
+      "walk_score": 61
     },
     {
       "id": "synthetic-lst-0079",
@@ -934,7 +934,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 90
+      "walk_score": 89
     },
     {
       "id": "synthetic-lst-0066",
@@ -958,7 +958,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 36
+      "walk_score": 45
     },
     {
       "id": "synthetic-lst-0070",
@@ -981,7 +981,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 22
+      "walk_score": 21
     },
     {
       "id": "synthetic-lst-0085",
@@ -1004,7 +1004,7 @@
       ],
       "badge": "watch",
       "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 63
+      "walk_score": 65
     },
     {
       "id": "synthetic-lst-0016",
@@ -1027,7 +1027,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 50
+      "walk_score": 48
     },
     {
       "id": "synthetic-lst-0052",
@@ -1050,7 +1050,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 65
+      "walk_score": 61
     },
     {
       "id": "synthetic-lst-0043",
@@ -1074,7 +1074,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 8
+      "walk_score": 11
     },
     {
       "id": "synthetic-lst-0012",
@@ -1097,7 +1097,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 66
+      "walk_score": 73
     },
     {
       "id": "synthetic-lst-0003",
@@ -1120,30 +1120,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 65
-    },
-    {
-      "id": "synthetic-lst-0071",
-      "address": "71 rue Monge, 75005 Paris",
-      "district": "75005",
-      "lat": 48.842235,
-      "lng": 2.357627,
-      "surface_m2": 47,
-      "rooms": 2,
-      "current_price": 571400,
-      "price_per_m2": 12157,
-      "opportunity_score": 44,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 16,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        571400
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 76
+      "walk_score": 64
     },
     {
       "id": "synthetic-lst-0017",
@@ -1166,7 +1143,30 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 64
+      "walk_score": 63
+    },
+    {
+      "id": "synthetic-lst-0071",
+      "address": "71 rue Monge, 75005 Paris",
+      "district": "75005",
+      "lat": 48.842235,
+      "lng": 2.357627,
+      "surface_m2": 47,
+      "rooms": 2,
+      "current_price": 571400,
+      "price_per_m2": 12157,
+      "opportunity_score": 43,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 16,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        571400
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 74
     },
     {
       "id": "synthetic-lst-0064",
@@ -1189,7 +1189,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 83
+      "walk_score": 81
     },
     {
       "id": "synthetic-lst-0037",
@@ -1212,7 +1212,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 81
+      "walk_score": 80
     },
     {
       "id": "synthetic-lst-0055",
@@ -1235,7 +1235,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 84
+      "walk_score": 87
     },
     {
       "id": "synthetic-lst-0011",
@@ -1259,7 +1259,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 52
+      "walk_score": 56
     },
     {
       "id": "synthetic-lst-0013",
@@ -1307,7 +1307,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 86
+      "walk_score": 90
     },
     {
       "id": "synthetic-lst-0040",
@@ -1330,7 +1330,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 54
+      "walk_score": 62
     },
     {
       "id": "synthetic-lst-0067",
@@ -1354,7 +1354,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 54
+      "walk_score": 60
     },
     {
       "id": "synthetic-lst-0001",
@@ -1377,7 +1377,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 61
+      "walk_score": 54
     },
     {
       "id": "synthetic-lst-0036",
@@ -1400,7 +1400,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 42
+      "walk_score": 45
     },
     {
       "id": "synthetic-lst-0045",
@@ -1423,7 +1423,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 32
+      "walk_score": 35
     },
     {
       "id": "synthetic-lst-0021",
@@ -1447,7 +1447,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 68
+      "walk_score": 67
     },
     {
       "id": "synthetic-lst-0024",
@@ -1470,7 +1470,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 83
+      "walk_score": 79
     },
     {
       "id": "synthetic-lst-0041",
@@ -1493,7 +1493,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 85
+      "walk_score": 89
     },
     {
       "id": "synthetic-lst-0089",
@@ -1516,7 +1516,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 64
+      "walk_score": 66
     },
     {
       "id": "synthetic-lst-0009",
@@ -1539,7 +1539,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 69
+      "walk_score": 75
     },
     {
       "id": "synthetic-lst-0029",
@@ -1585,7 +1585,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 40
+      "walk_score": 42
     },
     {
       "id": "synthetic-lst-0065",
@@ -1608,7 +1608,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 72
+      "walk_score": 74
     },
     {
       "id": "synthetic-lst-0062",
@@ -1631,7 +1631,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 68
+      "walk_score": 70
     },
     {
       "id": "synthetic-lst-0018",
@@ -1655,7 +1655,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 31
+      "walk_score": 39
     },
     {
       "id": "synthetic-lst-0035",
@@ -1702,7 +1702,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 78
+      "walk_score": 76
     },
     {
       "id": "synthetic-lst-0030",
@@ -1725,7 +1725,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 98
+      "walk_score": 99
     },
     {
       "id": "synthetic-lst-0072",
@@ -1749,7 +1749,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 75
+      "walk_score": 76
     },
     {
       "id": "synthetic-lst-0025",
@@ -1772,7 +1772,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 86
+      "walk_score": 89
     },
     {
       "id": "synthetic-lst-0019",
@@ -1796,7 +1796,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 70
+      "walk_score": 75
     },
     {
       "id": "synthetic-lst-0075",
@@ -1819,7 +1819,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 63
+      "walk_score": 57
     },
     {
       "id": "synthetic-lst-0002",
@@ -1842,7 +1842,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 65
+      "walk_score": 72
     },
     {
       "id": "synthetic-lst-0004",
@@ -1866,7 +1866,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 85
+      "walk_score": 83
     },
     {
       "id": "synthetic-lst-0010",
@@ -1889,7 +1889,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 68
+      "walk_score": 66
     },
     {
       "id": "synthetic-lst-0006",
@@ -1912,7 +1912,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 66
+      "walk_score": 63
     },
     {
       "id": "synthetic-lst-0028",
@@ -1935,7 +1935,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 80
+      "walk_score": 82
     },
     {
       "id": "synthetic-lst-0050",
@@ -1958,7 +1958,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 78
+      "walk_score": 79
     },
     {
       "id": "synthetic-lst-0054",
@@ -1981,7 +1981,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 32
+      "walk_score": 37
     },
     {
       "id": "synthetic-lst-0034",
@@ -2005,7 +2005,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 47
+      "walk_score": 52
     },
     {
       "id": "synthetic-lst-0069",
@@ -2028,7 +2028,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 53
+      "walk_score": 48
     },
     {
       "id": "synthetic-lst-0059",
@@ -2075,7 +2075,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 33
+      "walk_score": 36
     },
     {
       "id": "synthetic-lst-0088",
@@ -2098,7 +2098,7 @@
       ],
       "badge": "overvalued",
       "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
-      "walk_score": 31
+      "walk_score": 34
     },
     {
       "id": "synthetic-lst-0081",

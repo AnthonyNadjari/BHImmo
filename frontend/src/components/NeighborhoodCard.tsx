@@ -13,9 +13,10 @@ export function NeighborhoodCard({ hood }: { hood: Property["neighborhood"] }) {
   const items: Array<{ icon: string; label: string; value: number }> = [
     { icon: "🛒", label: "Shops", value: a.food },
     { icon: "⚕️", label: "Health", value: a.health },
-    { icon: "🌳", label: "Green", value: a.green },
     { icon: "🎭", label: "Culture", value: a.culture },
     { icon: "🎓", label: "Schools", value: hood.schools_500m },
+    { icon: "🚲", label: "Vélib'", value: hood.velib_400m },
+    { icon: "🌳", label: "Trees", value: hood.trees_150m },
   ];
 
   return (
