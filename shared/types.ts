@@ -71,6 +71,27 @@ export interface Risks {
   noise: number;
 }
 
+export interface Amenities {
+  /** Food & daily shopping POIs within ~500 m (shops, groceries, bakeries). */
+  food: number;
+  /** Health POIs within ~500 m (pharmacies, doctors, clinics). */
+  health: number;
+  /** Green spaces within ~500 m (parks, gardens). */
+  green: number;
+  /** Culture & leisure within ~500 m (cinemas, theatres, libraries, museums). */
+  culture: number;
+}
+
+export interface Neighborhood {
+  /** Composite walkability / amenity-richness score, 0–100. */
+  walk_score: number;
+  /** Schools within ~500 m (data.education.gouv.fr). */
+  schools_500m: number;
+  /** Median disposable household income, € / year (INSEE FiLoSoFi). */
+  income: number;
+  amenities: Amenities;
+}
+
 export interface Score {
   /** Headline opportunity score, 0–100. */
   opportunity_score: number;
@@ -109,6 +130,9 @@ export interface Property {
 
   /** Composite public-transport accessibility, 0–100. */
   transport_score: number;
+
+  /** Walkability, schools, income & amenities for the surrounding area. */
+  neighborhood: Neighborhood;
 
   /** Listing photo gallery (deterministic, hot-linkable URLs). */
   images: string[];
@@ -156,6 +180,8 @@ export interface IndexEntry {
   badge: "opportunity" | "watch" | "overvalued";
   /** Thumbnail URL for the dashboard row. */
   image: string;
+  /** Walkability score 0–100 (surfaced for sorting/filtering). */
+  walk_score: number;
 }
 
 export interface IndexFile {
@@ -179,6 +205,10 @@ export interface MarketArrondissement {
   /** Coefficient of variation of €/m² (relative volatility, 0–1+). */
   volatility: number;
   avg_opportunity_score: number;
+  /** Median disposable household income €/yr (INSEE FiLoSoFi). */
+  median_income: number;
+  /** Average walkability score of active listings, 0–100. */
+  avg_walk_score: number;
 }
 
 export interface MarketFile {

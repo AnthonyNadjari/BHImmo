@@ -18,6 +18,17 @@ let indexPromise: Promise<IndexFile> | null = null;
 let marketPromise: Promise<MarketFile> | null = null;
 let propertiesPromise: Promise<Property[]> | null = null;
 
+/**
+ * Drop the memoized datasets so the next fetch re-downloads fresh JSON.
+ * Used by the "Refresh" control to pick up a newer pipeline run without a
+ * full page reload.
+ */
+export function clearDataCache(): void {
+  indexPromise = null;
+  marketPromise = null;
+  propertiesPromise = null;
+}
+
 export function fetchIndex(): Promise<IndexFile> {
   return (indexPromise ??= getJson<IndexFile>("index.json"));
 }

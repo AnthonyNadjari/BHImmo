@@ -25,7 +25,8 @@
         377000
       ],
       "badge": "opportunity",
-      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 28
     },
     {
       "id": "synthetic-lst-0086",
@@ -49,7 +50,8 @@
         247600
       ],
       "badge": "opportunity",
-      "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 77
     },
     {
       "id": "synthetic-lst-0007",
@@ -74,7 +76,8 @@
         491300
       ],
       "badge": "opportunity",
-      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 41
     },
     {
       "id": "synthetic-lst-0047",
@@ -86,7 +89,7 @@
       "rooms": 1,
       "current_price": 219200,
       "price_per_m2": 7307,
-      "opportunity_score": 71,
+      "opportunity_score": 72,
       "price_drops": 1,
       "total_drop_percent": 3.7,
       "days_on_market": 170,
@@ -97,31 +100,8 @@
         219200
       ],
       "badge": "opportunity",
-      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0090",
-      "address": "117 rue des Rosiers, 75004 Paris",
-      "district": "75004",
-      "lat": 48.855766,
-      "lng": 2.365346,
-      "surface_m2": 50,
-      "rooms": 2,
-      "current_price": 606200,
-      "price_per_m2": 12124,
-      "opportunity_score": 70,
-      "price_drops": 2,
-      "total_drop_percent": 7.6,
-      "days_on_market": 100,
-      "long_time_on_market": false,
-      "status": "removed",
-      "spark": [
-        656200,
-        636400,
-        606200
-      ],
-      "badge": "opportunity",
-      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 76
     },
     {
       "id": "synthetic-lst-0061",
@@ -133,7 +113,7 @@
       "rooms": 1,
       "current_price": 220000,
       "price_per_m2": 9167,
-      "opportunity_score": 69,
+      "opportunity_score": 70,
       "price_drops": 1,
       "total_drop_percent": 6.7,
       "days_on_market": 170,
@@ -144,7 +124,33 @@
         220000
       ],
       "badge": "opportunity",
-      "image": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 82
+    },
+    {
+      "id": "synthetic-lst-0090",
+      "address": "117 rue des Rosiers, 75004 Paris",
+      "district": "75004",
+      "lat": 48.855766,
+      "lng": 2.365346,
+      "surface_m2": 50,
+      "rooms": 2,
+      "current_price": 606200,
+      "price_per_m2": 12124,
+      "opportunity_score": 69,
+      "price_drops": 2,
+      "total_drop_percent": 7.6,
+      "days_on_market": 100,
+      "long_time_on_market": false,
+      "status": "removed",
+      "spark": [
+        656200,
+        636400,
+        606200
+      ],
+      "badge": "opportunity",
+      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 35
     },
     {
       "id": "synthetic-lst-0015",
@@ -156,7 +162,7 @@
       "rooms": 1,
       "current_price": 335800,
       "price_per_m2": 11193,
-      "opportunity_score": 68,
+      "opportunity_score": 69,
       "price_drops": 2,
       "total_drop_percent": 11.9,
       "days_on_market": 76,
@@ -168,7 +174,8 @@
         335800
       ],
       "badge": "opportunity",
-      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 91
     },
     {
       "id": "synthetic-lst-0026",
@@ -191,7 +198,8 @@
         345800
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 64
     },
     {
       "id": "synthetic-lst-0074",
@@ -213,31 +221,8 @@
         377100
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0046",
-      "address": "4 rue Saint-Dominique, 75007 Paris",
-      "district": "75007",
-      "lat": 48.859872,
-      "lng": 2.302468,
-      "surface_m2": 24,
-      "rooms": 1,
-      "current_price": 344900,
-      "price_per_m2": 14371,
-      "opportunity_score": 63,
-      "price_drops": 2,
-      "total_drop_percent": 10.1,
-      "days_on_market": 130,
-      "long_time_on_market": true,
-      "status": "sold",
-      "spark": [
-        383600,
-        358500,
-        344900
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 19
     },
     {
       "id": "synthetic-lst-0057",
@@ -249,7 +234,7 @@
       "rooms": 1,
       "current_price": 188200,
       "price_per_m2": 7528,
-      "opportunity_score": 62,
+      "opportunity_score": 63,
       "price_drops": 1,
       "total_drop_percent": 5.9,
       "days_on_market": 30,
@@ -260,7 +245,33 @@
         188200
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 85
+    },
+    {
+      "id": "synthetic-lst-0046",
+      "address": "4 rue Saint-Dominique, 75007 Paris",
+      "district": "75007",
+      "lat": 48.859872,
+      "lng": 2.302468,
+      "surface_m2": 24,
+      "rooms": 1,
+      "current_price": 344900,
+      "price_per_m2": 14371,
+      "opportunity_score": 62,
+      "price_drops": 2,
+      "total_drop_percent": 10.1,
+      "days_on_market": 130,
+      "long_time_on_market": true,
+      "status": "sold",
+      "spark": [
+        383600,
+        358500,
+        344900
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 34
     },
     {
       "id": "synthetic-lst-0042",
@@ -272,7 +283,7 @@
       "rooms": 1,
       "current_price": 292800,
       "price_per_m2": 10844,
-      "opportunity_score": 62,
+      "opportunity_score": 61,
       "price_drops": 0,
       "total_drop_percent": 0,
       "days_on_market": 76,
@@ -282,7 +293,8 @@
         292800
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 32
     },
     {
       "id": "synthetic-lst-0033",
@@ -304,7 +316,8 @@
         1149200
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 25
     },
     {
       "id": "synthetic-lst-0063",
@@ -316,7 +329,7 @@
       "rooms": 4,
       "current_price": 827100,
       "price_per_m2": 9399,
-      "opportunity_score": 56,
+      "opportunity_score": 57,
       "price_drops": 1,
       "total_drop_percent": 6.6,
       "days_on_market": 186,
@@ -327,7 +340,31 @@
         827100
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 78
+    },
+    {
+      "id": "synthetic-lst-0032",
+      "address": "127 rue de Charonne, 75011 Paris",
+      "district": "75011",
+      "lat": 48.862235,
+      "lng": 2.38815,
+      "surface_m2": 64,
+      "rooms": 3,
+      "current_price": 556400,
+      "price_per_m2": 8694,
+      "opportunity_score": 57,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 96,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        556400
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 84
     },
     {
       "id": "synthetic-lst-0049",
@@ -349,29 +386,33 @@
         183800
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 57
     },
     {
-      "id": "synthetic-lst-0032",
-      "address": "127 rue de Charonne, 75011 Paris",
-      "district": "75011",
-      "lat": 48.862235,
-      "lng": 2.38815,
-      "surface_m2": 64,
-      "rooms": 3,
-      "current_price": 556400,
-      "price_per_m2": 8694,
+      "id": "synthetic-lst-0060",
+      "address": "178 rue du Commerce, 75015 Paris",
+      "district": "75015",
+      "lat": 48.841823,
+      "lng": 2.293404,
+      "surface_m2": 79,
+      "rooms": 4,
+      "current_price": 844300,
+      "price_per_m2": 10687,
       "opportunity_score": 56,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 96,
+      "price_drops": 2,
+      "total_drop_percent": 10.1,
+      "days_on_market": 60,
       "long_time_on_market": false,
-      "status": "active",
+      "status": "removed",
       "spark": [
-        556400
+        938900,
+        896800,
+        844300
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 90
     },
     {
       "id": "synthetic-lst-0048",
@@ -393,31 +434,55 @@
         215000
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 82
     },
     {
-      "id": "synthetic-lst-0060",
-      "address": "178 rue du Commerce, 75015 Paris",
-      "district": "75015",
-      "lat": 48.841823,
-      "lng": 2.293404,
-      "surface_m2": 79,
-      "rooms": 4,
-      "current_price": 844300,
-      "price_per_m2": 10687,
+      "id": "synthetic-lst-0080",
+      "address": "55 rue des Abbesses, 75018 Paris",
+      "district": "75018",
+      "lat": 48.889865,
+      "lng": 2.352198,
+      "surface_m2": 19,
+      "rooms": 1,
+      "current_price": 124000,
+      "price_per_m2": 6526,
       "opportunity_score": 55,
-      "price_drops": 2,
-      "total_drop_percent": 10.1,
-      "days_on_market": 60,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 90,
       "long_time_on_market": false,
-      "status": "removed",
+      "status": "sold",
       "spark": [
-        938900,
-        896800,
-        844300
+        124000
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 83
+    },
+    {
+      "id": "synthetic-lst-0087",
+      "address": "77 rue de la Roquette, 75011 Paris",
+      "district": "75011",
+      "lat": 48.86364,
+      "lng": 2.389431,
+      "surface_m2": 18,
+      "rooms": 1,
+      "current_price": 185100,
+      "price_per_m2": 10283,
+      "opportunity_score": 55,
+      "price_drops": 1,
+      "total_drop_percent": 4.7,
+      "days_on_market": 160,
+      "long_time_on_market": true,
+      "status": "removed",
+      "spark": [
+        194200,
+        185100
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 95
     },
     {
       "id": "synthetic-lst-0068",
@@ -441,98 +506,32 @@
         676200
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 48
     },
     {
-      "id": "synthetic-lst-0080",
-      "address": "55 rue des Abbesses, 75018 Paris",
+      "id": "synthetic-lst-0078",
+      "address": "33 rue des Abbesses, 75018 Paris",
       "district": "75018",
-      "lat": 48.889865,
-      "lng": 2.352198,
-      "surface_m2": 19,
-      "rooms": 1,
-      "current_price": 124000,
-      "price_per_m2": 6526,
-      "opportunity_score": 54,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 90,
-      "long_time_on_market": false,
-      "status": "sold",
-      "spark": [
-        124000
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0087",
-      "address": "77 rue de la Roquette, 75011 Paris",
-      "district": "75011",
-      "lat": 48.86364,
-      "lng": 2.389431,
-      "surface_m2": 18,
-      "rooms": 1,
-      "current_price": 185100,
-      "price_per_m2": 10283,
-      "opportunity_score": 54,
-      "price_drops": 1,
-      "total_drop_percent": 4.7,
-      "days_on_market": 160,
-      "long_time_on_market": true,
-      "status": "removed",
-      "spark": [
-        194200,
-        185100
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0058",
-      "address": "36 rue de Lisbonne, 75008 Paris",
-      "district": "75008",
-      "lat": 48.869558,
-      "lng": 2.308161,
-      "surface_m2": 37,
-      "rooms": 2,
-      "current_price": 439700,
-      "price_per_m2": 11884,
-      "opportunity_score": 54,
+      "lat": 48.897539,
+      "lng": 2.341355,
+      "surface_m2": 95,
+      "rooms": 5,
+      "current_price": 880600,
+      "price_per_m2": 9269,
+      "opportunity_score": 53,
       "price_drops": 1,
       "total_drop_percent": 5.9,
-      "days_on_market": 66,
+      "days_on_market": 60,
       "long_time_on_market": false,
-      "status": "active",
+      "status": "removed",
       "spark": [
-        467500,
-        439700
+        935800,
+        880600
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0022",
-      "address": "38 avenue de Friedland, 75008 Paris",
-      "district": "75008",
-      "lat": 48.873066,
-      "lng": 2.320108,
-      "surface_m2": 106,
-      "rooms": 5,
-      "current_price": 1158300,
-      "price_per_m2": 10927,
-      "opportunity_score": 54,
-      "price_drops": 1,
-      "total_drop_percent": 2.3,
-      "days_on_market": 36,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        1185500,
-        1158300
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 84
     },
     {
       "id": "synthetic-lst-0031",
@@ -556,30 +555,56 @@
         222700
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 83
     },
     {
-      "id": "synthetic-lst-0078",
-      "address": "33 rue des Abbesses, 75018 Paris",
-      "district": "75018",
-      "lat": 48.897539,
-      "lng": 2.341355,
-      "surface_m2": 95,
-      "rooms": 5,
-      "current_price": 880600,
-      "price_per_m2": 9269,
-      "opportunity_score": 52,
+      "id": "synthetic-lst-0058",
+      "address": "36 rue de Lisbonne, 75008 Paris",
+      "district": "75008",
+      "lat": 48.869558,
+      "lng": 2.308161,
+      "surface_m2": 37,
+      "rooms": 2,
+      "current_price": 439700,
+      "price_per_m2": 11884,
+      "opportunity_score": 53,
       "price_drops": 1,
       "total_drop_percent": 5.9,
-      "days_on_market": 60,
+      "days_on_market": 66,
       "long_time_on_market": false,
-      "status": "removed",
+      "status": "active",
       "spark": [
-        935800,
-        880600
+        467500,
+        439700
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 26
+    },
+    {
+      "id": "synthetic-lst-0022",
+      "address": "38 avenue de Friedland, 75008 Paris",
+      "district": "75008",
+      "lat": 48.873066,
+      "lng": 2.320108,
+      "surface_m2": 106,
+      "rooms": 5,
+      "current_price": 1158300,
+      "price_per_m2": 10927,
+      "opportunity_score": 53,
+      "price_drops": 1,
+      "total_drop_percent": 2.3,
+      "days_on_market": 36,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        1185500,
+        1158300
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 31
     },
     {
       "id": "synthetic-lst-0077",
@@ -601,29 +626,8 @@
         221700
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0082",
-      "address": "88 rue de l'Arbre Sec, 75001 Paris",
-      "district": "75001",
-      "lat": 48.868314,
-      "lng": 2.339691,
-      "surface_m2": 84,
-      "rooms": 4,
-      "current_price": 1051700,
-      "price_per_m2": 12520,
-      "opportunity_score": 50,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 140,
-      "long_time_on_market": true,
-      "status": "sold",
-      "spark": [
-        1051700
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 53
     },
     {
       "id": "synthetic-lst-0008",
@@ -646,29 +650,55 @@
         675900
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 65
     },
     {
-      "id": "synthetic-lst-0056",
-      "address": "76 avenue Daumesnil, 75012 Paris",
-      "district": "75012",
-      "lat": 48.839753,
-      "lng": 2.396483,
-      "surface_m2": 30,
-      "rooms": 1,
-      "current_price": 279400,
-      "price_per_m2": 9313,
+      "id": "synthetic-lst-0082",
+      "address": "88 rue de l'Arbre Sec, 75001 Paris",
+      "district": "75001",
+      "lat": 48.868314,
+      "lng": 2.339691,
+      "surface_m2": 84,
+      "rooms": 4,
+      "current_price": 1051700,
+      "price_per_m2": 12520,
       "opportunity_score": 49,
       "price_drops": 0,
       "total_drop_percent": 0,
-      "days_on_market": 130,
+      "days_on_market": 140,
       "long_time_on_market": true,
-      "status": "removed",
+      "status": "sold",
       "spark": [
-        279400
+        1051700
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 48
+    },
+    {
+      "id": "synthetic-lst-0044",
+      "address": "123 rue des Archives, 75003 Paris",
+      "district": "75003",
+      "lat": 48.856419,
+      "lng": 2.371304,
+      "surface_m2": 85,
+      "rooms": 4,
+      "current_price": 1058900,
+      "price_per_m2": 12458,
+      "opportunity_score": 49,
+      "price_drops": 1,
+      "total_drop_percent": 4.5,
+      "days_on_market": 110,
+      "long_time_on_market": false,
+      "status": "sold",
+      "spark": [
+        1108600,
+        1058900
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 80
     },
     {
       "id": "synthetic-lst-0039",
@@ -690,30 +720,54 @@
         671400
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 49
     },
     {
-      "id": "synthetic-lst-0044",
-      "address": "123 rue des Archives, 75003 Paris",
-      "district": "75003",
-      "lat": 48.856419,
-      "lng": 2.371304,
-      "surface_m2": 85,
-      "rooms": 4,
-      "current_price": 1058900,
-      "price_per_m2": 12458,
-      "opportunity_score": 48,
-      "price_drops": 1,
-      "total_drop_percent": 4.5,
-      "days_on_market": 110,
+      "id": "synthetic-lst-0020",
+      "address": "130 rue de Vaugirard, 75015 Paris",
+      "district": "75015",
+      "lat": 48.846488,
+      "lng": 2.289946,
+      "surface_m2": 37,
+      "rooms": 1,
+      "current_price": 302500,
+      "price_per_m2": 8176,
+      "opportunity_score": 49,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 16,
       "long_time_on_market": false,
-      "status": "sold",
+      "status": "active",
       "spark": [
-        1108600,
-        1058900
+        302500
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 82
+    },
+    {
+      "id": "synthetic-lst-0056",
+      "address": "76 avenue Daumesnil, 75012 Paris",
+      "district": "75012",
+      "lat": 48.839753,
+      "lng": 2.396483,
+      "surface_m2": 30,
+      "rooms": 1,
+      "current_price": 279400,
+      "price_per_m2": 9313,
+      "opportunity_score": 48,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 130,
+      "long_time_on_market": true,
+      "status": "removed",
+      "spark": [
+        279400
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 39
     },
     {
       "id": "synthetic-lst-0023",
@@ -735,29 +789,8 @@
         610300
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0020",
-      "address": "130 rue de Vaugirard, 75015 Paris",
-      "district": "75015",
-      "lat": 48.846488,
-      "lng": 2.289946,
-      "surface_m2": 37,
-      "rooms": 1,
-      "current_price": 302500,
-      "price_per_m2": 8176,
-      "opportunity_score": 48,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 16,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        302500
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 72
     },
     {
       "id": "synthetic-lst-0073",
@@ -769,7 +802,7 @@
       "rooms": 3,
       "current_price": 583500,
       "price_per_m2": 9411,
-      "opportunity_score": 47,
+      "opportunity_score": 48,
       "price_drops": 2,
       "total_drop_percent": 10.2,
       "days_on_market": 96,
@@ -781,29 +814,8 @@
         583500
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0070",
-      "address": "105 rue de Courcelles, 75008 Paris",
-      "district": "75008",
-      "lat": 48.871899,
-      "lng": 2.318196,
-      "surface_m2": 109,
-      "rooms": 5,
-      "current_price": 1201800,
-      "price_per_m2": 11026,
-      "opportunity_score": 47,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 36,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        1201800
-      ],
-      "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 83
     },
     {
       "id": "synthetic-lst-0076",
@@ -815,7 +827,7 @@
       "rooms": 1,
       "current_price": 317600,
       "price_per_m2": 8358,
-      "opportunity_score": 46,
+      "opportunity_score": 47,
       "price_drops": 1,
       "total_drop_percent": 4.3,
       "days_on_market": 70,
@@ -826,7 +838,56 @@
         317600
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 84
+    },
+    {
+      "id": "synthetic-lst-0027",
+      "address": "107 rue Lecourbe, 75015 Paris",
+      "district": "75015",
+      "lat": 48.842419,
+      "lng": 2.29405,
+      "surface_m2": 36,
+      "rooms": 1,
+      "current_price": 433300,
+      "price_per_m2": 12036,
+      "opportunity_score": 46,
+      "price_drops": 1,
+      "total_drop_percent": 6.2,
+      "days_on_market": 150,
+      "long_time_on_market": true,
+      "status": "removed",
+      "spark": [
+        462000,
+        433300
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 72
+    },
+    {
+      "id": "synthetic-lst-0083",
+      "address": "79 rue d'Aboukir, 75002 Paris",
+      "district": "75002",
+      "lat": 48.87568,
+      "lng": 2.331297,
+      "surface_m2": 48,
+      "rooms": 2,
+      "current_price": 620200,
+      "price_per_m2": 12921,
+      "opportunity_score": 46,
+      "price_drops": 1,
+      "total_drop_percent": 4.1,
+      "days_on_market": 126,
+      "long_time_on_market": true,
+      "status": "active",
+      "spark": [
+        646500,
+        620200
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 75
     },
     {
       "id": "synthetic-lst-0053",
@@ -848,7 +909,32 @@
         152900
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 60
+    },
+    {
+      "id": "synthetic-lst-0079",
+      "address": "63 rue de Bretagne, 75003 Paris",
+      "district": "75003",
+      "lat": 48.867803,
+      "lng": 2.356852,
+      "surface_m2": 57,
+      "rooms": 2,
+      "current_price": 743400,
+      "price_per_m2": 13042,
+      "opportunity_score": 46,
+      "price_drops": 1,
+      "total_drop_percent": 3.5,
+      "days_on_market": 70,
+      "long_time_on_market": false,
+      "status": "sold",
+      "spark": [
+        770100,
+        743400
+      ],
+      "badge": "watch",
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 90
     },
     {
       "id": "synthetic-lst-0066",
@@ -871,30 +957,31 @@
         963100
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 36
     },
     {
-      "id": "synthetic-lst-0043",
-      "address": "149 rue de Lisbonne, 75008 Paris",
+      "id": "synthetic-lst-0070",
+      "address": "105 rue de Courcelles, 75008 Paris",
       "district": "75008",
-      "lat": 48.86416,
-      "lng": 2.310579,
-      "surface_m2": 46,
-      "rooms": 2,
-      "current_price": 539700,
-      "price_per_m2": 11733,
+      "lat": 48.871899,
+      "lng": 2.318196,
+      "surface_m2": 109,
+      "rooms": 5,
+      "current_price": 1201800,
+      "price_per_m2": 11026,
       "opportunity_score": 46,
-      "price_drops": 1,
-      "total_drop_percent": 3.5,
-      "days_on_market": 46,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 36,
       "long_time_on_market": false,
       "status": "active",
       "spark": [
-        559100,
-        539700
+        1201800
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 22
     },
     {
       "id": "synthetic-lst-0085",
@@ -916,7 +1003,8 @@
         835200
       ],
       "badge": "watch",
-      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 63
     },
     {
       "id": "synthetic-lst-0016",
@@ -938,98 +1026,8 @@
         1169200
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0003",
-      "address": "28 rue de Vaugirard, 75006 Paris",
-      "district": "75006",
-      "lat": 48.846679,
-      "lng": 2.328015,
-      "surface_m2": 48,
-      "rooms": 2,
-      "current_price": 647200,
-      "price_per_m2": 13483,
-      "opportunity_score": 45,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 40,
-      "long_time_on_market": false,
-      "status": "removed",
-      "spark": [
-        647200
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0027",
-      "address": "107 rue Lecourbe, 75015 Paris",
-      "district": "75015",
-      "lat": 48.842419,
-      "lng": 2.29405,
-      "surface_m2": 36,
-      "rooms": 1,
-      "current_price": 433300,
-      "price_per_m2": 12036,
-      "opportunity_score": 45,
-      "price_drops": 1,
-      "total_drop_percent": 6.2,
-      "days_on_market": 150,
-      "long_time_on_market": true,
-      "status": "removed",
-      "spark": [
-        462000,
-        433300
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0083",
-      "address": "79 rue d'Aboukir, 75002 Paris",
-      "district": "75002",
-      "lat": 48.87568,
-      "lng": 2.331297,
-      "surface_m2": 48,
-      "rooms": 2,
-      "current_price": 620200,
-      "price_per_m2": 12921,
-      "opportunity_score": 45,
-      "price_drops": 1,
-      "total_drop_percent": 4.1,
-      "days_on_market": 126,
-      "long_time_on_market": true,
-      "status": "active",
-      "spark": [
-        646500,
-        620200
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0079",
-      "address": "63 rue de Bretagne, 75003 Paris",
-      "district": "75003",
-      "lat": 48.867803,
-      "lng": 2.356852,
-      "surface_m2": 57,
-      "rooms": 2,
-      "current_price": 743400,
-      "price_per_m2": 13042,
-      "opportunity_score": 45,
-      "price_drops": 1,
-      "total_drop_percent": 3.5,
-      "days_on_market": 70,
-      "long_time_on_market": false,
-      "status": "sold",
-      "spark": [
-        770100,
-        743400
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 50
     },
     {
       "id": "synthetic-lst-0052",
@@ -1051,7 +1049,32 @@
         296200
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 65
+    },
+    {
+      "id": "synthetic-lst-0043",
+      "address": "149 rue de Lisbonne, 75008 Paris",
+      "district": "75008",
+      "lat": 48.86416,
+      "lng": 2.310579,
+      "surface_m2": 46,
+      "rooms": 2,
+      "current_price": 539700,
+      "price_per_m2": 11733,
+      "opportunity_score": 45,
+      "price_drops": 1,
+      "total_drop_percent": 3.5,
+      "days_on_market": 46,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        559100,
+        539700
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 8
     },
     {
       "id": "synthetic-lst-0012",
@@ -1073,7 +1096,54 @@
         478800
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 66
+    },
+    {
+      "id": "synthetic-lst-0003",
+      "address": "28 rue de Vaugirard, 75006 Paris",
+      "district": "75006",
+      "lat": 48.846679,
+      "lng": 2.328015,
+      "surface_m2": 48,
+      "rooms": 2,
+      "current_price": 647200,
+      "price_per_m2": 13483,
+      "opportunity_score": 44,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 40,
+      "long_time_on_market": false,
+      "status": "removed",
+      "spark": [
+        647200
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 65
+    },
+    {
+      "id": "synthetic-lst-0071",
+      "address": "71 rue Monge, 75005 Paris",
+      "district": "75005",
+      "lat": 48.842235,
+      "lng": 2.357627,
+      "surface_m2": 47,
+      "rooms": 2,
+      "current_price": 571400,
+      "price_per_m2": 12157,
+      "opportunity_score": 44,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 16,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        571400
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 76
     },
     {
       "id": "synthetic-lst-0017",
@@ -1095,52 +1165,8 @@
         402800
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0071",
-      "address": "71 rue Monge, 75005 Paris",
-      "district": "75005",
-      "lat": 48.842235,
-      "lng": 2.357627,
-      "surface_m2": 47,
-      "rooms": 2,
-      "current_price": 571400,
-      "price_per_m2": 12157,
-      "opportunity_score": 43,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 16,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        571400
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0011",
-      "address": "172 rue Raymond Losserand, 75014 Paris",
-      "district": "75014",
-      "lat": 48.83294,
-      "lng": 2.317225,
-      "surface_m2": 32,
-      "rooms": 1,
-      "current_price": 368000,
-      "price_per_m2": 11500,
-      "opportunity_score": 42,
-      "price_drops": 1,
-      "total_drop_percent": 3.3,
-      "days_on_market": 206,
-      "long_time_on_market": true,
-      "status": "active",
-      "spark": [
-        380500,
-        368000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 64
     },
     {
       "id": "synthetic-lst-0064",
@@ -1162,7 +1188,8 @@
         341400
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 83
     },
     {
       "id": "synthetic-lst-0037",
@@ -1184,7 +1211,8 @@
         161700
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 81
     },
     {
       "id": "synthetic-lst-0055",
@@ -1206,7 +1234,32 @@
         308500
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 84
+    },
+    {
+      "id": "synthetic-lst-0011",
+      "address": "172 rue Raymond Losserand, 75014 Paris",
+      "district": "75014",
+      "lat": 48.83294,
+      "lng": 2.317225,
+      "surface_m2": 32,
+      "rooms": 1,
+      "current_price": 368000,
+      "price_per_m2": 11500,
+      "opportunity_score": 41,
+      "price_drops": 1,
+      "total_drop_percent": 3.3,
+      "days_on_market": 206,
+      "long_time_on_market": true,
+      "status": "active",
+      "spark": [
+        380500,
+        368000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 52
     },
     {
       "id": "synthetic-lst-0013",
@@ -1228,29 +1281,33 @@
         430800
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 80
     },
     {
-      "id": "synthetic-lst-0045",
-      "address": "169 avenue de Friedland, 75008 Paris",
-      "district": "75008",
-      "lat": 48.879003,
-      "lng": 2.31293,
-      "surface_m2": 47,
+      "id": "synthetic-lst-0014",
+      "address": "96 rue de Vaugirard, 75015 Paris",
+      "district": "75015",
+      "lat": 48.842,
+      "lng": 2.299365,
+      "surface_m2": 41,
       "rooms": 2,
-      "current_price": 551900,
-      "price_per_m2": 11743,
+      "current_price": 493400,
+      "price_per_m2": 12034,
       "opportunity_score": 40,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 26,
-      "long_time_on_market": false,
+      "price_drops": 2,
+      "total_drop_percent": 9.1,
+      "days_on_market": 166,
+      "long_time_on_market": true,
       "status": "active",
       "spark": [
-        551900
+        542800,
+        524300,
+        493400
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 86
     },
     {
       "id": "synthetic-lst-0040",
@@ -1272,7 +1329,8 @@
         801600
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 54
     },
     {
       "id": "synthetic-lst-0067",
@@ -1295,7 +1353,8 @@
         485100
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 54
     },
     {
       "id": "synthetic-lst-0001",
@@ -1317,31 +1376,8 @@
         275300
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0014",
-      "address": "96 rue de Vaugirard, 75015 Paris",
-      "district": "75015",
-      "lat": 48.842,
-      "lng": 2.299365,
-      "surface_m2": 41,
-      "rooms": 2,
-      "current_price": 493400,
-      "price_per_m2": 12034,
-      "opportunity_score": 39,
-      "price_drops": 2,
-      "total_drop_percent": 9.1,
-      "days_on_market": 166,
-      "long_time_on_market": true,
-      "status": "active",
-      "spark": [
-        542800,
-        524300,
-        493400
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 61
     },
     {
       "id": "synthetic-lst-0036",
@@ -1363,7 +1399,31 @@
         539800
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 42
+    },
+    {
+      "id": "synthetic-lst-0045",
+      "address": "169 avenue de Friedland, 75008 Paris",
+      "district": "75008",
+      "lat": 48.879003,
+      "lng": 2.31293,
+      "surface_m2": 47,
+      "rooms": 2,
+      "current_price": 551900,
+      "price_per_m2": 11743,
+      "opportunity_score": 39,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 26,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        551900
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 32
     },
     {
       "id": "synthetic-lst-0021",
@@ -1375,7 +1435,7 @@
       "rooms": 1,
       "current_price": 252400,
       "price_per_m2": 14022,
-      "opportunity_score": 39,
+      "opportunity_score": 38,
       "price_drops": 1,
       "total_drop_percent": 3.3,
       "days_on_market": 56,
@@ -1386,7 +1446,8 @@
         252400
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 68
     },
     {
       "id": "synthetic-lst-0024",
@@ -1408,7 +1469,8 @@
         613900
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 83
     },
     {
       "id": "synthetic-lst-0041",
@@ -1430,7 +1492,8 @@
         553900
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 85
     },
     {
       "id": "synthetic-lst-0089",
@@ -1452,7 +1515,8 @@
         830200
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 64
     },
     {
       "id": "synthetic-lst-0009",
@@ -1474,7 +1538,31 @@
         1409300
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 69
+    },
+    {
+      "id": "synthetic-lst-0029",
+      "address": "18 rue de Belleville, 75019 Paris",
+      "district": "75019",
+      "lat": 48.881664,
+      "lng": 2.375711,
+      "surface_m2": 59,
+      "rooms": 3,
+      "current_price": 545000,
+      "price_per_m2": 9237,
+      "opportunity_score": 35,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 56,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        545000
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 76
     },
     {
       "id": "synthetic-lst-0005",
@@ -1496,7 +1584,31 @@
         362300
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 40
+    },
+    {
+      "id": "synthetic-lst-0065",
+      "address": "5 rue d'Aboukir, 75002 Paris",
+      "district": "75002",
+      "lat": 48.861739,
+      "lng": 2.347655,
+      "surface_m2": 21,
+      "rooms": 1,
+      "current_price": 244300,
+      "price_per_m2": 11633,
+      "opportunity_score": 35,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 6,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        244300
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 72
     },
     {
       "id": "synthetic-lst-0062",
@@ -1518,51 +1630,8 @@
         826400
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0029",
-      "address": "18 rue de Belleville, 75019 Paris",
-      "district": "75019",
-      "lat": 48.881664,
-      "lng": 2.375711,
-      "surface_m2": 59,
-      "rooms": 3,
-      "current_price": 545000,
-      "price_per_m2": 9237,
-      "opportunity_score": 34,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 56,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        545000
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0065",
-      "address": "5 rue d'Aboukir, 75002 Paris",
-      "district": "75002",
-      "lat": 48.861739,
-      "lng": 2.347655,
-      "surface_m2": 21,
-      "rooms": 1,
-      "current_price": 244300,
-      "price_per_m2": 11633,
-      "opportunity_score": 34,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 6,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        244300
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 68
     },
     {
       "id": "synthetic-lst-0018",
@@ -1585,7 +1654,8 @@
         931100
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 31
     },
     {
       "id": "synthetic-lst-0035",
@@ -1597,7 +1667,7 @@
       "rooms": 1,
       "current_price": 357500,
       "price_per_m2": 10515,
-      "opportunity_score": 31,
+      "opportunity_score": 32,
       "price_drops": 1,
       "total_drop_percent": 6.3,
       "days_on_market": 56,
@@ -1608,7 +1678,8 @@
         357500
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 85
     },
     {
       "id": "synthetic-lst-0084",
@@ -1620,7 +1691,7 @@
       "rooms": 3,
       "current_price": 614200,
       "price_per_m2": 9597,
-      "opportunity_score": 30,
+      "opportunity_score": 31,
       "price_drops": 0,
       "total_drop_percent": 0,
       "days_on_market": 170,
@@ -1630,7 +1701,8 @@
         614200
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 78
     },
     {
       "id": "synthetic-lst-0030",
@@ -1642,7 +1714,7 @@
       "rooms": 4,
       "current_price": 1142500,
       "price_per_m2": 11901,
-      "opportunity_score": 29,
+      "opportunity_score": 30,
       "price_drops": 0,
       "total_drop_percent": 0,
       "days_on_market": 106,
@@ -1652,7 +1724,8 @@
         1142500
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 98
     },
     {
       "id": "synthetic-lst-0072",
@@ -1664,7 +1737,7 @@
       "rooms": 3,
       "current_price": 865800,
       "price_per_m2": 14430,
-      "opportunity_score": 29,
+      "opportunity_score": 30,
       "price_drops": 1,
       "total_drop_percent": 5.4,
       "days_on_market": 106,
@@ -1675,7 +1748,8 @@
         865800
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 75
     },
     {
       "id": "synthetic-lst-0025",
@@ -1687,7 +1761,7 @@
       "rooms": 3,
       "current_price": 594400,
       "price_per_m2": 8491,
-      "opportunity_score": 29,
+      "opportunity_score": 30,
       "price_drops": 0,
       "total_drop_percent": 0,
       "days_on_market": 36,
@@ -1697,7 +1771,8 @@
         594400
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 86
     },
     {
       "id": "synthetic-lst-0019",
@@ -1720,7 +1795,8 @@
         536500
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 70
     },
     {
       "id": "synthetic-lst-0075",
@@ -1742,7 +1818,8 @@
         982000
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 63
     },
     {
       "id": "synthetic-lst-0002",
@@ -1764,7 +1841,8 @@
         452500
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 65
     },
     {
       "id": "synthetic-lst-0004",
@@ -1787,7 +1865,8 @@
         488100
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 85
     },
     {
       "id": "synthetic-lst-0010",
@@ -1809,7 +1888,8 @@
         735000
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1522050212171-61b01dd24579?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 68
     },
     {
       "id": "synthetic-lst-0006",
@@ -1831,29 +1911,8 @@
         1303100
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0054",
-      "address": "91 rue de Vaugirard, 75006 Paris",
-      "district": "75006",
-      "lat": 48.84999,
-      "lng": 2.324392,
-      "surface_m2": 41,
-      "rooms": 2,
-      "current_price": 785800,
-      "price_per_m2": 19166,
-      "opportunity_score": 25,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 140,
-      "long_time_on_market": true,
-      "status": "sold",
-      "spark": [
-        785800
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 66
     },
     {
       "id": "synthetic-lst-0028",
@@ -1875,7 +1934,8 @@
         951700
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 80
     },
     {
       "id": "synthetic-lst-0050",
@@ -1887,7 +1947,7 @@
       "rooms": 2,
       "current_price": 547000,
       "price_per_m2": 9945,
-      "opportunity_score": 24,
+      "opportunity_score": 25,
       "price_drops": 0,
       "total_drop_percent": 0,
       "days_on_market": 50,
@@ -1897,7 +1957,31 @@
         547000
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 78
+    },
+    {
+      "id": "synthetic-lst-0054",
+      "address": "91 rue de Vaugirard, 75006 Paris",
+      "district": "75006",
+      "lat": 48.84999,
+      "lng": 2.324392,
+      "surface_m2": 41,
+      "rooms": 2,
+      "current_price": 785800,
+      "price_per_m2": 19166,
+      "opportunity_score": 24,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 140,
+      "long_time_on_market": true,
+      "status": "sold",
+      "spark": [
+        785800
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 32
     },
     {
       "id": "synthetic-lst-0034",
@@ -1920,7 +2004,8 @@
         1001400
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 47
     },
     {
       "id": "synthetic-lst-0069",
@@ -1942,29 +2027,8 @@
         315500
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=55&auto=format&fit=crop"
-    },
-    {
-      "id": "synthetic-lst-0038",
-      "address": "147 rue de l'Arbre Sec, 75001 Paris",
-      "district": "75001",
-      "lat": 48.866073,
-      "lng": 2.330634,
-      "surface_m2": 56,
-      "rooms": 3,
-      "current_price": 882600,
-      "price_per_m2": 15761,
-      "opportunity_score": 19,
-      "price_drops": 0,
-      "total_drop_percent": 0,
-      "days_on_market": 16,
-      "long_time_on_market": false,
-      "status": "active",
-      "spark": [
-        882600
-      ],
-      "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 53
     },
     {
       "id": "synthetic-lst-0059",
@@ -1976,7 +2040,7 @@
       "rooms": 2,
       "current_price": 511000,
       "price_per_m2": 10646,
-      "opportunity_score": 18,
+      "opportunity_score": 19,
       "price_drops": 1,
       "total_drop_percent": 5.4,
       "days_on_market": 50,
@@ -1987,7 +2051,31 @@
         511000
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 85
+    },
+    {
+      "id": "synthetic-lst-0038",
+      "address": "147 rue de l'Arbre Sec, 75001 Paris",
+      "district": "75001",
+      "lat": 48.866073,
+      "lng": 2.330634,
+      "surface_m2": 56,
+      "rooms": 3,
+      "current_price": 882600,
+      "price_per_m2": 15761,
+      "opportunity_score": 18,
+      "price_drops": 0,
+      "total_drop_percent": 0,
+      "days_on_market": 16,
+      "long_time_on_market": false,
+      "status": "active",
+      "spark": [
+        882600
+      ],
+      "badge": "overvalued",
+      "image": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 33
     },
     {
       "id": "synthetic-lst-0088",
@@ -2009,7 +2097,8 @@
         1267500
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 31
     },
     {
       "id": "synthetic-lst-0081",
@@ -2021,7 +2110,7 @@
       "rooms": 2,
       "current_price": 789600,
       "price_per_m2": 14100,
-      "opportunity_score": 13,
+      "opportunity_score": 14,
       "price_drops": 0,
       "total_drop_percent": 0,
       "days_on_market": 30,
@@ -2031,7 +2120,8 @@
         789600
       ],
       "badge": "overvalued",
-      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop"
+      "image": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
+      "walk_score": 100
     }
   ]
 }

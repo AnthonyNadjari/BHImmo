@@ -40,6 +40,12 @@ export interface Property {
   };
   risks: { flood: number; clay: number; noise: number };
   transport_score: number;
+  neighborhood: {
+    walk_score: number;
+    schools_500m: number;
+    income: number;
+    amenities: { food: number; health: number; green: number; culture: number };
+  };
   images: string[];
   thumb: string;
   dpe?: { energy_class: string; ghg_class: string };
@@ -78,6 +84,7 @@ export interface IndexEntry {
   spark: number[];
   badge: Badge;
   image: string;
+  walk_score: number;
 }
 
 export interface IndexFile {
@@ -97,6 +104,8 @@ export interface MarketArrondissement {
   trend_1y_percent: number;
   volatility: number;
   avg_opportunity_score: number;
+  median_income: number;
+  avg_walk_score: number;
 }
 
 export interface MarketFile {

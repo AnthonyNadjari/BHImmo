@@ -83,6 +83,7 @@ async function buildNewProperty(
     dvf: enrichment.dvf,
     risks: enrichment.risks,
     transport_score: enrichment.transport_score,
+    neighborhood: enrichment.neighborhood,
     dpe: enrichment.dpe,
     images: gallery.images,
     thumb: gallery.thumb,

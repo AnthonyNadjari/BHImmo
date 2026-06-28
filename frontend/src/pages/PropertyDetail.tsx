@@ -22,6 +22,7 @@ import { RiskBars } from "../components/RiskBars";
 import { ScoreGauge } from "../components/ScoreBar";
 import { MapEmbed } from "../components/MapEmbed";
 import { WatchButton } from "../components/WatchButton";
+import { NeighborhoodCard } from "../components/NeighborhoodCard";
 import { ErrorState, Loading } from "../components/States";
 
 export function PropertyDetail() {
@@ -57,6 +58,12 @@ export function PropertyDetail() {
             {districtLabel(p.address.district)} arrondissement · {p.characteristics.surface_m2} m² ·{" "}
             {p.characteristics.rooms} rooms · floor {p.characteristics.floor}
           </p>
+          {p.status !== "active" && (
+            <p className="hist-note">
+              No longer listed ({STATUS_LABEL[p.status]?.toLowerCase()}) — figures are historical,
+              last seen {formatDate(p.timeline.last_seen)}.
+            </p>
+          )}
           <div className="hero-price">
             <strong>{formatEuro(p.pricing.current_price)}</strong>
             <span>{formatPerM2(p.pricing.price_per_m2)}</span>
@@ -104,7 +111,7 @@ export function PropertyDetail() {
             <KV label="DVF avg · 500 m" value={formatPerM2(p.dvf.avg_price_m2_500m)} />
             <KV
               label="Gap vs DVF"
-              value={`${gapPct >= 0 ? "−" : "+"}${Math.abs(gapPct).toFixed(1)}% ${gapPct >= 0 ? "below" : "above"}`}
+              value={`${Math.abs(gapPct).toFixed(1)}% ${gapPct >= 0 ? "below" : "above"} DVF`}
               accent={gapPct >= 0}
             />
           </div>
@@ -133,8 +140,14 @@ export function PropertyDetail() {
           )}
         </div>
 
+        {/* Neighbourhood & lifestyle */}
+        <div className="card">
+          <h2>Neighbourhood & lifestyle</h2>
+          <NeighborhoodCard hood={p.neighborhood} />
+        </div>
+
         {/* Map */}
-        <div className="card span-2">
+        <div className="card">
           <h2>Location</h2>
           <MapEmbed lat={p.address.lat} lng={p.address.lng} label={p.address.normalized} />
         </div>
@@ -169,18 +182,33 @@ export function PropertyDetail() {
 
       <p className="muted source-note">
         Source: {p.source}
-        {p.url && /^https?:\/\//i.test(p.url) && (
+        {p.url && /^https?:\/\//i.test(p.url) && isReachableUrl(p.url) ? (
           <>
             {" · "}
             <a href={p.url} target="_blank" rel="noreferrer noopener">
               original listing ↗
-            </a>{" "}
-            (synthetic demo link)
+            </a>
           </>
+        ) : (
+          p.url && <>{" · "}original listing unavailable (synthetic demo)</>
         )}
       </p>
     </section>
   );
+}
+
+/**
+ * Reserved TLDs (RFC 2606 / 6761) never resolve on the public internet, so a
+ * link to them always 404s. The synthetic dataset uses https://example.invalid/…
+ * — render those as inert text instead of a dead clickable link.
+ */
+function isReachableUrl(url: string): boolean {
+  try {
+    const host = new URL(url).hostname.toLowerCase();
+    return !/\.(invalid|example|test|localhost)$/.test(host) && host !== "localhost";
+  } catch {
+    return false;
+  }
 }
 
 function KV({ label, value, accent }: { label: string; value: string; accent?: boolean }) {

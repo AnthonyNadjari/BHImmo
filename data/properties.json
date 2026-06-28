@@ -91,6 +91,17 @@
         "noise": 0.38
       },
       "transport_score": 48,
+      "neighborhood": {
+        "walk_score": 64,
+        "schools_500m": 6,
+        "income": 27000,
+        "amenities": {
+          "food": 24,
+          "health": 0,
+          "green": 2,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "C"
@@ -107,7 +118,7 @@
         "opportunity_score": 66,
         "price_score": 83,
         "market_gap_score": 99,
-        "liquidity_score": 50
+        "liquidity_score": 53
       },
       "signals": {
         "price_drops": 1,
@@ -116,11 +127,11 @@
         "explanations": [
           "19.7% below DVF average (10 256 €/m²)",
           "1 price drop detected (−4.6% total)",
-          "120+ days on market"
+          "120+ days on market",
+          "6 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0026"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0088",
@@ -196,6 +207,17 @@
         "noise": 0.37
       },
       "transport_score": 53,
+      "neighborhood": {
+        "walk_score": 31,
+        "schools_500m": 3,
+        "income": 45000,
+        "amenities": {
+          "food": 7,
+          "health": 0,
+          "green": 0,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "C",
         "ghg_class": "C"
@@ -212,7 +234,7 @@
         "opportunity_score": 17,
         "price_score": 4,
         "market_gap_score": 5,
-        "liquidity_score": 56
+        "liquidity_score": 51
       },
       "signals": {
         "price_drops": 0,
@@ -220,11 +242,11 @@
         "long_time_on_market": false,
         "explanations": [
           "17.9% above DVF average (12 794 €/m²)",
-          "60 days on market"
+          "60 days on market",
+          "Affluent area (median income 45k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0088"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0016",
@@ -310,6 +332,17 @@
         "noise": 0.23
       },
       "transport_score": 17,
+      "neighborhood": {
+        "walk_score": 50,
+        "schools_500m": 4,
+        "income": 47000,
+        "amenities": {
+          "food": 7,
+          "health": 6,
+          "green": 0,
+          "culture": 5
+        }
+      },
       "dpe": {
         "energy_class": "E",
         "ghg_class": "F"
@@ -326,7 +359,7 @@
         "opportunity_score": 45,
         "price_score": 61,
         "market_gap_score": 70,
-        "liquidity_score": 51
+        "liquidity_score": 52
       },
       "signals": {
         "price_drops": 0,
@@ -335,11 +368,11 @@
         "explanations": [
           "8% below DVF average (15 505 €/m²)",
           "140+ days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "Affluent area (median income 47k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0016"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0069",
@@ -415,6 +448,17 @@
         "noise": 0.28
       },
       "transport_score": 9,
+      "neighborhood": {
+        "walk_score": 53,
+        "schools_500m": 4,
+        "income": 44000,
+        "amenities": {
+          "food": 9,
+          "health": 2,
+          "green": 3,
+          "culture": 2
+        }
+      },
       "dpe": {
         "energy_class": "G",
         "ghg_class": "C"
@@ -431,7 +475,7 @@
         "opportunity_score": 20,
         "price_score": 3,
         "market_gap_score": 0,
-        "liquidity_score": 49
+        "liquidity_score": 52
       },
       "signals": {
         "price_drops": 0,
@@ -440,11 +484,11 @@
         "explanations": [
           "23.2% above DVF average (11 640 €/m²)",
           "190+ days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "Affluent area (median income 44k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0069"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0003",
@@ -530,6 +574,17 @@
         "noise": 0.44
       },
       "transport_score": 49,
+      "neighborhood": {
+        "walk_score": 65,
+        "schools_500m": 6,
+        "income": 43000,
+        "amenities": {
+          "food": 16,
+          "health": 3,
+          "green": 1,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "F"
@@ -543,10 +598,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 45,
+        "opportunity_score": 44,
         "price_score": 79,
         "market_gap_score": 73,
-        "liquidity_score": 74
+        "liquidity_score": 73
       },
       "signals": {
         "price_drops": 0,
@@ -554,11 +609,12 @@
         "long_time_on_market": false,
         "explanations": [
           "9.3% below DVF average (14 861 €/m²)",
-          "40 days on market"
+          "40 days on market",
+          "6 schools within 500 m",
+          "Affluent area (median income 43k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0003"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0024",
@@ -629,6 +685,17 @@
         "noise": 0.33
       },
       "transport_score": 54,
+      "neighborhood": {
+        "walk_score": 83,
+        "schools_500m": 8,
+        "income": 27000,
+        "amenities": {
+          "food": 23,
+          "health": 9,
+          "green": 3,
+          "culture": 1
+        }
+      },
       "dpe": {
         "energy_class": "G",
         "ghg_class": "F"
@@ -645,7 +712,7 @@
         "opportunity_score": 37,
         "price_score": 38,
         "market_gap_score": 37,
-        "liquidity_score": 52
+        "liquidity_score": 58
       },
       "signals": {
         "price_drops": 0,
@@ -653,11 +720,12 @@
         "long_time_on_market": true,
         "explanations": [
           "5% above DVF average (9 742 €/m²)",
-          "150+ days on market"
+          "150+ days on market",
+          "Highly walkable area (shops, services nearby)",
+          "8 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0024"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0040",
@@ -728,6 +796,17 @@
         "noise": 0.22
       },
       "transport_score": 9,
+      "neighborhood": {
+        "walk_score": 54,
+        "schools_500m": 11,
+        "income": 35000,
+        "amenities": {
+          "food": 10,
+          "health": 6,
+          "green": 0,
+          "culture": 1
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "E"
@@ -744,7 +823,7 @@
         "opportunity_score": 39,
         "price_score": 76,
         "market_gap_score": 81,
-        "liquidity_score": 33
+        "liquidity_score": 38
       },
       "signals": {
         "price_drops": 0,
@@ -753,11 +832,11 @@
         "explanations": [
           "12.3% below DVF average (11 289 €/m²)",
           "30 days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "11 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0040"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0046",
@@ -853,6 +932,17 @@
         "noise": 0.21
       },
       "transport_score": 27,
+      "neighborhood": {
+        "walk_score": 34,
+        "schools_500m": 4,
+        "income": 47000,
+        "amenities": {
+          "food": 9,
+          "health": 3,
+          "green": 0,
+          "culture": 0
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "D"
@@ -866,10 +956,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 63,
+        "opportunity_score": 62,
         "price_score": 59,
         "market_gap_score": 69,
-        "liquidity_score": 69
+        "liquidity_score": 65
       },
       "signals": {
         "price_drops": 2,
@@ -879,11 +969,11 @@
           "7.5% below DVF average (15 537 €/m²)",
           "2 price drops detected (−10.1% total)",
           "130+ days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "Affluent area (median income 47k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0046"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0078",
@@ -974,6 +1064,17 @@
         "noise": 0.57
       },
       "transport_score": 69,
+      "neighborhood": {
+        "walk_score": 84,
+        "schools_500m": 7,
+        "income": 26000,
+        "amenities": {
+          "food": 31,
+          "health": 7,
+          "green": 5,
+          "culture": 1
+        }
+      },
       "dpe": {
         "energy_class": "A",
         "ghg_class": "E"
@@ -987,10 +1088,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 52,
+        "opportunity_score": 53,
         "price_score": 62,
         "market_gap_score": 66,
-        "liquidity_score": 51
+        "liquidity_score": 57
       },
       "signals": {
         "price_drops": 1,
@@ -999,11 +1100,12 @@
         "explanations": [
           "6.5% below DVF average (9 913 €/m²)",
           "1 price drop detected (−5.9% total)",
-          "60 days on market"
+          "60 days on market",
+          "Highly walkable area (shops, services nearby)",
+          "7 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0078"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0007",
@@ -1104,6 +1206,17 @@
         "noise": 0.45
       },
       "transport_score": 40,
+      "neighborhood": {
+        "walk_score": 41,
+        "schools_500m": 4,
+        "income": 45000,
+        "amenities": {
+          "food": 1,
+          "health": 5,
+          "green": 1,
+          "culture": 5
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "F"
@@ -1120,7 +1233,7 @@
         "opportunity_score": 76,
         "price_score": 73,
         "market_gap_score": 69,
-        "liquidity_score": 58
+        "liquidity_score": 56
       },
       "signals": {
         "price_drops": 3,
@@ -1130,11 +1243,11 @@
           "7.7% below DVF average (12 092 €/m²)",
           "3 price drops detected (−15.5% total)",
           "200+ days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "Affluent area (median income 45k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0007"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0054",
@@ -1210,6 +1323,17 @@
         "noise": 0.49
       },
       "transport_score": 63,
+      "neighborhood": {
+        "walk_score": 32,
+        "schools_500m": 6,
+        "income": 43000,
+        "amenities": {
+          "food": 2,
+          "health": 2,
+          "green": 0,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "A"
@@ -1223,10 +1347,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 25,
+        "opportunity_score": 24,
         "price_score": 0,
         "market_gap_score": 0,
-        "liquidity_score": 79
+        "liquidity_score": 71
       },
       "signals": {
         "price_drops": 0,
@@ -1235,11 +1359,11 @@
         "explanations": [
           "21.2% above DVF average (15 812 €/m²)",
           "140+ days on market",
-          "High resale liquidity"
+          "6 schools within 500 m",
+          "Affluent area (median income 43k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0054"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0061",
@@ -1330,6 +1454,17 @@
         "noise": 0.51
       },
       "transport_score": 59,
+      "neighborhood": {
+        "walk_score": 82,
+        "schools_500m": 6,
+        "income": 32000,
+        "amenities": {
+          "food": 20,
+          "health": 10,
+          "green": 2,
+          "culture": 4
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "C"
@@ -1343,10 +1478,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 69,
+        "opportunity_score": 70,
         "price_score": 80,
         "market_gap_score": 86,
-        "liquidity_score": 64
+        "liquidity_score": 68
       },
       "signals": {
         "price_drops": 1,
@@ -1355,11 +1490,12 @@
         "explanations": [
           "14.4% below DVF average (10 706 €/m²)",
           "1 price drop detected (−6.7% total)",
-          "170+ days on market"
+          "170+ days on market",
+          "Highly walkable area (shops, services nearby)",
+          "6 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0061"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0041",
@@ -1445,6 +1581,17 @@
         "noise": 0.47
       },
       "transport_score": 57,
+      "neighborhood": {
+        "walk_score": 85,
+        "schools_500m": 4,
+        "income": 35000,
+        "amenities": {
+          "food": 28,
+          "health": 8,
+          "green": 3,
+          "culture": 6
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "C"
@@ -1461,7 +1608,7 @@
         "opportunity_score": 36,
         "price_score": 30,
         "market_gap_score": 32,
-        "liquidity_score": 67
+        "liquidity_score": 71
       },
       "signals": {
         "price_drops": 0,
@@ -1469,11 +1616,11 @@
         "long_time_on_market": true,
         "explanations": [
           "7.4% above DVF average (13 229 €/m²)",
-          "140+ days on market"
+          "140+ days on market",
+          "Highly walkable area (shops, services nearby)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0041"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0055",
@@ -1559,6 +1706,17 @@
         "noise": 0.49
       },
       "transport_score": 63,
+      "neighborhood": {
+        "walk_score": 84,
+        "schools_500m": 5,
+        "income": 25000,
+        "amenities": {
+          "food": 19,
+          "health": 5,
+          "green": 6,
+          "culture": 4
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "C"
@@ -1575,7 +1733,7 @@
         "opportunity_score": 41,
         "price_score": 58,
         "market_gap_score": 48,
-        "liquidity_score": 61
+        "liquidity_score": 66
       },
       "signals": {
         "price_drops": 0,
@@ -1583,11 +1741,11 @@
         "long_time_on_market": true,
         "explanations": [
           "1% above DVF average (8 986 €/m²)",
-          "120+ days on market"
+          "120+ days on market",
+          "Highly walkable area (shops, services nearby)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0055"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0067",
@@ -1678,6 +1836,17 @@
         "noise": 0.31
       },
       "transport_score": 22,
+      "neighborhood": {
+        "walk_score": 54,
+        "schools_500m": 7,
+        "income": 35000,
+        "amenities": {
+          "food": 21,
+          "health": 0,
+          "green": 0,
+          "culture": 2
+        }
+      },
       "dpe": {
         "energy_class": "E",
         "ghg_class": "C"
@@ -1694,7 +1863,7 @@
         "opportunity_score": 39,
         "price_score": 48,
         "market_gap_score": 38,
-        "liquidity_score": 46
+        "liquidity_score": 49
       },
       "signals": {
         "price_drops": 1,
@@ -1704,11 +1873,11 @@
           "4.7% above DVF average (10 773 €/m²)",
           "1 price drop detected (−6.2% total)",
           "100 days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "7 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0067"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0027",
@@ -1799,6 +1968,17 @@
         "noise": 0.4
       },
       "transport_score": 38,
+      "neighborhood": {
+        "walk_score": 72,
+        "schools_500m": 7,
+        "income": 33000,
+        "amenities": {
+          "food": 12,
+          "health": 11,
+          "green": 0,
+          "culture": 5
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "F"
@@ -1812,10 +1992,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 45,
+        "opportunity_score": 46,
         "price_score": 25,
         "market_gap_score": 40,
-        "liquidity_score": 50
+        "liquidity_score": 55
       },
       "signals": {
         "price_drops": 1,
@@ -1825,11 +2005,11 @@
           "3.9% above DVF average (11 582 €/m²)",
           "1 price drop detected (−6.2% total)",
           "150+ days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "7 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0027"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0090",
@@ -1925,6 +2105,17 @@
         "noise": 0.37
       },
       "transport_score": 63,
+      "neighborhood": {
+        "walk_score": 35,
+        "schools_500m": 7,
+        "income": 38000,
+        "amenities": {
+          "food": 6,
+          "health": 0,
+          "green": 1,
+          "culture": 0
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "D"
@@ -1938,10 +2129,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 70,
+        "opportunity_score": 69,
         "price_score": 77,
         "market_gap_score": 90,
-        "liquidity_score": 72
+        "liquidity_score": 66
       },
       "signals": {
         "price_drops": 2,
@@ -1950,11 +2141,11 @@
         "explanations": [
           "16.2% below DVF average (14 467 €/m²)",
           "2 price drops detected (−7.6% total)",
-          "100 days on market"
+          "100 days on market",
+          "7 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0090"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0001",
@@ -2040,6 +2231,17 @@
         "noise": 0.21
       },
       "transport_score": 23,
+      "neighborhood": {
+        "walk_score": 61,
+        "schools_500m": 7,
+        "income": 45000,
+        "amenities": {
+          "food": 18,
+          "health": 3,
+          "green": 1,
+          "culture": 1
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "A"
@@ -2056,7 +2258,7 @@
         "opportunity_score": 39,
         "price_score": 50,
         "market_gap_score": 39,
-        "liquidity_score": 57
+        "liquidity_score": 60
       },
       "signals": {
         "price_drops": 0,
@@ -2065,11 +2267,12 @@
         "explanations": [
           "4.5% above DVF average (11 977 €/m²)",
           "200+ days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "7 schools within 500 m",
+          "Affluent area (median income 45k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0001"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0082",
@@ -2155,6 +2358,17 @@
         "noise": 0.76
       },
       "transport_score": 76,
+      "neighborhood": {
+        "walk_score": 48,
+        "schools_500m": 1,
+        "income": 36000,
+        "amenities": {
+          "food": 11,
+          "health": 4,
+          "green": 2,
+          "culture": 2
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "C"
@@ -2168,10 +2382,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 50,
+        "opportunity_score": 49,
         "price_score": 66,
         "market_gap_score": 62,
-        "liquidity_score": 69
+        "liquidity_score": 65
       },
       "signals": {
         "price_drops": 0,
@@ -2183,8 +2397,7 @@
           "Excellent public-transport access"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0082"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0002",
@@ -2255,6 +2468,17 @@
         "noise": 0.45
       },
       "transport_score": 54,
+      "neighborhood": {
+        "walk_score": 65,
+        "schools_500m": 11,
+        "income": 23000,
+        "amenities": {
+          "food": 23,
+          "health": 0,
+          "green": 0,
+          "culture": 6
+        }
+      },
       "dpe": {
         "energy_class": "C",
         "ghg_class": "C"
@@ -2271,7 +2495,7 @@
         "opportunity_score": 27,
         "price_score": 21,
         "market_gap_score": 28,
-        "liquidity_score": 49
+        "liquidity_score": 53
       },
       "signals": {
         "price_drops": 0,
@@ -2279,11 +2503,11 @@
         "long_time_on_market": false,
         "explanations": [
           "9% above DVF average (9 230 €/m²)",
-          "70 days on market"
+          "70 days on market",
+          "11 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0002"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0044",
@@ -2364,6 +2588,17 @@
         "noise": 0.42
       },
       "transport_score": 51,
+      "neighborhood": {
+        "walk_score": 80,
+        "schools_500m": 8,
+        "income": 35000,
+        "amenities": {
+          "food": 23,
+          "health": 9,
+          "green": 0,
+          "culture": 8
+        }
+      },
       "dpe": {
         "energy_class": "E",
         "ghg_class": "C"
@@ -2377,10 +2612,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 48,
+        "opportunity_score": 49,
         "price_score": 59,
         "market_gap_score": 55,
-        "liquidity_score": 57
+        "liquidity_score": 61
       },
       "signals": {
         "price_drops": 1,
@@ -2389,11 +2624,12 @@
         "explanations": [
           "1.9% below DVF average (12 697 €/m²)",
           "1 price drop detected (−4.5% total)",
-          "110 days on market"
+          "110 days on market",
+          "Highly walkable area (shops, services nearby)",
+          "8 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0044"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0011",
@@ -2469,6 +2705,17 @@
         "noise": 0.61
       },
       "transport_score": 68,
+      "neighborhood": {
+        "walk_score": 52,
+        "schools_500m": 3,
+        "income": 32000,
+        "amenities": {
+          "food": 28,
+          "health": 6,
+          "green": 0,
+          "culture": 1
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "E"
@@ -2482,10 +2729,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 42,
+        "opportunity_score": 41,
         "price_score": 31,
         "market_gap_score": 18,
-        "liquidity_score": 68
+        "liquidity_score": 65
       },
       "signals": {
         "price_drops": 1,
@@ -2497,8 +2744,7 @@
           "206+ days on market"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0011"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0047",
@@ -2589,6 +2835,17 @@
         "noise": 0.38
       },
       "transport_score": 57,
+      "neighborhood": {
+        "walk_score": 76,
+        "schools_500m": 6,
+        "income": 34000,
+        "amenities": {
+          "food": 21,
+          "health": 8,
+          "green": 2,
+          "culture": 2
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "F"
@@ -2602,10 +2859,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 71,
+        "opportunity_score": 72,
         "price_score": 100,
         "market_gap_score": 100,
-        "liquidity_score": 67
+        "liquidity_score": 69
       },
       "signals": {
         "price_drops": 1,
@@ -2614,11 +2871,12 @@
         "explanations": [
           "37.9% below DVF average (11 763 €/m²)",
           "1 price drop detected (−3.7% total)",
-          "170+ days on market"
+          "170+ days on market",
+          "Highly walkable area (shops, services nearby)",
+          "6 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0047"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0074",
@@ -2704,6 +2962,17 @@
         "noise": 0.34
       },
       "transport_score": 50,
+      "neighborhood": {
+        "walk_score": 19,
+        "schools_500m": 2,
+        "income": 45000,
+        "amenities": {
+          "food": 2,
+          "health": 0,
+          "green": 2,
+          "culture": 0
+        }
+      },
       "dpe": {
         "energy_class": "E",
         "ghg_class": "E"
@@ -2720,7 +2989,7 @@
         "opportunity_score": 66,
         "price_score": 100,
         "market_gap_score": 100,
-        "liquidity_score": 62
+        "liquidity_score": 55
       },
       "signals": {
         "price_drops": 0,
@@ -2728,11 +2997,11 @@
         "long_time_on_market": true,
         "explanations": [
           "27.4% below DVF average (11 808 €/m²)",
-          "206+ days on market"
+          "206+ days on market",
+          "Affluent area (median income 45k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0074"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0086",
@@ -2828,6 +3097,17 @@
         "noise": 0.59
       },
       "transport_score": 73,
+      "neighborhood": {
+        "walk_score": 77,
+        "schools_500m": 5,
+        "income": 29000,
+        "amenities": {
+          "food": 24,
+          "health": 8,
+          "green": 2,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "E"
@@ -2844,7 +3124,7 @@
         "opportunity_score": 78,
         "price_score": 100,
         "market_gap_score": 100,
-        "liquidity_score": 69
+        "liquidity_score": 71
       },
       "signals": {
         "price_drops": 2,
@@ -2853,11 +3133,11 @@
         "explanations": [
           "22.8% below DVF average (10 351 €/m²)",
           "2 price drops detected (−8.2% total)",
-          "140+ days on market"
+          "140+ days on market",
+          "Highly walkable area (shops, services nearby)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0086"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0056",
@@ -2943,6 +3223,17 @@
         "noise": 0.71
       },
       "transport_score": 68,
+      "neighborhood": {
+        "walk_score": 39,
+        "schools_500m": 3,
+        "income": 31000,
+        "amenities": {
+          "food": 12,
+          "health": 4,
+          "green": 0,
+          "culture": 0
+        }
+      },
       "dpe": {
         "energy_class": "C",
         "ghg_class": "E"
@@ -2956,10 +3247,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 49,
+        "opportunity_score": 48,
         "price_score": 69,
         "market_gap_score": 64,
-        "liquidity_score": 66
+        "liquidity_score": 62
       },
       "signals": {
         "price_drops": 0,
@@ -2970,8 +3261,7 @@
           "130+ days on market"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0056"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0009",
@@ -3057,6 +3347,17 @@
         "noise": 0.33
       },
       "transport_score": 38,
+      "neighborhood": {
+        "walk_score": 69,
+        "schools_500m": 9,
+        "income": 35000,
+        "amenities": {
+          "food": 25,
+          "health": 2,
+          "green": 0,
+          "culture": 5
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "E"
@@ -3073,7 +3374,7 @@
         "opportunity_score": 35,
         "price_score": 16,
         "market_gap_score": 29,
-        "liquidity_score": 52
+        "liquidity_score": 55
       },
       "signals": {
         "price_drops": 0,
@@ -3082,11 +3383,11 @@
         "explanations": [
           "8.4% above DVF average (13 837 €/m²)",
           "186+ days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "9 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0009"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0023",
@@ -3162,6 +3463,17 @@
         "noise": 0.33
       },
       "transport_score": 53,
+      "neighborhood": {
+        "walk_score": 72,
+        "schools_500m": 11,
+        "income": 32000,
+        "amenities": {
+          "food": 20,
+          "health": 7,
+          "green": 0,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "E"
@@ -3178,7 +3490,7 @@
         "opportunity_score": 48,
         "price_score": 72,
         "market_gap_score": 84,
-        "liquidity_score": 56
+        "liquidity_score": 59
       },
       "signals": {
         "price_drops": 0,
@@ -3186,11 +3498,11 @@
         "long_time_on_market": false,
         "explanations": [
           "13.5% below DVF average (11 018 €/m²)",
-          "40 days on market"
+          "40 days on market",
+          "11 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0023"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0031",
@@ -3286,6 +3598,17 @@
         "noise": 0.32
       },
       "transport_score": 47,
+      "neighborhood": {
+        "walk_score": 83,
+        "schools_500m": 7,
+        "income": 27000,
+        "amenities": {
+          "food": 22,
+          "health": 6,
+          "green": 3,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "A",
         "ghg_class": "E"
@@ -3302,7 +3625,7 @@
         "opportunity_score": 53,
         "price_score": 40,
         "market_gap_score": 33,
-        "liquidity_score": 56
+        "liquidity_score": 62
       },
       "signals": {
         "price_drops": 2,
@@ -3311,11 +3634,12 @@
         "explanations": [
           "6.6% above DVF average (9 494 €/m²)",
           "2 price drops detected (−9.7% total)",
-          "186+ days on market"
+          "186+ days on market",
+          "Highly walkable area (shops, services nearby)",
+          "7 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0031"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0048",
@@ -3386,6 +3710,17 @@
         "noise": 0.51
       },
       "transport_score": 68,
+      "neighborhood": {
+        "walk_score": 82,
+        "schools_500m": 7,
+        "income": 32000,
+        "amenities": {
+          "food": 18,
+          "health": 10,
+          "green": 2,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "G",
         "ghg_class": "E"
@@ -3402,7 +3737,7 @@
         "opportunity_score": 55,
         "price_score": 67,
         "market_gap_score": 86,
-        "liquidity_score": 68
+        "liquidity_score": 71
       },
       "signals": {
         "price_drops": 0,
@@ -3410,11 +3745,12 @@
         "long_time_on_market": false,
         "explanations": [
           "14.5% below DVF average (11 427 €/m²)",
-          "90 days on market"
+          "90 days on market",
+          "Highly walkable area (shops, services nearby)",
+          "7 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0048"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0063",
@@ -3505,6 +3841,17 @@
         "noise": 0.46
       },
       "transport_score": 54,
+      "neighborhood": {
+        "walk_score": 78,
+        "schools_500m": 10,
+        "income": 26000,
+        "amenities": {
+          "food": 22,
+          "health": 1,
+          "green": 5,
+          "culture": 2
+        }
+      },
       "dpe": {
         "energy_class": "E",
         "ghg_class": "D"
@@ -3518,10 +3865,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 56,
+        "opportunity_score": 57,
         "price_score": 59,
         "market_gap_score": 57,
-        "liquidity_score": 45
+        "liquidity_score": 51
       },
       "signals": {
         "price_drops": 1,
@@ -3530,11 +3877,12 @@
         "explanations": [
           "2.8% below DVF average (9 671 €/m²)",
           "1 price drop detected (−6.6% total)",
-          "186+ days on market"
+          "186+ days on market",
+          "Highly walkable area (shops, services nearby)",
+          "10 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0063"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0076",
@@ -3610,6 +3958,17 @@
         "noise": 0.46
       },
       "transport_score": 41,
+      "neighborhood": {
+        "walk_score": 84,
+        "schools_500m": 8,
+        "income": 25000,
+        "amenities": {
+          "food": 12,
+          "health": 13,
+          "green": 2,
+          "culture": 6
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "F"
@@ -3623,10 +3982,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 46,
+        "opportunity_score": 47,
         "price_score": 74,
         "market_gap_score": 62,
-        "liquidity_score": 46
+        "liquidity_score": 54
       },
       "signals": {
         "price_drops": 1,
@@ -3635,11 +3994,12 @@
         "explanations": [
           "4.6% below DVF average (8 765 €/m²)",
           "1 price drop detected (−4.3% total)",
-          "70 days on market"
+          "70 days on market",
+          "Highly walkable area (shops, services nearby)",
+          "8 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0076"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0084",
@@ -3710,6 +4070,17 @@
         "noise": 0.28
       },
       "transport_score": 9,
+      "neighborhood": {
+        "walk_score": 78,
+        "schools_500m": 6,
+        "income": 23000,
+        "amenities": {
+          "food": 18,
+          "health": 6,
+          "green": 2,
+          "culture": 4
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "B"
@@ -3723,10 +4094,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 30,
+        "opportunity_score": 31,
         "price_score": 33,
         "market_gap_score": 34,
-        "liquidity_score": 31
+        "liquidity_score": 41
       },
       "signals": {
         "price_drops": 0,
@@ -3735,11 +4106,12 @@
         "explanations": [
           "6.3% above DVF average (9 030 €/m²)",
           "170+ days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "Highly walkable area (shops, services nearby)",
+          "6 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0084"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0064",
@@ -3825,6 +4197,17 @@
         "noise": 0.56
       },
       "transport_score": 61,
+      "neighborhood": {
+        "walk_score": 83,
+        "schools_500m": 7,
+        "income": 32000,
+        "amenities": {
+          "food": 25,
+          "health": 3,
+          "green": 3,
+          "culture": 5
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "D"
@@ -3841,7 +4224,7 @@
         "opportunity_score": 42,
         "price_score": 73,
         "market_gap_score": 71,
-        "liquidity_score": 59
+        "liquidity_score": 64
       },
       "signals": {
         "price_drops": 0,
@@ -3849,11 +4232,12 @@
         "long_time_on_market": false,
         "explanations": [
           "8.2% below DVF average (10 335 €/m²)",
-          "20 days on market"
+          "20 days on market",
+          "Highly walkable area (shops, services nearby)",
+          "7 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0064"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0080",
@@ -3929,6 +4313,17 @@
         "noise": 0.26
       },
       "transport_score": 24,
+      "neighborhood": {
+        "walk_score": 83,
+        "schools_500m": 7,
+        "income": 26000,
+        "amenities": {
+          "food": 31,
+          "health": 13,
+          "green": 1,
+          "culture": 5
+        }
+      },
       "dpe": {
         "energy_class": "B",
         "ghg_class": "C"
@@ -3942,10 +4337,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 54,
+        "opportunity_score": 55,
         "price_score": 100,
         "market_gap_score": 100,
-        "liquidity_score": 47
+        "liquidity_score": 55
       },
       "signals": {
         "price_drops": 0,
@@ -3954,11 +4349,12 @@
         "explanations": [
           "33.1% below DVF average (9 761 €/m²)",
           "90 days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "Highly walkable area (shops, services nearby)",
+          "7 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0080"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0014",
@@ -4054,6 +4450,17 @@
         "noise": 0.46
       },
       "transport_score": 43,
+      "neighborhood": {
+        "walk_score": 86,
+        "schools_500m": 9,
+        "income": 33000,
+        "amenities": {
+          "food": 18,
+          "health": 6,
+          "green": 2,
+          "culture": 5
+        }
+      },
       "dpe": {
         "energy_class": "E",
         "ghg_class": "B"
@@ -4067,10 +4474,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 39,
+        "opportunity_score": 40,
         "price_score": 25,
         "market_gap_score": 7,
-        "liquidity_score": 52
+        "liquidity_score": 59
       },
       "signals": {
         "price_drops": 2,
@@ -4079,11 +4486,12 @@
         "explanations": [
           "17.2% above DVF average (10 264 €/m²)",
           "2 price drops detected (−9.1% total)",
-          "166+ days on market"
+          "166+ days on market",
+          "Highly walkable area (shops, services nearby)",
+          "9 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0014"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0037",
@@ -4169,6 +4577,17 @@
         "noise": 0.48
       },
       "transport_score": 60,
+      "neighborhood": {
+        "walk_score": 81,
+        "schools_500m": 11,
+        "income": 25000,
+        "amenities": {
+          "food": 17,
+          "health": 10,
+          "green": 2,
+          "culture": 2
+        }
+      },
       "dpe": {
         "energy_class": "E",
         "ghg_class": "E"
@@ -4185,7 +4604,7 @@
         "opportunity_score": 42,
         "price_score": 47,
         "market_gap_score": 47,
-        "liquidity_score": 60
+        "liquidity_score": 64
       },
       "signals": {
         "price_drops": 0,
@@ -4193,11 +4612,12 @@
         "long_time_on_market": true,
         "explanations": [
           "1.2% above DVF average (9 401 €/m²)",
-          "150+ days on market"
+          "150+ days on market",
+          "Highly walkable area (shops, services nearby)",
+          "11 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0037"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0051",
@@ -4283,6 +4703,17 @@
         "noise": 0.21
       },
       "transport_score": 21,
+      "neighborhood": {
+        "walk_score": 28,
+        "schools_500m": 1,
+        "income": 47000,
+        "amenities": {
+          "food": 5,
+          "health": 1,
+          "green": 1,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "C",
         "ghg_class": "F"
@@ -4299,7 +4730,7 @@
         "opportunity_score": 81,
         "price_score": 100,
         "market_gap_score": 100,
-        "liquidity_score": 66
+        "liquidity_score": 62
       },
       "signals": {
         "price_drops": 3,
@@ -4309,11 +4740,11 @@
           "23.6% below DVF average (14 505 €/m²)",
           "3 price drops detected (−13.3% total)",
           "150+ days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "Affluent area (median income 47k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0051"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0087",
@@ -4404,6 +4835,17 @@
         "noise": 0.54
       },
       "transport_score": 68,
+      "neighborhood": {
+        "walk_score": 95,
+        "schools_500m": 11,
+        "income": 30000,
+        "amenities": {
+          "food": 33,
+          "health": 13,
+          "green": 3,
+          "culture": 6
+        }
+      },
       "dpe": {
         "energy_class": "E",
         "ghg_class": "B"
@@ -4417,10 +4859,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 54,
+        "opportunity_score": 55,
         "price_score": 61,
         "market_gap_score": 53,
-        "liquidity_score": 68
+        "liquidity_score": 74
       },
       "signals": {
         "price_drops": 1,
@@ -4429,11 +4871,12 @@
         "explanations": [
           "1.1% below DVF average (10 394 €/m²)",
           "1 price drop detected (−4.7% total)",
-          "160+ days on market"
+          "160+ days on market",
+          "Highly walkable area (shops, services nearby)",
+          "11 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0087"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0028",
@@ -4519,6 +4962,17 @@
         "noise": 0.4
       },
       "transport_score": 70,
+      "neighborhood": {
+        "walk_score": 80,
+        "schools_500m": 7,
+        "income": 34000,
+        "amenities": {
+          "food": 26,
+          "health": 3,
+          "green": 3,
+          "culture": 4
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "B"
@@ -4535,7 +4989,7 @@
         "opportunity_score": 25,
         "price_score": 0,
         "market_gap_score": 0,
-        "liquidity_score": 66
+        "liquidity_score": 69
       },
       "signals": {
         "price_drops": 0,
@@ -4543,11 +4997,12 @@
         "long_time_on_market": true,
         "explanations": [
           "26.5% above DVF average (11 396 €/m²)",
-          "150+ days on market"
+          "150+ days on market",
+          "Highly walkable area (shops, services nearby)",
+          "7 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0028"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0034",
@@ -4638,6 +5093,17 @@
         "noise": 0.33
       },
       "transport_score": 45,
+      "neighborhood": {
+        "walk_score": 47,
+        "schools_500m": 1,
+        "income": 36000,
+        "amenities": {
+          "food": 15,
+          "health": 3,
+          "green": 0,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "G",
         "ghg_class": "C"
@@ -4654,7 +5120,7 @@
         "opportunity_score": 23,
         "price_score": 7,
         "market_gap_score": 5,
-        "liquidity_score": 64
+        "liquidity_score": 62
       },
       "signals": {
         "price_drops": 1,
@@ -4666,8 +5132,7 @@
           "60 days on market"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0034"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0008",
@@ -4758,6 +5223,17 @@
         "noise": 0.53
       },
       "transport_score": 66,
+      "neighborhood": {
+        "walk_score": 65,
+        "schools_500m": 3,
+        "income": 43000,
+        "amenities": {
+          "food": 20,
+          "health": 11,
+          "green": 0,
+          "culture": 4
+        }
+      },
       "dpe": {
         "energy_class": "G",
         "ghg_class": "B"
@@ -4774,7 +5250,7 @@
         "opportunity_score": 50,
         "price_score": 57,
         "market_gap_score": 59,
-        "liquidity_score": 80
+        "liquidity_score": 78
       },
       "signals": {
         "price_drops": 1,
@@ -4784,11 +5260,11 @@
           "3.7% below DVF average (15 603 €/m²)",
           "1 price drop detected (−5.3% total)",
           "50 days on market",
-          "High resale liquidity"
+          "High resale liquidity",
+          "Affluent area (median income 43k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0008"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0089",
@@ -4874,6 +5350,17 @@
         "noise": 0.21
       },
       "transport_score": 23,
+      "neighborhood": {
+        "walk_score": 64,
+        "schools_500m": 8,
+        "income": 29000,
+        "amenities": {
+          "food": 20,
+          "health": 4,
+          "green": 0,
+          "culture": 2
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "D"
@@ -4890,7 +5377,7 @@
         "opportunity_score": 36,
         "price_score": 35,
         "market_gap_score": 49,
-        "liquidity_score": 36
+        "liquidity_score": 42
       },
       "signals": {
         "price_drops": 0,
@@ -4899,11 +5386,11 @@
         "explanations": [
           "In line with DVF average",
           "136+ days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "8 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0089"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0049",
@@ -4989,6 +5476,17 @@
         "noise": 0.44
       },
       "transport_score": 58,
+      "neighborhood": {
+        "walk_score": 57,
+        "schools_500m": 5,
+        "income": 27000,
+        "amenities": {
+          "food": 12,
+          "health": 3,
+          "green": 3,
+          "culture": 0
+        }
+      },
       "dpe": {
         "energy_class": "G",
         "ghg_class": "D"
@@ -5016,8 +5514,7 @@
           "126+ days on market"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0049"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0050",
@@ -5103,6 +5600,17 @@
         "noise": 0.35
       },
       "transport_score": 38,
+      "neighborhood": {
+        "walk_score": 78,
+        "schools_500m": 9,
+        "income": 25000,
+        "amenities": {
+          "food": 20,
+          "health": 4,
+          "green": 1,
+          "culture": 6
+        }
+      },
       "dpe": {
         "energy_class": "B",
         "ghg_class": "C"
@@ -5116,10 +5624,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 24,
+        "opportunity_score": 25,
         "price_score": 37,
         "market_gap_score": 30,
-        "liquidity_score": 45
+        "liquidity_score": 52
       },
       "signals": {
         "price_drops": 0,
@@ -5128,11 +5636,12 @@
         "explanations": [
           "7.9% above DVF average (9 220 €/m²)",
           "50 days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "Highly walkable area (shops, services nearby)",
+          "9 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0050"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0057",
@@ -5223,6 +5732,17 @@
         "noise": 0.4
       },
       "transport_score": 51,
+      "neighborhood": {
+        "walk_score": 85,
+        "schools_500m": 4,
+        "income": 32000,
+        "amenities": {
+          "food": 24,
+          "health": 7,
+          "green": 4,
+          "culture": 4
+        }
+      },
       "dpe": {
         "energy_class": "E",
         "ghg_class": "E"
@@ -5236,10 +5756,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 62,
+        "opportunity_score": 63,
         "price_score": 100,
         "market_gap_score": 100,
-        "liquidity_score": 61
+        "liquidity_score": 66
       },
       "signals": {
         "price_drops": 1,
@@ -5248,11 +5768,11 @@
         "explanations": [
           "28.4% below DVF average (10 509 €/m²)",
           "1 price drop detected (−5.9% total)",
-          "30 days on market"
+          "30 days on market",
+          "Highly walkable area (shops, services nearby)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0057"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0083",
@@ -5338,6 +5858,17 @@
         "noise": 0.45
       },
       "transport_score": 68,
+      "neighborhood": {
+        "walk_score": 75,
+        "schools_500m": 6,
+        "income": 34000,
+        "amenities": {
+          "food": 26,
+          "health": 3,
+          "green": 3,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "D"
@@ -5351,10 +5882,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 45,
+        "opportunity_score": 46,
         "price_score": 37,
         "market_gap_score": 39,
-        "liquidity_score": 68
+        "liquidity_score": 70
       },
       "signals": {
         "price_drops": 1,
@@ -5363,11 +5894,12 @@
         "explanations": [
           "4.4% above DVF average (12 379 €/m²)",
           "1 price drop detected (−4.1% total)",
-          "126+ days on market"
+          "126+ days on market",
+          "Highly walkable area (shops, services nearby)",
+          "6 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0083"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0033",
@@ -5453,6 +5985,17 @@
         "noise": 0.44
       },
       "transport_score": 47,
+      "neighborhood": {
+        "walk_score": 25,
+        "schools_500m": 1,
+        "income": 38000,
+        "amenities": {
+          "food": 2,
+          "health": 5,
+          "green": 0,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "B",
         "ghg_class": "C"
@@ -5469,7 +6012,7 @@
         "opportunity_score": 59,
         "price_score": 97,
         "market_gap_score": 100,
-        "liquidity_score": 59
+        "liquidity_score": 53
       },
       "signals": {
         "price_drops": 0,
@@ -5480,8 +6023,7 @@
           "116 days on market"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0033"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0053",
@@ -5552,6 +6094,17 @@
         "noise": 0.38
       },
       "transport_score": 53,
+      "neighborhood": {
+        "walk_score": 60,
+        "schools_500m": 6,
+        "income": 27000,
+        "amenities": {
+          "food": 17,
+          "health": 5,
+          "green": 0,
+          "culture": 2
+        }
+      },
       "dpe": {
         "energy_class": "G",
         "ghg_class": "C"
@@ -5568,7 +6121,7 @@
         "opportunity_score": 46,
         "price_score": 53,
         "market_gap_score": 65,
-        "liquidity_score": 58
+        "liquidity_score": 59
       },
       "signals": {
         "price_drops": 0,
@@ -5576,11 +6129,11 @@
         "long_time_on_market": false,
         "explanations": [
           "5.8% below DVF average (10 146 €/m²)",
-          "116 days on market"
+          "116 days on market",
+          "6 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0053"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0062",
@@ -5651,6 +6204,17 @@
         "noise": 0.49
       },
       "transport_score": 67,
+      "neighborhood": {
+        "walk_score": 68,
+        "schools_500m": 8,
+        "income": 32000,
+        "amenities": {
+          "food": 11,
+          "health": 9,
+          "green": 1,
+          "culture": 2
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "D"
@@ -5667,7 +6231,7 @@
         "opportunity_score": 34,
         "price_score": 44,
         "market_gap_score": 33,
-        "liquidity_score": 54
+        "liquidity_score": 56
       },
       "signals": {
         "price_drops": 0,
@@ -5675,11 +6239,11 @@
         "long_time_on_market": false,
         "explanations": [
           "6.8% above DVF average (10 180 €/m²)",
-          "116 days on market"
+          "116 days on market",
+          "8 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0062"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0079",
@@ -5770,6 +6334,17 @@
         "noise": 0.49
       },
       "transport_score": 75,
+      "neighborhood": {
+        "walk_score": 90,
+        "schools_500m": 8,
+        "income": 35000,
+        "amenities": {
+          "food": 20,
+          "health": 11,
+          "green": 2,
+          "culture": 5
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "D"
@@ -5783,10 +6358,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 45,
+        "opportunity_score": 46,
         "price_score": 49,
         "market_gap_score": 48,
-        "liquidity_score": 74
+        "liquidity_score": 77
       },
       "signals": {
         "price_drops": 1,
@@ -5796,11 +6371,13 @@
           "In line with DVF average",
           "1 price drop detected (−3.5% total)",
           "70 days on market",
-          "Excellent public-transport access"
+          "Excellent public-transport access",
+          "High resale liquidity",
+          "Highly walkable area (shops, services nearby)",
+          "8 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0079"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0030",
@@ -5876,6 +6453,17 @@
         "noise": 0.4
       },
       "transport_score": 53,
+      "neighborhood": {
+        "walk_score": 98,
+        "schools_500m": 10,
+        "income": 30000,
+        "amenities": {
+          "food": 30,
+          "health": 7,
+          "green": 5,
+          "culture": 6
+        }
+      },
       "dpe": {
         "energy_class": "G",
         "ghg_class": "C"
@@ -5889,10 +6477,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 29,
+        "opportunity_score": 30,
         "price_score": 28,
         "market_gap_score": 28,
-        "liquidity_score": 49
+        "liquidity_score": 58
       },
       "signals": {
         "price_drops": 0,
@@ -5900,11 +6488,12 @@
         "long_time_on_market": false,
         "explanations": [
           "8.9% above DVF average (10 927 €/m²)",
-          "106 days on market"
+          "106 days on market",
+          "Highly walkable area (shops, services nearby)",
+          "10 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0030"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0052",
@@ -5990,6 +6579,17 @@
         "noise": 0.5
       },
       "transport_score": 68,
+      "neighborhood": {
+        "walk_score": 65,
+        "schools_500m": 5,
+        "income": 38000,
+        "amenities": {
+          "food": 13,
+          "health": 8,
+          "green": 1,
+          "culture": 2
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "E"
@@ -6006,7 +6606,7 @@
         "opportunity_score": 45,
         "price_score": 45,
         "market_gap_score": 55,
-        "liquidity_score": 80
+        "liquidity_score": 78
       },
       "signals": {
         "price_drops": 0,
@@ -6018,8 +6618,7 @@
           "High resale liquidity"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0052"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0072",
@@ -6110,6 +6709,17 @@
         "noise": 0.45
       },
       "transport_score": 53,
+      "neighborhood": {
+        "walk_score": 75,
+        "schools_500m": 6,
+        "income": 34000,
+        "amenities": {
+          "food": 19,
+          "health": 4,
+          "green": 2,
+          "culture": 4
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "D"
@@ -6123,10 +6733,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 29,
+        "opportunity_score": 30,
         "price_score": 10,
         "market_gap_score": 4,
-        "liquidity_score": 62
+        "liquidity_score": 65
       },
       "signals": {
         "price_drops": 1,
@@ -6135,11 +6745,12 @@
         "explanations": [
           "18.5% above DVF average (12 179 €/m²)",
           "1 price drop detected (−5.4% total)",
-          "106 days on market"
+          "106 days on market",
+          "Highly walkable area (shops, services nearby)",
+          "6 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0072"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0004",
@@ -6230,6 +6841,17 @@
         "noise": 0.74
       },
       "transport_score": 84,
+      "neighborhood": {
+        "walk_score": 85,
+        "schools_500m": 10,
+        "income": 43000,
+        "amenities": {
+          "food": 17,
+          "health": 3,
+          "green": 4,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "A",
         "ghg_class": "C"
@@ -6246,7 +6868,7 @@
         "opportunity_score": 27,
         "price_score": 0,
         "market_gap_score": 0,
-        "liquidity_score": 94
+        "liquidity_score": 93
       },
       "signals": {
         "price_drops": 1,
@@ -6257,11 +6879,13 @@
           "1 price drop detected (−2.6% total)",
           "60 days on market",
           "Excellent public-transport access",
-          "High resale liquidity"
+          "High resale liquidity",
+          "Highly walkable area (shops, services nearby)",
+          "10 schools within 500 m",
+          "Affluent area (median income 43k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0004"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0032",
@@ -6347,6 +6971,17 @@
         "noise": 0.79
       },
       "transport_score": 68,
+      "neighborhood": {
+        "walk_score": 84,
+        "schools_500m": 10,
+        "income": 30000,
+        "amenities": {
+          "food": 24,
+          "health": 11,
+          "green": 2,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "G",
         "ghg_class": "A"
@@ -6360,10 +6995,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 56,
+        "opportunity_score": 57,
         "price_score": 93,
         "market_gap_score": 90,
-        "liquidity_score": 62
+        "liquidity_score": 66
       },
       "signals": {
         "price_drops": 0,
@@ -6371,11 +7006,12 @@
         "long_time_on_market": false,
         "explanations": [
           "16.1% below DVF average (10 365 €/m²)",
-          "96 days on market"
+          "96 days on market",
+          "Highly walkable area (shops, services nearby)",
+          "10 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0032"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0036",
@@ -6446,6 +7082,17 @@
         "noise": 0.29
       },
       "transport_score": 12,
+      "neighborhood": {
+        "walk_score": 42,
+        "schools_500m": 2,
+        "income": 31000,
+        "amenities": {
+          "food": 15,
+          "health": 1,
+          "green": 1,
+          "culture": 0
+        }
+      },
       "dpe": {
         "energy_class": "C",
         "ghg_class": "C"
@@ -6462,7 +7109,7 @@
         "opportunity_score": 39,
         "price_score": 73,
         "market_gap_score": 77,
-        "liquidity_score": 38
+        "liquidity_score": 40
       },
       "signals": {
         "price_drops": 0,
@@ -6474,8 +7121,7 @@
           "Limited public-transport access"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0036"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0060",
@@ -6571,6 +7217,17 @@
         "noise": 0.37
       },
       "transport_score": 41,
+      "neighborhood": {
+        "walk_score": 90,
+        "schools_500m": 6,
+        "income": 33000,
+        "amenities": {
+          "food": 23,
+          "health": 12,
+          "green": 3,
+          "culture": 5
+        }
+      },
       "dpe": {
         "energy_class": "E",
         "ghg_class": "D"
@@ -6584,10 +7241,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 55,
+        "opportunity_score": 56,
         "price_score": 52,
         "market_gap_score": 65,
-        "liquidity_score": 44
+        "liquidity_score": 53
       },
       "signals": {
         "price_drops": 2,
@@ -6596,11 +7253,12 @@
         "explanations": [
           "6% below DVF average (11 373 €/m²)",
           "2 price drops detected (−10.1% total)",
-          "60 days on market"
+          "60 days on market",
+          "Highly walkable area (shops, services nearby)",
+          "6 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0060"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0068",
@@ -6691,6 +7349,17 @@
         "noise": 0.44
       },
       "transport_score": 40,
+      "neighborhood": {
+        "walk_score": 48,
+        "schools_500m": 3,
+        "income": 38000,
+        "amenities": {
+          "food": 11,
+          "health": 2,
+          "green": 3,
+          "culture": 0
+        }
+      },
       "dpe": {
         "energy_class": "C",
         "ghg_class": "D"
@@ -6707,7 +7376,7 @@
         "opportunity_score": 55,
         "price_score": 50,
         "market_gap_score": 58,
-        "liquidity_score": 63
+        "liquidity_score": 62
       },
       "signals": {
         "price_drops": 2,
@@ -6720,8 +7389,7 @@
           "Limited public-transport access"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0068"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0073",
@@ -6817,6 +7485,17 @@
         "noise": 0.46
       },
       "transport_score": 41,
+      "neighborhood": {
+        "walk_score": 83,
+        "schools_500m": 12,
+        "income": 25000,
+        "amenities": {
+          "food": 26,
+          "health": 8,
+          "green": 3,
+          "culture": 1
+        }
+      },
       "dpe": {
         "energy_class": "B",
         "ghg_class": "E"
@@ -6830,10 +7509,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 47,
+        "opportunity_score": 48,
         "price_score": 50,
         "market_gap_score": 39,
-        "liquidity_score": 46
+        "liquidity_score": 54
       },
       "signals": {
         "price_drops": 2,
@@ -6842,11 +7521,12 @@
         "explanations": [
           "4.5% above DVF average (9 010 €/m²)",
           "2 price drops detected (−10.2% total)",
-          "96 days on market"
+          "96 days on market",
+          "Highly walkable area (shops, services nearby)",
+          "12 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0073"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0059",
@@ -6937,6 +7617,17 @@
         "noise": 0.27
       },
       "transport_score": 24,
+      "neighborhood": {
+        "walk_score": 85,
+        "schools_500m": 9,
+        "income": 23000,
+        "amenities": {
+          "food": 20,
+          "health": 4,
+          "green": 3,
+          "culture": 4
+        }
+      },
       "dpe": {
         "energy_class": "C",
         "ghg_class": "D"
@@ -6950,10 +7641,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 18,
+        "opportunity_score": 19,
         "price_score": 7,
         "market_gap_score": 0,
-        "liquidity_score": 37
+        "liquidity_score": 47
       },
       "signals": {
         "price_drops": 1,
@@ -6963,11 +7654,12 @@
           "23.7% above DVF average (8 605 €/m²)",
           "1 price drop detected (−5.4% total)",
           "50 days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "Highly walkable area (shops, services nearby)",
+          "9 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0059"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0066",
@@ -7058,6 +7750,17 @@
         "noise": 0.54
       },
       "transport_score": 67,
+      "neighborhood": {
+        "walk_score": 36,
+        "schools_500m": 4,
+        "income": 38000,
+        "amenities": {
+          "food": 11,
+          "health": 2,
+          "green": 0,
+          "culture": 0
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "C"
@@ -7074,7 +7777,7 @@
         "opportunity_score": 46,
         "price_score": 34,
         "market_gap_score": 44,
-        "liquidity_score": 74
+        "liquidity_score": 68
       },
       "signals": {
         "price_drops": 1,
@@ -7086,8 +7789,7 @@
           "86 days on market"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0066"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0015",
@@ -7183,6 +7885,17 @@
         "noise": 0.47
       },
       "transport_score": 58,
+      "neighborhood": {
+        "walk_score": 91,
+        "schools_500m": 12,
+        "income": 35000,
+        "amenities": {
+          "food": 23,
+          "health": 9,
+          "green": 4,
+          "culture": 2
+        }
+      },
       "dpe": {
         "energy_class": "E",
         "ghg_class": "F"
@@ -7196,10 +7909,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 68,
+        "opportunity_score": 69,
         "price_score": 81,
         "market_gap_score": 79,
-        "liquidity_score": 73
+        "liquidity_score": 77
       },
       "signals": {
         "price_drops": 2,
@@ -7208,11 +7921,13 @@
         "explanations": [
           "11.6% below DVF average (12 668 €/m²)",
           "2 price drops detected (−11.9% total)",
-          "76 days on market"
+          "76 days on market",
+          "High resale liquidity",
+          "Highly walkable area (shops, services nearby)",
+          "12 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0015"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0017",
@@ -7293,6 +8008,17 @@
         "noise": 0.36
       },
       "transport_score": 56,
+      "neighborhood": {
+        "walk_score": 64,
+        "schools_500m": 5,
+        "income": 31000,
+        "amenities": {
+          "food": 7,
+          "health": 12,
+          "green": 2,
+          "culture": 4
+        }
+      },
       "dpe": {
         "energy_class": "G",
         "ghg_class": "E"
@@ -7309,7 +8035,7 @@
         "opportunity_score": 43,
         "price_score": 58,
         "market_gap_score": 66,
-        "liquidity_score": 55
+        "liquidity_score": 57
       },
       "signals": {
         "price_drops": 0,
@@ -7320,8 +8046,7 @@
           "76 days on market"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0017"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0042",
@@ -7407,6 +8132,17 @@
         "noise": 0.7
       },
       "transport_score": 76,
+      "neighborhood": {
+        "walk_score": 32,
+        "schools_500m": 1,
+        "income": 36000,
+        "amenities": {
+          "food": 8,
+          "health": 0,
+          "green": 2,
+          "culture": 1
+        }
+      },
       "dpe": {
         "energy_class": "C",
         "ghg_class": "E"
@@ -7420,10 +8156,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 62,
+        "opportunity_score": 61,
         "price_score": 93,
         "market_gap_score": 100,
-        "liquidity_score": 82
+        "liquidity_score": 74
       },
       "signals": {
         "price_drops": 0,
@@ -7432,12 +8168,10 @@
         "explanations": [
           "21.3% below DVF average (13 770 €/m²)",
           "76 days on market",
-          "Excellent public-transport access",
-          "High resale liquidity"
+          "Excellent public-transport access"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0042"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0018",
@@ -7528,6 +8262,17 @@
         "noise": 0.33
       },
       "transport_score": 59,
+      "neighborhood": {
+        "walk_score": 31,
+        "schools_500m": 1,
+        "income": 38000,
+        "amenities": {
+          "food": 4,
+          "health": 9,
+          "green": 1,
+          "culture": 0
+        }
+      },
       "dpe": {
         "energy_class": "C",
         "ghg_class": "C"
@@ -7544,7 +8289,7 @@
         "opportunity_score": 32,
         "price_score": 23,
         "market_gap_score": 18,
-        "liquidity_score": 71
+        "liquidity_score": 64
       },
       "signals": {
         "price_drops": 1,
@@ -7556,8 +8301,7 @@
           "66 days on market"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0018"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0058",
@@ -7633,6 +8377,17 @@
         "noise": 0.61
       },
       "transport_score": 68,
+      "neighborhood": {
+        "walk_score": 26,
+        "schools_500m": 2,
+        "income": 45000,
+        "amenities": {
+          "food": 2,
+          "health": 0,
+          "green": 1,
+          "culture": 4
+        }
+      },
       "dpe": {
         "energy_class": "C",
         "ghg_class": "C"
@@ -7646,10 +8401,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 54,
+        "opportunity_score": 53,
         "price_score": 61,
         "market_gap_score": 65,
-        "liquidity_score": 69
+        "liquidity_score": 62
       },
       "signals": {
         "price_drops": 1,
@@ -7658,11 +8413,11 @@
         "explanations": [
           "5.9% below DVF average (12 630 €/m²)",
           "1 price drop detected (−5.9% total)",
-          "66 days on market"
+          "66 days on market",
+          "Affluent area (median income 45k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0058"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0021",
@@ -7748,6 +8503,17 @@
         "noise": 0.4
       },
       "transport_score": 62,
+      "neighborhood": {
+        "walk_score": 68,
+        "schools_500m": 8,
+        "income": 37000,
+        "amenities": {
+          "food": 25,
+          "health": 4,
+          "green": 2,
+          "culture": 0
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "B"
@@ -7761,10 +8527,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 39,
+        "opportunity_score": 38,
         "price_score": 36,
         "market_gap_score": 37,
-        "liquidity_score": 76
+        "liquidity_score": 75
       },
       "signals": {
         "price_drops": 1,
@@ -7774,11 +8540,11 @@
           "5.2% above DVF average (13 326 €/m²)",
           "1 price drop detected (−3.3% total)",
           "56 days on market",
-          "High resale liquidity"
+          "High resale liquidity",
+          "8 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0021"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0029",
@@ -7864,6 +8630,17 @@
         "noise": 0.36
       },
       "transport_score": 57,
+      "neighborhood": {
+        "walk_score": 76,
+        "schools_500m": 5,
+        "income": 23000,
+        "amenities": {
+          "food": 23,
+          "health": 5,
+          "green": 3,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "C"
@@ -7877,10 +8654,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 34,
+        "opportunity_score": 35,
         "price_score": 42,
         "market_gap_score": 48,
-        "liquidity_score": 50
+        "liquidity_score": 55
       },
       "signals": {
         "price_drops": 0,
@@ -7888,11 +8665,11 @@
         "long_time_on_market": false,
         "explanations": [
           "In line with DVF average",
-          "56 days on market"
+          "56 days on market",
+          "Highly walkable area (shops, services nearby)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0029"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0035",
@@ -7983,6 +8760,17 @@
         "noise": 0.38
       },
       "transport_score": 57,
+      "neighborhood": {
+        "walk_score": 85,
+        "schools_500m": 11,
+        "income": 26000,
+        "amenities": {
+          "food": 25,
+          "health": 10,
+          "green": 1,
+          "culture": 5
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "G"
@@ -7996,10 +8784,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 31,
+        "opportunity_score": 32,
         "price_score": 34,
         "market_gap_score": 14,
-        "liquidity_score": 60
+        "liquidity_score": 65
       },
       "signals": {
         "price_drops": 1,
@@ -8008,11 +8796,12 @@
         "explanations": [
           "14.5% above DVF average (9 183 €/m²)",
           "1 price drop detected (−6.3% total)",
-          "56 days on market"
+          "56 days on market",
+          "Highly walkable area (shops, services nearby)",
+          "11 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0035"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0075",
@@ -8098,6 +8887,17 @@
         "noise": 0.49
       },
       "transport_score": 71,
+      "neighborhood": {
+        "walk_score": 63,
+        "schools_500m": 5,
+        "income": 34000,
+        "amenities": {
+          "food": 12,
+          "health": 11,
+          "green": 1,
+          "culture": 2
+        }
+      },
       "dpe": {
         "energy_class": "E",
         "ghg_class": "D"
@@ -8114,7 +8914,7 @@
         "opportunity_score": 28,
         "price_score": 27,
         "market_gap_score": 27,
-        "liquidity_score": 62
+        "liquidity_score": 61
       },
       "signals": {
         "price_drops": 0,
@@ -8125,8 +8925,7 @@
           "56 days on market"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0075"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0043",
@@ -8217,6 +9016,17 @@
         "noise": 0.38
       },
       "transport_score": 58,
+      "neighborhood": {
+        "walk_score": 8,
+        "schools_500m": 1,
+        "income": 45000,
+        "amenities": {
+          "food": 2,
+          "health": 1,
+          "green": 0,
+          "culture": 0
+        }
+      },
       "dpe": {
         "energy_class": "C",
         "ghg_class": "F"
@@ -8230,10 +9040,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 46,
+        "opportunity_score": 45,
         "price_score": 63,
         "market_gap_score": 61,
-        "liquidity_score": 65
+        "liquidity_score": 55
       },
       "signals": {
         "price_drops": 1,
@@ -8242,11 +9052,11 @@
         "explanations": [
           "4.3% below DVF average (12 261 €/m²)",
           "1 price drop detected (−3.5% total)",
-          "46 days on market"
+          "46 days on market",
+          "Affluent area (median income 45k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0043"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0081",
@@ -8332,6 +9142,17 @@
         "noise": 0.35
       },
       "transport_score": 50,
+      "neighborhood": {
+        "walk_score": 100,
+        "schools_500m": 9,
+        "income": 30000,
+        "amenities": {
+          "food": 22,
+          "health": 12,
+          "green": 4,
+          "culture": 9
+        }
+      },
       "dpe": {
         "energy_class": "G",
         "ghg_class": "D"
@@ -8345,10 +9166,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 13,
+        "opportunity_score": 14,
         "price_score": 0,
         "market_gap_score": 0,
-        "liquidity_score": 55
+        "liquidity_score": 64
       },
       "signals": {
         "price_drops": 0,
@@ -8356,11 +9177,12 @@
         "long_time_on_market": false,
         "explanations": [
           "35.6% above DVF average (10 395 €/m²)",
-          "30 days on market"
+          "30 days on market",
+          "Highly walkable area (shops, services nearby)",
+          "9 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0081"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0022",
@@ -8451,6 +9273,17 @@
         "noise": 0.4
       },
       "transport_score": 46,
+      "neighborhood": {
+        "walk_score": 31,
+        "schools_500m": 4,
+        "income": 45000,
+        "amenities": {
+          "food": 5,
+          "health": 3,
+          "green": 1,
+          "culture": 0
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "C"
@@ -8464,10 +9297,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 54,
+        "opportunity_score": 53,
         "price_score": 78,
         "market_gap_score": 91,
-        "liquidity_score": 53
+        "liquidity_score": 49
       },
       "signals": {
         "price_drops": 1,
@@ -8476,11 +9309,11 @@
         "explanations": [
           "16.3% below DVF average (13 051 €/m²)",
           "1 price drop detected (−2.3% total)",
-          "36 days on market"
+          "36 days on market",
+          "Affluent area (median income 45k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0022"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0025",
@@ -8566,6 +9399,17 @@
         "noise": 0.33
       },
       "transport_score": 19,
+      "neighborhood": {
+        "walk_score": 86,
+        "schools_500m": 5,
+        "income": 23000,
+        "amenities": {
+          "food": 19,
+          "health": 7,
+          "green": 3,
+          "culture": 7
+        }
+      },
       "dpe": {
         "energy_class": "B",
         "ghg_class": "E"
@@ -8579,10 +9423,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 29,
+        "opportunity_score": 30,
         "price_score": 60,
         "market_gap_score": 53,
-        "liquidity_score": 35
+        "liquidity_score": 46
       },
       "signals": {
         "price_drops": 0,
@@ -8591,11 +9435,11 @@
         "explanations": [
           "1.2% below DVF average (8 591 €/m²)",
           "36 days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "Highly walkable area (shops, services nearby)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0025"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0039",
@@ -8681,6 +9525,17 @@
         "noise": 0.34
       },
       "transport_score": 43,
+      "neighborhood": {
+        "walk_score": 49,
+        "schools_500m": 3,
+        "income": 38000,
+        "amenities": {
+          "food": 9,
+          "health": 9,
+          "green": 1,
+          "culture": 1
+        }
+      },
       "dpe": {
         "energy_class": "B",
         "ghg_class": "D"
@@ -8697,7 +9552,7 @@
         "opportunity_score": 49,
         "price_score": 92,
         "market_gap_score": 90,
-        "liquidity_score": 64
+        "liquidity_score": 63
       },
       "signals": {
         "price_drops": 0,
@@ -8708,8 +9563,7 @@
           "36 days on market"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0039"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0070",
@@ -8795,6 +9649,17 @@
         "noise": 0.33
       },
       "transport_score": 24,
+      "neighborhood": {
+        "walk_score": 22,
+        "schools_500m": 1,
+        "income": 45000,
+        "amenities": {
+          "food": 1,
+          "health": 4,
+          "green": 2,
+          "culture": 0
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "E"
@@ -8808,10 +9673,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 47,
+        "opportunity_score": 46,
         "price_score": 76,
         "market_gap_score": 93,
-        "liquidity_score": 44
+        "liquidity_score": 41
       },
       "signals": {
         "price_drops": 0,
@@ -8820,11 +9685,11 @@
         "explanations": [
           "17.3% below DVF average (13 334 €/m²)",
           "36 days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "Affluent area (median income 45k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0070"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0077",
@@ -8910,6 +9775,17 @@
         "noise": 0.62
       },
       "transport_score": 73,
+      "neighborhood": {
+        "walk_score": 53,
+        "schools_500m": 6,
+        "income": 31000,
+        "amenities": {
+          "food": 3,
+          "health": 4,
+          "green": 3,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "G",
         "ghg_class": "D"
@@ -8926,7 +9802,7 @@
         "opportunity_score": 51,
         "price_score": 86,
         "market_gap_score": 86,
-        "liquidity_score": 68
+        "liquidity_score": 66
       },
       "signals": {
         "price_drops": 0,
@@ -8934,11 +9810,11 @@
         "long_time_on_market": false,
         "explanations": [
           "14.6% below DVF average (9 980 €/m²)",
-          "36 days on market"
+          "36 days on market",
+          "6 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0077"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0085",
@@ -9024,6 +9900,17 @@
         "noise": 0.29
       },
       "transport_score": 11,
+      "neighborhood": {
+        "walk_score": 63,
+        "schools_500m": 8,
+        "income": 43000,
+        "amenities": {
+          "food": 20,
+          "health": 2,
+          "green": 0,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "E",
         "ghg_class": "C"
@@ -9040,7 +9927,7 @@
         "opportunity_score": 46,
         "price_score": 93,
         "market_gap_score": 90,
-        "liquidity_score": 58
+        "liquidity_score": 61
       },
       "signals": {
         "price_drops": 0,
@@ -9049,11 +9936,12 @@
         "explanations": [
           "15.9% below DVF average (14 819 €/m²)",
           "36 days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "8 schools within 500 m",
+          "Affluent area (median income 43k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0085"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0013",
@@ -9139,6 +10027,17 @@
         "noise": 0.2
       },
       "transport_score": 18,
+      "neighborhood": {
+        "walk_score": 80,
+        "schools_500m": 7,
+        "income": 37000,
+        "amenities": {
+          "food": 22,
+          "health": 7,
+          "green": 2,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "F",
         "ghg_class": "B"
@@ -9155,7 +10054,7 @@
         "opportunity_score": 41,
         "price_score": 86,
         "market_gap_score": 79,
-        "liquidity_score": 52
+        "liquidity_score": 59
       },
       "signals": {
         "price_drops": 0,
@@ -9164,11 +10063,12 @@
         "explanations": [
           "11.5% below DVF average (12 488 €/m²)",
           "26 days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "Highly walkable area (shops, services nearby)",
+          "7 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0013"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0019",
@@ -9244,6 +10144,17 @@
         "noise": 0.37
       },
       "transport_score": 60,
+      "neighborhood": {
+        "walk_score": 70,
+        "schools_500m": 8,
+        "income": 35000,
+        "amenities": {
+          "food": 10,
+          "health": 2,
+          "green": 4,
+          "culture": 2
+        }
+      },
       "dpe": {
         "energy_class": "C",
         "ghg_class": "B"
@@ -9260,7 +10171,7 @@
         "opportunity_score": 29,
         "price_score": 19,
         "market_gap_score": 14,
-        "liquidity_score": 61
+        "liquidity_score": 63
       },
       "signals": {
         "price_drops": 1,
@@ -9269,11 +10180,11 @@
         "explanations": [
           "14.5% above DVF average (11 158 €/m²)",
           "1 price drop detected (−6% total)",
-          "26 days on market"
+          "26 days on market",
+          "8 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0019"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0045",
@@ -9359,6 +10270,17 @@
         "noise": 0.42
       },
       "transport_score": 51,
+      "neighborhood": {
+        "walk_score": 32,
+        "schools_500m": 2,
+        "income": 45000,
+        "amenities": {
+          "food": 6,
+          "health": 3,
+          "green": 0,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "B",
         "ghg_class": "D"
@@ -9372,10 +10294,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 40,
+        "opportunity_score": 39,
         "price_score": 63,
         "market_gap_score": 66,
-        "liquidity_score": 62
+        "liquidity_score": 58
       },
       "signals": {
         "price_drops": 0,
@@ -9383,11 +10305,11 @@
         "long_time_on_market": false,
         "explanations": [
           "6.3% below DVF average (12 528 €/m²)",
-          "26 days on market"
+          "26 days on market",
+          "Affluent area (median income 45k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0045"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0005",
@@ -9473,6 +10395,17 @@
         "noise": 0.2
       },
       "transport_score": 9,
+      "neighborhood": {
+        "walk_score": 40,
+        "schools_500m": 3,
+        "income": 44000,
+        "amenities": {
+          "food": 6,
+          "health": 3,
+          "green": 3,
+          "culture": 0
+        }
+      },
       "dpe": {
         "energy_class": "A",
         "ghg_class": "E"
@@ -9489,7 +10422,7 @@
         "opportunity_score": 35,
         "price_score": 71,
         "market_gap_score": 69,
-        "liquidity_score": 49
+        "liquidity_score": 50
       },
       "signals": {
         "price_drops": 0,
@@ -9498,11 +10431,11 @@
         "explanations": [
           "7.4% below DVF average (11 508 €/m²)",
           "16 days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "Affluent area (median income 44k€/yr)"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0005"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0010",
@@ -9588,6 +10521,17 @@
         "noise": 0.42
       },
       "transport_score": 38,
+      "neighborhood": {
+        "walk_score": 68,
+        "schools_500m": 7,
+        "income": 35000,
+        "amenities": {
+          "food": 15,
+          "health": 8,
+          "green": 1,
+          "culture": 0
+        }
+      },
       "dpe": {
         "energy_class": "A",
         "ghg_class": "E"
@@ -9604,7 +10548,7 @@
         "opportunity_score": 27,
         "price_score": 44,
         "market_gap_score": 40,
-        "liquidity_score": 59
+        "liquidity_score": 62
       },
       "signals": {
         "price_drops": 0,
@@ -9613,11 +10557,11 @@
         "explanations": [
           "4% above DVF average (12 846 €/m²)",
           "16 days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "7 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0010"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0012",
@@ -9703,6 +10647,17 @@
         "noise": 0.41
       },
       "transport_score": 77,
+      "neighborhood": {
+        "walk_score": 66,
+        "schools_500m": 9,
+        "income": 34000,
+        "amenities": {
+          "food": 11,
+          "health": 6,
+          "green": 2,
+          "culture": 1
+        }
+      },
       "dpe": {
         "energy_class": "E",
         "ghg_class": "F"
@@ -9719,7 +10674,7 @@
         "opportunity_score": 45,
         "price_score": 69,
         "market_gap_score": 72,
-        "liquidity_score": 72
+        "liquidity_score": 71
       },
       "signals": {
         "price_drops": 0,
@@ -9728,11 +10683,11 @@
         "explanations": [
           "8.9% below DVF average (12 222 €/m²)",
           "16 days on market",
-          "Excellent public-transport access"
+          "Excellent public-transport access",
+          "9 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0012"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0020",
@@ -9818,6 +10773,17 @@
         "noise": 0.27
       },
       "transport_score": 24,
+      "neighborhood": {
+        "walk_score": 82,
+        "schools_500m": 9,
+        "income": 33000,
+        "amenities": {
+          "food": 25,
+          "health": 7,
+          "green": 2,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "C",
         "ghg_class": "D"
@@ -9831,10 +10797,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 48,
+        "opportunity_score": 49,
         "price_score": 100,
         "market_gap_score": 100,
-        "liquidity_score": 45
+        "liquidity_score": 53
       },
       "signals": {
         "price_drops": 0,
@@ -9843,11 +10809,12 @@
         "explanations": [
           "21.2% below DVF average (10 371 €/m²)",
           "16 days on market",
-          "Limited public-transport access"
+          "Limited public-transport access",
+          "Highly walkable area (shops, services nearby)",
+          "9 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0020"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0038",
@@ -9933,6 +10900,17 @@
         "noise": 0.49
       },
       "transport_score": 80,
+      "neighborhood": {
+        "walk_score": 33,
+        "schools_500m": 2,
+        "income": 36000,
+        "amenities": {
+          "food": 1,
+          "health": 1,
+          "green": 3,
+          "culture": 3
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "B"
@@ -9946,10 +10924,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 19,
+        "opportunity_score": 18,
         "price_score": 13,
         "market_gap_score": 5,
-        "liquidity_score": 78
+        "liquidity_score": 70
       },
       "signals": {
         "price_drops": 0,
@@ -9958,12 +10936,10 @@
         "explanations": [
           "18% above DVF average (13 358 €/m²)",
           "16 days on market",
-          "Excellent public-transport access",
-          "High resale liquidity"
+          "Excellent public-transport access"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0038"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0071",
@@ -10044,6 +11020,17 @@
         "noise": 0.47
       },
       "transport_score": 57,
+      "neighborhood": {
+        "walk_score": 76,
+        "schools_500m": 7,
+        "income": 37000,
+        "amenities": {
+          "food": 18,
+          "health": 8,
+          "green": 2,
+          "culture": 1
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "E"
@@ -10057,10 +11044,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 43,
+        "opportunity_score": 44,
         "price_score": 67,
         "market_gap_score": 74,
-        "liquidity_score": 68
+        "liquidity_score": 70
       },
       "signals": {
         "price_drops": 0,
@@ -10068,11 +11055,12 @@
         "long_time_on_market": false,
         "explanations": [
           "9.6% below DVF average (13 447 €/m²)",
-          "16 days on market"
+          "16 days on market",
+          "Highly walkable area (shops, services nearby)",
+          "7 schools within 500 m"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0071"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0006",
@@ -10148,6 +11136,17 @@
         "noise": 0.48
       },
       "transport_score": 55,
+      "neighborhood": {
+        "walk_score": 66,
+        "schools_500m": 5,
+        "income": 38000,
+        "amenities": {
+          "food": 20,
+          "health": 2,
+          "green": 1,
+          "culture": 7
+        }
+      },
       "dpe": {
         "energy_class": "C",
         "ghg_class": "D"
@@ -10164,7 +11163,7 @@
         "opportunity_score": 27,
         "price_score": 26,
         "market_gap_score": 36,
-        "liquidity_score": 62
+        "liquidity_score": 63
       },
       "signals": {
         "price_drops": 0,
@@ -10175,8 +11174,7 @@
           "6 days on market"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0006"
+      "source": "synthetic"
     },
     {
       "id": "synthetic-lst-0065",
@@ -10257,6 +11255,17 @@
         "noise": 0.4
       },
       "transport_score": 61,
+      "neighborhood": {
+        "walk_score": 72,
+        "schools_500m": 3,
+        "income": 34000,
+        "amenities": {
+          "food": 23,
+          "health": 4,
+          "green": 3,
+          "culture": 4
+        }
+      },
       "dpe": {
         "energy_class": "D",
         "ghg_class": "E"
@@ -10270,10 +11279,10 @@
       ],
       "thumb": "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=400&q=55&auto=format&fit=crop",
       "score": {
-        "opportunity_score": 34,
+        "opportunity_score": 35,
         "price_score": 60,
         "market_gap_score": 52,
-        "liquidity_score": 71
+        "liquidity_score": 72
       },
       "signals": {
         "price_drops": 0,
@@ -10284,8 +11293,7 @@
           "6 days on market"
         ]
       },
-      "source": "synthetic",
-      "url": "https://example.invalid/listing/lst-0065"
+      "source": "synthetic"
     }
   ]
 }

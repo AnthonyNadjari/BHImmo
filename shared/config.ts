@@ -52,8 +52,11 @@ export const ENDPOINTS = {
   /** ADEME / DPE — energy performance certificates (existing dwellings). */
   ademeDpe:
     "https://data.ademe.fr/data-fair/api/v1/datasets/dpe03existant/lines",
-  /** Overpass — OSM query endpoint, used to count nearby transit stops. */
+  /** Overpass — OSM query endpoint, used to count nearby transit/amenities. */
   overpass: "https://overpass-api.de/api/interpreter",
+  /** data.education.gouv.fr — national school directory (Opendatasoft v2.1). */
+  education:
+    "https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/records",
 } as const;
 
 export const DATA_DIR = "data";

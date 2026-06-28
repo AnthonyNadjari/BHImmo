@@ -172,7 +172,7 @@ export function liveListingsAt(now: Date): RawListing[] {
       floor: l.floor,
       price,
       observedDate: toISO(nowMs),
-      url: `https://example.invalid/listing/${l.externalId}`,
+      // No external URL for synthetic listings — avoids dead links in the UI.
       fallbackLat: l.fallbackLat,
       fallbackLng: l.fallbackLng,
     });

@@ -12,6 +12,7 @@ const COLUMNS: Array<{ header: string; value: (e: IndexEntry) => string | number
   { header: "price_eur", value: (e) => e.current_price },
   { header: "price_per_m2", value: (e) => e.price_per_m2 },
   { header: "opportunity_score", value: (e) => e.opportunity_score },
+  { header: "walk_score", value: (e) => e.walk_score },
   { header: "price_drops", value: (e) => e.price_drops },
   { header: "total_drop_percent", value: (e) => e.total_drop_percent },
   { header: "days_on_market", value: (e) => e.days_on_market },

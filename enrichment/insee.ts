@@ -10,6 +10,34 @@
 
 import { ARRONDISSEMENT_BY_CODE } from "../shared/paris.ts";
 
+/**
+ * Approximate median disposable household income per consumption unit (€/year),
+ * INSEE FiLoSoFi 2021 order of magnitude. A strong neighbourhood-wealth signal
+ * for investors (gentrification / resale demand).
+ */
+const MEDIAN_INCOME: Record<string, number> = {
+  "75001": 36000,
+  "75002": 34000,
+  "75003": 35000,
+  "75004": 38000,
+  "75005": 37000,
+  "75006": 43000,
+  "75007": 47000,
+  "75008": 45000,
+  "75009": 34000,
+  "75010": 29000,
+  "75011": 30000,
+  "75012": 31000,
+  "75013": 27000,
+  "75014": 32000,
+  "75015": 33000,
+  "75016": 44000,
+  "75017": 35000,
+  "75018": 26000,
+  "75019": 23000,
+  "75020": 25000,
+};
+
 /** Approximate population density per arrondissement (inhabitants / km²). */
 const DENSITY: Record<string, number> = {
   "75001": 8600,
@@ -39,6 +67,8 @@ export interface InseeProfile {
   name: string;
   refPriceM2: number;
   density: number;
+  /** Median disposable household income, € / year. */
+  income: number;
 }
 
 export function getInseeProfile(district: string): InseeProfile {
@@ -48,5 +78,6 @@ export function getInseeProfile(district: string): InseeProfile {
     name: arr?.name ?? "Paris",
     refPriceM2: arr?.refPriceM2 ?? 10500,
     density: DENSITY[district] ?? 25000,
+    income: MEDIAN_INCOME[district] ?? 30000,
   };
 }

@@ -87,7 +87,8 @@ export function Watchlist() {
                 </Link>
                 <button
                   className="icon-btn"
-                  title="Remove"
+                  title="Remove from watchlist"
+                  aria-label="Remove from watchlist"
                   onClick={() => removeFromWatchlist(p.id)}
                 >
                   ✕

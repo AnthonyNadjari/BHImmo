@@ -63,6 +63,10 @@ export function buildMarket(
       avg_opportunity_score: round(
         mean(list.map((p) => p.score.opportunity_score)),
       ),
+      median_income: getInseeProfile(arr.district).income,
+      avg_walk_score: round(
+        mean(list.map((p) => p.neighborhood?.walk_score ?? 0)),
+      ),
     });
   }
 

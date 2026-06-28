@@ -19,6 +19,12 @@ export function useAsync<T>(factory: () => Promise<T>, deps: unknown[] = []): As
 
   const reload = useCallback(() => setNonce((n) => n + 1), []);
 
+  // App-wide refresh: any component dispatching `prer:refresh` re-runs all hooks.
+  useEffect(() => {
+    window.addEventListener("prer:refresh", reload);
+    return () => window.removeEventListener("prer:refresh", reload);
+  }, [reload]);
+
   useEffect(() => {
     let alive = true;
     setState({ loading: true, error: null, data: null });

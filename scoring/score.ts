@@ -35,6 +35,8 @@ export interface ScoreInput {
   daysOnMarket: number;
   dvf: DvfStats;
   transport_score: number;
+  /** Walkability score 0–100 (feeds the liquidity sub-score). */
+  walk_score: number;
   signals: RawSignals;
 }
 
@@ -89,9 +91,10 @@ function timeOnMarketScore(days: number): number {
   return round(clamp((days / 200) * 100, 0, 100));
 }
 
-/** Resale liquidity: transport + compact surface + neighbourhood demand. */
+/** Resale liquidity: transport + walkability + compact surface + demand. */
 function liquidityScore(
   transport: number,
+  walk: number,
   surface: number,
   district: string,
 ): number {
@@ -99,7 +102,13 @@ function liquidityScore(
     surface <= 35 ? 100 : surface <= 70 ? 80 : surface <= 110 ? 55 : 35;
   const ref = ARRONDISSEMENT_BY_CODE.get(district)?.refPriceM2 ?? 10500;
   const demand = ref > 0 ? clamp(((ref - 8000) / (15500 - 8000)) * 100, 0, 100) : 50;
-  return round(clamp(0.4 * transport + 0.3 * surfaceLiquidity + 0.3 * demand, 0, 100));
+  return round(
+    clamp(
+      0.3 * transport + 0.18 * walk + 0.27 * surfaceLiquidity + 0.25 * demand,
+      0,
+      100,
+    ),
+  );
 }
 
 export function computeScore(input: ScoreInput): ScoreOutput {
@@ -108,7 +117,8 @@ export function computeScore(input: ScoreInput): ScoreOutput {
   const dropScore = priceDropScore(input.signals);
   const timeScore = timeOnMarketScore(input.daysOnMarket);
   const transport = clamp(input.transport_score, 0, 100);
-  const liquidity = liquidityScore(transport, input.surface_m2, input.district);
+  const walk = clamp(input.walk_score, 0, 100);
+  const liquidity = liquidityScore(transport, walk, input.surface_m2, input.district);
 
   const opportunity =
     gapScore * WEIGHTS.dvfGap +
@@ -138,11 +148,18 @@ export function computeScore(input: ScoreInput): ScoreOutput {
   };
 }
 
+export interface NeighborhoodContext {
+  walk_score: number;
+  schools_500m: number;
+  income: number;
+}
+
 /** Build the explainable bullet list shown in the UI. */
 export function buildExplanations(
   out: ScoreOutput,
   signals: RawSignals,
   daysOnMarket: number,
+  hood?: NeighborhoodContext,
 ): string[] {
   const lines: string[] = [];
 
@@ -174,6 +191,18 @@ export function buildExplanations(
 
   if (out.components.liquidityScore >= 75) {
     lines.push("High resale liquidity");
+  }
+
+  if (hood) {
+    if (hood.walk_score >= 75) {
+      lines.push("Highly walkable area (shops, services nearby)");
+    }
+    if (hood.schools_500m >= 6) {
+      lines.push(`${hood.schools_500m} schools within 500 m`);
+    }
+    if (hood.income >= 40000) {
+      lines.push(`Affluent area (median income ${Math.round(hood.income / 1000)}k€/yr)`);
+    }
   }
 
   return lines;

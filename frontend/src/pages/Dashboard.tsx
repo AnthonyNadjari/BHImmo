@@ -19,11 +19,13 @@ import { Sparkline } from "../components/Sparkline";
 import { ScoreBar } from "../components/ScoreBar";
 import { Badge } from "../components/Badge";
 import { Img } from "../components/Img";
+import { DataFreshness } from "../components/DataFreshness";
 import { ErrorState, TableSkeleton } from "../components/States";
-import { median } from "../services/stats";
+import { mean, median } from "../services/stats";
 import type { IndexEntry } from "../types";
 
 type SortKey =
+  | "address"
   | "opportunity_score"
   | "current_price"
   | "price_per_m2"
@@ -115,11 +117,11 @@ export function Dashboard() {
 
   const active = entries.filter((e) => e.status === "active");
   const kpis = [
-    { label: "Active listings", value: String(active.length) },
-    { label: "Opportunities", value: String(active.filter((e) => e.opportunity_score >= 68).length), accent: "good" as const },
-    { label: "Median €/m²", value: formatPerM2(Math.round(median(active.map((e) => e.price_per_m2)))) },
-    { label: "With price drops", value: String(active.filter((e) => e.price_drops > 0).length) },
-    { label: "Avg score", value: String(Math.round(median(active.map((e) => e.opportunity_score)))) },
+    { label: "Active listings", value: String(active.length), rail: "primary" },
+    { label: "Opportunities", value: String(active.filter((e) => e.opportunity_score >= 68).length), rail: "good" },
+    { label: "Median €/m²", value: formatPerM2(Math.round(median(active.map((e) => e.price_per_m2)))), rail: "" },
+    { label: "With price drops", value: String(active.filter((e) => e.price_drops > 0).length), rail: "warn" },
+    { label: "Avg score", value: String(Math.round(mean(active.map((e) => e.opportunity_score)))), rail: "primary" },
   ];
 
   return (
@@ -127,21 +129,23 @@ export function Dashboard() {
       <div className="page-head">
         <div>
           <h1>Dashboard</h1>
-          <p className="muted">
-            {filtered.length} of {entries.length} listings ·{" "}
-            {data && `updated ${new Date(data.generated_at).toLocaleString("fr-FR")}`}
+          <p className="muted" aria-live="polite">
+            Showing <strong>{filtered.length}</strong> of {entries.length} listings
           </p>
         </div>
-        <button className="btn" onClick={() => downloadCsv(filtered)}>
-          ⬇ Export CSV
-        </button>
+        <div className="head-actions">
+          <DataFreshness generatedAt={data?.generated_at} />
+          <button className="btn" onClick={() => downloadCsv(filtered)}>
+            ⬇ Export CSV
+          </button>
+        </div>
       </div>
 
       <div className="kpi-strip">
         {kpis.map((k) => (
-          <div className="kpi" key={k.label}>
+          <div className={`kpi ${k.rail ? `kpi-${k.rail}` : ""}`} key={k.label}>
             <span className="kpi-label">{k.label}</span>
-            <span className={`kpi-value ${k.accent === "good" ? "accent-good" : ""}`}>{k.value}</span>
+            <span className={`kpi-value ${k.rail === "good" ? "accent-good" : ""}`}>{k.value}</span>
           </div>
         ))}
       </div>
@@ -150,10 +154,16 @@ export function Dashboard() {
         <input
           className="input"
           placeholder="Search address…"
+          aria-label="Search by address"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <select className="input" value={district} onChange={(e) => setDistrict(e.target.value)}>
+        <select
+          className="input"
+          aria-label="Filter by arrondissement"
+          value={district}
+          onChange={(e) => setDistrict(e.target.value)}
+        >
           <option value="all">All arrondissements</option>
           {districts.map((d) => (
             <option key={d} value={d}>
@@ -163,6 +173,7 @@ export function Dashboard() {
         </select>
         <select
           className="input"
+          aria-label="Filter by status"
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value as "active" | "all")}
         >
@@ -193,12 +204,12 @@ export function Dashboard() {
       </div>
 
       <div className="table-scroll">
-        <table className="data-table">
+        <table className="data-table listings-table">
           <thead>
             <tr>
               <th className="col-check"></th>
               <th className="col-thumb"></th>
-              <th>Address</th>
+              <SortableTh label="Address" k="address" sort={sort} onClick={toggleSort} />
               <SortableTh label="Arr." k="district" sort={sort} onClick={toggleSort} />
               <SortableTh label="Price" k="current_price" sort={sort} onClick={toggleSort} />
               <SortableTh label="€/m²" k="price_per_m2" sort={sort} onClick={toggleSort} />
@@ -249,7 +260,11 @@ export function Dashboard() {
             ))}
           </tbody>
         </table>
-        {filtered.length === 0 && <p className="state">No listings match these filters.</p>}
+        {filtered.length === 0 && (
+          <p className="state" role="status">
+            No listings match these filters.
+          </p>
+        )}
       </div>
 
       {selected.length > 0 && (

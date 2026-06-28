@@ -37,6 +37,7 @@ export function scoreProperty(property: Property): ScoringResult {
     daysOnMarket: property.timeline.days_on_market,
     dvf: property.dvf,
     transport_score: property.transport_score,
+    walk_score: property.neighborhood?.walk_score ?? 50,
     signals: raw,
   });
 
@@ -44,7 +45,7 @@ export function scoreProperty(property: Property): ScoringResult {
     price_drops: raw.price_drops,
     total_drop_percent: raw.total_drop_percent,
     long_time_on_market: raw.long_time_on_market,
-    explanations: buildExplanations(out, raw, property.timeline.days_on_market),
+    explanations: buildExplanations(out, raw, property.timeline.days_on_market, property.neighborhood),
   };
 
   return { score: out.score, signals };
