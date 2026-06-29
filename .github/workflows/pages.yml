@@ -43,6 +43,8 @@ jobs:
         working-directory: frontend
         env:
           PRER_BASE: /${{ github.event.repository.name }}/
+          # Optional: real Street View façades (referrer-restricted key).
+          VITE_GSV_KEY: ${{ secrets.VITE_GSV_KEY }}
         run: |
           npm run build
           cp dist/index.html dist/404.html

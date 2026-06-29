@@ -20,6 +20,7 @@ import { ingestListings, listingEndedInSale } from "../scraper/index.ts";
 import { matchListings, propertyId } from "../scraper/match.ts";
 import { enrichProperty, geocode, nearbyPois } from "../enrichment/index.ts";
 import { loadReferences } from "../enrichment/reference.ts";
+import { mapillaryImages } from "../enrichment/facade.ts";
 import { scoreDataset } from "../scoring/index.ts";
 import { exportDatasets, loadProperties } from "../storage/index.ts";
 import type { Property } from "../shared/types.ts";
@@ -57,7 +58,10 @@ async function buildNewProperty(
     config,
   );
 
-  const gallery = imageSet(id);
+  // Prefer real street-level imagery near the property (Mapillary); fall back
+  // to representative interiors when there's no token / coverage.
+  const facade = await mapillaryImages(geo.lat, geo.lng, config);
+  const gallery = facade.length ? { images: facade, thumb: facade[0]! } : imageSet(id);
   const monthlyEst = Math.round(enrichment.rent.max_m2 * listing.surface_m2);
   const pois = nearbyPois({ id, lat: geo.lat, lng: geo.lng });
 

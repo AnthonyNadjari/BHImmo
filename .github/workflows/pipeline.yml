@@ -44,6 +44,8 @@ jobs:
           # PER_ARR keeps the universe stable across runs (matches committed data).
           PRER_MODE: ${{ github.event.inputs.mode || 'live' }}
           PRER_DVF_PER_ARR: "50"
+          # Optional: real street-level photos baked into the dataset (free).
+          MLY_TOKEN: ${{ secrets.MLY_TOKEN }}
         run: npm run pipeline
 
       - name: Commit updated dataset

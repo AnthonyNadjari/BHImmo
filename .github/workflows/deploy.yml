@@ -55,6 +55,8 @@ jobs:
         working-directory: frontend
         env:
           PRER_BASE: /${{ github.repository }}/live/
+          # Optional: real Street View façades (referrer-restricted key).
+          VITE_GSV_KEY: ${{ secrets.VITE_GSV_KEY }}
         run: |
           npm run build
           touch dist/.nojekyll

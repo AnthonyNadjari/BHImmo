@@ -45,7 +45,8 @@ export function Layout() {
       <footer className="footer">
         Live data: real Paris apartment transactions from DVF (Etalab), enriched with
         BAN · ADEME DPE · INSEE · IDFM · OSM · data.education · Vélib' &amp; arbres
-        (opendata.paris.fr). Refreshed automatically via GitHub Actions.
+        (opendata.paris.fr). Street-level photos © Mapillary contributors (CC-BY-SA) /
+        Google Street View. Refreshed automatically via GitHub Actions.
       </footer>
     </div>
   );

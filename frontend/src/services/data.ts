@@ -5,6 +5,7 @@
  */
 
 import type { IndexFile, MarketFile, Property } from "../types";
+import { hasStreetView, streetViewGallery, streetViewThumb } from "./facade";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -38,7 +39,15 @@ export function clearDataCache(): void {
 }
 
 export function fetchIndex(): Promise<IndexFile> {
-  return (indexPromise ??= getJson<IndexFile>("index.json"));
+  return (indexPromise ??= getJson<IndexFile>("index.json").then((f) => {
+    if (hasStreetView()) {
+      for (const p of f.properties) {
+        const t = streetViewThumb(p.lat, p.lng);
+        if (t) p.image = t;
+      }
+    }
+    return f;
+  }));
 }
 
 export function fetchMarket(): Promise<MarketFile> {
@@ -53,7 +62,18 @@ export function fetchMarket(): Promise<MarketFile> {
 export function fetchProperty(id: string): Promise<Property | undefined> {
   let p = propertyCache.get(id);
   if (!p) {
-    p = getJson<Property>(`property/${encodeURIComponent(id)}.json`).catch(() => undefined);
+    p = getJson<Property>(`property/${encodeURIComponent(id)}.json`)
+      .then((prop) => {
+        if (prop && hasStreetView()) {
+          const g = streetViewGallery(prop.address.lat, prop.address.lng);
+          if (g.length) {
+            prop.images = g;
+            prop.thumb = g[0]!;
+          }
+        }
+        return prop;
+      })
+      .catch(() => undefined);
     propertyCache.set(id, p);
   }
   return p;
