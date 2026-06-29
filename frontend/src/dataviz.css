@@ -1,0 +1,275 @@
+/* ============================================================================
+ * dataviz.css — visual neighbourhood/data widgets for the property detail page.
+ * Pure SVG/CSS, light cold-blue theme. Uses :root tokens from index.css
+ * (do not redefine them here). Imported from NeighborhoodViz.tsx.
+ * ========================================================================== */
+
+/* ---- Section shell ------------------------------------------------------ */
+.nv-section {
+  grid-column: span 2;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+  padding: 18px 20px 22px;
+}
+.nv-section > h2 { margin: 0 0 4px; }
+.nv-section-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+
+/* Responsive auto-fit grid for the widget tiles. */
+.nv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.nv-tile {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 16px 16px 18px;
+  display: flex;
+  flex-direction: column;
+}
+.nv-tile-title {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.nv-tile-title svg { color: var(--primary); flex: 0 0 auto; }
+
+/* Span helpers within the auto-fit grid. */
+.nv-span-2 { grid-column: span 2; }
+@media (max-width: 560px) { .nv-span-2 { grid-column: span 1; } }
+
+/* ---- Arc gauges (walk / transport) -------------------------------------- */
+.nv-gauges {
+  display: flex;
+  gap: 10px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.nv-gauge { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.nv-gauge-svg { display: block; }
+.nv-gauge-track { stroke: var(--score-track); }
+.nv-gauge-arc { transition: stroke-dashoffset .6s ease; }
+.nv-gauge-num {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1;
+}
+.nv-gauge-num small { font-family: var(--mono); font-size: 11px; font-weight: 400; }
+.nv-gauge-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-top: 2px;
+}
+.nv-gauge-tag {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+/* ---- DPE / GHG ladder --------------------------------------------------- */
+.nv-ladders { display: flex; gap: 22px; flex-wrap: wrap; }
+.nv-ladder { flex: 1 1 150px; min-width: 140px; }
+.nv-ladder-cap {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin: 0 0 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.nv-ladder-cap strong { color: var(--text); font-weight: 600; }
+.nv-ladder-rows { display: flex; flex-direction: column; gap: 3px; }
+.nv-ladder-row {
+  display: grid;
+  grid-template-columns: 16px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+/* Each bar grows step-wise (the classic French DPE staircase). */
+.nv-ladder-bar {
+  height: 17px;
+  border-radius: 0 var(--r-xs) var(--r-xs) 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 6px;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  opacity: 0.36;
+  transition: opacity .2s, transform .2s;
+}
+.nv-ladder-grade {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+.nv-ladder-row.is-active .nv-ladder-grade { color: var(--text); }
+.nv-ladder-row.is-active .nv-ladder-bar {
+  opacity: 1;
+  transform: translateX(2px);
+  box-shadow: 0 1px 3px rgba(20,24,45,0.18);
+}
+.nv-ladder-arrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: var(--r-pill);
+  color: #fff;
+}
+.nv-ladder-letters { /* DPE color cells */ }
+.nv-ladder-min { width: 22%; }   /* A */
+.nv-ladder-w-b { width: 33%; }
+.nv-ladder-w-c { width: 45%; }
+.nv-ladder-w-d { width: 57%; }
+.nv-ladder-w-e { width: 70%; }
+.nv-ladder-w-f { width: 85%; }
+.nv-ladder-w-g { width: 100%; }
+
+/* ---- Stat rows (schools / vélib / trees / income) ----------------------- */
+.nv-stats { display: flex; flex-direction: column; gap: 13px; flex: 1; justify-content: center; }
+.nv-stat { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: center; }
+.nv-stat-ico {
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  border-radius: var(--r-sm);
+  background: var(--primary-soft);
+  color: var(--primary-text);
+}
+.nv-stat-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.nv-stat-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.nv-stat-label { font-size: 12px; color: var(--text-secondary); }
+.nv-stat-val {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--text);
+  line-height: 1;
+}
+.nv-stat-val span { font-family: var(--mono); font-size: 10.5px; color: var(--muted); font-weight: 400; }
+/* tiny scale bar */
+.nv-stat-track {
+  height: 5px;
+  background: var(--score-track);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.nv-stat-fill {
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: linear-gradient(90deg, #8f88e6, var(--primary));
+  transition: width .5s ease;
+}
+.nv-stat-fill.green { background: linear-gradient(90deg, #4cae8e, var(--success)); }
+
+/* ---- Amenities (icon-led bars) ------------------------------------------ */
+.nv-amen { display: flex; flex-direction: column; gap: 12px; flex: 1; justify-content: center; }
+.nv-amen-row { display: grid; grid-template-columns: 30px 1fr; gap: 11px; align-items: center; }
+.nv-amen-ico {
+  width: 30px; height: 30px;
+  display: grid; place-items: center;
+  border-radius: var(--r-sm);
+  color: #fff;
+}
+.nv-amen-body { display: flex; flex-direction: column; gap: 5px; }
+.nv-amen-top { display: flex; align-items: baseline; justify-content: space-between; }
+.nv-amen-label { font-size: 12px; color: var(--text-secondary); }
+.nv-amen-count { font-family: var(--mono); font-weight: 700; font-size: 13px; color: var(--text); }
+/* segmented dot scale conveys count visually */
+.nv-amen-dots { display: flex; gap: 3px; }
+.nv-amen-dot {
+  flex: 1;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--score-track);
+  transition: background .3s;
+}
+
+/* ---- Risk severity bars -------------------------------------------------- */
+.nv-risks { display: flex; flex-direction: column; gap: 14px; flex: 1; justify-content: center; }
+.nv-risk { display: flex; flex-direction: column; gap: 6px; }
+.nv-risk-top { display: flex; align-items: center; justify-content: space-between; }
+.nv-risk-label { font-size: 12.5px; color: var(--text-secondary); font-weight: 500; }
+.nv-risk-level {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--r-pill);
+}
+/* segmented severity meter: 5 cells fill by value */
+.nv-risk-meter { display: flex; gap: 3px; }
+.nv-risk-cell {
+  flex: 1;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--score-track);
+}
+
+/* ---- Walk-score banner (the headline pair) ------------------------------ */
+.nv-headline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: var(--r-md);
+  background: linear-gradient(135deg, var(--primary-softer), var(--surface-2));
+  border: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+.nv-headline-txt { display: flex; flex-direction: column; }
+.nv-headline-txt strong {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--text);
+}
+.nv-headline-txt span { font-size: 11.5px; color: var(--muted); }
+
+/* ---- Footer note --------------------------------------------------------- */
+.nv-foot {
+  font-size: 11px;
+  color: var(--faint);
+  margin: 16px 0 0;
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+}
+
+/* ---- Mobile ------------------------------------------------------------- */
+@media (max-width: 760px) {
+  .nv-section { grid-column: span 1; padding: 16px 14px 18px; }
+  .nv-grid { grid-template-columns: 1fr; }
+  .nv-ladders { gap: 18px; }
+}

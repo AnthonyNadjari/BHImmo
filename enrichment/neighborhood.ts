@@ -16,6 +16,7 @@ import { clamp, round } from "../shared/geo.ts";
 import { SeededRandom } from "../shared/prng.ts";
 import type { Amenities, Neighborhood } from "../shared/types.ts";
 import { getInseeProfile } from "./insee.ts";
+import { hasReferences, refSchoolCount, refVelibCount } from "./reference.ts";
 
 export interface NeighborhoodContext {
   id: string;
@@ -30,12 +31,17 @@ export async function enrichNeighborhood(
   ctx: NeighborhoodContext,
   config: PipelineConfig,
 ): Promise<Neighborhood> {
-  const [schools, amenities, velib, trees] = await Promise.all([
-    fetchSchoolCount(ctx, config),
-    fetchAmenities(ctx, config),
-    fetchOdsCount(ENDPOINTS.velib, "coordonnees_geo", 400, `velib:${ctx.id}`, ctx, config, [1, 8]),
-    fetchOdsCount(ENDPOINTS.trees, "geo_point_2d", 150, `trees:${ctx.id}`, ctx, config, [10, 180]),
-  ]);
+  // Schools & Vélib' come from the cached real reference sets when loaded
+  // (live/hybrid) — counted locally, no per-property API call. Amenities and
+  // tree canopy stay deterministic (Overpass / 200k-row tree set don't scale
+  // per property); the green count is informed by the real parks nearby.
+  const refs = hasReferences();
+  const schools = refs ? refSchoolCount(ctx.lat, ctx.lng, RADIUS_M) : await fetchSchoolCount(ctx, config);
+  const velib = refs
+    ? refVelibCount(ctx.lat, ctx.lng, 400)
+    : await fetchOdsCount(ENDPOINTS.velib, "coordonnees_geo", 400, `velib:${ctx.id}`, ctx, config, [1, 8]);
+  const amenities = syntheticAmenities(ctx);
+  const trees = treesEstimate(ctx);
 
   const income = getInseeProfile(ctx.district).income;
   const walk_score = computeWalkScore(amenities, schools, velib, trees);
@@ -48,6 +54,14 @@ export async function enrichNeighborhood(
     trees_150m: trees,
     amenities,
   };
+}
+
+/** Deterministic street-tree canopy proxy (the 200k-row set isn't worth a call). */
+function treesEstimate(ctx: NeighborhoodContext): number {
+  const density = getInseeProfile(ctx.district).density;
+  const rng = new SeededRandom(`trees:${ctx.id}`);
+  const richness = clamp(density / 32000, 0.4, 1.2);
+  return Math.round(clamp(rng.gaussian(95 * richness, 34), 10, 180));
 }
 
 /* ----------------- generic Opendatasoft count (geo) ---------------- */
@@ -106,40 +120,6 @@ async function fetchSchoolCount(
 }
 
 /* ---------------------------- amenities ---------------------------- */
-
-interface OverpassCountResponse {
-  elements?: Array<{ type?: string; tags?: { total?: string } }>;
-}
-
-async function fetchAmenities(
-  ctx: NeighborhoodContext,
-  config: PipelineConfig,
-): Promise<Amenities> {
-  // One request → four ordered `out count` blocks (food, health, green, culture).
-  const a = `around:${RADIUS_M},${ctx.lat},${ctx.lng}`;
-  const query =
-    `[out:json][timeout:25];` +
-    `(node["shop"](${a}););->.food;` +
-    `(node["amenity"~"pharmacy|doctors|clinic|hospital"](${a}););->.health;` +
-    `(node["leisure"~"park|garden"](${a});way["leisure"~"park|garden"](${a}););->.green;` +
-    `(node["amenity"~"theatre|cinema|library|arts_centre"](${a});node["tourism"="museum"](${a}););->.culture;` +
-    `.food out count;.health out count;.green out count;.culture out count;`;
-
-  const data = await fetchJson<OverpassCountResponse>(ENDPOINTS.overpass, config, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: `data=${encodeURIComponent(query)}`,
-  });
-
-  const counts = data?.elements
-    ?.filter((e) => e.type === "count")
-    .map((e) => Number(e.tags?.total ?? 0));
-
-  if (counts && counts.length === 4 && counts.every((n) => Number.isFinite(n))) {
-    return { food: counts[0]!, health: counts[1]!, green: counts[2]!, culture: counts[3]! };
-  }
-  return syntheticAmenities(ctx);
-}
 
 /** Deterministic amenity counts, denser arrondissements get more services. */
 function syntheticAmenities(ctx: NeighborhoodContext): Amenities {

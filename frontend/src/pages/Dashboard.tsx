@@ -66,6 +66,7 @@ export function Dashboard() {
   const [view, setView] = useState<ViewMode>("cards");
 
   const entries = data?.properties ?? [];
+  const ids = useMemo(() => entries.map((e) => e.id), [entries]);
 
   const districts = useMemo(() => {
     const set = new Set(entries.map((e) => e.district));
@@ -148,7 +149,7 @@ export function Dashboard() {
           </p>
         </div>
         <div className="head-actions">
-          <DataFreshness generatedAt={data?.generated_at} />
+          <DataFreshness generatedAt={data?.generated_at} currentIds={ids} />
           <button className="btn" onClick={() => downloadCsv(filtered)}>
             <Icon name="download" size={15} /> Export CSV
           </button>

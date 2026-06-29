@@ -19,6 +19,7 @@ import type { NormalizedListing } from "../scraper/index.ts";
 import { ingestListings, listingEndedInSale } from "../scraper/index.ts";
 import { matchListings, propertyId } from "../scraper/match.ts";
 import { enrichProperty, geocode, nearbyPois } from "../enrichment/index.ts";
+import { loadReferences } from "../enrichment/reference.ts";
 import { scoreDataset } from "../scoring/index.ts";
 import { exportDatasets, loadProperties } from "../storage/index.ts";
 import type { Property } from "../shared/types.ts";
@@ -164,8 +165,11 @@ export async function runPipeline(config: PipelineConfig): Promise<PipelineSumma
   );
 
   // Steps 2 + 3 — geocoding & enrichment (only for genuinely new properties).
+  // Load Paris-wide reference data once (stations / schools / Vélib' / parks)
+  // so every property's transport, POIs and neighbourhood use real open data.
+  if (plan.toCreate.length) await loadReferences(config);
   log.step(2, "Geocoding (new listings)");
-  log.step(3, "Enrichment (DVF / Géorisques / transport / DPE)");
+  log.step(3, "Enrichment (DVF / risks / transport / schools / Vélib' / parks / DPE)");
   for (const listing of plan.toCreate) {
     const property = await buildNewProperty(listing, config);
     byId.set(property.id, property);

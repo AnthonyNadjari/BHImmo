@@ -1,15 +1,15 @@
 /**
- * Nearby points of interest for the property mini-map: transport stations
- * (from the curated real métro/RER set), plus parks and Vélib' stations.
- *
- * Transport markers use real station coordinates. Parks/Vélib' are placed
- * deterministically around the property (seeded by id) so the map is populated
- * even in mock mode; the live pipeline can swap in IDFM/espaces-verts geometry.
+ * Nearby points of interest for the property mini-map: métro/RER/tram stations,
+ * Vélib' docks and parks. When the live reference datasets are loaded (IDFM /
+ * opendata.paris) the markers are REAL coordinates; offline we fall back to the
+ * curated station set plus deterministic Vélib'/park placeholders so the map is
+ * always populated.
  */
 
 import { haversineMeters, round } from "../shared/geo.ts";
 import { STATIONS } from "../shared/paris.ts";
 import { SeededRandom } from "../shared/prng.ts";
+import { hasReferences, nearestStations, nearestVelib, nearestParks } from "./reference.ts";
 
 export interface Poi {
   type: "transport" | "park" | "velib";
@@ -27,24 +27,34 @@ export interface PoiContext {
 const TRANSPORT_RADIUS_M = 750;
 
 export function nearbyPois(ctx: PoiContext): Poi[] {
-  const pois: Poi[] = [];
+  if (hasReferences()) {
+    const pois: Poi[] = [];
+    for (const s of nearestStations(ctx.lat, ctx.lng, TRANSPORT_RADIUS_M, 5)) {
+      pois.push({ type: "transport", lat: s.lat, lng: s.lng, label: s.meta ? `${s.name} · ${s.meta}` : s.name });
+    }
+    for (const p of nearestParks(ctx.lat, ctx.lng, 500, 3)) {
+      pois.push({ type: "park", lat: p.lat, lng: p.lng, label: p.name });
+    }
+    for (const v of nearestVelib(ctx.lat, ctx.lng, 400, 4)) {
+      pois.push({ type: "velib", lat: v.lat, lng: v.lng, label: v.name });
+    }
+    if (pois.length > 0) return pois;
+  }
 
-  // Real stations within walking distance (closest first, capped).
-  const stations = STATIONS.map((s) => ({
-    s,
-    d: haversineMeters(ctx.lat, ctx.lng, s.lat, s.lng),
-  }))
+  return syntheticPois(ctx);
+}
+
+/** Offline fallback: real curated stations + deterministic parks/Vélib'. */
+function syntheticPois(ctx: PoiContext): Poi[] {
+  const pois: Poi[] = [];
+  const stations = STATIONS.map((s) => ({ s, d: haversineMeters(ctx.lat, ctx.lng, s.lat, s.lng) }))
     .filter((x) => x.d <= TRANSPORT_RADIUS_M)
     .sort((a, b) => a.d - b.d)
     .slice(0, 5);
-  for (const { s } of stations) {
-    pois.push({ type: "transport", lat: s.lat, lng: s.lng, label: s.name });
-  }
+  for (const { s } of stations) pois.push({ type: "transport", lat: s.lat, lng: s.lng, label: s.name });
 
-  // Deterministic parks + Vélib' around the property.
   const rng = new SeededRandom(`pois:${ctx.id}`);
-  const parkCount = rng.int(1, 3);
-  for (let i = 0; i < parkCount; i++) {
+  for (let i = 0; i < rng.int(1, 3); i++) {
     pois.push({
       type: "park",
       lat: round(ctx.lat + rng.range(-0.0028, 0.0028), 6),
@@ -52,8 +62,7 @@ export function nearbyPois(ctx: PoiContext): Poi[] {
       label: rng.pick(["Square", "Jardin", "Parc"]),
     });
   }
-  const velibCount = rng.int(2, 4);
-  for (let i = 0; i < velibCount; i++) {
+  for (let i = 0; i < rng.int(2, 4); i++) {
     pois.push({
       type: "velib",
       lat: round(ctx.lat + rng.range(-0.0022, 0.0022), 6),
@@ -61,6 +70,5 @@ export function nearbyPois(ctx: PoiContext): Poi[] {
       label: "Vélib'",
     });
   }
-
   return pois;
 }

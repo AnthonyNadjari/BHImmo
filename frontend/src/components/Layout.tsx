@@ -27,7 +27,6 @@ export function Layout() {
             <Icon name="radar" size={20} strokeWidth={2} />
           </span>
           <span className="brand-name">BHImmobilier</span>
-          <span className="brand-tag">PARIS RADAR</span>
         </Link>
         <nav className="nav">
           <NavLink to="/" end>

@@ -38,7 +38,7 @@ export function MapPage() {
           <h1>Opportunity map</h1>
           <p className="muted">{active.length} active listings across Paris intra-muros</p>
         </div>
-        <DataFreshness generatedAt={data?.generated_at} />
+        <DataFreshness generatedAt={data?.generated_at} currentIds={active.map((e) => e.id)} />
       </div>
 
       {active.length === 0 ? (

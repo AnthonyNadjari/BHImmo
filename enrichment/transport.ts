@@ -8,9 +8,10 @@
  * static result.
  */
 
-import { ENDPOINTS, fetchJson, type PipelineConfig } from "../shared/config.ts";
+import { type PipelineConfig } from "../shared/config.ts";
 import { clamp, haversineMeters, round } from "../shared/geo.ts";
 import { STATIONS } from "../shared/paris.ts";
+import { hasReferences, refStations } from "./reference.ts";
 
 export interface TransportContext {
   lat: number;
@@ -21,20 +22,15 @@ const WALK_RADIUS_M = 600;
 
 export async function enrichTransport(
   ctx: TransportContext,
-  config: PipelineConfig,
+  _config: PipelineConfig,
 ): Promise<number> {
-  const distances = STATIONS.map((s) =>
-    haversineMeters(ctx.lat, ctx.lng, s.lat, s.lng),
-  );
+  // Use the real, comprehensive IDFM station set when loaded (live/hybrid);
+  // fall back to the curated static set offline. Both are real coordinates, so
+  // no per-property API call is needed.
+  const set = hasReferences() && refStations().length ? refStations() : STATIONS;
+  const distances = set.map((s) => haversineMeters(ctx.lat, ctx.lng, s.lat, s.lng));
   const nearest = Math.min(...distances);
-  let nearbyCount = distances.filter((d) => d <= WALK_RADIUS_M).length;
-
-  const overpassCount = await overpassStationCount(ctx, config);
-  if (overpassCount !== null) {
-    // Blend the (sparse) static count with the real OSM count.
-    nearbyCount = Math.round((nearbyCount + overpassCount) / 2);
-  }
-
+  const nearbyCount = distances.filter((d) => d <= WALK_RADIUS_M).length;
   return round(combine(nearest, nearbyCount));
 }
 
@@ -44,25 +40,4 @@ function combine(nearestM: number, nearbyCount: number): number {
   // Density component: 5+ stations within walking distance saturates.
   const density = clamp((nearbyCount / 5) * 100, 0, 100);
   return clamp(0.6 * proximity + 0.4 * density, 0, 100);
-}
-
-interface OverpassResponse {
-  elements?: Array<{ tags?: { total?: string } }>;
-}
-
-async function overpassStationCount(
-  ctx: TransportContext,
-  config: PipelineConfig,
-): Promise<number | null> {
-  if (config.mode !== "live") return null;
-  // `out count;` returns a single element whose tags.total holds the count.
-  const query = `[out:json][timeout:5];(node["railway"="station"](around:${WALK_RADIUS_M},${ctx.lat},${ctx.lng});way["railway"="station"](around:${WALK_RADIUS_M},${ctx.lat},${ctx.lng}););out count;`;
-  const data = await fetchJson<OverpassResponse>(ENDPOINTS.overpass, config, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: `data=${encodeURIComponent(query)}`,
-  });
-  const total = data?.elements?.[0]?.tags?.total;
-  const count = total != null ? Number(total) : NaN;
-  return Number.isFinite(count) ? count : null;
 }

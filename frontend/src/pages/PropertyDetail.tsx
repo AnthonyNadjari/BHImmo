@@ -18,12 +18,11 @@ import {
 } from "../services/format";
 import { PriceChart } from "../components/PriceChart";
 import { Gallery } from "../components/Gallery";
-import { RiskBars } from "../components/RiskBars";
 import { RadarChart } from "../components/RadarChart";
 import { PriceDistribution } from "../components/PriceDistribution";
 import { YieldBadge } from "../components/YieldBadge";
 import { WatchButton } from "../components/WatchButton";
-import { NeighborhoodCard } from "../components/NeighborhoodCard";
+import { NeighborhoodViz } from "../components/NeighborhoodViz";
 import { InvestmentCalculator } from "../components/InvestmentCalculator";
 import { ScoreRing } from "../components/ScoreRing";
 import { Badge, badgeFromScore } from "../components/Badge";
@@ -146,37 +145,11 @@ export function PropertyDetail() {
           <RadarChart axes={radarAxes} />
         </div>
 
-        {/* Risks */}
-        <div className="card">
-          <h2>Risks</h2>
-          <RiskBars flood={p.risks.flood} clay={p.risks.clay} noise={p.risks.noise} />
-          {p.dpe && (
-            <>
-              <div className="dpe">
-                <span>Energy (DPE)</span>
-                <strong className={`dpe-class dpe-${p.dpe.energy_class}`}>{p.dpe.energy_class}</strong>
-                <span>GHG</span>
-                <strong className={`dpe-class dpe-${p.dpe.ghg_class}`}>{p.dpe.ghg_class}</strong>
-              </div>
-              {(p.dpe.energy_class === "F" || p.dpe.energy_class === "G") && (
-                <p className={`dpe-note ${p.investment.value_add_flag ? "good" : ""}`}>
-                  {p.investment.value_add_flag
-                    ? "Value-add: discount exceeds renovation cost — reno-arbitrage."
-                    : `Class ${p.dpe.energy_class} — rental restrictions apply (G banned since 2025, F from 2028).`}
-                </p>
-              )}
-            </>
-          )}
-        </div>
-
-        {/* Neighbourhood & lifestyle */}
-        <div className="card">
-          <h2>Neighbourhood & lifestyle</h2>
-          <NeighborhoodCard hood={p.neighborhood} />
-        </div>
+        {/* Neighbourhood & data — visual open-data section */}
+        <NeighborhoodViz property={p} />
 
         {/* Map */}
-        <div className="card">
+        <div className="card span-2">
           <h2>Location & amenities</h2>
           <Suspense fallback={<div className="map-loading">Loading map…</div>}>
             <MiniMap property={p} />
