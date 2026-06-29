@@ -54,6 +54,8 @@ export function buildMarket(
     arrondissements.push({
       district: arr.district,
       name: arr.name,
+      lat: arr.lat,
+      lng: arr.lng,
       listing_count: list.length,
       density: getInseeProfile(arr.district).density,
       avg_price_m2: round(mean(ppm2)),

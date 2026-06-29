@@ -249,6 +249,9 @@ export interface IndexFile {
 export interface MarketArrondissement {
   district: string;
   name: string;
+  /** Arrondissement centroid (for the price-by-area map overlay). */
+  lat: number;
+  lng: number;
   listing_count: number;
   /** INSEE population density (inhabitants / km²). */
   density: number;

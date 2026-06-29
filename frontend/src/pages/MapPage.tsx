@@ -6,7 +6,7 @@
 import { Suspense, lazy, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
-import { fetchIndex } from "../services/data";
+import { fetchIndex, fetchMarket } from "../services/data";
 import { DataFreshness } from "../components/DataFreshness";
 import { Img } from "../components/Img";
 import { Empty, ErrorState, Loading } from "../components/States";
@@ -16,6 +16,7 @@ const PropertyMap = lazy(() => import("../components/PropertyMap"));
 
 export function MapPage() {
   const { loading, error, data, reload } = useAsync(fetchIndex, []);
+  const { data: market } = useAsync(fetchMarket, []);
 
   // Memoize so PropertyMap gets a stable `entries` reference and the marker
   // cluster is built once per dataset, not on every render.
@@ -47,7 +48,11 @@ export function MapPage() {
         <div className="map-layout">
           <div className="card map-card">
             <Suspense fallback={<div className="map-loading">Loading map…</div>}>
-              <PropertyMap entries={active} />
+              <PropertyMap
+                entries={active}
+                arrondissements={market?.arrondissements ?? []}
+                cityAvg={market?.city_avg_price_m2 ?? 11695}
+              />
             </Suspense>
             <div className="scatter-legend">
               <span><i style={{ background: scoreColor(80) }} /> Opportunity</span>

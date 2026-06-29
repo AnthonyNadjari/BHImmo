@@ -120,6 +120,8 @@ export interface IndexFile {
 export interface MarketArrondissement {
   district: string;
   name: string;
+  lat: number;
+  lng: number;
   listing_count: number;
   density: number;
   avg_price_m2: number;

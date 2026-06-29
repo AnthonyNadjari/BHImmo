@@ -11,32 +11,25 @@
 
 import { SeededRandom } from "./prng.ts";
 
-/** Curated, verified Unsplash photo ids (interiors / apartments / buildings). */
+/**
+ * Curated Unsplash photo ids — APARTMENT INTERIORS only (living rooms,
+ * kitchens, bedrooms). Deliberately excludes houses/villas/pools/exteriors,
+ * which look absurd for a Paris flat. Representative imagery: DVF carries no
+ * per-listing photos.
+ */
 const POOL: string[] = [
-  "1502672260266-1c1ef2d93688",
-  "1522708323590-d24dbb6b0267",
-  "1493809842364-78817add7ffb",
-  "1484154218962-a197022b5858",
-  "1560448204-e02f11c3d0e2",
-  "1560185007-c5ca9d2c014d",
-  "1505691938895-1758d7feb511",
-  "1556912173-3bb406ef7e77",
-  "1567496898669-ee935f5f647a",
-  "1554995207-c18c203602cb",
-  "1502005097973-6a7082348e28",
-  "1416339306562-f3d12fefd36f",
-  "1540518614846-7eded433c457",
-  "1583847268964-b28dc8f51f92",
-  "1502005229762-cf1b2da7c5d6",
-  "1512917774080-9991f1c4c750",
-  "1564013799919-ab600027ffc6",
-  "1493663284031-b7e3aefcae8e",
-  "1522050212171-61b01dd24579",
-  "1598928506311-c55ded91a20c",
-  "1600585154340-be6161a56a0c",
-  "1600566753086-00f18fb6b3ea",
-  "1600210492486-724fe5c67fb0",
-  "1600607687939-ce8a6c25118c",
+  "1522708323590-d24dbb6b0267", // living room
+  "1493809842364-78817add7ffb", // living room / sofa
+  "1502672260266-1c1ef2d93688", // bright minimalist interior
+  "1505691938895-1758d7feb511", // living room
+  "1560448204-e02f11c3d0e2", // modern living room
+  "1554995207-c18c203602cb", // living room
+  "1484154218962-a197022b5858", // white kitchen
+  "1556912173-3bb406ef7e77", // kitchen
+  "1493663284031-b7e3aefcae8e", // kitchen / dining
+  "1502005097973-6a7082348e28", // bedroom
+  "1540518614846-7eded433c457", // interior decor
+  "1567496898669-ee935f5f647a", // interior
 ];
 
 function unsplash(id: string, width: number, height: number, quality = 62): string {

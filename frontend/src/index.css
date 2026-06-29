@@ -775,3 +775,173 @@ h2 { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing
   .kpi:nth-last-child(-n+1) { border-bottom: none; }
   .kpi-value { font-size: 22px; }
 }
+
+/* ════════════════════════════════════════════════════════════════
+   iOS / mobile polish — native-quality finish on iPhone Safari.
+   (final layer: appended last so it wins the cascade on small screens.
+    Pure CSS over existing markup; tokens unchanged.)
+   ════════════════════════════════════════════════════════════════ */
+
+/* ---- Safe-area insets (notch / Dynamic Island / home indicator) ----
+   Harmless on devices without insets (env() resolves to 0). Applied
+   defensively so the sticky bar, content and footer never hide under
+   system UI when the viewport is rendered edge-to-edge. */
+.topbar {
+  padding-top: max(18px, env(safe-area-inset-top));
+  padding-left: max(12px, env(safe-area-inset-left));
+}
+.content {
+  padding-left: max(32px, env(safe-area-inset-left));
+  padding-right: max(32px, env(safe-area-inset-right));
+}
+.footer {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  padding-left: max(24px, env(safe-area-inset-left));
+  padding-right: max(24px, env(safe-area-inset-right));
+}
+
+/* ---- No iOS auto-zoom on focus: form controls must be >= 16px ----
+   Only on small / touch screens so the dense desktop sizing is kept. */
+@media (max-width: 760px) {
+  .input,
+  select.input,
+  input.input,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 760px) {
+  /* Slightly airier reading rhythm on the small canvas. */
+  body { line-height: 1.55; }
+
+  /* ---- Sticky top bar: clean, safe-area aware, soft edge ----
+     (refines the rail→topbar collapse declared above). */
+  .topbar {
+    z-index: 30;
+    gap: 12px;
+    padding: max(8px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right))
+             8px max(14px, env(safe-area-inset-left));
+    /* subtle frosted lift so content scrolls cleanly beneath it */
+    background: rgba(255, 255, 255, 0.92);
+    -webkit-backdrop-filter: saturate(1.6) blur(12px);
+    backdrop-filter: saturate(1.6) blur(12px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 0 rgba(20, 38, 69, 0.04), 0 4px 14px -10px rgba(20, 38, 69, 0.3);
+  }
+  .brand { flex: 0 0 auto; }
+  .brand-name { font-size: 16px; }
+
+  /* Horizontal scrolling nav — momentum, no scrollbar, edge fade-safe. */
+  .nav {
+    flex: 1 1 auto;
+    flex-direction: row;
+    gap: 2px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, #000 92%, transparent);
+    margin: -4px -4px -4px 0;
+    padding: 4px 8px 4px 4px;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  /* Comfortable, full-height tap targets for nav links. */
+  .nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 8px 13px;
+    white-space: nowrap;
+    border-radius: var(--r-sm);
+  }
+
+  /* ---- Tap targets: 40–44px minimum, comfortable spacing ---- */
+  .btn,
+  .btn.small,
+  .chip,
+  .refresh-btn,
+  .watch-btn,
+  .view-toggle button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .icon-btn { min-width: 44px; min-height: 44px; }
+  /* Generous chip / button padding so they feel finger-sized. */
+  .chip { padding: 10px 15px; font-size: 13px; }
+  .btn { padding: 11px 16px; font-size: 14px; }
+  .btn.small { padding: 9px 14px; }
+  .refresh-btn { padding: 9px 13px; font-size: 13px; }
+  .view-toggle button { padding: 10px 15px; font-size: 13px; }
+  .head-actions { gap: 10px; }
+
+  /* ---- Filters: full-width search, tidy wrapping, scrollable chips ---- */
+  .filters {
+    gap: 10px;
+    margin-bottom: 16px;
+    align-items: stretch;
+  }
+  /* The free-text search takes the full first row. */
+  .filters > .input:first-child {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+  }
+  /* Selects share rows two-up without overflowing 390px. */
+  .filters > select.input {
+    flex: 1 1 calc(50% - 5px);
+    min-width: 0;
+  }
+  /* The view toggle stays right-aligned on its own line. */
+  .filters .view-toggle { margin-left: auto; }
+
+  /* ---- Page head wraps; actions don't crowd ---- */
+  .page-head { gap: 12px; margin-bottom: 16px; }
+  h1 { font-size: 26px; }
+
+  /* ---- Card grid ----
+     cards.css already supplies a responsive auto-fill grid (single
+     column on phones, 16:10 photos, rounded corners, crisp shadows
+     and legible serif price) — that all holds at 390/430px, so we
+     only add a tap-feedback reset here (no .active lift on touch). */
+  .property-card:active { transform: none; box-shadow: var(--shadow-sm); }
+
+  /* ---- Detail hero & cards: padding rhythm, no overflow ---- */
+  .detail-hero { gap: 14px; margin-bottom: 16px; }
+  .detail-hero-info { padding: 16px; }
+  .detail-hero-info h1 { font-size: 22px; }
+  .hero-price strong { font-size: 26px; }
+  .detail-grid { gap: 14px; }
+  .card { padding: 16px; }
+  .kv-row { gap: 14px 22px; }
+
+  /* Gauges / ladders / risk meters: keep inside the card, never clip. */
+  .risk-row { grid-template-columns: 76px 1fr 52px; gap: 8px; }
+  .map-embed iframe { height: 240px; }
+
+  /* ---- Compare bar: respect home indicator when stuck to bottom ---- */
+  .compare-bar {
+    flex-wrap: wrap;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+
+  /* ---- Horizontal scrollers get momentum + hidden bars ---- */
+  .table-scroll,
+  .compare-panel,
+  .gallery-strip {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  /* Belt-and-braces: nothing pushes the page wider than the viewport. */
+  .app, .content, section { max-width: 100%; }
+  img, svg, iframe, table { max-width: 100%; }
+}
+
+/* Extra breathing room on the smallest iPhones (≈360–390px): keep the
+   selects single-up so labels never truncate awkwardly. */
+@media (max-width: 400px) {
+  .filters > select.input { flex: 1 1 100%; }
+}
