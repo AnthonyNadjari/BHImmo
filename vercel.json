@@ -3,5 +3,11 @@
   "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
   "installCommand": "echo skip-root-install",
-  "github": { "silent": true }
+  "github": { "silent": true, "autoJobCancelation": true },
+  "git": {
+    "deploymentEnabled": {
+      "main": true,
+      "claude/paris-real-estate-radar-apil7n": false
+    }
+  }
 }

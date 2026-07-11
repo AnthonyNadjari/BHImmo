@@ -1,11 +1,11 @@
 name: Data pipeline
 
 # Refreshes the dataset and commits the updated JSON back to the repo.
-# Scheduled every 6 hours (GitHub runs cron from the default branch only),
+# Scheduled once a day (DVF data barely changes; keeps auto-deploys rare),
 # plus manual dispatch on any branch.
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "0 5 * * *"
   workflow_dispatch:
     inputs:
       mode:
