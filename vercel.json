@@ -7,7 +7,9 @@
   "git": {
     "deploymentEnabled": {
       "main": true,
-      "claude/paris-real-estate-radar-apil7n": false
+      "claude/paris-real-estate-radar-apil7n": false,
+      "live": false,
+      "gh-pages": false
     }
   }
 }
