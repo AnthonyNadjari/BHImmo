@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-02T06:04:46.306Z",
+  "generated_at": "2026-08-03T06:07:55.409Z",
   "city_avg_price_m2": 11695,
   "city_median_trend": -1.3,
   "arrondissements": [
@@ -213,7 +213,7 @@
       "dvf_avg_price_m2": 9185,
       "trend_1y_percent": -1.7,
       "volatility": 0.169,
-      "avg_opportunity_score": 40,
+      "avg_opportunity_score": 39,
       "median_income": 31000,
       "avg_walk_score": 60,
       "median_yield": 3.83,
