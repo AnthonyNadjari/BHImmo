@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { formatDate, formatEuro } from "../services/format";
+import { useContainerWidth } from "../hooks/useContainerWidth";
 
 interface Props {
   history: Array<{ date: string; price: number }>;
@@ -12,10 +13,14 @@ const PAD = { top: 16, right: 16, bottom: 28, left: 64 };
 
 export function PriceChart({ history, height = 240 }: Props) {
   const [hover, setHover] = useState<number | null>(null);
-  const width = 720;
+  const [wrapRef, width] = useContainerWidth<HTMLDivElement>(720);
 
   if (history.length < 2) {
-    return <p className="muted">Only one recorded sale — nothing to plot.</p>;
+    return (
+      <div ref={wrapRef}>
+        <p className="muted">Only one recorded price — nothing to plot.</p>
+      </div>
+    );
   }
 
   const innerW = width - PAD.left - PAD.right;
@@ -41,9 +46,11 @@ export function PriceChart({ history, height = 240 }: Props) {
   const ticks = [0, 0.25, 0.5, 0.75, 1].map((t) => lo + t * vSpan);
 
   return (
-    <div className="chart-wrap">
+    <div className="chart-wrap" ref={wrapRef}>
       <svg
         viewBox={`0 0 ${width} ${height}`}
+        width={width}
+        height={height}
         className="price-chart"
         role="img"
         aria-label="Sale-price history"

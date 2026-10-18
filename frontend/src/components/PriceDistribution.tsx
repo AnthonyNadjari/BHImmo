@@ -5,6 +5,7 @@
  */
 
 import { useMemo } from "react";
+import { useContainerWidth } from "../hooks/useContainerWidth";
 import { useAsync } from "../hooks/useAsync";
 import { fetchIndex } from "../services/data";
 import { districtLabel, formatNumber } from "../services/format";
@@ -18,15 +19,15 @@ interface Props {
 
 export function PriceDistribution({ district, value, dvfRef, percentile }: Props) {
   const { data } = useAsync(fetchIndex, []);
+  const [wrapRef, width] = useContainerWidth<HTMLDivElement>(520);
 
   const peers = useMemo(
     () => (data?.properties ?? []).filter((e) => e.district === district).map((e) => e.price_per_m2),
     [data, district],
   );
 
-  if (peers.length < 4) return null;
+  if (peers.length < 4) return <div ref={wrapRef} />;
 
-  const width = 520;
   const height = 120;
   const pad = { l: 8, r: 8, t: 8, b: 20 };
   const min = Math.min(...peers, value, dvfRef);
@@ -47,8 +48,8 @@ export function PriceDistribution({ district, value, dvfRef, percentile }: Props
   const cheaperThan = Math.round(100 - percentile);
 
   return (
-    <div className="distrib">
-      <svg viewBox={`0 0 ${width} ${height}`} className="distrib-svg" role="img" aria-label="Price distribution">
+    <div className="distrib" ref={wrapRef}>
+      <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height} className="distrib-svg" role="img" aria-label="Price distribution">
         {counts.map((c, i) => {
           const h = (c / maxCount) * innerH;
           return (
