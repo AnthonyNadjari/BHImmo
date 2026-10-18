@@ -4,7 +4,7 @@
  * (DVF), with deal scores, badges, CSV export and a side-by-side comparison.
  */
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
 import { fetchIndex } from "../services/data";
@@ -12,6 +12,7 @@ import {
   districtLabel,
   formatDate,
   formatEuro,
+  formatNumber,
   formatPct,
   formatPerM2,
   NA,
@@ -21,12 +22,13 @@ import { Sparkline } from "../components/Sparkline";
 import { ScoreBar } from "../components/ScoreBar";
 import { Badge } from "../components/Badge";
 import { Img, LocationPin } from "../components/Img";
+import { thumbFor } from "../services/imagery";
 import { Icon } from "../components/Icon";
 import { PropertyCard } from "../components/PropertyCard";
 import { YieldCell } from "../components/YieldBadge";
 import { DataFreshness } from "../components/DataFreshness";
 import { ErrorState, TableSkeleton } from "../components/States";
-import { mean, median } from "../services/stats";
+import { median } from "../services/stats";
 import type { IndexEntry } from "../types";
 
 type SortKey =
@@ -46,7 +48,16 @@ interface SortState {
 }
 
 const MAX_COMPARE = 3;
-const MAX_CARDS = 60;
+const CARD_PAGE = 60;
+const TABLE_PAGE = 100;
+
+const SURFACE_BANDS: Record<string, [number, number]> = {
+  "<25": [0, 25],
+  "25-45": [25, 45],
+  "45-70": [45, 70],
+  "70-100": [70, 100],
+  "100+": [100, Infinity],
+};
 
 type ViewMode = "cards" | "table";
 
@@ -55,9 +66,15 @@ export function Dashboard() {
 
   const [search, setSearch] = useState("");
   const [district, setDistrict] = useState("all");
+  const [quartier, setQuartier] = useState("all");
+  const [surfaceBand, setSurfaceBand] = useState("any");
+  const [dpeFilter, setDpeFilter] = useState<"any" | "A-D" | "F-G">("any");
   const [onlyHighScore, setOnlyHighScore] = useState(false);
   const [onlyBelowDvf, setOnlyBelowDvf] = useState(false);
   const [onlyResold, setOnlyResold] = useState(false);
+  const [noFlood, setNoFlood] = useState(false);
+  const [shown, setShown] = useState(CARD_PAGE);
+  const [page, setPage] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0); // 0 = any
   const [minRooms, setMinRooms] = useState(0);
   const [minYield, setMinYield] = useState(0);
@@ -74,10 +91,25 @@ export function Dashboard() {
     return [...set].sort();
   }, [entries]);
 
+  const quartiers = useMemo(() => {
+    const set = new Set(
+      entries.filter((e) => district === "all" || e.district === district).map((e) => e.quartier).filter((q): q is string => !!q),
+    );
+    return [...set].sort((a, b) => a.localeCompare(b, "fr"));
+  }, [entries, district]);
+
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     const rows = entries.filter((e) => {
       if (district !== "all" && e.district !== district) return false;
+      if (quartier !== "all" && e.quartier !== quartier) return false;
+      if (surfaceBand !== "any") {
+        const [lo, hi] = SURFACE_BANDS[surfaceBand]!;
+        if (e.surface_m2 < lo || e.surface_m2 >= hi) return false;
+      }
+      if (dpeFilter === "A-D" && !(e.dpe_energy && "ABCD".includes(e.dpe_energy))) return false;
+      if (dpeFilter === "F-G" && !(e.dpe_energy && "FG".includes(e.dpe_energy))) return false;
+      if (noFlood && e.flood !== 0) return false;
       if (onlyHighScore && e.opportunity_score < 68) return false;
       if (onlyBelowDvf && !(e.dvf_gap_pct !== null && e.dvf_gap_pct >= 10)) return false;
       if (onlyResold && e.resale_change_pct === null) return false;
@@ -101,7 +133,14 @@ export function Dashboard() {
       return ((av as number) - (bv as number)) * factor;
     });
     return rows;
-  }, [entries, search, district, onlyHighScore, onlyBelowDvf, onlyResold, maxPrice, minRooms, minYield, sort]);
+  }, [entries, search, district, quartier, surfaceBand, dpeFilter, noFlood, onlyHighScore, onlyBelowDvf, onlyResold, maxPrice, minRooms, minYield, sort]);
+
+  // Back to the first page whenever the result set changes.
+  useEffect(() => {
+    setShown(CARD_PAGE);
+    setPage(0);
+  }, [filtered]);
+  const pages = Math.max(1, Math.ceil(filtered.length / TABLE_PAGE));
 
   const toggleSort = (key: SortKey) =>
     setSort((s) =>
@@ -132,13 +171,20 @@ export function Dashboard() {
 
   const compareRows = entries.filter((e) => selected.includes(e.id));
 
-  const yields = entries.map((e) => e.net_yield).filter((y): y is number => y !== null);
+  // KPIs describe the CURRENT selection (filters applied).
+  const yields = filtered.map((e) => e.net_yield).filter((y): y is number => y !== null);
+  const gaps = filtered.map((e) => e.dvf_gap_pct).filter((g): g is number => g !== null);
+  const medGap = gaps.length ? median(gaps) : null;
   const kpis = [
-    { label: "Real sales", value: String(entries.length), rail: "primary" },
-    { label: "Opportunities", value: String(entries.filter((e) => e.opportunity_score >= 68).length), rail: "good" },
-    { label: "Median €/m²", value: formatPerM2(Math.round(median(entries.map((e) => e.price_per_m2)))), rail: "" },
+    { label: "Real sales", value: formatNumber(filtered.length), rail: "primary" },
+    { label: "Opportunities", value: formatNumber(filtered.filter((e) => e.opportunity_score >= 68).length), rail: "good" },
+    { label: "Median €/m²", value: filtered.length ? formatPerM2(Math.round(median(filtered.map((e) => e.price_per_m2)))) : NA, rail: "" },
+    {
+      label: "Median vs reference",
+      value: medGap === null ? NA : `${medGap > 0 ? "−" : "+"}${Math.abs(medGap).toFixed(1)}%`,
+      rail: "",
+    },
     { label: "Median net yield", value: yields.length ? `${median(yields).toFixed(1)}%` : NA, rail: "warn" },
-    { label: "Avg score", value: String(Math.round(mean(entries.map((e) => e.opportunity_score)))), rail: "primary" },
   ];
 
   return (
@@ -180,7 +226,10 @@ export function Dashboard() {
           className="input"
           aria-label="Filter by arrondissement"
           value={district}
-          onChange={(e) => setDistrict(e.target.value)}
+          onChange={(e) => {
+            setDistrict(e.target.value);
+            setQuartier("all");
+          }}
         >
           <option value="all">All arrondissements</option>
           {districts.map((d) => (
@@ -188,6 +237,42 @@ export function Dashboard() {
               {districtLabel(d)} ({d})
             </option>
           ))}
+        </select>
+        <select
+          className="input"
+          aria-label="Filter by quartier"
+          value={quartier}
+          onChange={(e) => setQuartier(e.target.value)}
+        >
+          <option value="all">All quartiers</option>
+          {quartiers.map((q) => (
+            <option key={q} value={q}>
+              {q}
+            </option>
+          ))}
+        </select>
+        <select
+          className="input"
+          aria-label="Surface"
+          value={surfaceBand}
+          onChange={(e) => setSurfaceBand(e.target.value)}
+        >
+          <option value="any">Any surface</option>
+          <option value="<25">&lt; 25 m²</option>
+          <option value="25-45">25–45 m²</option>
+          <option value="45-70">45–70 m²</option>
+          <option value="70-100">70–100 m²</option>
+          <option value="100+">100 m² +</option>
+        </select>
+        <select
+          className="input"
+          aria-label="Energy class"
+          value={dpeFilter}
+          onChange={(e) => setDpeFilter(e.target.value as "any" | "A-D" | "F-G")}
+        >
+          <option value="any">Any DPE</option>
+          <option value="A-D">DPE A–D</option>
+          <option value="F-G">DPE F–G (reno)</option>
         </select>
         <select
           className="input"
@@ -207,7 +292,7 @@ export function Dashboard() {
           value={minRooms}
           onChange={(e) => setMinRooms(Number(e.target.value))}
         >
-          <option value="0">Any size</option>
+          <option value="0">Any rooms</option>
           <option value="1">1+ room</option>
           <option value="2">2+ rooms</option>
           <option value="3">3+ rooms</option>
@@ -235,9 +320,9 @@ export function Dashboard() {
           className={`chip ${onlyBelowDvf ? "on" : ""}`}
           aria-pressed={onlyBelowDvf}
           onClick={() => setOnlyBelowDvf((v) => !v)}
-          title="Sold at least 10% below the local DVF average"
+          title="Sold at least 10% below what similar nearby sales imply"
         >
-          <Icon name="arrow-down" size={13} /> ≥10% below DVF
+          <Icon name="arrow-down" size={13} /> ≥10% below estimate
         </button>
         <button
           className={`chip ${onlyResold ? "on" : ""}`}
@@ -246,6 +331,14 @@ export function Dashboard() {
           title="An earlier DVF sale of the same lot exists"
         >
           <Icon name="clock" size={13} /> Resold
+        </button>
+        <button
+          className={`chip ${noFlood ? "on" : ""}`}
+          aria-pressed={noFlood}
+          onClick={() => setNoFlood((v) => !v)}
+          title="Outside every Géorisques TRI flood scenario"
+        >
+          Outside flood zones
         </button>
         <select
           className="input"
@@ -258,7 +351,7 @@ export function Dashboard() {
         >
           <option value="opportunity_score:desc">Sort: Best score</option>
           <option value="net_yield:desc">Sort: Highest yield</option>
-          <option value="dvf_gap_pct:desc">Sort: Biggest DVF discount</option>
+          <option value="dvf_gap_pct:desc">Sort: Biggest discount vs estimate</option>
           <option value="sale_date:desc">Sort: Most recent sale</option>
           <option value="price:asc">Sort: Price ↑</option>
           <option value="price:desc">Sort: Price ↓</option>
@@ -294,14 +387,17 @@ export function Dashboard() {
           ) : (
             <>
               <div className="card-grid">
-                {filtered.slice(0, MAX_CARDS).map((e) => (
+                {filtered.slice(0, shown).map((e) => (
                   <PropertyCard key={e.id} entry={e} />
                 ))}
               </div>
-              {filtered.length > MAX_CARDS && (
-                <p className="card-grid-note" role="status">
-                  Showing {MAX_CARDS} of {filtered.length} — refine filters or switch to Table.
-                </p>
+              {filtered.length > shown && (
+                <div className="pager" role="status">
+                  Showing {formatNumber(shown)} of {formatNumber(filtered.length)}
+                  <button className="btn small" onClick={() => setShown((n) => n + CARD_PAGE)}>
+                    Show {Math.min(CARD_PAGE, filtered.length - shown)} more
+                  </button>
+                </div>
               )}
             </>
           )}
@@ -317,8 +413,9 @@ export function Dashboard() {
               <SortableTh label="Arr." k="district" sort={sort} onClick={toggleSort} />
               <SortableTh label="Sold" k="sale_date" sort={sort} onClick={toggleSort} />
               <SortableTh label="Price" k="price" sort={sort} onClick={toggleSort} />
+              <th title="What similar nearby sales imply (DVF)">Estimate</th>
               <SortableTh label="€/m²" k="price_per_m2" sort={sort} onClick={toggleSort} />
-              <SortableTh label="vs DVF" k="dvf_gap_pct" sort={sort} onClick={toggleSort} />
+              <SortableTh label="vs est." k="dvf_gap_pct" sort={sort} onClick={toggleSort} />
               <SortableTh label="Net yield" k="net_yield" sort={sort} onClick={toggleSort} />
               <SortableTh label="Surface" k="surface_m2" sort={sort} onClick={toggleSort} />
               <th>DPE</th>
@@ -328,7 +425,7 @@ export function Dashboard() {
             </tr>
           </thead>
           <tbody>
-            {filtered.map((e) => (
+            {filtered.slice(page * TABLE_PAGE, (page + 1) * TABLE_PAGE).map((e) => (
               <tr key={e.id}>
                 <td className="col-check">
                   <input
@@ -340,8 +437,8 @@ export function Dashboard() {
                 </td>
                 <td className="col-thumb">
                   <Link to={`/property/${e.id}`} className="thumb-link" aria-label={e.address}>
-                    <Img src={e.image} alt="" className="row-thumb" />
-                    <LocationPin src={e.image} />
+                    <Img src={thumbFor(e)} alt="" className="row-thumb" />
+                    <LocationPin src={thumbFor(e)} />
                   </Link>
                 </td>
                 <td className="col-address">
@@ -350,8 +447,9 @@ export function Dashboard() {
                 <td>{districtLabel(e.district)}</td>
                 <td className="num">{formatDate(e.sale_date)}</td>
                 <td className="num">{formatEuro(e.price)}</td>
+                <td className="num">{e.estimate === null ? NA : formatEuro(e.estimate)}</td>
                 <td className="num">{formatPerM2(e.price_per_m2)}</td>
-                <td className="num" title="Gap vs the local DVF average (+ = cheaper)">
+                <td className="num" title="Price vs the estimate from similar sales (− = cheaper)">
                   {e.dvf_gap_pct === null ? NA : `${e.dvf_gap_pct > 0 ? "−" : "+"}${Math.abs(e.dvf_gap_pct).toFixed(1)}%`}
                 </td>
                 <td className="num"><YieldCell net={e.net_yield} /></td>
@@ -378,6 +476,17 @@ export function Dashboard() {
           <p className="state" role="status">
             No sales match these filters.
           </p>
+        )}
+        {pages > 1 && (
+          <div className="pager">
+            <button className="btn small" disabled={page === 0} onClick={() => setPage((n) => n - 1)}>
+              ← Prev
+            </button>
+            Page {page + 1} / {pages}
+            <button className="btn small" disabled={page >= pages - 1} onClick={() => setPage((n) => n + 1)}>
+              Next →
+            </button>
+          </div>
         )}
       </div>
       )}
@@ -427,6 +536,8 @@ function ComparePanel({ rows }: { rows: IndexEntry[] }) {
     { label: "Arrondissement", render: (e) => districtLabel(e.district) },
     { label: "Sale date", render: (e) => formatDate(e.sale_date) },
     { label: "Price", render: (e) => formatEuro(e.price) },
+    { label: "Estimate (similar sales)", render: (e) => (e.estimate === null ? NA : formatEuro(e.estimate)) },
+    { label: "Quartier", render: (e) => e.quartier ?? NA },
     { label: "€/m²", render: (e) => formatPerM2(e.price_per_m2) },
     { label: "Gap vs local DVF", render: (e) => (e.dvf_gap_pct === null ? NA : `${e.dvf_gap_pct}%`) },
     { label: "Surface", render: (e) => `${e.surface_m2} m²` },

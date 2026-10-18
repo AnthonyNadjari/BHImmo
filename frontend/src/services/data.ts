@@ -5,7 +5,6 @@
  */
 
 import type { IndexFile, MarketFile, Property } from "../types";
-import { hasStreetView, streetViewGallery, streetViewThumb } from "./facade";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -25,6 +24,13 @@ async function getJson<T>(name: string): Promise<T> {
 
 let indexPromise: Promise<IndexFile> | null = null;
 let marketPromise: Promise<MarketFile> | null = null;
+let quartiersPromise: Promise<QuartierGeoJson> | null = null;
+
+/** Quartier polygons (official boundaries) for the price map. */
+export interface QuartierGeoJson {
+  type: "FeatureCollection";
+  features: Array<{ type: "Feature"; properties: { id: string; name: string; district: string }; geometry: GeoJSON.Geometry }>;
+}
 const propertyCache = new Map<string, Promise<Property | undefined>>();
 
 /**
@@ -35,23 +41,20 @@ export function clearDataCache(): void {
   cacheBust = String(Date.now());
   indexPromise = null;
   marketPromise = null;
+  quartiersPromise = null;
   propertyCache.clear();
 }
 
 export function fetchIndex(): Promise<IndexFile> {
-  return (indexPromise ??= getJson<IndexFile>("index.json").then((f) => {
-    if (hasStreetView()) {
-      for (const p of f.properties) {
-        const t = streetViewThumb(p.lat, p.lng);
-        if (t) p.image = t;
-      }
-    }
-    return f;
-  }));
+  return (indexPromise ??= getJson<IndexFile>("index.json"));
 }
 
 export function fetchMarket(): Promise<MarketFile> {
   return (marketPromise ??= getJson<MarketFile>("market.json"));
+}
+
+export function fetchQuartiers(): Promise<QuartierGeoJson> {
+  return (quartiersPromise ??= getJson<QuartierGeoJson>("quartiers.geojson"));
 }
 
 /**
@@ -62,19 +65,7 @@ export function fetchMarket(): Promise<MarketFile> {
 export function fetchProperty(id: string): Promise<Property | undefined> {
   let p = propertyCache.get(id);
   if (!p) {
-    p = getJson<Property>(`property/${encodeURIComponent(id)}.json`)
-      .then((prop) => {
-        if (prop && hasStreetView()) {
-          // Street View façades first, then the IGN aerial views of the parcel.
-          const g = streetViewGallery(prop.address.lat, prop.address.lng);
-          if (g.length) {
-            prop.images = [...g, ...prop.images];
-            prop.thumb = g[0]!;
-          }
-        }
-        return prop;
-      })
-      .catch(() => undefined);
+    p = getJson<Property>(`property/${encodeURIComponent(id)}.json`).catch(() => undefined);
     propertyCache.set(id, p);
   }
   return p;

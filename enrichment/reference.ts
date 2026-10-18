@@ -18,7 +18,7 @@
  */
 
 import { ENDPOINTS, fetchJson, fetchText, type PipelineConfig } from "../shared/config.ts";
-import { PointIndex } from "../shared/geo.ts";
+import { PointIndex, pointInPolygon } from "../shared/geo.ts";
 import { log } from "../shared/logger.ts";
 import { ARRONDISSEMENTS } from "../shared/paris.ts";
 import type { SourceStatus } from "../shared/types.ts";
@@ -36,8 +36,14 @@ export interface AmenityPoint extends RefPoint {
 }
 
 export interface RentZone {
+  /** Quartier administratif number ("1"–"80"). */
+  id: string;
   quartier: string;
+  /** Arrondissement postcode the quartier belongs to. */
+  district: string;
   geometry: { type: string; coordinates: unknown };
+  /** [minLng, minLat, maxLng, maxLat] for a cheap pre-filter. */
+  bbox: [number, number, number, number];
   /** "<piece>|<epoque>" → { ref, min, max } (non meublé). */
   rents: Map<string, { ref: number; min: number; max: number }>;
 }
@@ -193,7 +199,19 @@ async function loadRent(config: PipelineConfig): Promise<{ year: string; zones: 
     const id = String(r.id_quartier);
     const shape = r.geo_shape as { geometry?: { type: string; coordinates: unknown } } | undefined;
     if (!shape?.geometry) continue;
-    const z = zones.get(id) ?? zones.set(id, { quartier: String(r.nom_quartier ?? ""), geometry: shape.geometry, rents: new Map() }).get(id)!;
+    const z =
+      zones.get(id) ??
+      zones
+        .set(id, {
+          id,
+          quartier: String(r.nom_quartier ?? ""),
+          // Quartiers are numbered 4 per arrondissement (1–4 → 1er, …).
+          district: `750${String(Math.ceil(Number(id) / 4)).padStart(2, "0")}`,
+          geometry: shape.geometry,
+          bbox: bboxOf(shape.geometry),
+          rents: new Map(),
+        })
+        .get(id)!;
     z.rents.set(`${r.piece}|${r.epoque}`, { ref: Number(r.ref), min: Number(r.min), max: Number(r.max) });
   }
   return { year, zones: [...zones.values()] };
@@ -224,6 +242,28 @@ async function loadNoise(config: PipelineConfig): Promise<References["noise"]> {
     if (Number.isFinite(v)) exposed.set(a.district, v);
   }
   return exposed.size ? { year: String(latest.annee), dbThreshold: Number(latest.lden_reglementaire), exposed } : null;
+}
+
+function bboxOf(geometry: { type: string; coordinates: unknown }): [number, number, number, number] {
+  const b: [number, number, number, number] = [Infinity, Infinity, -Infinity, -Infinity];
+  const walk = (c: unknown): void => {
+    if (Array.isArray(c) && typeof c[0] === "number") {
+      const [x, y] = c as [number, number];
+      b[0] = Math.min(b[0], x); b[1] = Math.min(b[1], y); b[2] = Math.max(b[2], x); b[3] = Math.max(b[3], y);
+    } else if (Array.isArray(c)) c.forEach(walk);
+  };
+  walk(geometry.coordinates);
+  return b;
+}
+
+/** The quartier administratif containing a point (null outside / no data). */
+export function findQuartier(refs: Pick<References, "rent">, lat: number, lng: number): RentZone | null {
+  for (const z of refs.rent?.zones ?? []) {
+    const [x0, y0, x1, y1] = z.bbox;
+    if (lng < x0 || lng > x1 || lat < y0 || lat > y1) continue;
+    if (pointInPolygon(lat, lng, z.geometry)) return z;
+  }
+  return null;
 }
 
 /** "JARDIN DE BONNE" → "Jardin De Bonne". */

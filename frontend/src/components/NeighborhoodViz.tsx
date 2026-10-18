@@ -160,7 +160,6 @@ export function NeighborhoodViz({ property: p }: { property: Property }) {
 
   const risks = [
     { label: "Flood", fact: p.risks.flood, missing: "Géorisques lookup pending" },
-    { label: "Clay (RGA)", fact: p.risks.clay, missing: "Géorisques has no RGA data at this address" },
     { label: "Road noise", fact: p.risks.noise, missing: "No exposure data" },
   ];
 

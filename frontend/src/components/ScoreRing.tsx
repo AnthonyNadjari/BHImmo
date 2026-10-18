@@ -9,7 +9,7 @@ export function ScoreRing({ score, size = 108 }: { score: number; size?: number 
   const offset = circ * (1 - Math.max(0, Math.min(100, score)) / 100);
   const color = scoreColor(score);
   const label =
-    score >= 68 ? "Strong opportunity" : score >= 50 ? "Worth watching" : score >= 45 ? "Marginal" : "Overvalued";
+    score >= 68 ? "Strong opportunity" : score >= 50 ? "Worth watching" : score >= 45 ? "Marginal" : "Weak deal";
 
   return (
     <div className="score-ring" style={{ width: size }}>

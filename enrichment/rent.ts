@@ -8,9 +8,9 @@
  * DPE reports it, we use "Avant 1946" and flag it as an assumption.
  */
 
-import { pointInPolygon, round } from "../shared/geo.ts";
+import { round } from "../shared/geo.ts";
 import type { Dpe, Rent } from "../shared/types.ts";
-import type { References } from "./reference.ts";
+import { findQuartier, type References } from "./reference.ts";
 
 type Epoque = "Avant 1946" | "1946-1970" | "1971-1990" | "Apres 1990";
 
@@ -41,7 +41,7 @@ export function enrichRent(
   refs: References,
 ): Rent | null {
   if (!refs.rent) return null;
-  const zone = refs.rent.zones.find((z) => pointInPolygon(lat, lng, z.geometry));
+  const zone = findQuartier(refs, lat, lng);
   if (!zone) return null;
 
   let epoque: Epoque | null = null;

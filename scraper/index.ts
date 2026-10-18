@@ -2,12 +2,19 @@
 
 export type { DvfTxn } from "./types.ts";
 export {
-  comparables,
   districtMarkets,
   loadDvf,
   lotHistory,
   selectUniverse,
-  type Comparable,
   type DistrictMarket,
   type DvfData,
 } from "./dvf-source.ts";
+export {
+  buildPriceIndex,
+  marketChangePct,
+  quarterlySeries,
+  quarterOf,
+  repeatPairs,
+  repeatStats,
+  type PriceIndex,
+} from "./price-index.ts";

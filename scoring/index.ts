@@ -5,7 +5,7 @@
  */
 
 import { getInseeProfile } from "../enrichment/insee.ts";
-import type { DistrictMarket } from "../scraper/index.ts";
+import type { DistrictMarket, PriceIndex } from "../scraper/index.ts";
 import type { Property } from "../shared/types.ts";
 import { computeScore, gentrificationByDistrict } from "./score.ts";
 import { buildExplanations, resaleSignal } from "./signals.ts";
@@ -18,6 +18,7 @@ export interface ScoringContext {
   latestYear: string;
   /** Sorted €/m² of every DVF sale per arrondissement (latest vintage). */
   districtPpm2: Map<string, number[]>;
+  index: PriceIndex;
 }
 
 function rank(values: number[], v: number): number {
@@ -48,7 +49,7 @@ export function scoreDataset(properties: Property[], ctx: ScoringContext): void 
 
   for (const p of properties) {
     const market = ctx.markets.get(p.address.district);
-    p.signals = { resale: resaleSignal(p.price_history), explanations: [] };
+    p.signals = { resale: resaleSignal(p.price_history, ctx.index), explanations: [] };
     const out = computeScore({
       price: p.sale.price,
       price_per_m2: p.sale.price_per_m2,
