@@ -22,14 +22,18 @@ const propDir = join(destDir, "property");
 
 await mkdir(destDir, { recursive: true });
 
-// Compact, always-loaded artifacts.
+// Compact, always-loaded artifacts. listings.json only exists once a
+// Stream.estate API key is configured (the UI then shows the listings page).
 const artifacts = ["index.json", "market.json", "quartiers.geojson"];
 let copied = 0;
-for (const file of artifacts) {
+for (const file of [...artifacts, "listings.json"]) {
   const src = join(srcDir, file);
   if (existsSync(src)) {
     await copyFile(src, join(destDir, file));
     copied++;
+  } else if (file === "listings.json") {
+    await rm(join(destDir, file), { force: true });
+    console.log("[copy-data] no listings.json (Stream.estate key not configured) — listings page shows how to enable it");
   } else {
     console.warn(`[copy-data] missing ${src} — run the pipeline first`);
   }

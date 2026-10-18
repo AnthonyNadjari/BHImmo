@@ -162,8 +162,8 @@ export interface Rent {
   year: string;
   /** Construction era used to pick the reference rent. */
   epoque: string;
-  /** "dpe" = derived from the building's DPE; "assumed" = no data, pre-1946. */
-  epoque_source: "dpe" | "assumed";
+  /** "dpe" / "advert" = construction year from there; "assumed" = no data, pre-1946. */
+  epoque_source: "dpe" | "advert" | "assumed";
 }
 
 export interface Dpe {
@@ -419,4 +419,71 @@ export interface PropertiesFile {
   generated_at: string;
   count: number;
   properties: Property[];
+}
+
+/* ------------------------------------------------------------------ */
+/* Listings currently on the market (Stream.estate API, licensed).    */
+/* ------------------------------------------------------------------ */
+
+export interface ListingPricePoint {
+  date: ISODate;
+  price: number;
+}
+
+export interface Listing {
+  /** "se-<property uuid>". */
+  id: string;
+  title: string;
+  /** Advert text (trimmed). */
+  description: string;
+  /** Original advert(s) on the publishers' sites. */
+  urls: string[];
+  /** Agency / individual publishing it. */
+  publisher: string | null;
+  publisher_type: "agency" | "individual" | null;
+  address: { lat: number; lng: number; district: string; quartier: string | null };
+  surface_m2: number;
+  rooms: number | null;
+  bedrooms: number | null;
+  floor: number | null;
+  construction_year: number | null;
+  /** Annual condominium charges, €. */
+  condo_fees: number | null;
+  price: number;
+  price_per_m2: number;
+  /** Interior photos from the adverts (deduplicated by the provider). */
+  pictures: string[];
+  /** First listed (any advert). */
+  listed_at: ISODate;
+  updated_at: ISODate;
+  /** Days since first listed (or until it went off the market). */
+  days_on_market: number;
+  /** Off the market: every advert expired (sold or withdrawn — unknown which). */
+  expired: boolean;
+  expired_at: ISODate | null;
+  /** Asking-price changes recorded on the adverts, oldest first (+ current). */
+  price_history: ListingPricePoint[];
+  price_drops: number;
+  /** Total change since first listed, % (negative = cheaper now). */
+  price_change_pct: number;
+  /** DPE as stated in the advert. */
+  dpe: { energy_class: string; ghg_class: string | null } | null;
+  /** DVF valuation (similar-size sales nearby, latest 12 months of DVF). */
+  dvf: DvfStats;
+  rent: Rent | null;
+  transport: Transport | null;
+  investment: Investment;
+  score: Score;
+  explanations: string[];
+  /** When this record was last fetched from the provider. */
+  fetched_at: string;
+}
+
+export interface ListingsFile {
+  generated_at: string;
+  /** updatedAt of the last provider record processed (incremental fetch cursor). */
+  cursor: string | null;
+  source: SourceStatus;
+  count: number;
+  listings: Listing[];
 }

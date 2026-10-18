@@ -143,7 +143,10 @@ export function enrichLocal(p: Property, txn: DvfTxn, dvf: DvfData, index: Price
   p.neighborhood.walk_score = computeWalkScore(p.neighborhood);
 
   const surface = p.characteristics.carrez_m2 ?? p.characteristics.surface_m2;
-  if (refs.rent) p.rent = enrichRent(lat, lng, p.characteristics.rooms, surface, p.dpe, refs);
+  if (refs.rent) {
+    const built = p.dpe ? { year_built: p.dpe.year_built, period: p.dpe.period, source: "dpe" as const } : null;
+    p.rent = enrichRent(lat, lng, p.characteristics.rooms, surface, built, refs);
+  }
 
   const pois = nearbyPois(lat, lng, refs);
   if (pois.length || (refs.stations && refs.parks && refs.velib)) p.pois = pois;

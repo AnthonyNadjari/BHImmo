@@ -42,6 +42,7 @@
 | Population, density, median standard of living, poverty rate | **INSEE** Melodi API (populations, FiLoSoFi) · Ville de Paris areas | arrondissement |
 | Road-noise exposure | Ville de Paris (share of residents above the Lden threshold) | arrondissement |
 | Imagery | **IGN** BD ORTHO® aerial photos + Plan IGN centred on the address (Mapillary / Street View optional) | the address |
+| **Listings on the market — interior photos**, asking-price history (price drops), days on market, floor, charges | **Stream.estate API** (licensed, data behind Melo; optional `STREAM_ESTATE_API_KEY`) — valued against DVF like the sales | the listing |
 
 The Market page lists every source with its status for the last run
 (`loaded`, `last run's values`, `unavailable`).
@@ -59,7 +60,12 @@ The Market page lists every source with its status for the last run
   (< 0.6× or > 2.2× the arrondissement-year median, e.g. viager) are excluded
   so €/m² is meaningful.
 - DVF records completed sales, not listings: there is no "days on market" or
-  "price drop" signal. A sale is shown as *Sold <date>*.
+  "price drop" signal for them. A sale is shown as *Sold <date>*.
+- Interior photos only exist on adverts. They come from a licensed listings
+  API (Stream.estate) for apartments *currently* on the market — listing
+  portals are not scraped (French courts protect their databases, e.g.
+  Leboncoin v. Jinka, 2024, and the photos belong to the agencies). Without
+  the API key the Listings page says so instead of showing placeholders.
 
 ---
 
@@ -73,10 +79,12 @@ GitHub Actions (daily) ─ pipeline/run.ts
   4. Enrichment   enrichment/   estimate from similar sales · local price index · transport · neighbourhood · rent
   5. History      scraper/      earlier DVF sales of the same lot · repeat-sales pairs
   6. Scoring      scoring/      deal score + explainable signals
+  6b. Listings    enrichment/   Stream.estate (incremental, capped) → photos, price drops, DVF valuation
   7. Export       storage/      data/properties/<district>.json · index.json · market.json · quartiers.geojson
                        │ commit → deploy
                        ▼
-frontend/ (React + Vite SPA): Dashboard · Sale detail · Map (sales + quartier choropleths) · Market (price index, quartiers, sources) · Watchlist
+frontend/ (React + Vite SPA): Dashboard (sales) · Listings (on the market, photos) · Sale / listing detail ·
+                              Map (sales + quartier choropleths) · Market (price index, quartiers, sources) · Watchlist
 ```
 
 ---
@@ -147,7 +155,8 @@ storage/      repository · market model · dataset export
 pipeline/     run.ts (CLI) · pipeline.ts (orchestrator)
 shared/       types · config (endpoints, fetch helpers) · geo (grid index, PIP) · paris · images (IGN)
 frontend/     React (Vite) — pages, components, services
-data/         properties/<district>.json · index.json · market.json · quartiers.geojson   (committed)
+data/         properties/<district>.json · index.json · market.json · quartiers.geojson ·
+              listings.json (only with a Stream.estate key)   (committed)
 ```
 
 ---
@@ -169,7 +178,20 @@ Environment knobs: `PRER_UNIVERSE_DAYS` (sales of the last N days of DVF
 coverage, default 92), `PRER_MIN_PER_ARR` (minimum per arrondissement, default
 100), `PRER_MAX_LOOKUPS` (properties enriched via remote lookups per run, default
 4000), `PRER_DVF_YEARS` (DVF vintages loaded, default 5), `PRER_CONCURRENCY`
-(parallel lookups, default 6), `MLY_TOKEN` (optional Mapillary street photos).
+(parallel lookups, default 6), `MLY_TOKEN` (optional Mapillary street photos),
+`STREAM_ESTATE_API_KEY` + `PRER_LISTINGS_MAX` (listings with interior photos;
+billed per item — 450/run fits the €5 trial credit, raise it on a paid plan).
+
+### Enabling interior photos (listings on the market)
+
+1. Create an account on [stream.estate](https://stream.estate/) and an API key.
+2. Repository *Settings → Secrets and variables → Actions*: add
+   `STREAM_ESTATE_API_KEY`.
+3. Run the *Data pipeline* workflow. The first run fetches the most recently
+   updated active Paris apartments (up to `PRER_LISTINGS_MAX`); later runs
+   fetch only what changed since (price drops, new photos, expirations).
+   Check with Stream.estate that your plan allows displaying the advert photos
+   publicly.
 `npm run typecheck` (root and `frontend/`) type-checks everything.
 
 ---
