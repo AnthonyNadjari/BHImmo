@@ -15,8 +15,8 @@ function monthlyPayment(loan: number, monthlyRate: number, months: number): numb
   return (loan * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -months));
 }
 
-function formatPct(n: number, digits = 1): string {
-  if (!Number.isFinite(n)) return "—";
+function formatPct(n: number | null, digits = 1): string {
+  if (n === null || !Number.isFinite(n)) return "—";
   return `${n.toFixed(digits)}%`;
 }
 
@@ -76,8 +76,8 @@ function Output({
 }
 
 export function InvestmentCalculator({ property }: { property: Property }) {
-  const price = property.pricing.current_price;
-  const defaultRent = Math.round(property.rent?.monthly_est) || 0;
+  const price = property.sale.price;
+  const defaultRent = Math.round(property.rent?.monthly_est ?? 0);
 
   const [downPct, setDownPct] = useState(20);
   const [ratePct, setRatePct] = useState(3.5);
@@ -225,9 +225,14 @@ export function InvestmentCalculator({ property }: { property: Property }) {
           </div>
 
           <p className="invsim-note">
-            Listing reference yields — gross {formatPct(property.investment.gross_yield)},
-            net {formatPct(property.investment.net_yield)}. Estimates only; excludes taxes,
-            vacancy and insurance.
+            Defaults: the actual sale price and the legal rent ceiling
+            {property.rent
+              ? ` (${property.rent.max_m2} €/m², ${property.rent.quartier}, ${property.rent.year}${
+                  property.rent.epoque_source === "assumed" ? ", era assumed pre-1946" : `, built ${property.rent.epoque}`
+                })`
+              : " (no rent-control reference for this address — set the rent yourself)"}
+            . Reference yields — gross {formatPct(property.investment.gross_yield)}, net{" "}
+            {formatPct(property.investment.net_yield)}. Simulation only; excludes taxes, vacancy and insurance.
           </p>
         </div>
       </div>

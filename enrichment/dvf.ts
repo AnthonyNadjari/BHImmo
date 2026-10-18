@@ -1,124 +1,50 @@
 /**
- * DVF (Demandes de Valeurs Foncières) enrichment.
- *
- * DVF is the French open dataset of real estate transactions published by the
- * DGFiP / Etalab. We query the community-hosted geo API (Etalab data, free,
- * key-less):
- *
- *   https://api.cquest.org/dvf?lat=..&lon=..&dist=500
- *
- * From the nearby apartment sales we derive the mean €/m² within 100 m and
- * 500 m and the closest comparable sales. When the API is unavailable we
- * synthesize comparables deterministically around the arrondissement
- * reference price so the rest of the pipeline still has DVF context.
+ * DVF market context for a property: real comparable apartment sales within
+ * 100 m / 500 m and ±12 months of its own sale date (the sale itself
+ * excluded). Too few comparables → the average is null, never estimated.
  */
 
-import { type PipelineConfig } from "../shared/config.ts";
 import { mean, round } from "../shared/geo.ts";
-import { ARRONDISSEMENT_BY_CODE } from "../shared/paris.ts";
-import { SeededRandom } from "../shared/prng.ts";
-import { nearbyDvfComps } from "../scraper/dvf-source.ts";
-import type { ComparableSale, DvfStats } from "../shared/types.ts";
+import { comparables, type DvfData, type DvfTxn } from "../scraper/index.ts";
+import type { DvfStats } from "../shared/types.ts";
 
-interface Comparable extends ComparableSale {
-  pricePerM2: number;
+const WINDOW_DAYS = 365;
+const MIN_100M = 3;
+const MIN_500M = 5;
+
+function shiftDays(iso: string, days: number): string {
+  return new Date(Date.parse(iso) + days * 86_400_000).toISOString().slice(0, 10);
 }
 
-export interface DvfContext {
-  id: string;
-  lat: number;
-  lng: number;
-  district: string;
-}
-
-export async function enrichDvf(
-  ctx: DvfContext,
-  config: PipelineConfig,
-): Promise<DvfStats> {
-  const live = await fetchLiveDvf(ctx, config);
-  if (live && live.length >= 3) {
-    const stats = summarize(live);
-    // Guard against empty radius buckets collapsing the averages to 0, which
-    // would silently neutralize the (heavily weighted) DVF gap score.
-    if (stats.avg_price_m2_500m > 0 && stats.avg_price_m2_100m > 0) {
-      return stats;
-    }
-  }
-  return syntheticDvf(ctx);
-}
-
-async function fetchLiveDvf(
-  ctx: DvfContext,
-  config: PipelineConfig,
-): Promise<Comparable[] | null> {
-  // Comparables come from the same real DVF transactions loaded at ingestion
-  // (geo-dvf flat files), so every property is scored against genuine nearby
-  // sales — available regardless of run mode, since the cache is real.
-  void config;
-  // Exclude the property's own transaction (id is "dvf-<mutationId>").
-  const selfTxnId = ctx.id.startsWith("dvf-") ? ctx.id.slice(4) : undefined;
-  const comps = nearbyDvfComps(ctx.lat, ctx.lng, 500, selfTxnId);
-  return comps.length ? comps : null;
-}
-
-function summarize(comps: Comparable[]): DvfStats {
-  const within100 = comps.filter((c) => c.distance_m <= 100);
-  const within500 = comps.filter((c) => c.distance_m <= 500);
-
-  const avg100 = within100.length
-    ? mean(within100.map((c) => c.pricePerM2))
-    : mean(within500.map((c) => c.pricePerM2));
-  const avg500 = mean(within500.map((c) => c.pricePerM2));
-
-  const comparable_sales = [...within500]
-    .sort((a, b) => a.distance_m - b.distance_m)
-    .slice(0, 8)
-    .map(({ price, date, distance_m }) => ({ price, date, distance_m }));
+export function enrichDvf(dvf: DvfData, txn: DvfTxn): DvfStats {
+  const to = shiftDays(txn.date, WINDOW_DAYS);
+  const within500 = comparables(dvf, txn, 500, WINDOW_DAYS);
+  const within100 = within500.filter((c) => c.distance_m <= 100);
+  const avg = (list: typeof within500, min: number) =>
+    list.length >= min ? round(mean(list.map((c) => c.txn.ppm2))) : null;
 
   return {
-    avg_price_m2_100m: round(avg100),
-    avg_price_m2_500m: round(avg500),
-    comparable_sales,
-  };
-}
-
-/** Deterministic DVF fallback anchored to the arrondissement reference price. */
-function syntheticDvf(ctx: DvfContext): DvfStats {
-  const arr = ARRONDISSEMENT_BY_CODE.get(ctx.district);
-  const ref = arr?.refPriceM2 ?? 10500;
-  const rng = new SeededRandom(`dvf:${ctx.id}`);
-
-  // Local micro-market drifts slightly from the arrondissement average.
-  const localBias = rng.range(0.94, 1.06);
-  const avg500 = ref * localBias;
-  const avg100 = avg500 * rng.range(0.97, 1.04);
-
-  const count = rng.int(5, 12);
-  const comparable_sales: ComparableSale[] = [];
-  for (let i = 0; i < count; i++) {
-    const distance_m = round(rng.range(15, 480));
-    const ppm2 = avg500 * rng.range(0.85, 1.15);
-    const surface = rng.int(18, 95);
-    const monthsAgo = rng.int(1, 34);
-    comparable_sales.push({
-      price: round(ppm2 * surface, -2),
-      date: monthsAgoISO(monthsAgo, ctx.id, i),
+    avg_price_m2_100m: avg(within100, MIN_100M),
+    avg_price_m2_500m: avg(within500, MIN_500M),
+    count_100m: within100.length,
+    count_500m: within500.length,
+    window_from: shiftDays(txn.date, -WINDOW_DAYS),
+    // Never claim coverage beyond the latest DVF sale.
+    window_to: to < dvf.coverage.last_sale ? to : dvf.coverage.last_sale,
+    comparable_sales: within500.slice(0, 8).map(({ txn: t, distance_m }) => ({
+      price: t.price,
+      date: t.date,
       distance_m,
-    });
-  }
-  comparable_sales.sort((a, b) => a.distance_m - b.distance_m);
-
-  return {
-    avg_price_m2_100m: round(avg100),
-    avg_price_m2_500m: round(avg500),
-    comparable_sales: comparable_sales.slice(0, 8),
+      surface_m2: t.surface,
+      price_per_m2: t.ppm2,
+    })),
   };
 }
 
-/** Deterministic past date `months` before a fixed anchor (2026-06). */
-function monthsAgoISO(months: number, seed: string, i: number): string {
-  const anchor = Date.UTC(2026, 5, 15); // 2026-06-15
-  const jitterDays = new SeededRandom(`${seed}:${i}`).int(0, 27);
-  const ms = anchor - months * 30 * 86_400_000 - jitterDays * 86_400_000;
-  return new Date(ms).toISOString().slice(0, 10);
+/** Local DVF reference €/m²: 60 % within 100 m + 40 % within 500 m. */
+export function dvfReference(dvf: Pick<DvfStats, "avg_price_m2_100m" | "avg_price_m2_500m">): number | null {
+  const a = dvf.avg_price_m2_100m;
+  const b = dvf.avg_price_m2_500m;
+  if (a && b) return 0.6 * a + 0.4 * b;
+  return a ?? b ?? null;
 }

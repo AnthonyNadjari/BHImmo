@@ -43,10 +43,11 @@ export function Layout() {
         <Outlet />
       </main>
       <footer className="footer">
-        Live data: real Paris apartment transactions from DVF (Etalab), enriched with
-        BAN · ADEME DPE · INSEE · IDFM · OSM · data.education · Vélib' &amp; arbres
-        (opendata.paris.fr). Street-level photos © Mapillary contributors (CC-BY-SA) /
-        Google Street View. Refreshed automatically via GitHub Actions.
+        Real data only: Paris apartment sales from DVF (DGFiP / Etalab), enriched with
+        BAN · ADEME DPE · Géorisques · INSEE · IDFM · OpenStreetMap · Annuaire de l'éducation ·
+        opendata.paris.fr (Vélib', arbres, espaces verts, encadrement des loyers, bruit). Imagery
+        © IGN (BD ORTHO®, Plan IGN). Missing data is shown as missing, never estimated. Pipeline
+        runs daily via GitHub Actions — see Market › Sources.
       </footer>
     </div>
   );

@@ -74,8 +74,21 @@ export const BADGES: Record<Badge, BadgeMeta> = {
   overvalued: { emoji: "❌", label: "Overvalued", className: "badge-overvalued" },
 };
 
-export const STATUS_LABEL: Record<string, string> = {
-  active: "Active",
-  sold: "Sold",
-  removed: "Removed",
-};
+/** Placeholder for a value the open-data source doesn't provide. */
+export const NA = "—";
+
+/** "12.3%" or "—" when the value is unknown. */
+export function formatPct(n: number | null | undefined, digits = 1): string {
+  return n === null || n === undefined || !Number.isFinite(n) ? NA : `${n.toFixed(digits)}%`;
+}
+
+/** Escape text interpolated into raw HTML (Leaflet popups). */
+export function escapeHtml(s: string): string {
+  return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
+}
+
+/** Month + year, e.g. "déc. 2025". */
+export function formatMonth(iso: string): string {
+  if (!iso) return NA;
+  return parseDate(iso).toLocaleDateString("fr-FR", { month: "short", year: "numeric" });
+}

@@ -1,6 +1,7 @@
 /**
- * €/m² distribution of the listing's arrondissement, with the listing and the
- * DVF reference marked — shows at a glance how cheap (or not) it is.
+ * €/m² distribution of the sales shown for this arrondissement, with this sale
+ * and the local DVF reference marked. The "cheaper than" figure is computed
+ * against ALL the arrondissement's DVF sales of the year (pipeline).
  */
 
 import { useMemo } from "react";
@@ -10,7 +11,7 @@ import { districtLabel, formatNumber } from "../services/format";
 
 interface Props {
   district: string;
-  value: number; // listing €/m²
+  value: number; // this sale's €/m²
   dvfRef: number;
   percentile: number; // 0 = cheapest
 }
@@ -63,15 +64,15 @@ export function PriceDistribution({ district, value, dvfRef, percentile }: Props
         })}
         {/* DVF reference (dashed) */}
         <line className="distrib-dvf" x1={x(dvfRef)} x2={x(dvfRef)} y1={pad.t} y2={pad.t + innerH} />
-        {/* this listing (solid) */}
+        {/* this sale (solid) */}
         <line className="distrib-listing" x1={x(value)} x2={x(value)} y1={pad.t - 2} y2={pad.t + innerH} />
         <circle className="distrib-listing-dot" cx={x(value)} cy={pad.t - 2} r={3.5} />
         <text className="axis-label" x={pad.l} y={height - 6}>{formatNumber(min)}</text>
         <text className="axis-label" x={width - pad.r} y={height - 6} textAnchor="end">{formatNumber(max)} €/m²</text>
       </svg>
       <p className="distrib-caption">
-        Cheaper than <strong>{cheaperThan}%</strong> of the {districtLabel(district)} ·
-        <span className="distrib-key listing"> listing</span>
+        Cheaper than <strong>{cheaperThan}%</strong> of {districtLabel(district)} DVF sales of the year ·
+        <span className="distrib-key listing"> this sale</span>
         <span className="distrib-key dvf"> DVF avg</span>
       </p>
     </div>

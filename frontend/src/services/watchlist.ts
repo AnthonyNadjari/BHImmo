@@ -1,18 +1,19 @@
 /**
- * Watchlist persistence (localStorage). For each tracked property we snapshot
- * the price and status at the moment it was added, so the Watchlist page can
- * surface "price dropped" / "status changed" alerts by diffing against the
- * current dataset. No backend, no auth — it lives entirely in the browser.
+ * Watchlist persistence (localStorage). For each tracked sale we snapshot the
+ * deal score and the local DVF reference at the moment it was added, so the
+ * Watchlist page can surface what changed as new DVF releases and open data
+ * come in (a sale price itself never changes). It lives entirely in the
+ * browser — no backend, no auth.
  */
 
-import type { Property, PropertyStatus } from "../types";
+import type { Property } from "../types";
 
-const KEY = "prer.watchlist.v1";
+const KEY = "prer.watchlist.v2";
 
 export interface WatchSnapshot {
   addedAt: string;
-  priceAtAdd: number;
-  statusAtAdd: PropertyStatus;
+  scoreAtAdd: number;
+  dvfGapAtAdd: number | null;
 }
 
 export type WatchMap = Record<string, WatchSnapshot>;
@@ -46,8 +47,8 @@ export function addToWatchlist(p: Property): void {
   const map = read();
   map[p.id] = {
     addedAt: new Date().toISOString(),
-    priceAtAdd: p.pricing.current_price,
-    statusAtAdd: p.status,
+    scoreAtAdd: p.score.opportunity_score,
+    dvfGapAtAdd: p.investment.dvf_gap_pct,
   };
   write(map);
 }
@@ -65,36 +66,29 @@ export function toggleWatchlist(p: Property): boolean {
   return !watched;
 }
 
-export type AlertKind = "price-drop" | "price-rise" | "status-change";
+export type AlertKind = "score-up" | "score-down" | "market";
 
 export interface WatchAlert {
   kind: AlertKind;
   message: string;
 }
 
-/** Compute alerts for a watched property vs. the snapshot taken when added. */
-export function computeAlerts(
-  p: Property,
-  snap: WatchSnapshot,
-): WatchAlert[] {
+/** Compute alerts for a watched sale vs. the snapshot taken when added. */
+export function computeAlerts(p: Property, snap: WatchSnapshot): WatchAlert[] {
   const alerts: WatchAlert[] = [];
-
-  if (p.pricing.current_price < snap.priceAtAdd) {
-    const pct = ((snap.priceAtAdd - p.pricing.current_price) / snap.priceAtAdd) * 100;
+  const delta = p.score.opportunity_score - snap.scoreAtAdd;
+  if (delta !== 0) {
     alerts.push({
-      kind: "price-drop",
-      message: `Price dropped ${pct.toFixed(1)}% since you added it`,
-    });
-  } else if (p.pricing.current_price > snap.priceAtAdd) {
-    alerts.push({ kind: "price-rise", message: "Price increased since you added it" });
-  }
-
-  if (p.status !== snap.statusAtAdd) {
-    alerts.push({
-      kind: "status-change",
-      message: `Status changed: ${snap.statusAtAdd} → ${p.status}`,
+      kind: delta > 0 ? "score-up" : "score-down",
+      message: `Deal score ${delta > 0 ? "+" : ""}${delta} since you added it`,
     });
   }
-
+  const gap = p.investment.dvf_gap_pct;
+  if (gap !== null && snap.dvfGapAtAdd !== null && Math.abs(gap - snap.dvfGapAtAdd) >= 1) {
+    alerts.push({
+      kind: "market",
+      message: `Gap vs local DVF now ${gap > 0 ? `${gap}% below` : `${Math.abs(gap)}% above`} (was ${snap.dvfGapAtAdd}%)`,
+    });
+  }
   return alerts;
 }

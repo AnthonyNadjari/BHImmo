@@ -1,18 +1,14 @@
 name: Data pipeline
 
-# Refreshes the dataset and commits the updated JSON back to the repo.
-# Scheduled once a day (DVF data barely changes; keeps auto-deploys rare),
-# plus manual dispatch on any branch.
+# Refreshes the dataset from real open data and commits the JSON back to the
+# repo. Scheduled once a day (DVF is released twice a year; the other sources
+# — rent control, DPE, Vélib', OSM… — move more often), plus manual dispatch.
+# If DVF can't be downloaded the run fails and nothing is committed: the last
+# real dataset stays online. No synthetic fallback exists.
 on:
   schedule:
     - cron: "0 5 * * *"
   workflow_dispatch:
-    inputs:
-      mode:
-        description: "Pipeline mode (hybrid uses real APIs with fallback)"
-        type: choice
-        options: [hybrid, mock, live]
-        default: hybrid
 
 # Never run two pipeline updates concurrently on the same branch.
 concurrency:
@@ -40,9 +36,7 @@ jobs:
 
       - name: Run pipeline
         env:
-          # 'hybrid'/'live' source the universe from real DVF (Etalab) transactions;
-          # PER_ARR keeps the universe stable across runs (matches committed data).
-          PRER_MODE: ${{ github.event.inputs.mode || 'live' }}
+          # Most recent real DVF sales surfaced per arrondissement (1000 total).
           PRER_DVF_PER_ARR: "50"
           # Optional: real street-level photos baked into the dataset (free).
           MLY_TOKEN: ${{ secrets.MLY_TOKEN }}

@@ -1,9 +1,9 @@
 /**
- * Interactive opportunity map (Leaflet + free Carto tiles, no key).
+ * Interactive opportunity map (Leaflet + Plan IGN tiles from the Géoplateforme, no key).
  * Two layers, toggleable:
- *  - "Listings": ~1000 real transactions clustered (leaflet.markercluster),
+ *  - "Sales": ~1000 real DVF transactions clustered (leaflet.markercluster),
  *    score-colored, with detail popups.
- *  - "Prices": median €/m² per arrondissement from the market model, as colored
+ *  - "Prices": median €/m² of all the arrondissement's DVF sales, as colored
  *    chips at each arrondissement centroid (cheaper → teal, pricier → rose).
  * Default export so it can be React.lazy-loaded.
  */
@@ -15,7 +15,7 @@ import "leaflet.markercluster";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import "../mapquartier.css";
-import { districtLabel, formatEuro, formatPerM2, scoreColor } from "../services/format";
+import { districtLabel, escapeHtml, formatEuro, formatMonth, formatPerM2, scoreColor } from "../services/format";
 import type { IndexEntry, MarketArrondissement } from "../types";
 
 const PARIS: [number, number] = [48.8566, 2.3522];
@@ -25,11 +25,11 @@ function popupHtml(e: IndexEntry): string {
   return (
     `<div class="map-popup">` +
     `<a class="map-popup-thumb" href="#/property/${e.id}"><img class="map-popup-img" src="${e.image}" alt="" referrerpolicy="no-referrer" loading="lazy"/></a>` +
-    `<a class="map-popup-title" href="#/property/${e.id}">${e.address}</a>` +
-    `<div class="map-popup-meta">${districtLabel(e.district)} · ${formatEuro(e.current_price)} · ${formatPerM2(e.price_per_m2)}</div>` +
+    `<a class="map-popup-title" href="#/property/${e.id}">${escapeHtml(e.address)}</a>` +
+    `<div class="map-popup-meta">${districtLabel(e.district)} · ${formatEuro(e.price)} · ${formatPerM2(e.price_per_m2)} · sold ${formatMonth(e.sale_date)}</div>` +
     `<div class="map-popup-foot">` +
     `<span class="map-popup-score" style="color:${color}">Score ${e.opportunity_score}</span>` +
-    `<span style="color:#0e9488">${e.net_yield.toFixed(1)}% net</span>` +
+    (e.net_yield === null ? "" : `<span style="color:#0e9488">${e.net_yield.toFixed(1)}% net</span>`) +
     `</div></div>`
   );
 }
@@ -102,7 +102,8 @@ function AreaPriceLayer({
       });
       const marker = L.marker([a.lat, a.lng], { icon, interactive: true });
       marker.bindTooltip(
-        `${a.name} (${districtLabel(a.district)}) · median ${formatPerM2(a.median_price_m2)} · DVF ${formatPerM2(a.dvf_avg_price_m2)} · ${a.trend_1y_percent}%/yr`,
+        `${a.name} (${districtLabel(a.district)}) · DVF median ${formatPerM2(a.median_price_m2)} (${a.sales_latest_year} sales)` +
+          (a.trend_1y_percent === null ? "" : ` · ${a.trend_1y_percent > 0 ? "+" : ""}${a.trend_1y_percent}% YoY`),
       );
       group.addLayer(marker);
     }
@@ -117,21 +118,22 @@ function AreaPriceLayer({
 export default function PropertyMap({
   entries,
   arrondissements = [],
-  cityAvg = 11695,
+  cityAvg,
 }: {
   entries: IndexEntry[];
   arrondissements?: MarketArrondissement[];
+  /** City median €/m² (DVF); the price layer is hidden without it. */
   cityAvg?: number;
 }) {
-  const [mode, setMode] = useState<"listings" | "prices">("listings");
-  const hasAreas = arrondissements.length > 0;
+  const [mode, setMode] = useState<"sales" | "prices">("sales");
+  const hasAreas = arrondissements.length > 0 && !!cityAvg;
 
   return (
     <div className="map-shell">
       {hasAreas && (
         <div className="map-modes" role="group" aria-label="Map layer">
-          <button className={mode === "listings" ? "on" : ""} onClick={() => setMode("listings")}>
-            Listings
+          <button className={mode === "sales" ? "on" : ""} onClick={() => setMode("sales")}>
+            Sales
           </button>
           <button className={mode === "prices" ? "on" : ""} onClick={() => setMode("prices")}>
             €/m² by area
@@ -140,13 +142,14 @@ export default function PropertyMap({
       )}
       <MapContainer center={PARIS} zoom={12} className="leaflet-map" scrollWheelZoom>
         <TileLayer
-          attribution="&copy; OpenStreetMap &copy; CARTO"
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          attribution="&copy; IGN — Plan IGN"
+          url="https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&TILEMATRIXSET=PM&FORMAT=image/png&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}"
+          maxZoom={19}
         />
-        {mode === "listings" ? (
+        {mode === "sales" ? (
           <ClusterLayer entries={entries} />
         ) : (
-          <AreaPriceLayer arrondissements={arrondissements} cityAvg={cityAvg} />
+          <AreaPriceLayer arrondissements={arrondissements} cityAvg={cityAvg!} />
         )}
       </MapContainer>
     </div>

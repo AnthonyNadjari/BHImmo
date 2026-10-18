@@ -8,7 +8,7 @@ export interface RadarAxis {
 export function RadarChart({ axes, size = 240 }: { axes: RadarAxis[]; size?: number }) {
   const cx = size / 2;
   const cy = size / 2;
-  const r = size / 2 - 34;
+  const r = size / 2 - 46;
   const n = axes.length;
 
   const angle = (i: number) => -Math.PI / 2 + (i * 2 * Math.PI) / n;

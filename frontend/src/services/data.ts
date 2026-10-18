@@ -65,9 +65,10 @@ export function fetchProperty(id: string): Promise<Property | undefined> {
     p = getJson<Property>(`property/${encodeURIComponent(id)}.json`)
       .then((prop) => {
         if (prop && hasStreetView()) {
+          // Street View façades first, then the IGN aerial views of the parcel.
           const g = streetViewGallery(prop.address.lat, prop.address.lng);
           if (g.length) {
-            prop.images = g;
+            prop.images = [...g, ...prop.images];
             prop.thumb = g[0]!;
           }
         }

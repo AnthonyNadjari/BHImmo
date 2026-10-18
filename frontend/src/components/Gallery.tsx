@@ -1,9 +1,13 @@
-/** Listing photo gallery: a large active image (swipeable) + thumbnail strip. */
+/**
+ * Location imagery gallery: a large active image (swipeable) + thumbnail
+ * strip. The images are real views of the address — IGN aerial photography and
+ * map, plus street-level photos when configured — with their credit line.
+ */
 
 import { useRef, useState } from "react";
-import { Img } from "./Img";
+import { Img, LocationPin } from "./Img";
 
-export function Gallery({ images, seed, alt }: { images: string[]; seed: string; alt: string }) {
+export function Gallery({ images, alt, credit }: { images: string[]; alt: string; credit?: string }) {
   const [active, setActive] = useState(0);
   const startX = useRef<number | null>(null);
 
@@ -26,11 +30,13 @@ export function Gallery({ images, seed, alt }: { images: string[]; seed: string;
   return (
     <div className="gallery">
       <div className="gallery-stage" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-        <Img src={images[active]!} seed={`${seed}-${active}`} alt={alt} className="gallery-main" eager />
+        <Img src={images[active]!} alt={alt} className="gallery-main" eager />
+        <LocationPin src={images[active]!} />
+        {credit && <span className="gallery-credit">{credit}</span>}
         {images.length > 1 && (
           <>
-            <button className="gallery-nav prev" onClick={() => go(-1)} aria-label="Previous photo">‹</button>
-            <button className="gallery-nav next" onClick={() => go(1)} aria-label="Next photo">›</button>
+            <button className="gallery-nav prev" onClick={() => go(-1)} aria-label="Previous image">‹</button>
+            <button className="gallery-nav next" onClick={() => go(1)} aria-label="Next image">›</button>
             <div className="gallery-count">{active + 1} / {images.length}</div>
             <div className="gallery-dots">
               {images.map((_, i) => (
@@ -47,9 +53,9 @@ export function Gallery({ images, seed, alt }: { images: string[]; seed: string;
               key={i}
               className={`gallery-thumb ${i === active ? "active" : ""}`}
               onClick={() => setActive(i)}
-              aria-label={`Photo ${i + 1}`}
+              aria-label={`Image ${i + 1}`}
             >
-              <Img src={src} seed={`${seed}-${i}`} alt={`${alt} photo ${i + 1}`} />
+              <Img src={src} alt={`${alt} — image ${i + 1}`} />
             </button>
           ))}
         </div>

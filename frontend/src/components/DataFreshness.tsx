@@ -1,27 +1,30 @@
 /**
  * Data-freshness indicator + manual refresh.
  *
- * Shows when the dataset was last generated (relative time) and the automated
- * cadence, with a button that drops the in-memory cache and re-fetches the
- * JSON. The pipeline runs in GitHub Actions every 6 hours; there is no live
- * server to "refresh", so this re-pulls the latest committed dataset and
- * reports how many listings are NEW since the user's last refresh.
+ * Shows when the pipeline last ran (relative time) and how recent the DVF
+ * transactions are, with a button that drops the in-memory cache and re-fetches
+ * the JSON. The pipeline runs daily in GitHub Actions (DVF itself is released
+ * twice a year); there is no live server, so this re-pulls the latest committed
+ * dataset and reports how many sales are NEW since the user's last refresh.
  */
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Icon } from "./Icon";
 import { clearDataCache } from "../services/data";
-import { timeAgo } from "../services/format";
+import { formatDate, timeAgo } from "../services/format";
 import { hasSnapshot, markSeen, newSince } from "../services/seen";
 
 type Status = "idle" | "refreshing" | "done";
 
 export function DataFreshness({
   generatedAt,
+  dvfThrough,
   currentIds,
 }: {
   generatedAt?: string;
-  /** Ids of the currently-loaded listings, for the "new since refresh" diff. */
+  /** Date of the most recent DVF sale in the dataset. */
+  dvfThrough?: string;
+  /** Ids of the currently-loaded sales, for the "new since refresh" diff. */
   currentIds?: string[];
 }) {
   const [status, setStatus] = useState<Status>("idle");
@@ -64,7 +67,7 @@ export function DataFreshness({
       <span className="freshness-text">
         {status === "done" ? (
           <strong className="freshness-ok">
-            {newCount > 0 ? `✓ ${newCount} new since last refresh` : "✓ Up to date — no new listings"}
+            {newCount > 0 ? `✓ ${newCount} new since last refresh` : "✓ Up to date — no new sales"}
           </strong>
         ) : generatedAt ? (
           <>
@@ -74,7 +77,9 @@ export function DataFreshness({
         ) : (
           "Loading…"
         )}
-        <span className="freshness-cadence"> · auto-refresh every 6 h</span>
+        <span className="freshness-cadence">
+          {dvfThrough ? ` · sales through ${formatDate(dvfThrough)}` : ""} · pipeline runs daily
+        </span>
       </span>
       <button
         type="button"

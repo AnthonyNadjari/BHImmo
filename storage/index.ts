@@ -2,4 +2,4 @@
 
 export { loadProperties, saveProperties, writeJson } from "./repository.ts";
 export { exportDatasets } from "./export.ts";
-export { buildMarket } from "./market.ts";
+export { buildMarket, type MarketContext } from "./market.ts";

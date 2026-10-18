@@ -1,7 +1,9 @@
 /**
- * PAGE 2 — Property detail.
- * Header (address / price / score), price-history chart, DVF market comparison,
- * OSM map, risk exposure, explainable signals, sub-scores and comparable sales.
+ * PAGE 2 — Sale detail.
+ * One real DVF apartment sale: aerial imagery of the address, sale and resale
+ * history, DVF comparables, explainable signals, open-data neighbourhood and
+ * risk facts, rent-control yield and an investment simulator. Every figure
+ * names its source; missing data is shown as missing.
  */
 
 import { Suspense, lazy } from "react";
@@ -14,18 +16,18 @@ import {
   formatEuro,
   formatPercent,
   formatPerM2,
-  STATUS_LABEL,
+  NA,
 } from "../services/format";
 import { PriceChart } from "../components/PriceChart";
 import { Gallery } from "../components/Gallery";
-import { RadarChart } from "../components/RadarChart";
+import { RadarChart, type RadarAxis } from "../components/RadarChart";
 import { PriceDistribution } from "../components/PriceDistribution";
 import { YieldBadge } from "../components/YieldBadge";
 import { WatchButton } from "../components/WatchButton";
 import { NeighborhoodViz } from "../components/NeighborhoodViz";
 import { InvestmentCalculator } from "../components/InvestmentCalculator";
 import { ScoreRing } from "../components/ScoreRing";
-import { Badge, badgeFromScore } from "../components/Badge";
+import { Badge, badgeFor } from "../components/Badge";
 import { ErrorState, Loading } from "../components/States";
 
 const MiniMap = lazy(() => import("../components/MiniMap"));
@@ -34,25 +36,24 @@ export function PropertyDetail() {
   const { id = "" } = useParams();
   const { loading, error, data: p, reload } = useAsync(() => fetchProperty(id), [id]);
 
-  if (loading && !p) return <Loading label="Loading property…" />;
+  if (loading && !p) return <Loading label="Loading sale…" />;
   if (error) return <ErrorState error={error} onRetry={reload} />;
   if (!p) return <NotFound />;
 
-  const dvfRef =
-    p.dvf.avg_price_m2_100m > 0 && p.dvf.avg_price_m2_500m > 0
-      ? 0.6 * p.dvf.avg_price_m2_100m + 0.4 * p.dvf.avg_price_m2_500m
-      : p.dvf.avg_price_m2_500m || p.dvf.avg_price_m2_100m;
-  const gapPct = dvfRef > 0 ? ((dvfRef - p.pricing.price_per_m2) / dvfRef) * 100 : 0;
-  const dropPct = p.signals.total_drop_percent;
+  const a100 = p.dvf.avg_price_m2_100m;
+  const a500 = p.dvf.avg_price_m2_500m;
+  const dvfRef = a100 && a500 ? 0.6 * a100 + 0.4 * a500 : a100 ?? a500;
+  const gapPct = p.investment.dvf_gap_pct;
+  const resale = p.signals.resale;
 
+  const risk = [p.risks.flood, p.risks.clay].filter((r) => r !== null).map((r) => r!.value);
   const radarAxes = [
     { label: "Value", value: p.score.value_score },
     { label: "Yield", value: p.score.yield_score },
-    { label: "Negotiation", value: p.score.negotiation_score },
     { label: "Liquidity", value: p.score.liquidity_score },
     { label: "Gentrif.", value: p.score.gentrification_score },
-    { label: "Low-risk", value: Math.round(100 - 100 * Math.max(p.risks.flood, p.risks.clay, p.risks.noise)) },
-  ];
+    { label: "Low-risk", value: risk.length ? Math.round(100 - 100 * Math.max(...risk)) : null },
+  ].filter((x): x is RadarAxis => x.value !== null);
 
   return (
     <section className="detail">
@@ -60,32 +61,27 @@ export function PropertyDetail() {
         ← Back to dashboard
       </Link>
 
-      {/* Photo-led hero */}
+      {/* Imagery-led hero */}
       <div className="detail-hero">
         <div className="detail-hero-media">
-          <Gallery images={p.images} seed={p.id} alt={p.address.normalized} />
+          <Gallery images={p.images} alt={`Aerial view of ${p.address.normalized}`} credit={p.image_credit} />
           <div className="hero-photo-scrim" aria-hidden="true" />
           <div className="hero-photo-badge">
-            <Badge badge={badgeFromScore(p.score.opportunity_score)} />
+            <Badge badge={badgeFor(p.score.opportunity_score, p.investment.dvf_gap_pct)} />
           </div>
         </div>
         <aside className="detail-hero-info">
-          <span className={`status-pill ${p.status}`}>{STATUS_LABEL[p.status]}</span>
+          <span className="status-pill sold">Sold {formatDate(p.sale.date)}</span>
           <h1>{p.address.normalized}</h1>
           <p className="muted">
-            {districtLabel(p.address.district)} arrondissement · {p.characteristics.surface_m2} m² ·{" "}
-            {p.characteristics.rooms} rooms · floor {p.characteristics.floor}
+            {districtLabel(p.address.district)} arrondissement · {p.characteristics.surface_m2} m²
+            {p.characteristics.carrez_m2 ? ` (Carrez ${p.characteristics.carrez_m2} m²)` : ""} ·{" "}
+            {p.characteristics.rooms} room{p.characteristics.rooms > 1 ? "s" : ""}
           </p>
-          {p.status !== "active" && (
-            <p className="hist-note">
-              No longer listed ({STATUS_LABEL[p.status]?.toLowerCase()}) — figures are historical,
-              last seen {formatDate(p.timeline.last_seen)}.
-            </p>
-          )}
           <div className="hero-bottom">
             <div className="hero-price">
-              <strong>{formatEuro(p.pricing.current_price)}</strong>
-              <span>{formatPerM2(p.pricing.price_per_m2)}</span>
+              <strong>{formatEuro(p.sale.price)}</strong>
+              <span>{formatPerM2(p.sale.price_per_m2)}</span>
             </div>
             <ScoreRing score={p.score.opportunity_score} />
           </div>
@@ -95,16 +91,23 @@ export function PropertyDetail() {
       </div>
 
       <div className="detail-grid">
-        {/* Price history */}
+        {/* Sale & resale history */}
         <div className="card span-2">
-          <h2>Price history</h2>
-          <PriceChart history={p.price_history} />
+          <h2>Sale history (DVF)</h2>
+          {p.price_history.length > 1 ? (
+            <PriceChart history={p.price_history} />
+          ) : (
+            <p className="muted">
+              No earlier sale of this lot (same parcel and lot number) in the DVF years loaded — this is its only
+              recorded sale.
+            </p>
+          )}
           <div className="kv-row">
-            <KV label="Initial" value={formatEuro(p.pricing.initial_price)} />
-            <KV label="Current" value={formatEuro(p.pricing.current_price)} />
-            <KV label="Total change" value={formatPercent(-dropPct)} accent={dropPct > 0} />
-            <KV label="Price drops" value={String(p.signals.price_drops)} />
-            <KV label="Days on market" value={`${p.timeline.days_on_market} d`} />
+            <KV label="Sale price" value={formatEuro(p.sale.price)} />
+            <KV label="Sale date" value={formatDate(p.sale.date)} />
+            <KV label="Previous sale" value={resale ? `${formatEuro(resale.previous_price)} · ${formatDate(resale.previous_date)}` : NA} />
+            <KV label="Change" value={resale ? formatPercent(resale.change_pct) : NA} accent={!!resale && resale.change_pct > 0} />
+            <KV label="Held" value={resale ? `${resale.years} y` : NA} />
           </div>
         </div>
 
@@ -122,27 +125,32 @@ export function PropertyDetail() {
         <div className="card">
           <h2>Market comparison (DVF)</h2>
           <div className="kv-row vertical compact-kv">
-            <KV label="Listing €/m²" value={formatPerM2(p.pricing.price_per_m2)} />
-            <KV label="DVF avg · 100 m" value={formatPerM2(p.dvf.avg_price_m2_100m)} />
-            <KV label="DVF avg · 500 m" value={formatPerM2(p.dvf.avg_price_m2_500m)} />
+            <KV label="This sale €/m²" value={formatPerM2(p.sale.price_per_m2)} />
+            <KV label={`DVF avg · 100 m (${p.dvf.count_100m} sales)`} value={a100 ? formatPerM2(a100) : NA} />
+            <KV label={`DVF avg · 500 m (${p.dvf.count_500m} sales)`} value={a500 ? formatPerM2(a500) : NA} />
             <KV
               label="Gap vs DVF"
-              value={`${Math.abs(gapPct).toFixed(1)}% ${gapPct >= 0 ? "below" : "above"} DVF`}
-              accent={gapPct >= 0}
+              value={gapPct === null ? "not enough comparables" : `${Math.abs(gapPct).toFixed(1)}% ${gapPct >= 0 ? "below" : "above"} DVF`}
+              accent={gapPct !== null && gapPct >= 0}
             />
           </div>
-          <PriceDistribution
-            district={p.address.district}
-            value={p.pricing.price_per_m2}
-            dvfRef={Math.round(dvfRef)}
-            percentile={p.investment.ppm2_percentile}
-          />
+          <p className="data-note">
+            Apartment sales from {formatDate(p.dvf.window_from)} to {formatDate(p.dvf.window_to)}, this sale excluded.
+          </p>
+          {dvfRef && (
+            <PriceDistribution
+              district={p.address.district}
+              value={p.sale.price_per_m2}
+              dvfRef={Math.round(dvfRef)}
+              percentile={p.investment.ppm2_percentile}
+            />
+          )}
         </div>
 
         {/* Deal profile (radar) */}
         <div className="card">
           <h2>Deal profile</h2>
-          <RadarChart axes={radarAxes} />
+          {radarAxes.length >= 3 ? <RadarChart axes={radarAxes} /> : <p className="muted">Not enough data for a profile.</p>}
         </div>
 
         {/* Neighbourhood & data — visual open-data section */}
@@ -155,8 +163,8 @@ export function PropertyDetail() {
             <MiniMap property={p} />
           </Suspense>
           <div className="minimap-legend">
-            <span><i style={{ background: "#2563eb" }} /> Transport</span>
-            <span><i style={{ background: "#0e9488" }} /> Park</span>
+            <span><i style={{ background: "#2563eb" }} /> Transport (IDFM)</span>
+            <span><i style={{ background: "#0e9488" }} /> Park (Ville de Paris)</span>
             <span><i style={{ background: "#0891b2" }} /> Vélib'</span>
           </div>
         </div>
@@ -165,12 +173,14 @@ export function PropertyDetail() {
         <div className="card span-2">
           <h2>Comparable DVF sales</h2>
           {p.dvf.comparable_sales.length === 0 ? (
-            <p className="muted">No comparable sales found nearby.</p>
+            <p className="muted">No apartment sale within 500 m in the comparison window.</p>
           ) : (
             <table className="data-table compact">
               <thead>
                 <tr>
                   <th>Sale price</th>
+                  <th>Surface</th>
+                  <th>€/m²</th>
                   <th>Date</th>
                   <th>Distance</th>
                 </tr>
@@ -179,6 +189,8 @@ export function PropertyDetail() {
                 {p.dvf.comparable_sales.map((c, i) => (
                   <tr key={i}>
                     <td className="num">{formatEuro(c.price)}</td>
+                    <td className="num">{c.surface_m2} m²</td>
+                    <td className="num">{formatPerM2(c.price_per_m2)}</td>
                     <td>{formatDate(c.date)}</td>
                     <td className="num">{c.distance_m} m</td>
                   </tr>
@@ -193,34 +205,14 @@ export function PropertyDetail() {
       </div>
 
       <p className="muted source-note">
-        Source: {p.source === "dvf" ? "DVF · Etalab (real transaction)" : "Synthetic (demo)"}
-        {p.url && /^https?:\/\//i.test(p.url) && isReachableUrl(p.url) ? (
-          <>
-            {" · "}
-            <a href={p.url} target="_blank" rel="noreferrer noopener">
-              {p.source === "dvf" ? "explore on the DVF map ↗" : "original listing ↗"}
-            </a>
-          </>
-        ) : (
-          p.url && <>{" · "}original listing unavailable (synthetic demo)</>
-        )}
+        Source: DVF (DGFiP / Etalab) — mutation {p.sale.mutation_id}, parcel {p.sale.parcel}
+        {p.address.ban_id && <> · BAN {p.address.ban_id}</>} ·{" "}
+        <a href={p.url} target="_blank" rel="noreferrer noopener">
+          explore DVF ↗
+        </a>
       </p>
     </section>
   );
-}
-
-/**
- * Reserved TLDs (RFC 2606 / 6761) never resolve on the public internet, so a
- * link to them always 404s. The synthetic dataset uses https://example.invalid/…
- * — render those as inert text instead of a dead clickable link.
- */
-function isReachableUrl(url: string): boolean {
-  try {
-    const host = new URL(url).hostname.toLowerCase();
-    return !/\.(invalid|example|test|localhost)$/.test(host) && host !== "localhost";
-  } catch {
-    return false;
-  }
 }
 
 function KV({ label, value, accent }: { label: string; value: string; accent?: boolean }) {
@@ -235,7 +227,7 @@ function KV({ label, value, accent }: { label: string; value: string; accent?: b
 function NotFound() {
   return (
     <div className="state">
-      <p>Property not found.</p>
+      <p>Sale not found — it may have rotated out after a newer DVF release.</p>
       <Link to="/" className="btn">
         Back to dashboard
       </Link>

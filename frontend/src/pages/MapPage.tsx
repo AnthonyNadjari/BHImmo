@@ -1,6 +1,6 @@
 /**
- * Opportunity map — interactive Leaflet map of active listings colored by deal
- * score, with a quick top-opportunities list.
+ * Opportunity map — interactive Leaflet map of the real DVF sales colored by
+ * deal score, with a quick top-opportunities list.
  */
 
 import { Suspense, lazy, useMemo } from "react";
@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
 import { fetchIndex, fetchMarket } from "../services/data";
 import { DataFreshness } from "../components/DataFreshness";
-import { Img } from "../components/Img";
+import { Img, LocationPin } from "../components/Img";
 import { Empty, ErrorState, Loading } from "../components/States";
 import { districtLabel, formatEuro, scoreColor } from "../services/format";
 
@@ -20,10 +20,7 @@ export function MapPage() {
 
   // Memoize so PropertyMap gets a stable `entries` reference and the marker
   // cluster is built once per dataset, not on every render.
-  const active = useMemo(
-    () => (data?.properties ?? []).filter((e) => e.status === "active"),
-    [data],
-  );
+  const active = useMemo(() => data?.properties ?? [], [data]);
   const top = useMemo(
     () => [...active].sort((a, b) => b.opportunity_score - a.opportunity_score).slice(0, 8),
     [active],
@@ -37,13 +34,13 @@ export function MapPage() {
       <div className="page-head">
         <div>
           <h1>Opportunity map</h1>
-          <p className="muted">{active.length} active listings across Paris intra-muros</p>
+          <p className="muted">{active.length} real apartment sales across Paris intra-muros</p>
         </div>
-        <DataFreshness generatedAt={data?.generated_at} currentIds={active.map((e) => e.id)} />
+        <DataFreshness generatedAt={data?.generated_at} dvfThrough={data?.dvf.last_sale} currentIds={active.map((e) => e.id)} />
       </div>
 
       {active.length === 0 ? (
-        <Empty>No active listings to map right now.</Empty>
+        <Empty>No sales to map right now.</Empty>
       ) : (
         <div className="map-layout">
           <div className="card map-card">
@@ -51,13 +48,14 @@ export function MapPage() {
               <PropertyMap
                 entries={active}
                 arrondissements={market?.arrondissements ?? []}
-                cityAvg={market?.city_avg_price_m2 ?? 11695}
+                cityAvg={market?.city_median_price_m2}
               />
             </Suspense>
             <div className="scatter-legend">
-              <span><i style={{ background: scoreColor(80) }} /> Opportunity</span>
-              <span><i style={{ background: scoreColor(55) }} /> Watch</span>
-              <span><i style={{ background: scoreColor(30) }} /> Overvalued</span>
+              <span><i style={{ background: scoreColor(80) }} /> Score ≥ 68</span>
+              <span><i style={{ background: scoreColor(55) }} /> 50–67</span>
+              <span><i style={{ background: scoreColor(46) }} /> 45–49</span>
+              <span><i style={{ background: scoreColor(30) }} /> &lt; 45</span>
             </div>
           </div>
           <div className="card">
@@ -66,12 +64,14 @@ export function MapPage() {
               {top.map((e) => (
                 <li key={e.id}>
                   <Link to={`/property/${e.id}`} className="top-thumb-link" aria-label={e.address}>
-                    <Img src={e.image} seed={e.id} alt="" className="top-thumb" />
+                    <Img src={e.image} alt="" className="top-thumb" />
+                    <LocationPin src={e.image} />
                   </Link>
                   <div className="top-info">
                     <Link to={`/property/${e.id}`}>{e.address}</Link>
                     <span className="top-meta">
-                      {districtLabel(e.district)} · {formatEuro(e.current_price)} · {e.net_yield.toFixed(1)}% net
+                      {districtLabel(e.district)} · {formatEuro(e.price)}
+                      {e.net_yield !== null && <> · {e.net_yield.toFixed(1)}% net</>}
                     </span>
                   </div>
                   <span className="top-score" style={{ color: scoreColor(e.opportunity_score) }}>
