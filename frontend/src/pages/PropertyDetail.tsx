@@ -218,6 +218,7 @@ export function PropertyDetail() {
           {p.dvf.comparable_sales.length === 0 ? (
             <p className="muted">No apartment sale within 500 m in the comparison window.</p>
           ) : (
+            <div className="table-scroll">
             <table className="data-table compact">
               <thead>
                 <tr>
@@ -244,6 +245,7 @@ export function PropertyDetail() {
                 ))}
               </tbody>
             </table>
+            </div>
           )}
         </div>
 

@@ -8,6 +8,7 @@
 import { useMemo, useState } from "react";
 import "../dataviz.css";
 import { formatNumber } from "../services/format";
+import { useContainerWidth } from "../hooks/useContainerWidth";
 
 export interface LineSeries {
   id: string;
@@ -25,14 +26,16 @@ interface Props {
   ariaLabel: string;
 }
 
-const PAD = { top: 14, right: 96, bottom: 26, left: 56 };
-const WIDTH = 760;
+
 
 /** "2025-Q4" → "T4 25". */
 const qLabel = (q: string) => `T${q.slice(-1)} ${q.slice(2, 4)}`;
 
 export function LineChart({ series, marker, height = 240, ariaLabel }: Props) {
   const [hover, setHover] = useState<number | null>(null);
+  const [wrapRef, WIDTH] = useContainerWidth<HTMLDivElement>(760);
+  const narrow = WIDTH < 520;
+  const PAD = { top: 14, right: narrow ? 64 : 96, bottom: 26, left: narrow ? 44 : 56 };
 
   const quarters = useMemo(() => {
     const set = new Set<string>();
@@ -42,7 +45,13 @@ export function LineChart({ series, marker, height = 240, ariaLabel }: Props) {
   }, [series, marker]);
 
   const values = series.flatMap((s) => s.points.map((p) => p.median)).concat(marker ? [marker.value] : []);
-  if (quarters.length < 2 || values.length === 0) return <p className="muted">Not enough sales to draw a trend.</p>;
+  if (quarters.length < 2 || values.length === 0) {
+    return (
+      <div ref={wrapRef}>
+        <p className="muted">Not enough sales to draw a trend.</p>
+      </div>
+    );
+  }
 
   const innerW = WIDTH - PAD.left - PAD.right;
   const innerH = height - PAD.top - PAD.bottom;
@@ -55,7 +64,10 @@ export function LineChart({ series, marker, height = 240, ariaLabel }: Props) {
   const y = (v: number) => PAD.top + innerH - ((v - lo) / (hi - lo)) * innerH;
   const qi = new Map(quarters.map((q, i) => [q, i]));
   const ticks = [0, 0.25, 0.5, 0.75, 1].map((t) => lo + t * (hi - lo));
-  const xTicks = quarters.map((q, i) => ({ q, i })).filter(({ q }) => q.endsWith("Q1") || quarters.length <= 8);
+  // One tick per year (every other year on a phone).
+  const xTicks = quarters
+    .map((q, i) => ({ q, i }))
+    .filter(({ q }) => (q.endsWith("Q1") && (!narrow || Number(q.slice(0, 4)) % 2 === 1)) || quarters.length <= 8);
 
   // Direct labels at each series' last point, nudged apart vertically.
   const ends = series
@@ -70,7 +82,7 @@ export function LineChart({ series, marker, height = 240, ariaLabel }: Props) {
   const hq = hover === null ? null : quarters[hover]!;
 
   return (
-    <div className="chart-wrap linechart">
+    <div className="chart-wrap linechart" ref={wrapRef}>
       <div className="linechart-legend" aria-hidden="true">
         {series.map((s) => (
           <span key={s.id}>
@@ -85,6 +97,8 @@ export function LineChart({ series, marker, height = 240, ariaLabel }: Props) {
       </div>
       <svg
         viewBox={`0 0 ${WIDTH} ${height}`}
+        width={WIDTH}
+        height={height}
         className="price-chart"
         role="img"
         aria-label={ariaLabel}
