@@ -2,8 +2,11 @@
 
 ### ▶ Live demo: https://bh-immo.vercel.app/  ·  https://anthonynadjari.github.io/BHImmo/
 
-> An opportunity scanner for Paris *intra-muros* real estate built **only on
-> real open data**. Every record is an actual apartment sale from **DVF**
+> An opportunity scanner for buying in Paris *intra-muros*, built **only on
+> real data**. The home page lists apartments **currently for sale** (with their
+> interior photos, asking-price drops and days on market — licensed
+> Stream.estate feed), each valued against what similar real sales nearby
+> imply. Underneath, the valuation runs on **real open data**. Every record is an actual apartment sale from **DVF**
 > (DGFiP / Etalab), enriched with official French open data (ADEME energy
 > certificates, Géorisques flood zoning, rent control, INSEE, IDFM, Ville de
 > Paris, OpenStreetMap, IGN imagery). Scores are explainable functions of
@@ -43,6 +46,7 @@
 | Road-noise exposure | Ville de Paris (share of residents above the Lden threshold) | arrondissement |
 | Imagery | **IGN** BD ORTHO® aerial photos + Plan IGN centred on the address (Mapillary / Street View optional) | the address |
 | **Listings on the market — interior photos**, asking-price history (price drops), days on market, floor, charges | **Stream.estate API** (licensed, data behind Melo; optional `STREAM_ESTATE_API_KEY`) — valued against DVF like the sales | the listing |
+| Listing context: nearest address, flood zone, transit, schools, parks, trees, Vélib', OSM amenities, road noise, income, legal rent ceiling | BAN reverse geocoding · Géorisques · IDFM · Annuaire de l'éducation · opendata.paris.fr · OpenStreetMap · INSEE · rent control | the listing |
 
 The Market page lists every source with its status for the last run
 (`loaded`, `last run's values`, `unavailable`).
@@ -83,7 +87,7 @@ GitHub Actions (daily) ─ pipeline/run.ts
   7. Export       storage/      data/properties/<district>.json · index.json · market.json · quartiers.geojson
                        │ commit → deploy
                        ▼
-frontend/ (React + Vite SPA): Dashboard (sales) · Listings (on the market, photos) · Sale / listing detail ·
+frontend/ (React + Vite SPA): For sale (home: listings, photos) · Past sales (DVF) · Listing / sale detail ·
                               Map (sales + quartier choropleths) · Market (price index, quartiers, sources) · Watchlist
 ```
 

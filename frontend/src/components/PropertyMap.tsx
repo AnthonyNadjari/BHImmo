@@ -19,7 +19,7 @@ import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import "../mapquartier.css";
 import { districtLabel, escapeHtml, formatEuro, formatMonth, formatPerM2, scoreColor } from "../services/format";
 import { thumbFor } from "../services/imagery";
-import type { IndexEntry, MarketQuartier } from "../types";
+import type { IndexEntry, Listing, MarketQuartier } from "../types";
 import type { QuartierGeoJson } from "../services/data";
 
 const PARIS: [number, number] = [48.8566, 2.3522];
@@ -36,6 +36,42 @@ function popupHtml(e: IndexEntry): string {
     (e.net_yield === null ? "" : `<span style="color:#0e9488">${e.net_yield.toFixed(1)}% net</span>`) +
     `</div></div>`
   );
+}
+
+function listingPopup(l: Listing): string {
+  const img = l.pictures[0] ? `<a class="map-popup-thumb" href="#/listing/${l.id}"><img class="map-popup-img" src="${escapeHtml(l.pictures[0])}" alt="" referrerpolicy="no-referrer" loading="lazy"/></a>` : "";
+  const gap = l.investment.dvf_gap_pct;
+  return (
+    `<div class="map-popup">${img}` +
+    `<a class="map-popup-title" href="#/listing/${l.id}">${formatEuro(l.price)} · ${l.surface_m2} m²</a>` +
+    `<div class="map-popup-meta">${districtLabel(l.address.district)} · ${formatPerM2(l.price_per_m2)} · ${l.days_on_market} d on market</div>` +
+    `<div class="map-popup-foot"><span class="map-popup-score" style="color:${scoreColor(l.score.opportunity_score)}">Score ${l.score.opportunity_score}</span>` +
+    (gap === null ? "" : `<span>${Math.abs(gap).toFixed(0)}% ${gap >= 0 ? "below" : "above"} DVF</span>`) +
+    `</div></div>`
+  );
+}
+
+function ListingLayer({ listings }: { listings: Listing[] }) {
+  const map = useMap();
+  useEffect(() => {
+    const cluster = L.markerClusterGroup({ chunkedLoading: true, maxClusterRadius: 55, showCoverageOnHover: false });
+    for (const l of listings) {
+      const m = L.circleMarker([l.address.lat, l.address.lng], {
+        radius: 7,
+        color: "#ffffff",
+        weight: 1.5,
+        fillColor: scoreColor(l.score.opportunity_score),
+        fillOpacity: 0.95,
+      });
+      m.bindPopup(listingPopup(l), { minWidth: 200 });
+      cluster.addLayer(m);
+    }
+    map.addLayer(cluster);
+    return () => {
+      map.removeLayer(cluster);
+    };
+  }, [map, listings]);
+  return null;
 }
 
 function ClusterLayer({ entries }: { entries: IndexEntry[] }) {
@@ -156,15 +192,23 @@ function ScoreLegend() {
 
 export default function PropertyMap({
   entries,
+  listings = [],
   quartiers = [],
   geo,
 }: {
   entries: IndexEntry[];
+  /** Listings on the market (only when the Stream.estate feed is configured). */
+  listings?: Listing[];
   quartiers?: MarketQuartier[];
   /** Quartier polygons; the choropleth layers are hidden without them. */
   geo?: QuartierGeoJson;
 }) {
-  const [mode, setMode] = useState<"sales" | Choro>("sales");
+  const [mode, setMode] = useState<"forsale" | "sales" | Choro>(listings.length ? "forsale" : "sales");
+  const hasListings = listings.length > 0;
+  // Listings load after the map: switch to them once, when they arrive.
+  useEffect(() => {
+    if (hasListings) setMode((m) => (m === "sales" ? "forsale" : m));
+  }, [hasListings]);
   const hasAreas = quartiers.length > 0 && !!geo;
   const stats = useMemo(() => new Map(quartiers.map((q) => [q.id, q])), [quartiers]);
   const breaks = useMemo(
@@ -176,8 +220,13 @@ export default function PropertyMap({
     <div className="map-shell">
       {hasAreas && (
         <div className="map-modes" role="group" aria-label="Map layer">
+          {listings.length > 0 && (
+            <button className={mode === "forsale" ? "on" : ""} onClick={() => setMode("forsale")}>
+              For sale
+            </button>
+          )}
           <button className={mode === "sales" ? "on" : ""} onClick={() => setMode("sales")}>
-            Sales
+            Past sales
           </button>
           <button className={mode === "price" ? "on" : ""} onClick={() => setMode("price")}>
             €/m² by quartier
@@ -193,13 +242,15 @@ export default function PropertyMap({
           url="https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&TILEMATRIXSET=PM&FORMAT=image/png&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}"
           maxZoom={19}
         />
-        {mode === "sales" ? (
+        {mode === "forsale" ? (
+          <ListingLayer listings={listings} />
+        ) : mode === "sales" ? (
           <ClusterLayer entries={entries} />
         ) : (
           <ChoroplethLayer geo={geo!} stats={stats} mode={mode} breaks={breaks} />
         )}
       </MapContainer>
-      {mode === "sales" ? <ScoreLegend /> : <ChoroLegend mode={mode} breaks={breaks} />}
+      {mode === "sales" || mode === "forsale" ? <ScoreLegend /> : <ChoroLegend mode={mode} breaks={breaks} />}
     </div>
   );
 }

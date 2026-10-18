@@ -25,6 +25,27 @@ interface BanResponse {
   }>;
 }
 
+interface BanReverse {
+  features?: Array<{ properties: { label?: string; type?: string; distance?: number } }>;
+}
+
+/**
+ * Nearest BAN house-number address to a point (reverse geocoding), with its
+ * distance in metres; `null` when none within 60 m, `undefined` when every
+ * geocoder was unreachable.
+ */
+export async function reverseGeocode(lat: number, lng: number, config: PipelineConfig): Promise<string | null | undefined> {
+  for (const base of ENDPOINTS.geocoder) {
+    const url = `${base.replace(/search\/?$/, "reverse")}?lon=${lng}&lat=${lat}&limit=1&index=address`;
+    const data = await fetchJson<BanReverse>(url, config);
+    if (!data) continue;
+    const p = data.features?.[0]?.properties;
+    if (!p?.label || p.type !== "housenumber" || (p.distance ?? 0) > 60) return null;
+    return p.label;
+  }
+  return undefined;
+}
+
 /**
  * Returns the BAN match, `null` when the address has no reliable match, or
  * `undefined` when every geocoder was unreachable (retry on a later run).

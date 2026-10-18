@@ -94,7 +94,7 @@ export async function remoteLookups(properties: Property[], config: PipelineConf
 }
 
 /** Road-noise exposure of the arrondissement (share of residents over Lden). */
-function noiseFact(district: string, refs: References): RiskFact | null {
+export function noiseFact(district: string, refs: References): RiskFact | null {
   if (!refs.noise) return null;
   const n = Number(district.slice(-2));
   const group = n <= 4 ? ARRONDISSEMENTS.slice(0, 4) : ARRONDISSEMENTS.filter((a) => a.district === district);

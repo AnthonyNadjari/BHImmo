@@ -30,9 +30,9 @@ export function Layout() {
         </Link>
         <nav className="nav">
           <NavLink to="/" end>
-            Dashboard
+            For sale
           </NavLink>
-          <NavLink to="/listings">Listings</NavLink>
+          <NavLink to="/sales">Past sales</NavLink>
           <NavLink to="/map">Map</NavLink>
           <NavLink to="/market">Market</NavLink>
           <NavLink to="/watchlist">

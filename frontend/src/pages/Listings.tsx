@@ -61,7 +61,7 @@ export function Listings() {
     return (
       <section>
         <div className="page-head">
-          <h1>Listings</h1>
+          <h1>For sale</h1>
         </div>
         <div className="card listings-setup">
           <h2>Interior photos need a licensed listings feed</h2>
@@ -80,7 +80,11 @@ export function Listings() {
             </li>
             <li>Run the <em>Data pipeline</em> workflow — listings appear here, valued against DVF sales.</li>
           </ol>
-          <p className="muted">Nothing is shown until real listings arrive — no placeholders.</p>
+          <p className="muted">
+            Nothing is shown until real listings arrive — no placeholders. Meanwhile, the{" "}
+            <Link to="/sales">past sales (DVF)</Link>, <Link to="/map">map</Link> and <Link to="/market">market</Link> pages
+            show what apartments actually sell for, street by street.
+          </p>
         </div>
       </section>
     );
@@ -90,7 +94,7 @@ export function Listings() {
     <section>
       <div className="page-head">
         <div>
-          <h1>Listings</h1>
+          <h1>For sale</h1>
           <p className="muted">
             {formatNumber(filtered.length)} of {formatNumber(all.length)} Paris apartments on the market · photos from the
             original adverts via Stream.estate

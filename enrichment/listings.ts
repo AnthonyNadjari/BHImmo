@@ -1,11 +1,15 @@
 /**
  * Listings on the market (Stream.estate) → `Listing` records, valued with the
- * same real-data engine as the DVF sales:
+ * same real-data engine as the DVF sales and enriched with every relevant
+ * public API:
  *
  *  - asking price vs. what similar-size DVF sales nearby imply (latest 12
  *    months of DVF, restated at the latest DVF quarter),
  *  - the asking-price history from the adverts' events (real price drops),
- *    days on market, legal rent ceiling → yield, IDFM transport,
+ *    days on market,
+ *  - BAN reverse geocoding (nearest address), Géorisques flood zoning,
+ *    rent control (yield), IDFM transport, schools, Vélib', parks, trees, OSM
+ *    amenities, INSEE income, Ville de Paris road noise,
  *  - the same deal score, so listings and past sales are comparable.
  *
  * Records are merged with the previous run (the fetch is incremental) and
@@ -13,7 +17,7 @@
  */
 
 import { join } from "node:path";
-import { DATA_DIR, type PipelineConfig } from "../shared/config.ts";
+import { DATA_DIR, mapPool, type PipelineConfig } from "../shared/config.ts";
 import { round } from "../shared/geo.ts";
 import { log } from "../shared/logger.ts";
 import type { Listing, ListingPricePoint, ListingsFile, SourceStatus } from "../shared/types.ts";
@@ -21,8 +25,12 @@ import { fetchParisListings, hasListingsKey, type SeProperty } from "../scraper/
 import type { DistrictMarket, DvfData, DvfTxn, PriceIndex } from "../scraper/index.ts";
 import { computeScore, gentrificationByDistrict } from "../scoring/score.ts";
 import { enrichDvf } from "./dvf.ts";
+import { reverseGeocode } from "./geocode.ts";
+import { lookupFlood } from "./georisques.ts";
+import { noiseFact } from "./index.ts";
+import { nearbyPois } from "./pois.ts";
 import { getInseeProfile } from "./insee.ts";
-import { enrichNeighborhood } from "./neighborhood.ts";
+import { computeWalkScore, enrichNeighborhood } from "./neighborhood.ts";
 import { findQuartier, type References } from "./reference.ts";
 import { enrichRent } from "./rent.ts";
 import { enrichTransport } from "./transport.ts";
@@ -56,9 +64,12 @@ function priceHistory(p: SeProperty, price: number, listedAt: string): ListingPr
 }
 
 /** Map one provider record; null when it lacks what the valuation needs. */
-function toListing(p: SeProperty, now: Date): Omit<Listing, "dvf" | "rent" | "transport" | "investment" | "score" | "explanations" | "address"> & {
-  address: Omit<Listing["address"], "quartier">;
-} | null {
+type Mapped = Omit<
+  Listing,
+  "dvf" | "rent" | "transport" | "investment" | "score" | "explanations" | "address" | "risks" | "neighborhood" | "pois" | "lookups"
+> & { address: Pick<Listing["address"], "lat" | "lng" | "district"> };
+
+function toListing(p: SeProperty, now: Date): Mapped | null {
   const district = districtOf(p.city?.zipcode);
   const lat = p.locations?.lat;
   const lng = p.locations?.lon;
@@ -123,6 +134,29 @@ export interface ListingsContext {
 
 const fr = (n: number) => n.toLocaleString("fr-FR");
 
+/** BAN reverse geocoding + Géorisques flood, once per listing position. */
+async function publicLookups(listings: Listing[], config: PipelineConfig): Promise<void> {
+  const pending = listings.filter((l) => !l.expired && (!l.lookups.ban || !l.lookups.flood));
+  const today = config.now.toISOString().slice(0, 10);
+  await mapPool(pending, config.concurrency, async (l) => {
+    if (!l.lookups.ban) {
+      const a = await reverseGeocode(l.address.lat, l.address.lng, config);
+      if (a !== undefined) {
+        l.address.nearest_address = a;
+        l.lookups.ban = today;
+      }
+    }
+    if (!l.lookups.flood) {
+      const f = await lookupFlood(l.address.lat, l.address.lng, config);
+      if (f !== undefined) {
+        l.risks.flood = f;
+        l.lookups.flood = today;
+      }
+    }
+  });
+  if (pending.length) log.info(`Listings: public lookups for ${pending.length} (BAN reverse geocoding, Géorisques)`);
+}
+
 /** Value, score and explain every listing in place. */
 function valueListings(listings: Listing[], ctx: ListingsContext): void {
   const markets = [...ctx.markets.values()];
@@ -143,6 +177,22 @@ function valueListings(listings: Listing[], ctx: ListingsContext): void {
     const built = l.construction_year ? { year_built: l.construction_year, period: null, source: "advert" as const } : null;
     if (ctx.refs.rent) l.rent = enrichRent(lat, lng, l.rooms ?? 1, l.surface_m2, built, ctx.refs);
     if (ctx.refs.stations) l.transport = enrichTransport(lat, lng, ctx.refs);
+    const hood = enrichNeighborhood(lat, lng, l.address.district, ctx.refs);
+    const prev = l.neighborhood;
+    // Per component, keep the last real value when a source is down this run.
+    l.neighborhood = {
+      ...hood,
+      schools_500m: hood.schools_500m ?? prev?.schools_500m ?? null,
+      velib_400m: hood.velib_400m ?? prev?.velib_400m ?? null,
+      trees_150m: hood.trees_150m ?? prev?.trees_150m ?? null,
+      parks_500m: hood.parks_500m ?? prev?.parks_500m ?? null,
+      amenities: hood.amenities ?? prev?.amenities ?? null,
+    };
+    l.neighborhood.walk_score = computeWalkScore(l.neighborhood);
+    const pois = nearbyPois(lat, lng, ctx.refs);
+    if (pois.length) l.pois = pois;
+    const noise = noiseFact(l.address.district, ctx.refs);
+    if (noise || ctx.refs.noise) l.risks.noise = noise;
   }
   const volumes = listings.map((l) => l.dvf.count_500m);
 
@@ -154,7 +204,7 @@ function valueListings(listings: Listing[], ctx: ListingsContext): void {
       surface_m2: l.surface_m2,
       dvf: l.dvf,
       transport_score: l.transport?.score ?? null,
-      walk_score: enrichNeighborhood(l.address.lat, l.address.lng, l.address.district, ctx.refs).walk_score,
+      walk_score: l.neighborhood.walk_score,
       rent_max_m2: l.rent?.max_m2 ?? null,
       rent_surface_m2: l.surface_m2,
       energy_class: l.dpe?.energy_class ?? null,
@@ -183,6 +233,7 @@ function valueListings(listings: Listing[], ctx: ListingsContext): void {
       lines.push(`${out.investment.net_yield.toFixed(1)}% net yield at the legal rent ceiling (${l.rent.max_m2} €/m²)`);
     }
     if (l.dpe) lines.push(`DPE ${l.dpe.energy_class} (advert)${"FG".includes(l.dpe.energy_class) ? " — rental restrictions apply" : ""}`);
+    if (l.risks.flood && l.risks.flood.value >= 0.66) lines.push(`Flood zone: ${l.risks.flood.label} (Géorisques TRI)`);
     if (l.transport && l.transport.nearest_m <= 300) lines.push(`${l.transport.nearest_name} at ${l.transport.nearest_m} m`);
     l.explanations = lines;
   }
@@ -220,10 +271,19 @@ export async function runListings(
     if (!l) continue;
     mapped++;
     const prev = byId.get(l.id);
+    const moved = prev && (prev.address.lat !== l.address.lat || prev.address.lng !== l.address.lng);
     byId.set(l.id, {
+      risks: { flood: null, noise: null },
+      pois: [],
       ...(prev ?? {}),
       ...l,
-      address: { ...l.address, quartier: prev?.address.quartier ?? null },
+      address: {
+        ...l.address,
+        quartier: prev?.address.quartier ?? null,
+        nearest_address: moved ? null : prev?.address.nearest_address ?? null,
+      },
+      // Position changed → redo the position-based lookups.
+      lookups: moved ? {} : prev?.lookups ?? {},
     } as Listing);
   }
   // Refresh "days on market" for active listings not re-fetched this run.
@@ -232,6 +292,7 @@ export async function runListings(
   for (const l of listings) {
     if (!l.expired) l.days_on_market = Math.max(0, Math.floor((config.now.getTime() - Date.parse(l.listed_at)) / DAY_MS));
   }
+  await publicLookups(listings, config);
   valueListings(listings, ctx);
   listings.sort((a, b) => b.score.opportunity_score - a.score.opportunity_score || a.id.localeCompare(b.id));
 

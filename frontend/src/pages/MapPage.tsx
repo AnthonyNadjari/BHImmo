@@ -6,7 +6,7 @@
 import { Suspense, lazy, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
-import { fetchIndex, fetchMarket, fetchQuartiers } from "../services/data";
+import { fetchIndex, fetchListings, fetchMarket, fetchQuartiers } from "../services/data";
 import { DataFreshness } from "../components/DataFreshness";
 import { Img, LocationPin } from "../components/Img";
 import { thumbFor } from "../services/imagery";
@@ -19,6 +19,8 @@ export function MapPage() {
   const { loading, error, data, reload } = useAsync(fetchIndex, []);
   const { data: market } = useAsync(fetchMarket, []);
   const { data: geo } = useAsync(fetchQuartiers, []);
+  const { data: listingsFile } = useAsync(fetchListings, []);
+  const listings = useMemo(() => (listingsFile?.listings ?? []).filter((l) => !l.expired), [listingsFile]);
 
   // Memoize so PropertyMap gets a stable `entries` reference and the marker
   // cluster is built once per dataset, not on every render.
@@ -49,6 +51,7 @@ export function MapPage() {
             <Suspense fallback={<div className="map-loading">Loading map…</div>}>
               <PropertyMap
                 entries={active}
+                listings={listings}
                 quartiers={market?.quartiers ?? []}
                 geo={geo ?? undefined}
               />

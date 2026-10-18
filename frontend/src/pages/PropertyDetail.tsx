@@ -68,8 +68,8 @@ export function PropertyDetail() {
 
   return (
     <section className="detail">
-      <Link to="/" className="back-link">
-        ← Back to dashboard
+      <Link to="/sales" className="back-link">
+        ← Back to past sales
       </Link>
 
       {/* Imagery-led hero */}
@@ -203,7 +203,7 @@ export function PropertyDetail() {
         <div className="card span-2">
           <h2>Location & amenities</h2>
           <Suspense fallback={<div className="map-loading">Loading map…</div>}>
-            <MiniMap property={p} />
+            <MiniMap lat={p.address.lat} lng={p.address.lng} label={p.address.normalized.split(",")[0]!} pois={p.pois} />
           </Suspense>
           <div className="minimap-legend">
             <span><i style={{ background: "#2563eb" }} /> Transport (IDFM)</span>
@@ -277,8 +277,8 @@ function NotFound() {
   return (
     <div className="state">
       <p>Sale not found — it may have rotated out after a newer DVF release.</p>
-      <Link to="/" className="btn">
-        Back to dashboard
+      <Link to="/sales" className="btn">
+        Back to past sales
       </Link>
     </div>
   );
