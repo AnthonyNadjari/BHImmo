@@ -2,18 +2,18 @@
  * Prepares the static datasets the frontend fetches at runtime, from the
  * pipeline's canonical JSON in `/data`:
  *
- *   public/data/index.json        compact dashboard rows
- *   public/data/market.json       per-arrondissement model
- *   public/data/property/<id>.json one file per property (detail page)
+ *   public/data/index.json          compact dashboard rows
+ *   public/data/market.json         market model, price indices, provenance
+ *   public/data/quartiers.geojson   quartier polygons for the price map
+ *   public/data/property/<id>.json  one file per property (detail page)
  *
- * Splitting `properties.json` (which can be several MB at scale) into one file
- * per property means the detail page fetches only the record it needs instead
- * of the whole dataset. Output lives under the gitignored public/data, so it's
- * a pure build artifact. Run automatically via the `predev` / `prebuild` hooks.
+ * The full records live in per-arrondissement shards (`data/properties/*.json`);
+ * splitting them into one file per property means the detail page fetches only
+ * the record it needs. Output lives under the gitignored public/data, so it's a
+ * pure build artifact. Run automatically via the `predev` / `prebuild` hooks.
  */
-import { mkdir, copyFile, writeFile, rm } from "node:fs/promises";
+import { mkdir, copyFile, writeFile, rm, readdir, readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 const srcDir = join(process.cwd(), "..", "data");
@@ -23,32 +23,29 @@ const propDir = join(destDir, "property");
 await mkdir(destDir, { recursive: true });
 
 // Compact, always-loaded artifacts.
+const artifacts = ["index.json", "market.json", "quartiers.geojson"];
 let copied = 0;
-for (const file of ["index.json", "market.json"]) {
+for (const file of artifacts) {
   const src = join(srcDir, file);
   if (existsSync(src)) {
     await copyFile(src, join(destDir, file));
     copied++;
   } else {
-    console.warn(`[copy-data] missing ${src} — run the pipeline/seed first`);
+    console.warn(`[copy-data] missing ${src} — run the pipeline first`);
   }
 }
 
-// Split the full dataset into one file per property for the detail page.
-const propsPath = join(srcDir, "properties.json");
+// Split the per-arrondissement shards into one file per property.
+const shardDir = join(srcDir, "properties");
+const shards = existsSync(shardDir) ? (await readdir(shardDir)).filter((f) => f.endsWith(".json")) : [];
+await rm(propDir, { recursive: true, force: true });
+await mkdir(propDir, { recursive: true });
 let split = 0;
-if (existsSync(propsPath)) {
-  await rm(propDir, { recursive: true, force: true });
-  await mkdir(propDir, { recursive: true });
-  const { properties } = JSON.parse(await readFile(propsPath, "utf8"));
-  await Promise.all(
-    (properties ?? []).map((p) =>
-      writeFile(join(propDir, `${p.id}.json`), JSON.stringify(p)),
-    ),
-  );
-  split = (properties ?? []).length;
-} else {
-  console.warn(`[copy-data] missing ${propsPath} — detail pages will 404`);
+for (const f of shards) {
+  const { properties } = JSON.parse(await readFile(join(shardDir, f), "utf8"));
+  await Promise.all((properties ?? []).map((p) => writeFile(join(propDir, `${p.id}.json`), JSON.stringify(p))));
+  split += (properties ?? []).length;
 }
+if (split === 0) console.warn(`[copy-data] no property shards in ${shardDir} — detail pages will 404`);
 
-console.log(`[copy-data] ${copied}/2 datasets + ${split} per-property files → ${destDir}`);
+console.log(`[copy-data] ${copied}/${artifacts.length} datasets + ${split} per-property files → ${destDir}`);

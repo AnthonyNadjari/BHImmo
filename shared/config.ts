@@ -12,8 +12,12 @@
 import { log } from "./logger.ts";
 
 export interface PipelineConfig {
-  /** Recent sales surfaced per arrondissement (the property universe). */
-  perArrondissement: number;
+  /** Universe = every sale in the last N days of DVF coverage… */
+  universeDays: number;
+  /** …topped up to at least this many sales per arrondissement. */
+  minPerArrondissement: number;
+  /** Max properties getting per-address lookups in one run (bounds CI time). */
+  maxLookups: number;
   /** Number of DVF vintages to load (comparables, resale history, trend). */
   dvfYears: number;
   /** Per-request network timeout in milliseconds. */
@@ -25,7 +29,9 @@ export interface PipelineConfig {
 
 export function loadConfig(): PipelineConfig {
   return {
-    perArrondissement: Number(process.env.PRER_DVF_PER_ARR ?? 50),
+    universeDays: Number(process.env.PRER_UNIVERSE_DAYS ?? 92),
+    minPerArrondissement: Number(process.env.PRER_MIN_PER_ARR ?? 100),
+    maxLookups: Number(process.env.PRER_MAX_LOOKUPS ?? 4000),
     dvfYears: Number(process.env.PRER_DVF_YEARS ?? 5),
     requestTimeoutMs: Number(process.env.PRER_TIMEOUT_MS ?? 20_000),
     concurrency: Number(process.env.PRER_CONCURRENCY ?? 6),
@@ -41,9 +47,8 @@ export const ENDPOINTS = {
   dvf: "https://files.data.gouv.fr/geo-dvf/latest/csv",
   /** Géoplateforme geocoder (BAN), with the legacy BAN API as a fallback. */
   geocoder: ["https://data.geopf.fr/geocodage/search", "https://api-adresse.data.gouv.fr/search/"],
-  /** Géorisques — flood zoning (TRI) and clay shrink–swell (RGA). */
+  /** Géorisques — flood zoning (TRI). */
   georisquesTri: "https://georisques.gouv.fr/api/v1/tri_zonage",
-  georisquesRga: "https://georisques.gouv.fr/api/v1/rga",
   /** ADEME — DPE of existing dwellings (since July 2021). */
   ademeDpe: "https://data.ademe.fr/data-fair/api/v1/datasets/dpe03existant/lines",
   /** IGN Géoplateforme WMS (aerial photography). */
@@ -71,9 +76,13 @@ export const ENDPOINTS = {
 
 export const DATA_DIR = "data";
 export const FILES = {
-  properties: "properties.json",
+  /** Full records, one shard per arrondissement: properties/75011.json. */
+  propertiesDir: "properties",
+  /** Pre-sharding single file (read once for migration, then removed). */
+  legacyProperties: "properties.json",
   index: "index.json",
   market: "market.json",
+  quartiers: "quartiers.geojson",
 } as const;
 
 const USER_AGENT = "BHImmo/2.0 (+https://github.com/AnthonyNadjari/BHImmo; open-data)";

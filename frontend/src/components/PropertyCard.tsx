@@ -9,6 +9,7 @@ import { Img, LocationPin } from "./Img";
 import { Badge } from "./Badge";
 import { districtLabel, formatEuro, formatMonth, formatPerM2, scoreColor } from "../services/format";
 import { yieldColor } from "../services/yield";
+import { thumbFor } from "../services/imagery";
 import type { IndexEntry } from "../types";
 
 export function PropertyCard({ entry }: { entry: IndexEntry }) {
@@ -16,8 +17,8 @@ export function PropertyCard({ entry }: { entry: IndexEntry }) {
   return (
     <Link to={`/property/${e.id}`} className="property-card" aria-label={e.address}>
       <div className="property-card-photo">
-        <Img src={e.image} alt={`Aerial view of ${e.address}`} className="property-card-img" />
-        <LocationPin src={e.image} />
+        <Img src={thumbFor(e)} alt={`Aerial view of ${e.address}`} className="property-card-img" />
+        <LocationPin src={thumbFor(e)} />
         <div className="property-card-badge">
           <Badge badge={e.badge} />
         </div>
@@ -41,7 +42,16 @@ export function PropertyCard({ entry }: { entry: IndexEntry }) {
         </div>
         <div className="property-card-meta">
           {formatPerM2(e.price_per_m2)} · {e.surface_m2} m² · {e.rooms} p · {districtLabel(e.district)}
+          {e.quartier ? ` · ${e.quartier}` : ""}
         </div>
+        {e.estimate !== null && e.dvf_gap_pct !== null && (
+          <div className="property-card-estimate">
+            Est. {formatEuro(e.estimate)} ·{" "}
+            <span className={e.dvf_gap_pct >= 0 ? "accent-good" : "accent-bad"}>
+              {Math.abs(e.dvf_gap_pct).toFixed(0)}% {e.dvf_gap_pct >= 0 ? "below" : "above"}
+            </span>
+          </div>
+        )}
         <div className="property-card-foot">
           <span className="property-card-yield" style={{ color: yieldColor(e.net_yield) }}>
             {e.net_yield === null ? "yield n/a" : `${e.net_yield.toFixed(1)}% net`}

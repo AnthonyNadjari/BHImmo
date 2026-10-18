@@ -20,6 +20,8 @@ export interface Address {
   district: string;
   /** BAN interoperability key (e.g. "75101_6188_00037"), null if unmatched. */
   ban_id: string | null;
+  /** Quartier administratif (one of Paris's 80), from the official polygons. */
+  quartier: string | null;
 }
 
 export interface Characteristics {
@@ -54,20 +56,43 @@ export interface ComparableSale {
   distance_m: number;
   surface_m2: number;
   price_per_m2: number;
+  /** €/m² restated at the subject's sale quarter (Paris quarterly index). */
+  adjusted_m2: number;
+  /** Similar size (0.6×–1.6× the subject's surface) — used for the reference. */
+  similar: boolean;
+}
+
+/** Median €/m² of the sales of one quarter. */
+export interface QuarterPoint {
+  /** "2025-Q4". */
+  q: string;
+  median: number;
+  /** Number of sales. */
+  n: number;
 }
 
 export interface DvfStats {
-  /** Mean €/m² of DVF apartment sales within 100 m (±12 months), null if none. */
-  avg_price_m2_100m: number | null;
-  /** Mean €/m² of DVF apartment sales within 500 m (±12 months), null if none. */
-  avg_price_m2_500m: number | null;
+  /**
+   * Valuation basis: median €/m² of similar-size apartment sales nearby
+   * (±12 months), each restated at this sale's quarter. Null if too few.
+   */
+  reference_m2: number | null;
+  /** How the reference was built (radius widened when sales are scarce). */
+  reference_basis: { radius_m: number; comps: number; size_min: number | null; size_max: number | null } | null;
+  /** reference_m2 × surface, € — what similar sales imply this one was worth. */
+  estimate: number | null;
+  /** Median €/m² of all apartment sales within 100 m / 500 m (±12 months). */
+  median_m2_100m: number | null;
+  median_m2_500m: number | null;
   count_100m: number;
   count_500m: number;
   /** Date window the comparables were drawn from. */
   window_from: ISODate;
   window_to: ISODate;
-  /** Closest comparable sales (max 8). */
+  /** Comparable sales: similar-size first, then nearest (max 10). */
   comparable_sales: ComparableSale[];
+  /** Quarterly median €/m² of every apartment sale within 500 m. */
+  local_index: QuarterPoint[];
 }
 
 /** One risk fact, straight from its source's own classification. */
@@ -84,8 +109,6 @@ export interface RiskFact {
 export interface Risks {
   /** Géorisques TRI flood zoning at the address. */
   flood: RiskFact | null;
-  /** Géorisques RGA clay shrink–swell exposure at the address. */
-  clay: RiskFact | null;
   /** Share of residents above the road-noise Lden threshold (Ville de Paris). */
   noise: RiskFact | null;
 }
@@ -174,6 +197,8 @@ export interface Investment {
   ppm2_percentile: number;
   /** % below (+) / above (−) the local DVF reference, null without comps. */
   dvf_gap_pct: number | null;
+  /** Estimate − price, € (positive = bought below what similar sales imply). */
+  estimate_gap_eur: number | null;
   /** DPE regulatory health 0–100 (100 = A, 10 = G), null without DPE. */
   dpe_risk_score: number | null;
   /** F/G bought far enough below market to pay for the renovation. */
@@ -198,6 +223,8 @@ export interface Resale {
   previous_price: number;
   change_pct: number;
   years: number;
+  /** Paris median €/m² change over the same quarters, % (the market). */
+  market_change_pct: number | null;
 }
 
 export interface Signals {
@@ -219,7 +246,6 @@ export interface Lookups {
   ban?: ISODate;
   dpe?: ISODate;
   flood?: ISODate;
-  clay?: ISODate;
 }
 
 export interface Property {
@@ -236,10 +262,11 @@ export interface Property {
   rent: Rent | null;
   investment: Investment;
   pois: Poi[];
-  /** Real imagery of the location (IGN aerial photos, Mapillary if enabled). */
-  images: string[];
-  thumb: string;
-  image_credit: string;
+  /**
+   * Street-level photos (Mapillary, only when MLY_TOKEN is set). The IGN
+   * aerial views are built from the coordinates by the UI, not stored.
+   */
+  street_images: string[];
   dpe: Dpe | null;
   score: Score;
   signals: Signals;
@@ -263,12 +290,14 @@ export interface IndexEntry {
   lng: number;
   surface_m2: number;
   rooms: number;
+  quartier: string | null;
   price: number;
   price_per_m2: number;
   sale_date: ISODate;
+  /** What similar nearby sales imply, € (null without enough comparables). */
+  estimate: number | null;
   opportunity_score: number;
   badge: Badge;
-  image: string;
   walk_score: number | null;
   gross_yield: number | null;
   net_yield: number | null;
@@ -276,9 +305,20 @@ export interface IndexEntry {
   dvf_gap_pct: number | null;
   dpe_energy: string | null;
   dpe_scope: "unit" | "building" | null;
+  /** Flood severity 0–1 (Géorisques TRI), null if not looked up yet. */
+  flood: number | null;
   resale_change_pct: number | null;
-  /** Sale prices of this lot over time (sparkline). */
+  /** Sale prices of this lot over time (sparkline; empty when sold once). */
   spark: number[];
+}
+
+/** Repeat sales of the same lot (held ≥ 1 year); includes renovation between sales. */
+export interface RepeatSaleStats {
+  pairs: number;
+  /** Median annualised price change, %. */
+  median_annual_pct: number;
+  /** Share of resales sold above their previous price, %. */
+  share_gain_pct: number;
 }
 
 /** Provenance of one source for this run. */
@@ -337,6 +377,26 @@ export interface MarketArrondissement {
   median_yield: number | null;
   /** % of residents above the road-noise Lden threshold (Ville de Paris). */
   noise_exposed_pct: number | null;
+  /** Quarterly median €/m² of all the arrondissement's apartment sales. */
+  index: QuarterPoint[];
+  repeat_sales: RepeatSaleStats | null;
+}
+
+/** One of Paris's 80 quartiers administratifs (geometry in quartiers.geojson). */
+export interface MarketQuartier {
+  id: string;
+  name: string;
+  district: string;
+  lat: number;
+  lng: number;
+  /** Median €/m² of the last 4 quarters of DVF sales. */
+  median_price_m2: number | null;
+  /** Median €/m² of the 4 quarters before. */
+  prev_median_price_m2: number | null;
+  trend_pct: number | null;
+  sales_12m: number;
+  /** Legal reference rent €/m², 2 rooms, pre-1946, non meublé (rent control). */
+  rent_ref_m2: number | null;
 }
 
 export interface MarketFile {
@@ -347,8 +407,12 @@ export interface MarketFile {
   city_median_price_m2: number;
   /** City-wide YoY change of the DVF median €/m², %. */
   city_trend_1y: number | null;
+  /** Paris quarterly median €/m² over every DVF vintage loaded. */
+  paris_index: QuarterPoint[];
+  paris_repeat_sales: RepeatSaleStats | null;
   sources: SourceStatus[];
   arrondissements: MarketArrondissement[];
+  quartiers: MarketQuartier[];
 }
 
 export interface PropertiesFile {

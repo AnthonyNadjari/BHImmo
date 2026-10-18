@@ -6,7 +6,8 @@
  *   deal_score *= (0.5 + 0.5·dpe_health/100)       // when a DPE is known
  *   (value-add reno-arbitrage on F/G bought well below market escapes the cap)
  *
- *  - value: discount vs. real DVF comparables + €/m² percentile among all the
+ *  - value: discount vs. the valuation reference (median €/m² of similar-size
+ *    DVF sales nearby, time-adjusted) + €/m² percentile among all the
  *    arrondissement's DVF sales of the year.
  *  - yield: legal rent ceiling (encadrement des loyers) vs. sale price; costs
  *    are explicit assumptions (7.5 % notary fees, charges at 1.2 % of price).
@@ -22,7 +23,6 @@
 
 import { clamp, round } from "../shared/geo.ts";
 import type { DvfStats, Investment, Score } from "../shared/types.ts";
-import { dvfReference } from "../enrichment/dvf.ts";
 
 export const WEIGHTS = {
   value: 0.35,
@@ -91,7 +91,7 @@ function weighted(parts: Array<[number | null, number]>): number | null {
 
 export function computeScore(input: ScoreInput): ScoreOutput {
   // Value.
-  const ref = dvfReference(input.dvf);
+  const ref = input.dvf.reference_m2;
   const dvfGapPct = ref ? ((ref - input.price_per_m2) / ref) * 100 : null;
   const ppm2Pct = round(percentile(input.districtPpm2, input.price_per_m2));
   const percentileScore = 100 - ppm2Pct;
@@ -156,6 +156,7 @@ export function computeScore(input: ScoreInput): ScoreOutput {
       net_yield: netYield === null ? null : round(netYield, 2),
       ppm2_percentile: ppm2Pct,
       dvf_gap_pct: dvfGapPct === null ? null : round(dvfGapPct, 1),
+      estimate_gap_eur: input.dvf.estimate === null ? null : round(input.dvf.estimate - input.price, -3),
       dpe_risk_score: dpeHealth,
       value_add_flag: valueAdd,
     },

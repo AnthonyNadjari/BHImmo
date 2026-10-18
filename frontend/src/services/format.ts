@@ -71,7 +71,8 @@ export interface BadgeMeta {
 export const BADGES: Record<Badge, BadgeMeta> = {
   opportunity: { emoji: "🔥", label: "Opportunity", className: "badge-opportunity" },
   watch: { emoji: "⚠️", label: "Watch", className: "badge-watch" },
-  overvalued: { emoji: "❌", label: "Overvalued", className: "badge-overvalued" },
+  // Sold ≥ 10 % above similar nearby sales (may reflect quality, not only overpaying).
+  overvalued: { emoji: "❌", label: "Above market", className: "badge-overvalued" },
 };
 
 /** Placeholder for a value the open-data source doesn't provide. */

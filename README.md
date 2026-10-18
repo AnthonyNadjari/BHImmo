@@ -14,9 +14,9 @@
 |---|---|
 | **Frontend** | React + Vite (TypeScript), static — Vercel / GitHub Pages |
 | **Pipeline** | Node 20+/TypeScript via `tsx`, runs daily in GitHub Actions |
-| **Universe** | the 50 most recent single-apartment sales per arrondissement (1 000 sales) |
+| **Universe** | every single-apartment sale of the latest DVF quarter (≥ 100 per arrondissement — ~6 700 sales) |
 | **Market context** | every clean Paris apartment sale of the last 5 DVF vintages (~137 000) |
-| **Storage** | versioned JSON in `/data`; per-property files split at build time |
+| **Storage** | versioned JSON in `/data` (one shard per arrondissement); per-property files split at build time |
 | **Auth / DB / paid APIs** | none (all sources are free and key-less) |
 
 ---
@@ -26,13 +26,15 @@
 | Field | Source | Scope |
 |---|---|---|
 | Address, price, surface, Carrez, rooms, sale date, parcel | **DVF** geo-files (`files.data.gouv.fr/geo-dvf`) — latest vintages auto-discovered | the sale |
-| Resale history | DVF — earlier sales of the same lot (same parcel + lot number, same surface) | the lot |
-| Comparables, local €/m² (100 m / 500 m, ±12 months) | DVF | ≤ 500 m |
-| Arrondissement median €/m², YoY trend, volume, volatility | DVF (all sales, latest vs previous vintage) | arrondissement |
+| Resale history (+ Paris market change over the same span) | DVF — earlier sales of the same lot (same parcel + lot number, same surface) | the lot |
+| **Estimate** & local reference €/m² | DVF — median of similar-size sales (0.6×–1.6× surface) within 300→800 m, ±12 months, time-adjusted with the Paris quarterly index | ≤ 800 m |
+| Price trend around the address | DVF — quarterly median €/m² of every sale within 500 m since 2021 | ≤ 500 m |
+| Paris / arrondissement price index, YoY, volume, volatility | DVF (all sales, quarterly and yearly) | Paris / arrondissement |
+| Repeat-sales trend | DVF — same apartment sold twice ≥ 1 year apart (~2 700 pairs): median annualised change (includes renovation between sales) | Paris / arrondissement |
+| Quartier prices & 12-month change (map choropleth) | DVF sales assigned to the 80 quartiers administratifs (official polygons from the rent-control dataset) | quartier |
 | BAN label + interoperability key | IGN Géoplateforme geocoder (BAN) | the address |
 | DPE energy/GHG class, certificate date, energy bill, construction year | **ADEME** `dpe03existant`, matched by BAN key + surface (“unit”), else median of the building’s certificates (“building”, labelled) | apartment / building |
 | Flood exposure | **Géorisques** TRI zoning (`tri_zonage`) | the address |
-| Clay shrink–swell | Géorisques RGA — no data for Paris addresses, shown as *no data* | the address |
 | Legal rent ceiling (yield basis) | Ville de Paris *encadrement des loyers* (latest year), point-in-polygon on the quartiers; era from the DPE | quartier |
 | Transit score, nearest station | **IDFM** station locations | ≤ 600 m |
 | Schools, Vélib’, parks, street trees | Annuaire de l’éducation · opendata.paris.fr | 150–500 m |
@@ -65,16 +67,16 @@ The Market page lists every source with its status for the last run
 
 ```
 GitHub Actions (daily) ─ pipeline/run.ts
-  1. Ingestion    scraper/      DVF vintages → clean single-apartment sales → universe
-  2. Lookups      enrichment/   BAN · ADEME DPE · Géorisques (once per address)
+  1. Ingestion    scraper/      DVF vintages → clean single-apartment sales → universe (latest quarter)
+  2. Lookups      enrichment/   BAN · ADEME DPE · Géorisques (once per address, capped per run)
   3. References   enrichment/   IDFM · schools · Vélib' · parks · trees · OSM · rent control · INSEE · noise
-  4. Enrichment   enrichment/   comparables · transport · neighbourhood · rent · POIs · IGN imagery
-  5. History      scraper/      earlier DVF sales of the same lot
+  4. Enrichment   enrichment/   estimate from similar sales · local price index · transport · neighbourhood · rent
+  5. History      scraper/      earlier DVF sales of the same lot · repeat-sales pairs
   6. Scoring      scoring/      deal score + explainable signals
-  7. Export       storage/      data/properties.json · index.json · market.json
+  7. Export       storage/      data/properties/<district>.json · index.json · market.json · quartiers.geojson
                        │ commit → deploy
                        ▼
-frontend/ (React + Vite SPA): Dashboard · Sale detail · Map · Market (+ Sources) · Watchlist
+frontend/ (React + Vite SPA): Dashboard · Sale detail · Map (sales + quartier choropleths) · Market (price index, quartiers, sources) · Watchlist
 ```
 
 ---
@@ -86,21 +88,22 @@ The canonical schema lives in [`shared/types.ts`](shared/types.ts). Each propert
 ```ts
 Property {
   id                      // "dvf-<id_mutation>"
-  address        { raw, normalized, lat, lng, district, ban_id }
+  address        { raw, normalized, lat, lng, district, ban_id, quartier }
   characteristics { surface_m2, carrez_m2, rooms }
   sale           { date, price, price_per_m2, mutation_id, parcel }
   price_history[] { date, price, source }          // every DVF sale of the lot
-  dvf            { avg_price_m2_100m, avg_price_m2_500m, count_100m, count_500m, window_*, comparable_sales[] }
-  risks          { flood, clay, noise }            // RiskFact | null (value 0–1, label, scope, source)
+  dvf            { reference_m2, reference_basis, estimate, median_m2_100m, median_m2_500m,
+                   count_100m, count_500m, window_*, comparable_sales[], local_index[] }
+  risks          { flood, noise }                  // RiskFact | null (value 0–1, label, scope, source)
   transport      { score, nearest_name, nearest_m, stations_600m } | null
   neighborhood   { walk_score, schools_500m, velib_400m, trees_150m, parks_500m, amenities, income, poverty_rate }
   rent           { ref_m2, max_m2, min_m2, monthly_est, quartier, year, epoque, epoque_source } | null
   dpe            { energy_class, ghg_class, scope: "unit"|"building", certificates, date, … } | null
-  investment     { gross_yield, net_yield, ppm2_percentile, dvf_gap_pct, dpe_risk_score, value_add_flag }
+  investment     { gross_yield, net_yield, ppm2_percentile, dvf_gap_pct, estimate_gap_eur, dpe_risk_score, value_add_flag }
   score          { opportunity_score, value_score, yield_score, liquidity_score, gentrification_score }
-  signals        { resale, explanations[] }
-  images[] / thumb / image_credit                 // IGN aerial + map of the address
-  lookups        { ban?, dpe?, flood?, clay? }     // when each remote lookup completed
+  signals        { resale (incl. market_change_pct), explanations[] }
+  street_images[]                                  // Mapillary (optional); IGN aerial views are built by the UI
+  lookups        { ban?, dpe?, flood? }            // when each remote lookup completed
 }
 ```
 
@@ -112,9 +115,9 @@ deal_score = weighted mean of the AVAILABLE components
 deal_score *= 0.5 + 0.5·dpe_health/100          // when a DPE is known
 ```
 
-- **value** — discount vs. the local DVF reference (60 % within 100 m + 40 %
-  within 500 m) and €/m² percentile among *all* the arrondissement's sales of
-  the year.
+- **value** — discount vs. the local reference (median €/m² of similar-size
+  sales nearby, time-adjusted) and €/m² percentile among *all* the
+  arrondissement's sales of the year.
 - **yield** — legal rent ceiling × surface vs. sale price; explicit assumptions:
   7.5 % acquisition fees, charges at 1.2 % of price per year.
 - **liquidity** — IDFM transit, walkability, size, arrondissement price level,
@@ -124,17 +127,19 @@ deal_score *= 0.5 + 0.5·dpe_health/100          // when a DPE is known
 
 A component without data is dropped and the weights renormalise. Badges:
 🔥 **opportunity** = score ≥ 68 · ❌ **overvalued** = sold ≥ 10 % *above* the
-local DVF average · ⚠️ **watch** otherwise. Every property carries
-`signals.explanations[]`, e.g. *"27% below the local DVF average (11 675 €/m²,
-492 sales ≤ 500 m)"*, *"DPE D (this apartment)"*, *"Resold: bought 355 000 € in
-2023-05 (+1.7% over 2.6 y)"*. See [`scoring/score.ts`](scoring/score.ts).
+local reference (shown as *Above market*) · ⚠️ **watch** otherwise. Every property carries
+`signals.explanations[]`, e.g. *"18% below the local reference (10 450 €/m², 23
+similar-size sales ≤ 300 m) — 62 000 € under the estimate"*, *"DPE D (this
+apartment)"*, *"Resold: bought 355 000 € in 2023-05 (+1.7% over 2.6 y; Paris
+market −4.1%)"*. See [`scoring/score.ts`](scoring/score.ts).
 
 ---
 
 ## File structure
 
 ```
-scraper/      DVF download (gz vintages) → clean sales → universe, comparables, lot history, market stats
+scraper/      DVF download (gz vintages) → clean sales → universe, lot history, market stats,
+              price-index.ts (quarterly indices, time adjustment, repeat sales)
 enrichment/   geocode (BAN) · dpe (ADEME) · georisques · reference (Paris-wide sets) · insee
               dvf · transport · neighborhood · rent · pois · facade (Mapillary)
 scoring/      deal score, gentrification, explanations
@@ -142,7 +147,7 @@ storage/      repository · market model · dataset export
 pipeline/     run.ts (CLI) · pipeline.ts (orchestrator)
 shared/       types · config (endpoints, fetch helpers) · geo (grid index, PIP) · paris · images (IGN)
 frontend/     React (Vite) — pages, components, services
-data/         properties.json · index.json · market.json   (committed)
+data/         properties/<district>.json · index.json · market.json · quartiers.geojson   (committed)
 ```
 
 ---
@@ -153,15 +158,17 @@ Requires Node 20+ and network access to the sources above.
 
 ```bash
 npm install
-npm run pipeline          # ~4 min on a first run (1 000 address lookups), ~30 s afterwards
+npm run pipeline          # first run: ~12 min of address lookups (PRER_MAX_LOOKUPS=10000); ~1 min afterwards
 
 cd frontend
 npm install
 npm run dev               # http://localhost:5173  (copies ../data automatically)
 ```
 
-Environment knobs: `PRER_DVF_PER_ARR` (sales per arrondissement, default 50),
-`PRER_DVF_YEARS` (DVF vintages loaded, default 5), `PRER_CONCURRENCY`
+Environment knobs: `PRER_UNIVERSE_DAYS` (sales of the last N days of DVF
+coverage, default 92), `PRER_MIN_PER_ARR` (minimum per arrondissement, default
+100), `PRER_MAX_LOOKUPS` (properties enriched via remote lookups per run, default
+4000), `PRER_DVF_YEARS` (DVF vintages loaded, default 5), `PRER_CONCURRENCY`
 (parallel lookups, default 6), `MLY_TOKEN` (optional Mapillary street photos).
 `npm run typecheck` (root and `frontend/`) type-checks everything.
 

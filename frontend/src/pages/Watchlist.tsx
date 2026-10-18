@@ -22,6 +22,7 @@ import {
   scoreColor,
 } from "../services/format";
 import { Img, LocationPin } from "../components/Img";
+import { thumbFor } from "../services/imagery";
 import { ErrorState, Loading } from "../components/States";
 
 export function Watchlist() {
@@ -84,8 +85,8 @@ export function Watchlist() {
           return (
             <div className="card watch-card" key={p.id}>
               <Link to={`/property/${p.id}`} className="watch-thumb-link" aria-label={p.address.normalized}>
-                <Img src={p.thumb || p.images?.[0] || ""} alt="" className="watch-thumb" />
-                <LocationPin src={p.thumb || p.images?.[0] || ""} />
+                <Img src={thumbFor(p.address)} alt="" className="watch-thumb" />
+                <LocationPin src={thumbFor(p.address)} />
               </Link>
               <div className="watch-card-head">
                 <Link to={`/property/${p.id}`} className="watch-title">

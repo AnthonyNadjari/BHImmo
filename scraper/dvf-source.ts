@@ -11,7 +11,7 @@
  * picks up each new semi-annual release on its own. From the same real data we
  * derive:
  *   - the property universe (most recent sales per arrondissement),
- *   - comparable sales around each property (±12 months, ≤ 500 m),
+ *   - comparable sales around each property (see enrichment/dvf.ts),
  *   - resale history of the same lot (same parcel + lot number),
  *   - per-arrondissement market statistics (median €/m², YoY trend, volume).
  *
@@ -211,37 +211,22 @@ export async function loadDvf(config: PipelineConfig): Promise<DvfData> {
   return CACHE;
 }
 
-/** The property universe: the most recent `perArr` sales per arrondissement. */
-export function selectUniverse(dvf: DvfData, perArr: number): DvfTxn[] {
-  const latest = dvf.vintages[dvf.vintages.length - 1]!;
+/**
+ * The property universe: EVERY clean apartment sale of the last `days` days of
+ * DVF coverage (e.g. the latest quarter), topped up with the next most recent
+ * sales so each arrondissement has at least `minPerArr`.
+ */
+export function selectUniverse(dvf: DvfData, days: number, minPerArr: number): DvfTxn[] {
+  const from = new Date(Date.parse(dvf.coverage.last_sale) - days * DAY_MS).toISOString().slice(0, 10);
   const byDistrict = new Map<string, DvfTxn[]>();
-  for (const s of dvf.sales) {
-    if (s.year !== latest) continue;
-    (byDistrict.get(s.district) ?? byDistrict.set(s.district, []).get(s.district)!).push(s);
-  }
+  for (const s of dvf.sales) (byDistrict.get(s.district) ?? byDistrict.set(s.district, []).get(s.district)!).push(s);
   const out: DvfTxn[] = [];
   for (const [, list] of [...byDistrict].sort(([a], [b]) => a.localeCompare(b))) {
     list.sort((a, b) => b.date.localeCompare(a.date) || a.id.localeCompare(b.id));
-    out.push(...list.slice(0, perArr));
+    const recent = list.filter((s) => s.date > from).length;
+    out.push(...list.slice(0, Math.max(recent, minPerArr)));
   }
   return out;
-}
-
-export interface Comparable {
-  txn: DvfTxn;
-  distance_m: number;
-}
-
-/**
- * Real comparable sales: other DVF apartment sales within `radius` m and
- * ±`windowDays` of the subject's sale date, nearest first.
- */
-export function comparables(dvf: DvfData, subject: DvfTxn, radius = 500, windowDays = 365): Comparable[] {
-  const t = Date.parse(subject.date);
-  return dvf.index
-    .within(subject.lat, subject.lng, radius)
-    .filter(({ p }) => p.id !== subject.id && Math.abs(Date.parse(p.date) - t) <= windowDays * DAY_MS)
-    .map(({ p, d }) => ({ txn: p, distance_m: round(d) }));
 }
 
 /**

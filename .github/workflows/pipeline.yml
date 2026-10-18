@@ -36,8 +36,12 @@ jobs:
 
       - name: Run pipeline
         env:
-          # Most recent real DVF sales surfaced per arrondissement (1000 total).
-          PRER_DVF_PER_ARR: "50"
+          # Universe: every DVF apartment sale of the latest quarter (≥ 100 per
+          # arrondissement); per-address lookups are capped per run so a large
+          # new DVF release is enriched over a few daily runs.
+          PRER_UNIVERSE_DAYS: "92"
+          PRER_MIN_PER_ARR: "100"
+          PRER_MAX_LOOKUPS: "4000"
           # Optional: real street-level photos baked into the dataset (free).
           MLY_TOKEN: ${{ secrets.MLY_TOKEN }}
         run: npm run pipeline

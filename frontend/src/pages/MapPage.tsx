@@ -6,9 +6,10 @@
 import { Suspense, lazy, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
-import { fetchIndex, fetchMarket } from "../services/data";
+import { fetchIndex, fetchMarket, fetchQuartiers } from "../services/data";
 import { DataFreshness } from "../components/DataFreshness";
 import { Img, LocationPin } from "../components/Img";
+import { thumbFor } from "../services/imagery";
 import { Empty, ErrorState, Loading } from "../components/States";
 import { districtLabel, formatEuro, scoreColor } from "../services/format";
 
@@ -17,6 +18,7 @@ const PropertyMap = lazy(() => import("../components/PropertyMap"));
 export function MapPage() {
   const { loading, error, data, reload } = useAsync(fetchIndex, []);
   const { data: market } = useAsync(fetchMarket, []);
+  const { data: geo } = useAsync(fetchQuartiers, []);
 
   // Memoize so PropertyMap gets a stable `entries` reference and the marker
   // cluster is built once per dataset, not on every render.
@@ -47,16 +49,10 @@ export function MapPage() {
             <Suspense fallback={<div className="map-loading">Loading map…</div>}>
               <PropertyMap
                 entries={active}
-                arrondissements={market?.arrondissements ?? []}
-                cityAvg={market?.city_median_price_m2}
+                quartiers={market?.quartiers ?? []}
+                geo={geo ?? undefined}
               />
             </Suspense>
-            <div className="scatter-legend">
-              <span><i style={{ background: scoreColor(80) }} /> Score ≥ 68</span>
-              <span><i style={{ background: scoreColor(55) }} /> 50–67</span>
-              <span><i style={{ background: scoreColor(46) }} /> 45–49</span>
-              <span><i style={{ background: scoreColor(30) }} /> &lt; 45</span>
-            </div>
           </div>
           <div className="card">
             <h2>Top opportunities</h2>
@@ -64,8 +60,8 @@ export function MapPage() {
               {top.map((e) => (
                 <li key={e.id}>
                   <Link to={`/property/${e.id}`} className="top-thumb-link" aria-label={e.address}>
-                    <Img src={e.image} alt="" className="top-thumb" />
-                    <LocationPin src={e.image} />
+                    <Img src={thumbFor(e)} alt="" className="top-thumb" />
+                    <LocationPin src={thumbFor(e)} />
                   </Link>
                   <div className="top-info">
                     <Link to={`/property/${e.id}`}>{e.address}</Link>

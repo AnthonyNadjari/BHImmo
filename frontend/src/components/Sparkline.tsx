@@ -4,9 +4,11 @@ interface Props {
   values: number[];
   width?: number;
   height?: number;
+  /** What the line shows (accessible name). */
+  label?: string;
 }
 
-export function Sparkline({ values, width = 88, height = 24 }: Props) {
+export function Sparkline({ values, width = 88, height = 24, label = "between DVF sales of this lot" }: Props) {
   if (values.length < 2) {
     return <span className="spark-empty" aria-label="no earlier sale of this lot in DVF">—</span>;
   }
@@ -38,7 +40,7 @@ export function Sparkline({ values, width = 88, height = 24 }: Props) {
       height={height}
       className="spark"
       role="img"
-      aria-label={`${pct >= 0 ? "+" : ""}${pct.toFixed(1)}% between DVF sales of this lot`}
+      aria-label={`${pct >= 0 ? "+" : ""}${pct.toFixed(1)}% ${label}`}
     >
       <polyline points={points} fill="none" stroke={stroke} strokeWidth={1.75} strokeLinejoin="round" strokeLinecap="round" />
     </svg>
