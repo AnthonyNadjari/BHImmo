@@ -441,7 +441,14 @@ export interface Listing {
   /** Agency / individual publishing it. */
   publisher: string | null;
   publisher_type: "agency" | "individual" | null;
-  address: { lat: number; lng: number; district: string; quartier: string | null };
+  address: {
+    lat: number;
+    lng: number;
+    district: string;
+    quartier: string | null;
+    /** Nearest BAN address to the advert's position (adverts rarely give the exact number). */
+    nearest_address: string | null;
+  };
   surface_m2: number;
   rooms: number | null;
   bedrooms: number | null;
@@ -472,11 +479,17 @@ export interface Listing {
   dvf: DvfStats;
   rent: Rent | null;
   transport: Transport | null;
+  /** Géorisques flood zoning at the position; Ville de Paris road noise. */
+  risks: { flood: RiskFact | null; noise: RiskFact | null };
+  neighborhood: Neighborhood;
+  pois: Poi[];
   investment: Investment;
   score: Score;
   explanations: string[];
   /** When this record was last fetched from the provider. */
   fetched_at: string;
+  /** When each public-API lookup (BAN reverse geocoding, Géorisques) completed. */
+  lookups: { ban?: ISODate; flood?: ISODate };
 }
 
 export interface ListingsFile {

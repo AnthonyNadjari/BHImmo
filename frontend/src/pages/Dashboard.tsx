@@ -162,7 +162,7 @@ export function Dashboard() {
     return (
       <section>
         <div className="page-head">
-          <h1>Dashboard</h1>
+          <h1>Past sales (DVF)</h1>
         </div>
         <TableSkeleton rows={9} cols={8} />
       </section>
@@ -191,7 +191,7 @@ export function Dashboard() {
     <section>
       <div className="page-head">
         <div>
-          <h1>Dashboard</h1>
+          <h1>Past sales (DVF)</h1>
           <p className="muted" aria-live="polite">
             Showing <strong>{filtered.length}</strong> of {entries.length} real apartment sales
             {data?.dvf && <> · DVF through {formatDate(data.dvf.last_sale)}</>}

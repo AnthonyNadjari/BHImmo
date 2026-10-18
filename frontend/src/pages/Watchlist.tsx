@@ -61,8 +61,8 @@ export function Watchlist() {
           <p className="muted">
             Open a sale and hit <strong>☆ Add to watchlist</strong> to follow its score as new DVF data comes in.
           </p>
-          <Link to="/" className="btn">
-            Browse dashboard
+          <Link to="/sales" className="btn">
+            Browse past sales
           </Link>
         </div>
       </section>

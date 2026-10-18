@@ -258,7 +258,8 @@
 .map-layout > * { min-width: 0; }
 .chart-wrap svg.price-chart { display: block; max-width: 100%; }
 @media (max-width: 520px) {
-  .map-modes { left: 52px; right: 8px; justify-content: flex-end; flex-wrap: wrap; }
-  .map-modes button { padding: 5px 9px; font-size: 11px; }
+  /* .map-shell prefix: beats mapquartier.css, which loads later with the map chunk. */
+  .map-shell .map-modes { left: 52px; right: 8px; display: grid; grid-template-columns: 1fr 1fr; border-radius: 10px; overflow: hidden; }
+  .map-shell .map-modes button { padding: 6px 8px; font-size: 11px; border-radius: 0; }
   .card-head-row select { width: 100%; }
 }

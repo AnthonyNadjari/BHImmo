@@ -5,16 +5,20 @@
  * links to the original adverts.
  */
 
+import { Suspense, lazy } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
 import { fetchListings, fetchMarket } from "../services/data";
-import { districtLabel, formatDate, formatEuro, formatPercent, formatPerM2, NA } from "../services/format";
+import { districtLabel, formatDate, formatEuro, formatIncome, formatPercent, formatPerM2, NA } from "../services/format";
 import { Gallery } from "../components/Gallery";
 import { PriceChart } from "../components/PriceChart";
 import { LineChart, type LineSeries } from "../components/LineChart";
 import { ScoreRing } from "../components/ScoreRing";
 import { YieldBadge } from "../components/YieldBadge";
 import { ErrorState, Loading } from "../components/States";
+import type { Listing, RiskFact } from "../types";
+
+const MiniMap = lazy(() => import("../components/MiniMap"));
 
 export function ListingDetail() {
   const { id = "" } = useParams();
@@ -28,7 +32,7 @@ export function ListingDetail() {
     return (
       <div className="state">
         <p>Listing not found — it may have left the market.</p>
-        <Link to="/listings" className="btn">
+        <Link to="/" className="btn">
           Back to listings
         </Link>
       </div>
@@ -47,7 +51,7 @@ export function ListingDetail() {
 
   return (
     <section className="detail">
-      <Link to="/listings" className="back-link">
+      <Link to="/" className="back-link">
         ← Back to listings
       </Link>
 
@@ -60,6 +64,9 @@ export function ListingDetail() {
             {l.expired ? `Off the market ${formatDate(l.expired_at ?? "")}` : `On the market · ${l.days_on_market} days`}
           </span>
           <h1>{l.title || `${l.rooms ?? ""} pièces, ${l.surface_m2} m²`}</h1>
+          {l.address.nearest_address && (
+            <p className="muted xsmall">Near {l.address.nearest_address} (advert position, BAN)</p>
+          )}
           <p className="muted">
             {districtLabel(l.address.district)} arrondissement{l.address.quartier ? ` · ${l.address.quartier}` : ""} ·{" "}
             {l.surface_m2} m² · {l.rooms ?? NA} rooms
@@ -150,6 +157,20 @@ export function ListingDetail() {
           </div>
         )}
 
+        <Neighbourhood l={l} />
+
+        <div className="card span-2">
+          <h2>Location</h2>
+          <Suspense fallback={<div className="map-loading">Loading map…</div>}>
+            <MiniMap lat={l.address.lat} lng={l.address.lng} label={formatEuro(l.price)} pois={l.pois ?? []} />
+          </Suspense>
+          <div className="minimap-legend">
+            <span><i style={{ background: "#2563eb" }} /> Transport (IDFM)</span>
+            <span><i style={{ background: "#0e9488" }} /> Park (Ville de Paris)</span>
+            <span><i style={{ background: "#0891b2" }} /> Vélib'</span>
+          </div>
+        </div>
+
         <div className="card span-2">
           <h2>Price trend around this address</h2>
           <LineChart series={series} ariaLabel="Quarterly median price per m² within 500 m, in the arrondissement and in Paris" />
@@ -169,6 +190,43 @@ function KV({ label, value, accent }: { label: string; value: string; accent?: b
     <div className="kv">
       <span className="kv-label">{label}</span>
       <span className={`kv-value ${accent ? "accent-good" : ""}`}>{value}</span>
+    </div>
+  );
+}
+
+/** Public-API context: transport, amenities, schools, green, income, risks. */
+function Neighbourhood({ l }: { l: Listing }) {
+  const h = l.neighborhood;
+  if (!h) return null;
+  const rows: Array<[string, string]> = [
+    ["Walkability", h.walk_score === null ? NA : `${h.walk_score}/100`],
+    ["Transit (IDFM)", l.transport ? `${l.transport.score}/100 · ${l.transport.nearest_name} ${l.transport.nearest_m} m` : NA],
+    ["Food & shops ≤500 m (OSM)", h.amenities ? String(h.amenities.food) : NA],
+    ["Health ≤500 m (OSM)", h.amenities ? String(h.amenities.health) : NA],
+    ["Culture ≤500 m (OSM)", h.amenities ? String(h.amenities.culture) : NA],
+    ["Schools ≤500 m", h.schools_500m === null ? NA : String(h.schools_500m)],
+    ["Parks & squares ≤500 m", h.parks_500m === null ? NA : String(h.parks_500m)],
+    ["Street trees ≤150 m", h.trees_150m === null ? NA : String(h.trees_150m)],
+    ["Vélib' ≤400 m", h.velib_400m === null ? NA : String(h.velib_400m)],
+    ["Median standard of living (arr., INSEE)", h.income === null ? NA : `${formatIncome(h.income)}/yr`],
+  ];
+  const risk = (f: RiskFact | null | undefined) => (f ? f.label : NA);
+  return (
+    <div className="card span-2">
+      <h2>Neighbourhood &amp; risks (public data)</h2>
+      <div className="kv-row vertical compact-kv">
+        {rows.map(([k, v]) => (
+          <KV key={k} label={k} value={v} />
+        ))}
+        <KV label="Flood (Géorisques TRI)" value={risk(l.risks?.flood)} />
+        <KV label="Road noise (Ville de Paris)" value={risk(l.risks?.noise)} />
+        {l.rent && (
+          <KV
+            label={`Legal rent ceiling (${l.rent.quartier}, ${l.rent.year})`}
+            value={`${l.rent.max_m2} €/m² · ${formatEuro(l.rent.monthly_est)}/month`}
+          />
+        )}
+      </div>
     </div>
   );
 }

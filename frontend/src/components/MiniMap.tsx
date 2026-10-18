@@ -5,7 +5,7 @@
  */
 
 import { Circle, CircleMarker, MapContainer, TileLayer, Tooltip } from "react-leaflet";
-import type { Property } from "../types";
+import type { Poi } from "../types";
 
 const POI_STYLE: Record<string, string> = {
   transport: "#2563eb",
@@ -13,8 +13,8 @@ const POI_STYLE: Record<string, string> = {
   velib: "#0891b2",
 };
 
-export default function MiniMap({ property: p }: { property: Property }) {
-  const center: [number, number] = [p.address.lat, p.address.lng];
+export default function MiniMap({ lat, lng, label, pois }: { lat: number; lng: number; label: string; pois: Poi[] }) {
+  const center: [number, number] = [lat, lng];
   return (
     <MapContainer center={center} zoom={15} className="leaflet-mini" scrollWheelZoom={false}>
       <TileLayer
@@ -25,7 +25,7 @@ export default function MiniMap({ property: p }: { property: Property }) {
       <Circle center={center} radius={500} pathOptions={{ color: "#2563eb", weight: 1, fillOpacity: 0.05, dashArray: "4 4" }} />
       <Circle center={center} radius={150} pathOptions={{ color: "#2563eb", weight: 1, fillOpacity: 0.08 }} />
 
-      {(p.pois ?? []).map((poi, i) => (
+      {(pois ?? []).map((poi, i) => (
         <CircleMarker
           key={i}
           center={[poi.lat, poi.lng]}
@@ -43,7 +43,7 @@ export default function MiniMap({ property: p }: { property: Property }) {
         pathOptions={{ color: "#ffffff", weight: 2, fillColor: "#e11d48", fillOpacity: 1 }}
       >
         <Tooltip permanent direction="top" offset={[0, -8]}>
-          {p.address.normalized.split(",")[0]}
+          {label}
         </Tooltip>
       </CircleMarker>
     </MapContainer>
