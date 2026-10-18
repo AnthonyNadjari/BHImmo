@@ -1,226 +1,198 @@
 /**
- * Pipeline orchestrator — the seven mandated steps, exposed as a reusable
- * `runPipeline(config)` so both the CLI (`run.ts`) and the seeder (`seed.ts`)
- * share one implementation.
+ * Pipeline orchestrator — exposed as `runPipeline(config)` for the CLI.
  *
- *   1. Ingestion      (scraper)        fetch + normalize + dedupe listings
- *   2. Geocoding      (enrichment/BAN) normalize addresses → coordinates
- *   3. Enrichment     (DVF/risks/...)  attach market + risk + transport + DPE
- *   4. Matching       (scraper/match)  reconcile against existing properties
- *   5. Historical     (this file)      append price history, compute DOM
- *   6. Scoring        (scoring)        opportunity score + explainable signals
- *   7. Export         (storage)        properties.json / index.json / market.json
+ *   1. Ingestion   (scraper)          real DVF sales → property universe
+ *   2. Lookups     (enrichment)       BAN · ADEME DPE · Géorisques, once per address
+ *   3. References  (enrichment)       IDFM, schools, Vélib', parks, trees, OSM,
+ *                                     rent control, INSEE, road noise
+ *   4. Enrichment  (enrichment)       comparables, transport, neighbourhood, rent
+ *   5. History     (scraper)          earlier DVF sales of the same lot
+ *   6. Scoring     (scoring)          deal score + explainable signals
+ *   7. Export      (storage)          properties.json / index.json / market.json
+ *
+ * Every value is real open data or left empty. Without DVF the run throws, so
+ * CI keeps the last committed dataset instead of publishing anything made up.
  */
 
 import type { PipelineConfig } from "../shared/config.ts";
 import { log } from "../shared/logger.ts";
-import { imageSet } from "../shared/images.ts";
-import type { NormalizedListing } from "../scraper/index.ts";
-import { ingestListings, listingEndedInSale } from "../scraper/index.ts";
-import { matchListings, propertyId } from "../scraper/match.ts";
-import { enrichProperty, geocode, nearbyPois } from "../enrichment/index.ts";
-import { loadReferences } from "../enrichment/reference.ts";
-import { mapillaryImages } from "../enrichment/facade.ts";
+import { aerialImageSet } from "../shared/images.ts";
+import type { Property, SourceStatus } from "../shared/types.ts";
+import { districtMarkets, loadDvf, lotHistory, selectUniverse, type DvfTxn } from "../scraper/index.ts";
+import { enrichLocal, loadInsee, loadReferences, remoteLookups, streetPhotos } from "../enrichment/index.ts";
 import { scoreDataset } from "../scoring/index.ts";
 import { exportDatasets, loadProperties } from "../storage/index.ts";
-import type { Property } from "../shared/types.ts";
 
-const DAY_MS = 86_400_000;
-
-function isoDay(date: Date): string {
-  return date.toISOString().slice(0, 10);
-}
-
-function daysBetween(fromISO: string, toISO: string): number {
-  const ms = Date.parse(toISO) - Date.parse(fromISO);
-  return Math.max(0, Math.floor(ms / DAY_MS));
-}
-
-/** Recover the source externalId from a property id ("source-externalId"). */
-function extractExternalId(id: string): string {
-  const idx = id.indexOf("-");
-  return idx >= 0 ? id.slice(idx + 1) : id;
-}
-
-async function buildNewProperty(
-  listing: NormalizedListing,
-  config: PipelineConfig,
-): Promise<Property> {
-  const id = propertyId(listing);
-  const today = isoDay(config.now);
-
-  // Step 2 — geocoding.
-  const geo = await geocode(listing, config);
-
-  // Step 3 — enrichment.
-  const enrichment = await enrichProperty(
-    { id, lat: geo.lat, lng: geo.lng, district: geo.district, rooms: listing.rooms },
-    config,
-  );
-
-  // Prefer real street-level imagery near the property (Mapillary); fall back
-  // to representative interiors when there's no token / coverage.
-  const facade = await mapillaryImages(geo.lat, geo.lng, config);
-  const gallery = facade.length ? { images: facade, thumb: facade[0]! } : imageSet(id);
-  const monthlyEst = Math.round(enrichment.rent.max_m2 * listing.surface_m2);
-  const pois = nearbyPois({ id, lat: geo.lat, lng: geo.lng });
-
+/** A fresh property for a DVF sale (enrichment fills the rest). */
+function baseProperty(t: DvfTxn): Property {
+  const img = aerialImageSet(t.lat, t.lng);
   return {
-    id,
-    address: {
-      raw: listing.rawAddress,
-      normalized: geo.normalized,
-      lat: geo.lat,
-      lng: geo.lng,
-      district: geo.district,
+    id: `dvf-${t.id}`,
+    address: { raw: t.address, normalized: t.address, lat: t.lat, lng: t.lng, district: t.district, ban_id: null },
+    characteristics: { surface_m2: t.surface, carrez_m2: t.carrez, rooms: t.rooms },
+    sale: { date: t.date, price: t.price, price_per_m2: t.ppm2, mutation_id: t.id, parcel: t.parcel },
+    price_history: [],
+    dvf: { avg_price_m2_100m: null, avg_price_m2_500m: null, count_100m: 0, count_500m: 0, window_from: t.date, window_to: t.date, comparable_sales: [] },
+    risks: { flood: null, clay: null, noise: null },
+    transport: null,
+    neighborhood: {
+      walk_score: null, schools_500m: null, velib_400m: null, trees_150m: null, parks_500m: null,
+      amenities: null, income: null, poverty_rate: null,
     },
-    characteristics: {
-      surface_m2: listing.surface_m2,
-      rooms: listing.rooms,
-      floor: listing.floor,
-    },
-    pricing: {
-      current_price: listing.price,
-      price_per_m2: listing.price_per_m2,
-      initial_price: listing.price,
-    },
-    timeline: { first_seen: today, last_seen: today, days_on_market: 0 },
-    price_history: [{ date: today, price: listing.price, source: listing.source }],
-    status: "active",
-    dvf: enrichment.dvf,
-    risks: enrichment.risks,
-    transport_score: enrichment.transport_score,
-    neighborhood: enrichment.neighborhood,
-    rent: { ...enrichment.rent, monthly_est: monthlyEst },
-    investment: {
-      gross_yield: 0, net_yield: 0, ppm2_percentile: 0,
-      negotiation_margin_pct: 0, dpe_risk_score: 0, value_add_flag: false,
-    },
-    pois,
-    dpe: enrichment.dpe,
-    images: gallery.images,
-    thumb: gallery.thumb,
-    // Filled by the dataset scoring pass below.
-    score: {
-      opportunity_score: 0, value_score: 0, yield_score: 0,
-      negotiation_score: 0, liquidity_score: 0, gentrification_score: 0,
-    },
-    signals: { price_drops: 0, total_drop_percent: 0, long_time_on_market: false, explanations: [] },
-    source: listing.source,
-    url: listing.url,
+    rent: null,
+    investment: { gross_yield: null, net_yield: null, ppm2_percentile: 50, dvf_gap_pct: null, dpe_risk_score: null, value_add_flag: false },
+    pois: [],
+    images: [],
+    thumb: img.thumb,
+    image_credit: img.credit,
+    dpe: null,
+    score: { opportunity_score: 0, value_score: null, yield_score: null, liquidity_score: null, gentrification_score: null },
+    signals: { resale: null, explanations: [] },
+    source: "dvf",
+    url: "https://app.dvf.etalab.gouv.fr/",
+    lookups: {},
   };
 }
 
-/** Step 5 — apply a fresh observation to an existing property. */
-function applyUpdate(
-  property: Property,
-  listing: NormalizedListing,
-  config: PipelineConfig,
-): void {
-  const today = isoDay(config.now);
-  const last = property.price_history[property.price_history.length - 1];
-
-  // Keep at most one observation per calendar day: update today's point in
-  // place, otherwise append only when the price actually moved.
-  if (last && last.date === today) {
-    last.price = listing.price;
-  } else if (!last || last.price !== listing.price) {
-    property.price_history.push({
-      date: today,
-      price: listing.price,
-      source: listing.source,
-    });
-  }
-
-  property.pricing.current_price = listing.price;
-  property.pricing.price_per_m2 = listing.price_per_m2;
-  property.characteristics.surface_m2 = listing.surface_m2;
-  property.characteristics.rooms = listing.rooms;
-  property.characteristics.floor = listing.floor;
-  property.timeline.last_seen = today;
-  property.timeline.days_on_market = daysBetween(property.timeline.first_seen, today);
-  property.status = "active";
+/** Previous records in the current schema, by id (older formats are dropped). */
+async function previousById(): Promise<Map<string, Property>> {
+  const existing = await loadProperties();
+  const valid = existing.filter((p) => (p as Partial<Property>).sale && (p as Partial<Property>).lookups);
+  if (valid.length !== existing.length) log.info(`Dropped ${existing.length - valid.length} records in a legacy format`);
+  return new Map(valid.map((p) => [p.id, p]));
 }
 
 export interface PipelineSummary {
   total: number;
-  active: number;
   created: number;
-  updated: number;
-  disappeared: number;
+  kept: number;
+  dropped: number;
   opportunities: number;
 }
 
 export async function runPipeline(config: PipelineConfig): Promise<PipelineSummary> {
-  log.info(`P.R.E.R pipeline starting — mode=${config.mode}, asof=${isoDay(config.now)}`);
+  log.info(`BHImmo pipeline starting — ${config.now.toISOString()}`);
+  const previous = await previousById();
 
-  const existing = await loadProperties();
-  const byId = new Map(existing.map((p) => [p.id, p]));
+  // Step 1 — ingestion (mandatory: throws if DVF is unreachable).
+  log.step(1, "Ingestion (DVF)");
+  const dvf = await loadDvf(config);
+  const universe = selectUniverse(dvf, config.perArrondissement);
+  log.ok(`Universe: ${universe.length} most recent sales (${config.perArrondissement}/arrondissement)`);
 
-  // Step 1 — ingestion.
-  log.step(1, "Ingestion");
-  const listings = await ingestListings(config);
-
-  // Step 4 — matching (identity reconciliation against existing dataset).
-  log.step(4, "Matching engine");
-  const plan = matchListings(listings, existing);
-  log.info(
-    `Match plan: ${plan.toCreate.length} new, ${plan.toUpdate.length} updated, ${plan.disappeared.length} disappeared`,
-  );
-
-  // Steps 2 + 3 — geocoding & enrichment (only for genuinely new properties).
-  // Load Paris-wide reference data once (stations / schools / Vélib' / parks)
-  // so every property's transport, POIs and neighbourhood use real open data.
-  if (plan.toCreate.length) await loadReferences(config);
-  log.step(2, "Geocoding (new listings)");
-  log.step(3, "Enrichment (DVF / risks / transport / schools / Vélib' / parks / DPE)");
-  for (const listing of plan.toCreate) {
-    const property = await buildNewProperty(listing, config);
-    byId.set(property.id, property);
-  }
-  if (plan.toCreate.length) log.ok(`Enriched ${plan.toCreate.length} new properties`);
-
-  // Step 5 — historical update for re-seen and disappeared listings.
-  log.step(5, "Historical update");
-  for (const { property, listing } of plan.toUpdate) {
-    applyUpdate(property, listing, config);
-  }
-  for (const gone of plan.disappeared) {
-    gone.status = listingEndedInSale(extractExternalId(gone.id)) ? "sold" : "removed";
-  }
-
-  // Step 6 — scoring (recompute for the whole dataset; it's cheap and pure).
-  log.step(6, "Scoring engine");
-  const all = [...byId.values()];
-  for (const property of all) {
-    // Backfill imagery for any property persisted before galleries existed.
-    if (!property.images || property.images.length === 0) {
-      const gallery = imageSet(property.id);
-      property.images = gallery.images;
-      property.thumb = gallery.thumb;
+  const properties: Property[] = [];
+  const created: Property[] = [];
+  for (const t of universe) {
+    const prev = previous.get(`dvf-${t.id}`);
+    if (prev) properties.push(prev);
+    else {
+      const p = baseProperty(t);
+      properties.push(p);
+      created.push(p);
     }
   }
-  const { cityMedianTrend } = scoreDataset(all);
+  const dropped = [...previous.keys()].filter((id) => !properties.some((p) => p.id === id)).length;
+  log.info(`${created.length} new · ${properties.length - created.length} kept · ${dropped} rotated out`);
 
-  // Step 7 — export.
-  // Stamp the real run time so the UI's "Updated N ago" reflects genuine
-  // freshness (a day-granularity stamp read as "21 h ago" all day). Each
-  // scheduled run now produces a fresh timestamp and triggers a redeploy.
+  // Step 2 — per-address lookups (only what is missing).
+  log.step(2, "Address lookups (BAN / ADEME DPE / Géorisques)");
+  await remoteLookups(properties, config);
+  await streetPhotos(created, config);
+
+  // Step 3 — Paris-wide reference data.
+  log.step(3, "Reference data (IDFM / schools / Vélib' / parks / trees / OSM / rent / INSEE / noise)");
+  const [refs, inseeSources] = await Promise.all([loadReferences(config), loadInsee(config)]);
+
+  // Steps 4 + 5 — local enrichment & lot history.
+  log.step(4, "Enrichment (comparables, transport, neighbourhood, rent)");
+  const txnById = new Map(universe.map((t) => [`dvf-${t.id}`, t]));
+  for (const p of properties) {
+    const t = txnById.get(p.id)!;
+    enrichLocal(p, t, dvf, refs);
+    p.price_history = lotHistory(dvf, t).map((s) => ({ date: s.date, price: s.price, source: "dvf" }));
+  }
+  log.step(5, "Resale history");
+  log.ok(`${properties.filter((p) => p.price_history.length > 1).length} properties with an earlier DVF sale of the same lot`);
+
+  // Step 6 — scoring.
+  log.step(6, "Scoring engine");
+  const market = districtMarkets(dvf);
+  const districtPpm2 = new Map<string, number[]>();
+  for (const s of dvf.sales) {
+    if (s.year !== market.latestYear) continue;
+    (districtPpm2.get(s.district) ?? districtPpm2.set(s.district, []).get(s.district)!).push(s.ppm2);
+  }
+  for (const list of districtPpm2.values()) list.sort((a, b) => a - b);
+  scoreDataset(properties, {
+    markets: market.byDistrict,
+    cityTrend: market.cityTrend,
+    latestYear: market.latestYear,
+    districtPpm2,
+  });
+
+  // Step 7 — export, with provenance of every source.
   log.step(7, "Export datasets");
-  await exportDatasets(all, config.now.toISOString(), cityMedianTrend);
+  const sources: SourceStatus[] = [
+    {
+      id: "dvf", label: "DVF — Demandes de valeurs foncières (DGFiP / Etalab)", status: "ok",
+      url: "https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres-geolocalisees/",
+      records: dvf.coverage.sales, period: `${dvf.coverage.first_sale} → ${dvf.coverage.last_sale}`,
+    },
+    lookupStatus("ban", "BAN — Base Adresse Nationale", "https://adresse.data.gouv.fr/", properties, (p) => p.lookups.ban, (p) => !!p.address.ban_id),
+    lookupStatus("ademe", "ADEME — DPE logements existants", "https://data.ademe.fr/datasets/dpe03existant", properties.filter((p) => p.address.ban_id), (p) => p.lookups.dpe, (p) => !!p.dpe),
+    lookupStatus("georisques", "Géorisques — TRI inondation", "https://www.georisques.gouv.fr/", properties, (p) => p.lookups.flood, (p) => !!p.risks.flood),
+    { id: "ign", label: "IGN — BD ORTHO® / Plan IGN (imagerie)", status: "ok", url: "https://geoservices.ign.fr/bdortho", records: properties.length },
+    ...refs.sources.map((s): SourceStatus => (s.status === "unavailable" && hasPrevious(s.id, properties) ? { ...s, status: "stale" } : s)),
+    ...inseeSources,
+  ];
+  await exportDatasets(properties, {
+    generatedAt: config.now.toISOString(),
+    dvf: dvf.coverage,
+    markets: market.byDistrict,
+    cityMedian: market.cityMedian,
+    cityTrend: market.cityTrend,
+    latestYear: market.latestYear,
+    refs,
+    sources,
+  });
 
-  const active = all.filter((p) => p.status === "active").length;
-  const opportunities = all.filter((p) => p.score.opportunity_score >= 68).length;
-  log.ok(
-    `Done. ${all.length} properties total · ${active} active · ${opportunities} flagged opportunities`,
-  );
+  const opportunities = properties.filter((p) => p.score.opportunity_score >= 68).length;
+  log.ok(`Done. ${properties.length} real sales · ${opportunities} flagged opportunities`);
+  return { total: properties.length, created: created.length, kept: properties.length - created.length, dropped, opportunities };
+}
 
+/** Status of a per-address lookup over the properties it applies to. */
+function lookupStatus(
+  id: string,
+  label: string,
+  url: string,
+  properties: Property[],
+  done: (p: Property) => string | undefined,
+  matched: (p: Property) => boolean,
+): SourceStatus {
+  const looked = properties.filter((p) => done(p));
   return {
-    total: all.length,
-    active,
-    created: plan.toCreate.length,
-    updated: plan.toUpdate.length,
-    disappeared: plan.disappeared.length,
-    opportunities,
+    id,
+    label,
+    url,
+    status: looked.length === properties.length ? "ok" : looked.length ? "stale" : "unavailable",
+    records: looked.filter(matched).length,
   };
+}
+
+/** Whether properties still carry values from an earlier load of this source. */
+function hasPrevious(id: string, properties: Property[]): boolean {
+  const n = properties[0]?.neighborhood;
+  if (!n) return false;
+  switch (id) {
+    case "osm": return properties.some((p) => p.neighborhood.amenities !== null);
+    case "trees": return properties.some((p) => p.neighborhood.trees_150m !== null);
+    case "schools": return properties.some((p) => p.neighborhood.schools_500m !== null);
+    case "velib": return properties.some((p) => p.neighborhood.velib_400m !== null);
+    case "parks": return properties.some((p) => p.neighborhood.parks_500m !== null);
+    case "rent": return properties.some((p) => p.rent !== null);
+    case "idfm": return properties.some((p) => p.transport !== null);
+    case "noise": return properties.some((p) => p.risks.noise !== null);
+    default: return false;
+  }
 }

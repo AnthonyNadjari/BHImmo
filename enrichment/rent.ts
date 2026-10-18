@@ -1,74 +1,66 @@
 /**
- * Rental reference enrichment — the basis for rental YIELD, the single most
- * important metric for an investor.
+ * Rental reference — the basis for rental YIELD.
  *
- * Source: Paris "encadrement des loyers" (opendata.paris.fr), which publishes
- * the legal reference rent (€/m²/month) and the majoré ceiling (≈ ref × 1.2,
- * the realistically achievable rent) per quartier, room-count and era. We
- * point-match the property's quartier with an ODSQL `intersects(geo_shape,…)`
- * query; on failure we fall back to a static per-arrondissement reference.
+ * Source: Paris "encadrement des loyers" (opendata.paris.fr), the legal
+ * reference rent per quartier × room count × construction era (non meublé).
+ * The property's quartier is found by point-in-polygon on the official zones;
+ * the era comes from the building's DPE (construction year or period). When no
+ * DPE reports it, we use "Avant 1946" and flag it as an assumption.
  */
 
-import { ENDPOINTS, fetchJson, type PipelineConfig } from "../shared/config.ts";
-import { round } from "../shared/geo.ts";
-import { getInseeProfile } from "./insee.ts";
+import { pointInPolygon, round } from "../shared/geo.ts";
+import type { Dpe, Rent } from "../shared/types.ts";
+import type { References } from "./reference.ts";
 
-export interface RentContext {
-  lat: number;
-  lng: number;
-  district: string;
-  rooms: number;
+type Epoque = "Avant 1946" | "1946-1970" | "1971-1990" | "Apres 1990";
+
+function epoqueFromYear(y: number): Epoque {
+  if (y < 1946) return "Avant 1946";
+  if (y <= 1970) return "1946-1970";
+  if (y <= 1990) return "1971-1990";
+  return "Apres 1990";
 }
 
-export interface RentResult {
-  /** Reference rent €/m²/month. */
-  ref_m2: number;
-  /** Legal ceiling (majoré) €/m²/month — achievable market rent. */
-  max_m2: number;
-  /** Lower bound (minoré) €/m²/month. */
-  min_m2: number;
-  /** Quartier label. */
-  quartier: string;
+/** ADEME construction periods → rent-control era (by majority overlap). */
+function epoqueFromPeriod(period: string): Epoque | null {
+  const p = period.toLowerCase();
+  if (p.startsWith("avant")) return "Avant 1946";
+  const start = Number(/(\d{4})/.exec(p)?.[1]);
+  if (!Number.isFinite(start)) return null;
+  if (start < 1970) return "1946-1970";
+  if (start < 1989) return "1971-1990";
+  return "Apres 1990";
 }
 
-interface OdsRentResponse {
-  results?: Array<{
-    nom_quartier?: string;
-    ref?: number;
-    min?: number;
-    max?: number;
-  }>;
-}
+export function enrichRent(
+  lat: number,
+  lng: number,
+  rooms: number,
+  surface: number,
+  dpe: Dpe | null,
+  refs: References,
+): Rent | null {
+  if (!refs.rent) return null;
+  const zone = refs.rent.zones.find((z) => pointInPolygon(lat, lng, z.geometry));
+  if (!zone) return null;
 
-export async function enrichRent(
-  ctx: RentContext,
-  config: PipelineConfig,
-): Promise<RentResult> {
-  const piece = Math.min(Math.max(ctx.rooms, 1), 4);
-  const where =
-    `intersects(geo_shape, geom'POINT(${ctx.lng} ${ctx.lat})')` +
-    ` AND annee='2024' AND piece=${piece} AND epoque='Avant 1946' AND meuble_txt='non meublé'`;
-  const url =
-    `${ENDPOINTS.encadrementLoyers}?where=${encodeURIComponent(where)}` +
-    `&select=nom_quartier,ref,min,max&limit=1`;
+  let epoque: Epoque | null = null;
+  if (dpe?.year_built) epoque = epoqueFromYear(dpe.year_built);
+  else if (dpe?.period) epoque = epoqueFromPeriod(dpe.period);
+  const epoque_source = epoque ? "dpe" : "assumed";
+  epoque ??= "Avant 1946";
 
-  const data = await fetchJson<OdsRentResponse>(url, config);
-  const hit = data?.results?.[0];
-  if (hit && Number.isFinite(hit.ref) && Number.isFinite(hit.max)) {
-    return {
-      ref_m2: round(hit.ref!, 1),
-      max_m2: round(hit.max!, 1),
-      min_m2: round(hit.min ?? hit.ref! * 0.85, 1),
-      quartier: hit.nom_quartier ?? getInseeProfile(ctx.district).name,
-    };
-  }
-
-  // Deterministic fallback from the static per-arrondissement reference.
-  const ref = getInseeProfile(ctx.district).loyerRefM2;
+  const piece = Math.min(Math.max(rooms, 1), 4);
+  const r = zone.rents.get(`${piece}|${epoque}`);
+  if (!r || !Number.isFinite(r.ref) || !Number.isFinite(r.max)) return null;
   return {
-    ref_m2: round(ref, 1),
-    max_m2: round(ref * 1.2, 1),
-    min_m2: round(ref * 0.85, 1),
-    quartier: getInseeProfile(ctx.district).name,
+    ref_m2: round(r.ref, 1),
+    max_m2: round(r.max, 1),
+    min_m2: round(r.min, 1),
+    monthly_est: round(r.max * surface),
+    quartier: zone.quartier,
+    year: refs.rent.year,
+    epoque,
+    epoque_source,
   };
 }

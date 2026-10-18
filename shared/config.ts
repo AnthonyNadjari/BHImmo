@@ -1,77 +1,72 @@
 /**
- * Central configuration: runtime mode, API endpoints, and a resilient
- * `fetchJson` helper.
+ * Central configuration: API endpoints, run parameters and resilient fetch
+ * helpers.
  *
- * Every external call is free / public (French open-data gov APIs). The
- * pipeline must never *require* the network: in `mock` mode no request is
- * made, and in `hybrid`/`live` mode any failure falls back to deterministic
- * synthetic data so GitHub Actions always produces a valid dataset.
+ * Every source is free, key-less French open data. The pipeline never invents
+ * a value: when a call fails, helpers resolve to `null` and the caller leaves
+ * the field empty (or keeps the value from the previous run). Only the DVF
+ * transaction files are mandatory — without them the run aborts and the last
+ * committed dataset stays in place.
  */
 
 import { log } from "./logger.ts";
 
-export type RunMode = "mock" | "hybrid" | "live";
-
 export interface PipelineConfig {
-  mode: RunMode;
-  /** Number of brand-new synthetic listings to introduce per run. */
-  newListingsPerRun: number;
-  /** Target size of the active listing pool when seeding from scratch. */
-  targetPoolSize: number;
+  /** Recent sales surfaced per arrondissement (the property universe). */
+  perArrondissement: number;
+  /** Number of DVF vintages to load (comparables, resale history, trend). */
+  dvfYears: number;
   /** Per-request network timeout in milliseconds. */
   requestTimeoutMs: number;
-  /** Logical "today" — overridable for deterministic seeding. */
+  /** Parallel per-address lookups (BAN / ADEME / Géorisques). */
+  concurrency: number;
   now: Date;
 }
 
-function parseMode(value: string | undefined): RunMode {
-  if (value === "live" || value === "hybrid" || value === "mock") return value;
-  return "hybrid";
-}
-
 export function loadConfig(): PipelineConfig {
-  const now = process.env.PRER_NOW ? new Date(process.env.PRER_NOW) : new Date();
   return {
-    mode: parseMode(process.env.PRER_MODE),
-    newListingsPerRun: Number(process.env.PRER_NEW_LISTINGS ?? 6),
-    targetPoolSize: Number(process.env.PRER_POOL_SIZE ?? 60),
-    requestTimeoutMs: Number(process.env.PRER_TIMEOUT_MS ?? 8000),
-    now,
+    perArrondissement: Number(process.env.PRER_DVF_PER_ARR ?? 50),
+    dvfYears: Number(process.env.PRER_DVF_YEARS ?? 5),
+    requestTimeoutMs: Number(process.env.PRER_TIMEOUT_MS ?? 20_000),
+    concurrency: Number(process.env.PRER_CONCURRENCY ?? 6),
+    now: new Date(),
   };
 }
 
-/** Public, key-less French open-data endpoints used for enrichment. */
+const ODS_PARIS = "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets";
+
+/** Public, key-less open-data endpoints. */
 export const ENDPOINTS = {
-  /** Base Adresse Nationale — geocoding. */
-  ban: "https://api-adresse.data.gouv.fr/search/",
-  /** DVF (Demandes de Valeurs Foncières) geo API, community-hosted Etalab data. */
-  dvf: "https://api.cquest.org/dvf",
-  /** Géorisques — natural & technological risk exposure. */
-  georisquesFlood: "https://www.georisques.gouv.fr/api/v1/gaspar/azi",
-  georisquesClay: "https://www.georisques.gouv.fr/api/v1/rga",
-  /** ADEME / DPE — energy performance certificates (existing dwellings). */
-  ademeDpe:
-    "https://data.ademe.fr/data-fair/api/v1/datasets/dpe03existant/lines",
-  /** Overpass — OSM query endpoint, used to count nearby transit/amenities. */
-  overpass: "https://overpass-api.de/api/interpreter",
-  /** data.education.gouv.fr — national school directory (Opendatasoft v2.1). */
-  education:
-    "https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/records",
-  /** opendata.paris.fr — Vélib' stations & real-time availability. */
-  velib:
-    "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/velib-disponibilite-en-temps-reel/records",
-  /** opendata.paris.fr — street trees (green-canopy proxy). */
-  trees:
-    "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/les-arbres/records",
-  /** opendata.paris.fr — encadrement des loyers (reference rents €/m²/month). */
-  encadrementLoyers:
-    "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/logement-encadrement-des-loyers/records",
-  /** IDFM — métro/RER/tram station locations (Opendatasoft). */
+  /** Etalab geo-DVF flat files (one folder per vintage). */
+  dvf: "https://files.data.gouv.fr/geo-dvf/latest/csv",
+  /** Géoplateforme geocoder (BAN), with the legacy BAN API as a fallback. */
+  geocoder: ["https://data.geopf.fr/geocodage/search", "https://api-adresse.data.gouv.fr/search/"],
+  /** Géorisques — flood zoning (TRI) and clay shrink–swell (RGA). */
+  georisquesTri: "https://georisques.gouv.fr/api/v1/tri_zonage",
+  georisquesRga: "https://georisques.gouv.fr/api/v1/rga",
+  /** ADEME — DPE of existing dwellings (since July 2021). */
+  ademeDpe: "https://data.ademe.fr/data-fair/api/v1/datasets/dpe03existant/lines",
+  /** IGN Géoplateforme WMS (aerial photography). */
+  ignWms: "https://data.geopf.fr/wms-r",
+  /** OpenStreetMap Overpass mirrors, tried in order. */
+  overpass: [
+    "https://overpass-api.de/api/interpreter",
+    "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+    "https://overpass.private.coffee/api/interpreter",
+    "https://overpass.kumi.systems/api/interpreter",
+  ],
+  /** INSEE Melodi (populations, FiLoSoFi). */
+  melodi: "https://api.insee.fr/melodi/data",
   idfmStations:
-    "https://data.iledefrance-mobilites.fr/api/explore/v2.1/catalog/datasets/emplacement-des-gares-idf/records",
-  /** opendata.paris.fr — green spaces (parks/gardens). */
-  espacesVerts:
-    "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/espaces_verts/records",
+    "https://data.iledefrance-mobilites.fr/api/explore/v2.1/catalog/datasets/emplacement-des-gares-idf/exports/json",
+  schools:
+    "https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-annuaire-education/exports/json",
+  velib: `${ODS_PARIS}/velib-emplacement-des-stations/exports/json`,
+  parks: `${ODS_PARIS}/espaces_verts/exports/json`,
+  trees: `${ODS_PARIS}/les-arbres/exports/csv`,
+  rentControl: `${ODS_PARIS}/logement-encadrement-des-loyers`,
+  arrondissements: `${ODS_PARIS}/arrondissements/exports/json`,
+  roadNoise: `${ODS_PARIS}/bruit-exposition-des-parisien-ne-s-aux-depassements-des-seuils-nocturne-ou-journ/exports/json`,
 } as const;
 
 export const DATA_DIR = "data";
@@ -81,40 +76,104 @@ export const FILES = {
   market: "market.json",
 } as const;
 
+const USER_AGENT = "BHImmo/2.0 (+https://github.com/AnthonyNadjari/BHImmo; open-data)";
+
+interface FetchOptions extends RequestInit {
+  /** Attempts before giving up (transient errors & 429/5xx are retried). */
+  retries?: number;
+  /** Override the configured timeout. */
+  timeoutMs?: number;
+}
+
 /**
- * `fetch` with a timeout that resolves to `null` on any error instead of
- * throwing. Callers treat `null` as "API unavailable → use fallback".
+ * `fetch` with timeout + retries. Resolves to the Response on 2xx, or `null`
+ * after the last failed attempt (never throws).
  */
+async function fetchWithRetry(
+  url: string,
+  config: PipelineConfig,
+  opts: FetchOptions = {},
+): Promise<Response | null> {
+  const { retries = 3, timeoutMs = config.requestTimeoutMs, ...init } = opts;
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const res = await fetch(url, {
+        ...init,
+        signal: controller.signal,
+        headers: { "User-Agent": USER_AGENT, ...(init.headers ?? {}) },
+      });
+      if (res.ok) return res;
+      // 4xx other than 429 won't get better by retrying.
+      if (res.status !== 429 && res.status < 500) {
+        log.warn(`HTTP ${res.status} for ${shorten(url)}`);
+        return null;
+      }
+      if (attempt === retries) log.warn(`HTTP ${res.status} for ${shorten(url)}`);
+    } catch (err) {
+      if (attempt === retries) log.warn(`Request failed (${shorten(url)}): ${(err as Error).message}`);
+    } finally {
+      clearTimeout(timer);
+    }
+    await sleep(400 * 2 ** (attempt - 1));
+  }
+  return null;
+}
+
+/** GET JSON, `null` on any failure. An empty 2xx body resolves to `{}`. */
 export async function fetchJson<T = unknown>(
   url: string,
   config: PipelineConfig,
-  init?: RequestInit,
+  opts?: FetchOptions,
 ): Promise<T | null> {
-  if (config.mode === "mock") return null;
-
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), config.requestTimeoutMs);
+  const res = await fetchWithRetry(url, config, { ...opts, headers: { Accept: "application/json", ...(opts?.headers ?? {}) } });
+  if (!res) return null;
   try {
-    const res = await fetch(url, {
-      ...init,
-      signal: controller.signal,
-      headers: { Accept: "application/json", "User-Agent": "PRER/1.0 (+open-data)", ...(init?.headers ?? {}) },
-    });
-    if (!res.ok) {
-      log.warn(`HTTP ${res.status} for ${shorten(url)}`);
-      return null;
-    }
-    return (await res.json()) as T;
+    const text = await res.text();
+    return (text.trim() ? JSON.parse(text) : {}) as T;
   } catch (err) {
-    if (config.mode === "live") {
-      log.warn(`Request failed (${shorten(url)}): ${(err as Error).message}`);
-    }
+    log.warn(`Invalid JSON from ${shorten(url)}: ${(err as Error).message}`);
     return null;
-  } finally {
-    clearTimeout(timer);
   }
 }
 
+export async function fetchText(url: string, config: PipelineConfig, opts?: FetchOptions): Promise<string | null> {
+  const res = await fetchWithRetry(url, config, opts);
+  if (!res) return null;
+  try {
+    return await res.text();
+  } catch {
+    return null;
+  }
+}
+
+export async function fetchBuffer(url: string, config: PipelineConfig, opts?: FetchOptions): Promise<Buffer | null> {
+  const res = await fetchWithRetry(url, config, opts);
+  if (!res) return null;
+  try {
+    return Buffer.from(await res.arrayBuffer());
+  } catch {
+    return null;
+  }
+}
+
+/** Run `fn` over `items` with at most `limit` promises in flight. */
+export async function mapPool<T, R>(items: T[], limit: number, fn: (item: T, i: number) => Promise<R>): Promise<R[]> {
+  const out = new Array<R>(items.length);
+  let next = 0;
+  const workers = Array.from({ length: Math.max(1, Math.min(limit, items.length)) }, async () => {
+    while (next < items.length) {
+      const i = next++;
+      out[i] = await fn(items[i]!, i);
+    }
+  });
+  await Promise.all(workers);
+  return out;
+}
+
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
 function shorten(url: string): string {
-  return url.length > 80 ? `${url.slice(0, 77)}…` : url;
+  return url.length > 90 ? `${url.slice(0, 87)}…` : url;
 }

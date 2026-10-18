@@ -1,9 +1,9 @@
 /**
  * "New since last refresh" tracking.
  *
- * We remember (in localStorage) the set of listing ids the user had the last
+ * We remember (in localStorage) the set of sale ids the user had the last
  * time they refreshed, so on the next refresh we can tell them how many
- * listings are new. Static site, no server — this is a purely client-side diff
+ * sales are new. Static site, no server — this is a purely client-side diff
  * against the last acknowledged snapshot.
  */
 

@@ -1,7 +1,7 @@
 /**
  * PAGE 1 — Dashboard.
- * Sortable / filterable table of every tracked listing, with mini sparklines,
- * opportunity scores, badges, CSV export and a side-by-side comparison panel.
+ * Sortable / filterable view of the most recent real Paris apartment sales
+ * (DVF), with deal scores, badges, CSV export and a side-by-side comparison.
  */
 
 import { useMemo, useState } from "react";
@@ -10,15 +10,17 @@ import { useAsync } from "../hooks/useAsync";
 import { fetchIndex } from "../services/data";
 import {
   districtLabel,
+  formatDate,
   formatEuro,
+  formatPct,
   formatPerM2,
-  STATUS_LABEL,
+  NA,
 } from "../services/format";
 import { downloadCsv } from "../services/csv";
 import { Sparkline } from "../components/Sparkline";
 import { ScoreBar } from "../components/ScoreBar";
 import { Badge } from "../components/Badge";
-import { Img } from "../components/Img";
+import { Img, LocationPin } from "../components/Img";
 import { Icon } from "../components/Icon";
 import { PropertyCard } from "../components/PropertyCard";
 import { YieldCell } from "../components/YieldBadge";
@@ -30,12 +32,12 @@ import type { IndexEntry } from "../types";
 type SortKey =
   | "address"
   | "opportunity_score"
-  | "current_price"
+  | "price"
   | "price_per_m2"
   | "net_yield"
   | "surface_m2"
-  | "days_on_market"
-  | "price_drops"
+  | "sale_date"
+  | "dvf_gap_pct"
   | "district";
 
 interface SortState {
@@ -53,10 +55,9 @@ export function Dashboard() {
 
   const [search, setSearch] = useState("");
   const [district, setDistrict] = useState("all");
-  const [statusFilter, setStatusFilter] = useState<"active" | "all">("active");
   const [onlyHighScore, setOnlyHighScore] = useState(false);
-  const [onlyDrops, setOnlyDrops] = useState(false);
-  const [onlyLongMarket, setOnlyLongMarket] = useState(false);
+  const [onlyBelowDvf, setOnlyBelowDvf] = useState(false);
+  const [onlyResold, setOnlyResold] = useState(false);
   const [maxPrice, setMaxPrice] = useState(0); // 0 = any
   const [minRooms, setMinRooms] = useState(0);
   const [minYield, setMinYield] = useState(0);
@@ -76,14 +77,13 @@ export function Dashboard() {
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     const rows = entries.filter((e) => {
-      if (statusFilter === "active" && e.status !== "active") return false;
       if (district !== "all" && e.district !== district) return false;
       if (onlyHighScore && e.opportunity_score < 68) return false;
-      if (onlyDrops && e.price_drops < 1) return false;
-      if (onlyLongMarket && !e.long_time_on_market) return false;
-      if (maxPrice && e.current_price > maxPrice) return false;
+      if (onlyBelowDvf && !(e.dvf_gap_pct !== null && e.dvf_gap_pct >= 10)) return false;
+      if (onlyResold && e.resale_change_pct === null) return false;
+      if (maxPrice && e.price > maxPrice) return false;
       if (minRooms && e.rooms < minRooms) return false;
-      if (minYield && e.net_yield < minYield) return false;
+      if (minYield && (e.net_yield === null || e.net_yield < minYield)) return false;
       if (q && !e.address.toLowerCase().includes(q)) return false;
       return true;
     });
@@ -93,13 +93,15 @@ export function Dashboard() {
     rows.sort((a, b) => {
       const av = a[key];
       const bv = b[key];
+      // Unknown values (no rent data, no comparables) always sort last.
+      if (av === null || bv === null) return av === bv ? 0 : av === null ? 1 : -1;
       if (typeof av === "string" && typeof bv === "string") {
         return av.localeCompare(bv) * factor;
       }
       return ((av as number) - (bv as number)) * factor;
     });
     return rows;
-  }, [entries, search, district, statusFilter, onlyHighScore, onlyDrops, onlyLongMarket, maxPrice, minRooms, minYield, sort]);
+  }, [entries, search, district, onlyHighScore, onlyBelowDvf, onlyResold, maxPrice, minRooms, minYield, sort]);
 
   const toggleSort = (key: SortKey) =>
     setSort((s) =>
@@ -130,13 +132,13 @@ export function Dashboard() {
 
   const compareRows = entries.filter((e) => selected.includes(e.id));
 
-  const active = entries.filter((e) => e.status === "active");
+  const yields = entries.map((e) => e.net_yield).filter((y): y is number => y !== null);
   const kpis = [
-    { label: "Active listings", value: String(active.length), rail: "primary" },
-    { label: "Opportunities", value: String(active.filter((e) => e.opportunity_score >= 68).length), rail: "good" },
-    { label: "Median €/m²", value: formatPerM2(Math.round(median(active.map((e) => e.price_per_m2)))), rail: "" },
-    { label: "Median net yield", value: `${median(active.map((e) => e.net_yield)).toFixed(1)}%`, rail: "warn" },
-    { label: "Avg score", value: String(Math.round(mean(active.map((e) => e.opportunity_score)))), rail: "primary" },
+    { label: "Real sales", value: String(entries.length), rail: "primary" },
+    { label: "Opportunities", value: String(entries.filter((e) => e.opportunity_score >= 68).length), rail: "good" },
+    { label: "Median €/m²", value: formatPerM2(Math.round(median(entries.map((e) => e.price_per_m2)))), rail: "" },
+    { label: "Median net yield", value: yields.length ? `${median(yields).toFixed(1)}%` : NA, rail: "warn" },
+    { label: "Avg score", value: String(Math.round(mean(entries.map((e) => e.opportunity_score)))), rail: "primary" },
   ];
 
   return (
@@ -145,11 +147,12 @@ export function Dashboard() {
         <div>
           <h1>Dashboard</h1>
           <p className="muted" aria-live="polite">
-            Showing <strong>{filtered.length}</strong> of {entries.length} listings
+            Showing <strong>{filtered.length}</strong> of {entries.length} real apartment sales
+            {data?.dvf && <> · DVF through {formatDate(data.dvf.last_sale)}</>}
           </p>
         </div>
         <div className="head-actions">
-          <DataFreshness generatedAt={data?.generated_at} currentIds={ids} />
+          <DataFreshness generatedAt={data?.generated_at} dvfThrough={data?.dvf.last_sale} currentIds={ids} />
           <button className="btn" onClick={() => downloadCsv(filtered)}>
             <Icon name="download" size={15} /> Export CSV
           </button>
@@ -185,15 +188,6 @@ export function Dashboard() {
               {districtLabel(d)} ({d})
             </option>
           ))}
-        </select>
-        <select
-          className="input"
-          aria-label="Filter by status"
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value as "active" | "all")}
-        >
-          <option value="active">Active only</option>
-          <option value="all">All statuses</option>
         </select>
         <select
           className="input"
@@ -238,22 +232,24 @@ export function Dashboard() {
           <Icon name="star" size={13} /> High score
         </button>
         <button
-          className={`chip ${onlyDrops ? "on" : ""}`}
-          aria-pressed={onlyDrops}
-          onClick={() => setOnlyDrops((v) => !v)}
+          className={`chip ${onlyBelowDvf ? "on" : ""}`}
+          aria-pressed={onlyBelowDvf}
+          onClick={() => setOnlyBelowDvf((v) => !v)}
+          title="Sold at least 10% below the local DVF average"
         >
-          <Icon name="arrow-down" size={13} /> Price drops
+          <Icon name="arrow-down" size={13} /> ≥10% below DVF
         </button>
         <button
-          className={`chip ${onlyLongMarket ? "on" : ""}`}
-          aria-pressed={onlyLongMarket}
-          onClick={() => setOnlyLongMarket((v) => !v)}
+          className={`chip ${onlyResold ? "on" : ""}`}
+          aria-pressed={onlyResold}
+          onClick={() => setOnlyResold((v) => !v)}
+          title="An earlier DVF sale of the same lot exists"
         >
-          <Icon name="clock" size={13} /> Long on market
+          <Icon name="clock" size={13} /> Resold
         </button>
         <select
           className="input"
-          aria-label="Sort listings"
+          aria-label="Sort sales"
           value={`${sort.key}:${sort.dir}`}
           onChange={(e) => {
             const [key, dir] = e.target.value.split(":") as [SortKey, "asc" | "desc"];
@@ -262,8 +258,10 @@ export function Dashboard() {
         >
           <option value="opportunity_score:desc">Sort: Best score</option>
           <option value="net_yield:desc">Sort: Highest yield</option>
-          <option value="current_price:asc">Sort: Price ↑</option>
-          <option value="current_price:desc">Sort: Price ↓</option>
+          <option value="dvf_gap_pct:desc">Sort: Biggest DVF discount</option>
+          <option value="sale_date:desc">Sort: Most recent sale</option>
+          <option value="price:asc">Sort: Price ↑</option>
+          <option value="price:desc">Sort: Price ↓</option>
           <option value="price_per_m2:asc">Sort: €/m² ↑</option>
           <option value="surface_m2:desc">Sort: Surface ↓</option>
         </select>
@@ -291,7 +289,7 @@ export function Dashboard() {
         <>
           {filtered.length === 0 ? (
             <p className="state" role="status">
-              No listings match these filters.
+              No sales match these filters.
             </p>
           ) : (
             <>
@@ -317,20 +315,21 @@ export function Dashboard() {
               <th className="col-thumb"></th>
               <SortableTh label="Address" k="address" sort={sort} onClick={toggleSort} />
               <SortableTh label="Arr." k="district" sort={sort} onClick={toggleSort} />
-              <SortableTh label="Price" k="current_price" sort={sort} onClick={toggleSort} />
+              <SortableTh label="Sold" k="sale_date" sort={sort} onClick={toggleSort} />
+              <SortableTh label="Price" k="price" sort={sort} onClick={toggleSort} />
               <SortableTh label="€/m²" k="price_per_m2" sort={sort} onClick={toggleSort} />
+              <SortableTh label="vs DVF" k="dvf_gap_pct" sort={sort} onClick={toggleSort} />
               <SortableTh label="Net yield" k="net_yield" sort={sort} onClick={toggleSort} />
               <SortableTh label="Surface" k="surface_m2" sort={sort} onClick={toggleSort} />
               <th>DPE</th>
-              <SortableTh label="DOM" k="days_on_market" sort={sort} onClick={toggleSort} />
-              <th>Trend</th>
+              <th>History</th>
               <SortableTh label="Score" k="opportunity_score" sort={sort} onClick={toggleSort} />
               <th>Signal</th>
             </tr>
           </thead>
           <tbody>
             {filtered.map((e) => (
-              <tr key={e.id} className={e.status !== "active" ? "row-inactive" : ""}>
+              <tr key={e.id}>
                 <td className="col-check">
                   <input
                     type="checkbox"
@@ -341,18 +340,20 @@ export function Dashboard() {
                 </td>
                 <td className="col-thumb">
                   <Link to={`/property/${e.id}`} className="thumb-link" aria-label={e.address}>
-                    <Img src={e.image} seed={e.id} alt="" className="row-thumb" />
+                    <Img src={e.image} alt="" className="row-thumb" />
+                    <LocationPin src={e.image} />
                   </Link>
                 </td>
                 <td className="col-address">
                   <Link to={`/property/${e.id}`}>{e.address}</Link>
-                  {e.status !== "active" && (
-                    <span className="status-pill">{STATUS_LABEL[e.status]}</span>
-                  )}
                 </td>
                 <td>{districtLabel(e.district)}</td>
-                <td className="num">{formatEuro(e.current_price)}</td>
+                <td className="num">{formatDate(e.sale_date)}</td>
+                <td className="num">{formatEuro(e.price)}</td>
                 <td className="num">{formatPerM2(e.price_per_m2)}</td>
+                <td className="num" title="Gap vs the local DVF average (+ = cheaper)">
+                  {e.dvf_gap_pct === null ? NA : `${e.dvf_gap_pct > 0 ? "−" : "+"}${Math.abs(e.dvf_gap_pct).toFixed(1)}%`}
+                </td>
                 <td className="num"><YieldCell net={e.net_yield} /></td>
                 <td className="num">{e.surface_m2} m²</td>
                 <td>
@@ -360,7 +361,6 @@ export function Dashboard() {
                     <span className={`dpe-chip dpe-${e.dpe_energy}`}>{e.dpe_energy}</span>
                   )}
                 </td>
-                <td className="num">{e.days_on_market} d</td>
                 <td>
                   <Sparkline values={e.spark} />
                 </td>
@@ -376,7 +376,7 @@ export function Dashboard() {
         </table>
         {filtered.length === 0 && (
           <p className="state" role="status">
-            No listings match these filters.
+            No sales match these filters.
           </p>
         )}
       </div>
@@ -425,15 +425,16 @@ function SortableTh({
 function ComparePanel({ rows }: { rows: IndexEntry[] }) {
   const metrics: Array<{ label: string; render: (e: IndexEntry) => string }> = [
     { label: "Arrondissement", render: (e) => districtLabel(e.district) },
-    { label: "Price", render: (e) => formatEuro(e.current_price) },
+    { label: "Sale date", render: (e) => formatDate(e.sale_date) },
+    { label: "Price", render: (e) => formatEuro(e.price) },
     { label: "€/m²", render: (e) => formatPerM2(e.price_per_m2) },
+    { label: "Gap vs local DVF", render: (e) => (e.dvf_gap_pct === null ? NA : `${e.dvf_gap_pct}%`) },
     { label: "Surface", render: (e) => `${e.surface_m2} m²` },
     { label: "Rooms", render: (e) => String(e.rooms) },
     { label: "Opportunity score", render: (e) => String(e.opportunity_score) },
-    { label: "Price drops", render: (e) => String(e.price_drops) },
-    { label: "Total drop", render: (e) => `${e.total_drop_percent}%` },
-    { label: "Days on market", render: (e) => `${e.days_on_market} d` },
-    { label: "Status", render: (e) => STATUS_LABEL[e.status] ?? e.status },
+    { label: "Net yield", render: (e) => formatPct(e.net_yield) },
+    { label: "DPE", render: (e) => (e.dpe_energy ? `${e.dpe_energy}${e.dpe_scope === "building" ? " (building)" : ""}` : NA) },
+    { label: "Resale change", render: (e) => formatPct(e.resale_change_pct) },
   ];
 
   return (

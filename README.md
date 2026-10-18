@@ -2,70 +2,80 @@
 
 ### ▶ Live demo: https://bh-immo.vercel.app/  ·  https://anthonynadjari.github.io/BHImmo/
 
-> An opportunity scanner for Paris *intra-muros* real estate. It ingests **real
-> apartment transactions** (DVF / Etalab open data), enriches them with French
-> open data (comparables, rents, transport, energy, neighbourhood), computes an
-> **explainable** opportunity score (0–100), and serves everything as a fast,
-> static React app. No backend, no login, no paid APIs — the data pipeline runs
-> entirely in GitHub Actions and the dataset is versioned JSON in the repo.
+> An opportunity scanner for Paris *intra-muros* real estate built **only on
+> real open data**. Every record is an actual apartment sale from **DVF**
+> (DGFiP / Etalab), enriched with official French open data (ADEME energy
+> certificates, Géorisques flood zoning, rent control, INSEE, IDFM, Ville de
+> Paris, OpenStreetMap, IGN imagery). Scores are explainable functions of
+> those facts. When a source has no answer the field is empty and the UI says
+> so — **nothing is simulated, imputed or stock-photographed**.
 
 | | |
 |---|---|
-| **Frontend** | React + Vite (TypeScript), static — deployable to Vercel or GitHub Pages |
-| **Pipeline** | Node 20+/TypeScript via `tsx`, runs in GitHub Actions every 6h |
-| **Data** | ~1000 **real** Paris apartment sales (the most recent per arrondissement) |
-| **Storage** | Versioned JSON in `/data`; per-property files split at build time |
-| **Data sources** | DVF (Etalab) · BAN · ADEME/DPE · INSEE · IDFM · OpenStreetMap · opendata.paris |
-| **Auth / DB / paid APIs** | none |
+| **Frontend** | React + Vite (TypeScript), static — Vercel / GitHub Pages |
+| **Pipeline** | Node 20+/TypeScript via `tsx`, runs daily in GitHub Actions |
+| **Universe** | the 50 most recent single-apartment sales per arrondissement (1 000 sales) |
+| **Market context** | every clean Paris apartment sale of the last 5 DVF vintages (~137 000) |
+| **Storage** | versioned JSON in `/data`; per-property files split at build time |
+| **Auth / DB / paid APIs** | none (all sources are free and key-less) |
 
-> ✅ **Listings are real transactions.** The property universe is built from the
-> official **DVF** (*Demandes de Valeurs Foncières*) geocoded flat files
-> published by Etalab — real address, price, surface, rooms, coordinates and
-> mutation date. Comparables are derived from the same dataset; secondary
-> enrichment runs deterministically for scale and reliability. No listing-portal
-> scraping (forbidden by their ToS and blocked in CI).
+---
+
+## What is real, and where it comes from
+
+| Field | Source | Scope |
+|---|---|---|
+| Address, price, surface, Carrez, rooms, sale date, parcel | **DVF** geo-files (`files.data.gouv.fr/geo-dvf`) — latest vintages auto-discovered | the sale |
+| Resale history | DVF — earlier sales of the same lot (same parcel + lot number, same surface) | the lot |
+| Comparables, local €/m² (100 m / 500 m, ±12 months) | DVF | ≤ 500 m |
+| Arrondissement median €/m², YoY trend, volume, volatility | DVF (all sales, latest vs previous vintage) | arrondissement |
+| BAN label + interoperability key | IGN Géoplateforme geocoder (BAN) | the address |
+| DPE energy/GHG class, certificate date, energy bill, construction year | **ADEME** `dpe03existant`, matched by BAN key + surface (“unit”), else median of the building’s certificates (“building”, labelled) | apartment / building |
+| Flood exposure | **Géorisques** TRI zoning (`tri_zonage`) | the address |
+| Clay shrink–swell | Géorisques RGA — no data for Paris addresses, shown as *no data* | the address |
+| Legal rent ceiling (yield basis) | Ville de Paris *encadrement des loyers* (latest year), point-in-polygon on the quartiers; era from the DPE | quartier |
+| Transit score, nearest station | **IDFM** station locations | ≤ 600 m |
+| Schools, Vélib’, parks, street trees | Annuaire de l’éducation · opendata.paris.fr | 150–500 m |
+| Food / health / culture amenities | **OpenStreetMap** (Overpass) | ≤ 500 m |
+| Population, density, median standard of living, poverty rate | **INSEE** Melodi API (populations, FiLoSoFi) · Ville de Paris areas | arrondissement |
+| Road-noise exposure | Ville de Paris (share of residents above the Lden threshold) | arrondissement |
+| Imagery | **IGN** BD ORTHO® aerial photos + Plan IGN centred on the address (Mapillary / Street View optional) | the address |
+
+The Market page lists every source with its status for the last run
+(`loaded`, `last run's values`, `unavailable`).
+
+**No-fake rules enforced by the pipeline**
+
+- DVF is mandatory: if it can't be downloaded the run fails and CI commits
+  nothing, so the last real dataset stays online. There is no synthetic
+  universe, no seeder and no "mock" mode anymore.
+- Per-address lookups (BAN, ADEME, Géorisques) are stored with their date and
+  retried on the next run if an API was down — never guessed.
+- If a Paris-wide reference set fails to load, properties keep the value
+  computed from it on a previous run (status `last run's values`).
+- Mixed sales (apartment + shop/office/other dwelling) and atypical prices
+  (< 0.6× or > 2.2× the arrondissement-year median, e.g. viager) are excluded
+  so €/m² is meaningful.
+- DVF records completed sales, not listings: there is no "days on market" or
+  "price drop" signal. A sale is shown as *Sold <date>*.
 
 ---
 
 ## Architecture
 
 ```
-                          ┌──────────────────────── GitHub Actions ────────────────────────┐
-                          │                                                                 │
-   real Paris streets     │   pipeline/run.ts  (every 6h, cron)                             │
-        │                 │                                                                 │
-        ▼                 │   ┌─────────┐   ┌────────────┐   ┌─────────┐   ┌─────────────┐  │
-  ┌────────────┐          │   │ scraper │──▶│ enrichment │──▶│ scoring │──▶│   storage   │  │
-  │  synthetic │          │   ├─────────┤   ├────────────┤   ├─────────┤   ├─────────────┤  │
-  │  universe  │──fetch──▶│   │ fetch   │   │ BAN geocode│   │ signals │   │ properties  │  │
-  │(deterministic)        │   │ normalize│  │ DVF        │   │ dvf gap │   │   .json      │ │
-  └────────────┘          │   │ dedupe  │   │ Géorisques │   │ drops   │   │ index.json  │  │
-                          │   │ match   │   │ transport  │   │ time    │   │ market.json │  │
-                          │   └─────────┘   │ ADEME/DPE  │   │ liquid. │   └──────┬──────┘  │
-                          │                 │ INSEE      │   └─────────┘          │         │
-                          │                 └────────────┘                        │         │
-                          │   commit /data ◀─────────────────────────────────────┘         │
-                          └────────────────────────────────┬────────────────────────────────┘
-                                                            │ triggers deploy
-                                                            ▼
-                                        ┌───────────────────────────────────┐
-                                        │   frontend/  (React + Vite, SPA)   │
-                                        │  Dashboard · Detail · Watchlist    │
-                                        │  Map (heatmap) · Market            │
-                                        │  fetch /data/*.json  → render      │
-                                        └───────────────────────────────────┘
-                                              Vercel  /  GitHub Pages
+GitHub Actions (daily) ─ pipeline/run.ts
+  1. Ingestion    scraper/      DVF vintages → clean single-apartment sales → universe
+  2. Lookups      enrichment/   BAN · ADEME DPE · Géorisques (once per address)
+  3. References   enrichment/   IDFM · schools · Vélib' · parks · trees · OSM · rent control · INSEE · noise
+  4. Enrichment   enrichment/   comparables · transport · neighbourhood · rent · POIs · IGN imagery
+  5. History      scraper/      earlier DVF sales of the same lot
+  6. Scoring      scoring/      deal score + explainable signals
+  7. Export       storage/      data/properties.json · index.json · market.json
+                       │ commit → deploy
+                       ▼
+frontend/ (React + Vite SPA): Dashboard · Sale detail · Map · Market (+ Sources) · Watchlist
 ```
-
-The seven pipeline steps (in `pipeline/pipeline.ts`):
-
-1. **Ingestion** — fetch listings, normalize, deduplicate (`scraper/`).
-2. **Geocoding** — addresses → coordinates via **BAN** (`enrichment/geocode.ts`).
-3. **Enrichment** — **DVF** comps, **Géorisques** flood/clay, transport score, **ADEME** DPE, **INSEE** density.
-4. **Matching** — reconcile listings against existing properties; detect price changes (`scraper/match.ts`).
-5. **Historical update** — append price history, compute days-on-market, mark sold/removed.
-6. **Scoring** — weighted opportunity score + explainable signals (`scoring/`).
-7. **Export** — write `properties.json`, `index.json`, `market.json` (`storage/`).
 
 ---
 
@@ -75,105 +85,84 @@ The canonical schema lives in [`shared/types.ts`](shared/types.ts). Each propert
 
 ```ts
 Property {
-  id
-  address      { raw, normalized, lat, lng, district }
-  characteristics { surface_m2, rooms, floor }
-  pricing      { current_price, price_per_m2, initial_price }
-  timeline     { first_seen, last_seen, days_on_market }
-  price_history[] { date, price, source }
-  status       "active" | "sold" | "removed"
-  dvf          { avg_price_m2_100m, avg_price_m2_500m, comparable_sales[] }
-  risks        { flood, clay, noise }              // 0–1
-  transport_score                                   // 0–100
-  images[] / thumb                                  // deterministic gallery
-  dpe?         { energy_class, ghg_class }          // A–G
-  score        { opportunity_score, price_score, market_gap_score, liquidity_score }
-  signals      { price_drops, total_drop_percent, long_time_on_market, explanations[] }
+  id                      // "dvf-<id_mutation>"
+  address        { raw, normalized, lat, lng, district, ban_id }
+  characteristics { surface_m2, carrez_m2, rooms }
+  sale           { date, price, price_per_m2, mutation_id, parcel }
+  price_history[] { date, price, source }          // every DVF sale of the lot
+  dvf            { avg_price_m2_100m, avg_price_m2_500m, count_100m, count_500m, window_*, comparable_sales[] }
+  risks          { flood, clay, noise }            // RiskFact | null (value 0–1, label, scope, source)
+  transport      { score, nearest_name, nearest_m, stations_600m } | null
+  neighborhood   { walk_score, schools_500m, velib_400m, trees_150m, parks_500m, amenities, income, poverty_rate }
+  rent           { ref_m2, max_m2, min_m2, monthly_est, quartier, year, epoque, epoque_source } | null
+  dpe            { energy_class, ghg_class, scope: "unit"|"building", certificates, date, … } | null
+  investment     { gross_yield, net_yield, ppm2_percentile, dvf_gap_pct, dpe_risk_score, value_add_flag }
+  score          { opportunity_score, value_score, yield_score, liquidity_score, gentrification_score }
+  signals        { resale, explanations[] }
+  images[] / thumb / image_credit                 // IGN aerial + map of the address
+  lookups        { ban?, dpe?, flood?, clay? }     // when each remote lookup completed
 }
 ```
 
-## Scoring (exact, explainable)
+## Scoring (explainable)
 
 ```
-opportunity_score =
-    dvf_gap_score          * 0.40   // how far below local DVF €/m²
-  + price_drop_score       * 0.25   // drop depth + frequency (motivated seller)
-  + time_on_market_score   * 0.15   // negotiation leverage
-  + transport_score        * 0.10   // métro/RER proximity & density
-  + market_liquidity_score * 0.10   // resale ease (transport + surface + demand)
+deal_score = weighted mean of the AVAILABLE components
+             0.35·value + 0.35·yield + 0.18·liquidity + 0.12·gentrification
+deal_score *= 0.5 + 0.5·dpe_health/100          // when a DPE is known
 ```
 
-Every component is normalized to 0–100 and the weights sum to 1, so the result
-is already 0–100. There are **no black boxes**: each property carries a
-`signals.explanations[]` list such as *"23.6% below DVF average"*, *"3 price
-drops detected (−13.3%)"*, *"150+ days on market"*. See
-[`scoring/score.ts`](scoring/score.ts).
+- **value** — discount vs. the local DVF reference (60 % within 100 m + 40 %
+  within 500 m) and €/m² percentile among *all* the arrondissement's sales of
+  the year.
+- **yield** — legal rent ceiling × surface vs. sale price; explicit assumptions:
+  7.5 % acquisition fees, charges at 1.2 % of price per year.
+- **liquidity** — IDFM transit, walkability, size, arrondissement price level,
+  local DVF sale volume.
+- **gentrification** — arrondissement DVF YoY trend vs. Paris + INSEE income
+  rank vs. price rank.
 
-Dashboard badges: 🔥 **opportunity** (≥68) · ⚠️ **watch** · ❌ **overvalued** (≤45).
-
----
-
-## Government / open APIs
-
-All free and key-less. Each client degrades gracefully to a **deterministic
-synthetic fallback** so the pipeline never fails when an API is down.
-
-| Source | Use | Endpoint |
-|---|---|---|
-| **DVF** (Etalab) | **real transactions** → property universe + €/m² comps | `files.data.gouv.fr/geo-dvf` |
-| **BAN** (Base Adresse Nationale) | geocoding / address normalization | `api-adresse.data.gouv.fr` |
-| **ADEME / DPE** | energy + GHG class of nearby certificate | `data.ademe.fr` (`dpe03existant`) |
-| **INSEE** | income / density / reference rent per arrondissement | embedded reference |
-| **IDFM** | métro/RER/tram station proximity | `data.iledefrance-mobilites.fr` |
-| **opendata.paris** | encadrement des loyers · Vélib' · trees | `opendata.paris.fr` |
-| **OpenStreetMap** | nearby amenities (Overpass) | `overpass-api.de` |
-
-`PRER_MODE` controls **secondary** enrichment: `mock` (offline, deterministic
-— used for scale), `hybrid`/`live` (real per-property API calls). The real DVF
-universe loads in every mode (disable with `PRER_DVF=off`); `PRER_DVF_PER_ARR`
-sets how many recent transactions to surface per arrondissement.
+A component without data is dropped and the weights renormalise. Badges:
+🔥 **opportunity** = score ≥ 68 · ❌ **overvalued** = sold ≥ 10 % *above* the
+local DVF average · ⚠️ **watch** otherwise. Every property carries
+`signals.explanations[]`, e.g. *"27% below the local DVF average (11 675 €/m²,
+492 sales ≤ 500 m)"*, *"DPE D (this apartment)"*, *"Resold: bought 355 000 € in
+2023-05 (+1.7% over 2.6 y)"*. See [`scoring/score.ts`](scoring/score.ts).
 
 ---
 
 ## File structure
 
 ```
-scraper/      fetch → normalize → dedupe → match (synthetic universe)
-enrichment/   geocode · dvf · georisques · transport · dpe · insee
-scoring/      signals + weighted opportunity score
+scraper/      DVF download (gz vintages) → clean sales → universe, comparables, lot history, market stats
+enrichment/   geocode (BAN) · dpe (ADEME) · georisques · reference (Paris-wide sets) · insee
+              dvf · transport · neighborhood · rent · pois · facade (Mapillary)
+scoring/      deal score, gentrification, explanations
 storage/      repository · market model · dataset export
-pipeline/     run.ts (CLI) · pipeline.ts (orchestrator) · seed.ts
-shared/       types · config · prng · geo · paris reference · images · logger
-frontend/     React (Vite)
-  src/pages         Dashboard · PropertyDetail · Watchlist · MapPage · Market
-  src/components     Sparkline · PriceChart · Gallery · Img · ScoreBar · …
-  src/services       data · format · watchlist · csv · stats
+pipeline/     run.ts (CLI) · pipeline.ts (orchestrator)
+shared/       types · config (endpoints, fetch helpers) · geo (grid index, PIP) · paris · images (IGN)
+frontend/     React (Vite) — pages, components, services
 data/         properties.json · index.json · market.json   (committed)
-.github/workflows/  pipeline.yml (6h refresh) · deploy.yml (Pages)
 ```
 
 ---
 
 ## Run it locally
 
-Requires Node 20+.
+Requires Node 20+ and network access to the sources above.
 
 ```bash
-# 1. Pipeline dependencies
 npm install
+npm run pipeline          # ~4 min on a first run (1 000 address lookups), ~30 s afterwards
 
-# 2a. Generate a rich sample dataset (offline, deterministic — replays history)
-npm run seed
-
-# 2b. …or run a single pipeline pass (hybrid: real APIs + fallback)
-npm run pipeline          # or: npm run pipeline:mock / :live
-
-# 3. Frontend
 cd frontend
 npm install
 npm run dev               # http://localhost:5173  (copies ../data automatically)
 ```
 
+Environment knobs: `PRER_DVF_PER_ARR` (sales per arrondissement, default 50),
+`PRER_DVF_YEARS` (DVF vintages loaded, default 5), `PRER_CONCURRENCY`
+(parallel lookups, default 6), `MLY_TOKEN` (optional Mapillary street photos).
 `npm run typecheck` (root and `frontend/`) type-checks everything.
 
 ---
@@ -215,28 +204,23 @@ publishes to `https://<owner>.github.io/<repo>/`.
 
 ### Scheduled data refresh
 
-[`.github/workflows/pipeline.yml`](.github/workflows/pipeline.yml) runs every 6
-hours (and on demand), regenerates the dataset, and commits `/data` only when
-it actually changed. GitHub runs `cron` from the **default branch**, so the
+[`.github/workflows/pipeline.yml`](.github/workflows/pipeline.yml) runs daily
+(and on demand), regenerates the dataset from the live sources, and commits
+`/data` when it changed. GitHub runs `cron` from the **default branch**, so the
 canonical branch must be the repo default.
 
 ---
 
 ## Design notes
 
-- **Determinism.** Secondary/derived values are seeded from a stable id
-  (`shared/prng.ts`), so the same DVF transaction always enriches identically;
-  `generated_at` stamps the real run time so the UI shows genuine freshness.
-- **Resilience.** Every API call has an 8s timeout and a deterministic
-  fallback; the pipeline always emits a valid dataset.
-- **Performance.** Charts and sparklines are hand-rolled SVG (no chart lib);
-  the production bundle is ~64 kB gzipped and loads in well under 2 s.
-- **Bonus features.** CSV export, side-by-side comparison, opportunity heatmap,
-  and a localStorage watchlist with price-drop / status-change alerts.
-
-## Optional extensions
-
-Swap `scraper/fetch-listings.ts` for a real portal connector returning
-`RawListing[]` — geocoding, enrichment, scoring, and the UI are unchanged.
-Géorisques flood and OSM transport can be promoted from proxy/static to full
-live queries in `enrichment/`.
+- **Real or empty.** Every field is sourced or `null`; the UI renders `—` /
+  *no data* with the reason (e.g. "No ADEME DPE registered at this address").
+- **Incremental.** Remote lookups run once per address; Paris-wide reference
+  sets are loaded once per run and queried through an in-memory grid index, so
+  a daily run takes ~30 s once the universe is enriched.
+- **Resilience without fakes.** Fetches have timeouts, retries and mirrors
+  (Overpass); a failed source keeps its last real values instead of a guess.
+- **Performance.** Charts are hand-rolled SVG; maps use Leaflet with Plan IGN
+  tiles (key-less).
+- **Bonus features.** CSV export, side-by-side comparison, price-by-area map
+  layer, and a localStorage watchlist tracking score changes.

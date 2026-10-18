@@ -1,14 +1,15 @@
 /**
- * NeighborhoodViz — the visual "Neighbourhood & data" section for the property
- * detail page. Turns raw open-data numbers (walk/transport scores, DPE, amenity
- * counts, schools/vélib/trees/income, flood/clay/noise risks) into charts,
- * gauges, ladders, icon bars and severity meters. Pure SVG/CSS, no chart libs.
+ * NeighborhoodViz — the visual "Neighbourhood & data" section for the sale
+ * detail page. Turns real open-data facts (IDFM transit, ADEME DPE, OSM
+ * amenities, schools / Vélib' / trees / parks, INSEE income, Géorisques flood,
+ * road-noise exposure) into gauges, ladders, icon bars and severity meters.
+ * A missing source is shown as missing, never filled in. Pure SVG/CSS.
  */
 
 import "../dataviz.css";
 import { Gauge } from "./Gauge";
 import { DpeLadder } from "./DpeLadder";
-import { formatIncome } from "../services/format";
+import { formatDate, formatIncome, NA } from "../services/format";
 import type { Property } from "../types";
 
 /* ---- Small inline icons (self-contained, Lucide-style) ------------------ */
@@ -136,15 +137,14 @@ function riskLevel(v: number): { text: string; color: string; cells: number } {
   if (v >= 0.66) return { text: "High", color: "var(--danger)", cells };
   if (v >= 0.4) return { text: "Moderate", color: "var(--warn)", cells };
   if (v >= 0.2) return { text: "Low", color: "var(--primary)", cells };
-  return { text: "Very low", color: "var(--success)", cells };
+  return { text: v === 0 ? "None" : "Very low", color: "var(--success)", cells: v === 0 ? 0 : cells };
 }
 
 /* ---- Amenity descriptor ------------------------------------------------- */
 const AMENITIES = [
-  { key: "food", label: "Food & shops", color: "#2563eb", Ico: BagIcon, max: 20 },
-  { key: "health", label: "Health", color: "#0e9488", Ico: HealthIcon, max: 10 },
-  { key: "green", label: "Green spaces", color: "#10b981", Ico: GreenIcon, max: 5 },
-  { key: "culture", label: "Culture", color: "#6366f1", Ico: CultureIcon, max: 6 },
+  { key: "food", label: "Food & shops", color: "#2563eb", Ico: BagIcon, max: 430 },
+  { key: "health", label: "Health", color: "#0e9488", Ico: HealthIcon, max: 27 },
+  { key: "culture", label: "Culture", color: "#6366f1", Ico: CultureIcon, max: 17 },
 ] as const;
 
 export function NeighborhoodViz({ property: p }: { property: Property }) {
@@ -152,23 +152,23 @@ export function NeighborhoodViz({ property: p }: { property: Property }) {
   const a = hood.amenities;
 
   const stats = [
-    { label: "Schools", Ico: SchoolIcon, value: hood.schools_500m, max: 10, unit: "≤500 m", green: false },
-    { label: "Vélib' docks", Ico: BikeIcon, value: hood.velib_400m, max: 8, unit: "≤400 m", green: false },
-    { label: "Street trees", Ico: TreeIcon, value: hood.trees_150m, max: 120, unit: "≤150 m", green: true },
-  ] as const;
+    { label: "Schools", Ico: SchoolIcon, value: hood.schools_500m, max: 17, unit: "≤500 m", green: false },
+    { label: "Vélib' stations", Ico: BikeIcon, value: hood.velib_400m, max: 9, unit: "≤400 m", green: false },
+    { label: "Parks & squares", Ico: GreenIcon, value: hood.parks_500m, max: 10, unit: "≤500 m", green: true },
+    { label: "Street trees", Ico: TreeIcon, value: hood.trees_150m, max: 140, unit: "≤150 m", green: true },
+  ];
 
   const risks = [
-    { label: "Flood", value: p.risks.flood, hint: "Seine flood-zone proximity (PPRI proxy)" },
-    { label: "Clay (RGA)", value: p.risks.clay, hint: "Clay shrink–swell exposure (Géorisques)" },
-    { label: "Noise", value: p.risks.noise, hint: "Transit / traffic proximity proxy" },
+    { label: "Flood", fact: p.risks.flood, missing: "Géorisques lookup pending" },
+    { label: "Clay (RGA)", fact: p.risks.clay, missing: "Géorisques has no RGA data at this address" },
+    { label: "Road noise", fact: p.risks.noise, missing: "No exposure data" },
   ];
 
   return (
     <section className="card nv-section" aria-labelledby="nv-heading">
       <h2 id="nv-heading">Neighbourhood &amp; data</h2>
       <p className="nv-section-sub">
-        Open-data signals around {p.address.normalized} — walkability, transit, energy, amenities and
-        environmental risk, visualised.
+        Open-data facts around {p.address.normalized} — transit, energy, amenities and environmental risk.
       </p>
 
       <div className="nv-grid">
@@ -178,9 +178,17 @@ export function NeighborhoodViz({ property: p }: { property: Property }) {
             <WalkIcon /> Getting around
           </p>
           <div className="nv-gauges">
-            <Gauge value={hood.walk_score} label="Walkability" />
-            <Gauge value={p.transport_score} label="Transit" />
+            {hood.walk_score !== null && <Gauge value={hood.walk_score} label="Walkability" />}
+            {p.transport && <Gauge value={p.transport.score} label="Transit" />}
           </div>
+          {p.transport ? (
+            <p className="muted xsmall">
+              Nearest: {p.transport.nearest_name} · {p.transport.nearest_m} m · {p.transport.stations_600m} station
+              {p.transport.stations_600m === 1 ? "" : "s"} ≤600 m (IDFM)
+            </p>
+          ) : (
+            <p className="muted xsmall">IDFM station data unavailable.</p>
+          )}
         </div>
 
         {/* 2. DPE / GHG ladder */}
@@ -191,8 +199,15 @@ export function NeighborhoodViz({ property: p }: { property: Property }) {
           {p.dpe ? (
             <>
               <DpeLadder energyClass={p.dpe.energy_class} ghgClass={p.dpe.ghg_class} />
+              <p className="muted xsmall" style={{ marginTop: 10 }}>
+                {p.dpe.scope === "unit"
+                  ? `ADEME certificate of this apartment (${p.dpe.surface_m2 ?? "?"} m², ${formatDate(p.dpe.date ?? "")})` +
+                    (p.dpe.energy_cost_eur ? ` · est. energy bill ${p.dpe.energy_cost_eur.toLocaleString("fr-FR")} €/yr` : "")
+                  : `Median of ${p.dpe.certificates} ADEME certificates at this address — not necessarily this apartment`}
+                {p.dpe.year_built ? ` · built ${p.dpe.year_built}` : p.dpe.period ? ` · built ${p.dpe.period}` : ""}
+              </p>
               {(p.dpe.energy_class === "F" || p.dpe.energy_class === "G") && (
-                <p className={`dpe-note ${p.investment.value_add_flag ? "good" : ""}`} style={{ marginTop: 14 }}>
+                <p className={`dpe-note ${p.investment.value_add_flag ? "good" : ""}`} style={{ marginTop: 10 }}>
                   {p.investment.value_add_flag
                     ? "Value-add: the discount exceeds the renovation cost — reno-arbitrage."
                     : `Class ${p.dpe.energy_class} — rental restrictions apply (G banned since 2025, F from 2028).`}
@@ -200,43 +215,51 @@ export function NeighborhoodViz({ property: p }: { property: Property }) {
               )}
             </>
           ) : (
-            <p className="muted xsmall">No DPE on file for this property.</p>
+            <p className="muted xsmall">
+              {p.address.ban_id
+                ? "No ADEME DPE registered at this address since July 2021."
+                : "Address not matched in the BAN — DPE lookup not possible."}
+            </p>
           )}
         </div>
 
         {/* 3. Amenities (icon-led bars) */}
         <div className="nv-tile">
           <p className="nv-tile-title">
-            <PinIcon /> Amenities nearby
+            <PinIcon /> Amenities ≤500 m
           </p>
-          <div className="nv-amen">
-            {AMENITIES.map(({ key, label, color, Ico, max }) => {
-              const value = a[key];
-              const lit = Math.max(0, Math.min(6, Math.round((value / max) * 6)));
-              return (
-                <div className="nv-amen-row" key={key}>
-                  <span className="nv-amen-ico" style={{ background: color }}>
-                    <Ico size={16} />
-                  </span>
-                  <div className="nv-amen-body">
-                    <div className="nv-amen-top">
-                      <span className="nv-amen-label">{label}</span>
-                      <span className="nv-amen-count">{value}</span>
-                    </div>
-                    <div className="nv-amen-dots" aria-hidden="true">
-                      {Array.from({ length: 6 }, (_, i) => (
-                        <span
-                          key={i}
-                          className="nv-amen-dot"
-                          style={i < lit ? { background: color } : undefined}
-                        />
-                      ))}
+          {a ? (
+            <div className="nv-amen">
+              {AMENITIES.map(({ key, label, color, Ico, max }) => {
+                const value = a[key];
+                const lit = Math.max(0, Math.min(6, Math.round((value / max) * 6)));
+                return (
+                  <div className="nv-amen-row" key={key}>
+                    <span className="nv-amen-ico" style={{ background: color }}>
+                      <Ico size={16} />
+                    </span>
+                    <div className="nv-amen-body">
+                      <div className="nv-amen-top">
+                        <span className="nv-amen-label">{label}</span>
+                        <span className="nv-amen-count">{value}</span>
+                      </div>
+                      <div className="nv-amen-dots" aria-hidden="true">
+                        {Array.from({ length: 6 }, (_, i) => (
+                          <span
+                            key={i}
+                            className="nv-amen-dot"
+                            style={i < lit ? { background: color } : undefined}
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          ) : (
+            <p className="muted xsmall">OpenStreetMap amenities not loaded yet (Overpass unavailable on the last run).</p>
+          )}
         </div>
 
         {/* 4. Neighbourhood stats (icon + scale) */}
@@ -245,47 +268,47 @@ export function NeighborhoodViz({ property: p }: { property: Property }) {
             <TransitIcon /> Local fabric
           </p>
           <div className="nv-stats">
-            {stats.map(({ label, Ico, value, max, unit, green }) => {
-              const pct = Math.min(100, (value / max) * 100);
-              return (
-                <div className="nv-stat" key={label}>
-                  <span className="nv-stat-ico">
-                    <Ico size={16} />
-                  </span>
-                  <div className="nv-stat-body">
-                    <div className="nv-stat-top">
-                      <span className="nv-stat-label">{label}</span>
-                      <span className="nv-stat-val">
-                        {value} <span>{unit}</span>
-                      </span>
-                    </div>
-                    <div className="nv-stat-track">
-                      <div
-                        className={`nv-stat-fill ${green ? "green" : ""}`}
-                        style={{ width: `${pct}%` }}
-                      />
-                    </div>
+            {stats.map(({ label, Ico, value, max, unit, green }) => (
+              <div className="nv-stat" key={label}>
+                <span className="nv-stat-ico">
+                  <Ico size={16} />
+                </span>
+                <div className="nv-stat-body">
+                  <div className="nv-stat-top">
+                    <span className="nv-stat-label">{label}</span>
+                    <span className="nv-stat-val">
+                      {value ?? NA} <span>{unit}</span>
+                    </span>
+                  </div>
+                  <div className="nv-stat-track">
+                    <div
+                      className={`nv-stat-fill ${green ? "green" : ""}`}
+                      style={{ width: `${value === null ? 0 : Math.min(100, (value / max) * 100)}%` }}
+                    />
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
             <div className="nv-stat">
               <span className="nv-stat-ico">
                 <WalletIcon size={16} />
               </span>
               <div className="nv-stat-body">
                 <div className="nv-stat-top">
-                  <span className="nv-stat-label">Median income</span>
+                  <span className="nv-stat-label">Median standard of living (arr.)</span>
                   <span className="nv-stat-val">
-                    {formatIncome(hood.income)} <span>/yr</span>
+                    {hood.income === null ? NA : formatIncome(hood.income)} <span>/yr</span>
                   </span>
                 </div>
                 <div className="nv-stat-track">
                   <div
                     className="nv-stat-fill"
-                    style={{ width: `${Math.min(100, (hood.income / 60000) * 100)}%` }}
+                    style={{ width: `${hood.income === null ? 0 : Math.min(100, (hood.income / 60000) * 100)}%` }}
                   />
                 </div>
+                {hood.poverty_rate !== null && (
+                  <span className="muted xsmall">Poverty rate {hood.poverty_rate}% (INSEE FiLoSoFi)</span>
+                )}
               </div>
             </div>
           </div>
@@ -297,17 +320,17 @@ export function NeighborhoodViz({ property: p }: { property: Property }) {
             <ShieldIcon /> Environmental risk
           </p>
           <div className="nv-risks">
-            {risks.map((r) => {
-              const lvl = riskLevel(r.value);
+            {risks.map(({ label, fact, missing }) => {
+              const lvl = fact ? riskLevel(fact.value) : null;
               return (
-                <div className="nv-risk" key={r.label} title={r.hint}>
+                <div className="nv-risk" key={label} title={fact ? `${fact.source} — ${fact.label}` : missing}>
                   <div className="nv-risk-top">
-                    <span className="nv-risk-label">{r.label}</span>
+                    <span className="nv-risk-label">{label}</span>
                     <span
                       className="nv-risk-level"
-                      style={{ color: "#fff", background: lvl.color }}
+                      style={lvl ? { color: "#fff", background: lvl.color } : undefined}
                     >
-                      {lvl.text}
+                      {lvl ? lvl.text : "No data"}
                     </span>
                   </div>
                   <div className="nv-risk-meter" aria-hidden="true">
@@ -315,10 +338,13 @@ export function NeighborhoodViz({ property: p }: { property: Property }) {
                       <span
                         key={i}
                         className="nv-risk-cell"
-                        style={i < lvl.cells ? { background: lvl.color } : undefined}
+                        style={lvl && i < lvl.cells ? { background: lvl.color } : undefined}
                       />
                     ))}
                   </div>
+                  <span className="muted xsmall">
+                    {fact ? `${fact.label}${fact.scope === "arrondissement" ? "" : " · at the address"}` : missing}
+                  </span>
                 </div>
               );
             })}
@@ -327,7 +353,7 @@ export function NeighborhoodViz({ property: p }: { property: Property }) {
       </div>
 
       <p className="nv-foot">
-        Within ~500 m · OSM · data.education · INSEE · opendata.paris · Géorisques · ADEME DPE
+        IDFM · ADEME DPE · OpenStreetMap · Annuaire de l'éducation · opendata.paris.fr · INSEE · Géorisques
       </p>
     </section>
   );

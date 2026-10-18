@@ -20,8 +20,12 @@ export function Badge({ badge }: { badge: BadgeType }) {
   );
 }
 
-export function badgeFromScore(score: number): BadgeType {
+/**
+ * Same rule as the pipeline: "opportunity" is a deal score ≥ 68; "overvalued"
+ * means the sale closed ≥ 10 % above the local DVF average (a fact).
+ */
+export function badgeFor(score: number, dvfGapPct: number | null): BadgeType {
   if (score >= 68) return "opportunity";
-  if (score <= 45) return "overvalued";
+  if (dvfGapPct !== null && dvfGapPct <= -10) return "overvalued";
   return "watch";
 }

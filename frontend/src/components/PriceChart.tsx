@@ -1,4 +1,4 @@
-/** Price history line chart (pure SVG with hover tooltip). */
+/** Sale-price history of one lot across DVF sales (pure SVG with hover tooltip). */
 
 import { useState } from "react";
 import type { PriceHistoryPoint } from "../types";
@@ -16,7 +16,7 @@ export function PriceChart({ history, height = 240 }: Props) {
   const width = 720;
 
   if (history.length < 2) {
-    return <p className="muted">Not enough history to plot a price curve.</p>;
+    return <p className="muted">Only one recorded sale — nothing to plot.</p>;
   }
 
   const innerW = width - PAD.left - PAD.right;
@@ -47,7 +47,7 @@ export function PriceChart({ history, height = 240 }: Props) {
         viewBox={`0 0 ${width} ${height}`}
         className="price-chart"
         role="img"
-        aria-label="Price history"
+        aria-label="Sale-price history"
         onMouseLeave={() => setHover(null)}
       >
         {/* horizontal gridlines + value axis labels */}

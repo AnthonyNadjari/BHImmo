@@ -1,65 +1,47 @@
 /**
- * Address geocoding via the Base Adresse Nationale (BAN).
+ * Address matching via the Base Adresse Nationale (IGN Géoplateforme
+ * geocoder, legacy api-adresse.data.gouv.fr as a fallback).
  *
- * Endpoint: https://api-adresse.data.gouv.fr/search/?q=...&limit=1
- * Free, key-less, French government open data.
- *
- * When BAN is unavailable (mock mode, network failure, no Paris match) we fall
- * back to the deterministic coordinate hint carried by the listing.
+ * DVF already carries real coordinates (Etalab geocoding of the parcel), so
+ * geocoding is only used to get the canonical BAN label + interoperability key
+ * — the key that links the sale to its ADEME energy certificates. A match is
+ * kept only for a house-number hit in the same arrondissement.
  */
 
 import { ENDPOINTS, fetchJson, type PipelineConfig } from "../shared/config.ts";
 import { round } from "../shared/geo.ts";
-import type { NormalizedListing } from "../scraper/types.ts";
 
 export interface GeocodeResult {
   normalized: string;
   lat: number;
   lng: number;
-  district: string;
-  source: "ban" | "fallback";
+  ban_id: string;
 }
 
 interface BanResponse {
-  features: Array<{
+  features?: Array<{
     geometry: { coordinates: [number, number] };
-    properties: {
-      label: string;
-      postcode?: string;
-      citycode?: string;
-      city?: string;
-    };
+    properties: { label: string; id?: string; type?: string; score?: number; postcode?: string };
   }>;
 }
 
+/**
+ * Returns the BAN match, `null` when the address has no reliable match, or
+ * `undefined` when every geocoder was unreachable (retry on a later run).
+ */
 export async function geocode(
-  listing: NormalizedListing,
+  address: string,
+  district: string,
   config: PipelineConfig,
-): Promise<GeocodeResult> {
-  const url = `${ENDPOINTS.ban}?q=${encodeURIComponent(listing.rawAddress)}&limit=1`;
-  const data = await fetchJson<BanResponse>(url, config);
-
-  const feature = data?.features?.[0];
-  if (feature && feature.geometry?.coordinates) {
-    const [lng, lat] = feature.geometry.coordinates;
-    const postcode = feature.properties.postcode ?? listing.district;
-    // Only trust BAN if it resolved to a Paris (75xxx) address.
-    if (/^750\d{2}$/.test(postcode)) {
-      return {
-        normalized: feature.properties.label,
-        lat: round(lat, 6),
-        lng: round(lng, 6),
-        district: postcode,
-        source: "ban",
-      };
-    }
+): Promise<GeocodeResult | null | undefined> {
+  for (const base of ENDPOINTS.geocoder) {
+    const data = await fetchJson<BanResponse>(`${base}?q=${encodeURIComponent(address)}&limit=1`, config);
+    if (!data) continue;
+    const f = data.features?.[0];
+    const p = f?.properties;
+    if (!f || !p || p.type !== "housenumber" || (p.score ?? 0) < 0.6 || p.postcode !== district || !p.id) return null;
+    const [lng, lat] = f.geometry.coordinates;
+    return { normalized: p.label, lat: round(lat, 6), lng: round(lng, 6), ban_id: p.id };
   }
-
-  return {
-    normalized: listing.rawAddress,
-    lat: listing.fallbackLat,
-    lng: listing.fallbackLng,
-    district: listing.district,
-    source: "fallback",
-  };
+  return undefined;
 }

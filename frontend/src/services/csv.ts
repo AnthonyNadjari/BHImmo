@@ -3,31 +3,32 @@
 import type { IndexEntry } from "../types";
 import { districtLabel } from "./format";
 
-const COLUMNS: Array<{ header: string; value: (e: IndexEntry) => string | number }> = [
+const COLUMNS: Array<{ header: string; value: (e: IndexEntry) => string | number | null }> = [
   { header: "id", value: (e) => e.id },
   { header: "address", value: (e) => e.address },
   { header: "arrondissement", value: (e) => districtLabel(e.district) },
+  { header: "sale_date", value: (e) => e.sale_date },
   { header: "surface_m2", value: (e) => e.surface_m2 },
   { header: "rooms", value: (e) => e.rooms },
-  { header: "price_eur", value: (e) => e.current_price },
+  { header: "price_eur", value: (e) => e.price },
   { header: "price_per_m2", value: (e) => e.price_per_m2 },
+  { header: "dvf_gap_pct", value: (e) => e.dvf_gap_pct },
+  { header: "ppm2_percentile", value: (e) => e.ppm2_percentile },
   { header: "opportunity_score", value: (e) => e.opportunity_score },
   { header: "gross_yield_pct", value: (e) => e.gross_yield },
   { header: "net_yield_pct", value: (e) => e.net_yield },
-  { header: "ppm2_percentile", value: (e) => e.ppm2_percentile },
-  { header: "dpe", value: (e) => e.dpe_energy ?? "" },
+  { header: "dpe", value: (e) => e.dpe_energy },
+  { header: "dpe_scope", value: (e) => e.dpe_scope },
   { header: "walk_score", value: (e) => e.walk_score },
-  { header: "price_drops", value: (e) => e.price_drops },
-  { header: "total_drop_percent", value: (e) => e.total_drop_percent },
-  { header: "days_on_market", value: (e) => e.days_on_market },
-  { header: "status", value: (e) => e.status },
+  { header: "resale_change_pct", value: (e) => e.resale_change_pct },
   { header: "badge", value: (e) => e.badge },
 ];
 
-function escape(value: string | number): string {
-  let s = String(value);
-  // Neutralize spreadsheet formula injection (=, +, -, @, tab, CR prefixes).
-  if (/^[=+\-@\t\r]/.test(s)) s = `'${s}`;
+function escape(value: string | number | null): string {
+  let s = value === null ? "" : String(value);
+  // Neutralize spreadsheet formula injection (=, +, -, @, tab, CR prefixes)
+  // in text cells; numbers (e.g. a negative DVF gap) stay numeric.
+  if (typeof value === "string" && /^[=+\-@\t\r]/.test(s)) s = `'${s}`;
   return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
 }
 

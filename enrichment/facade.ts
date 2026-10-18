@@ -2,11 +2,11 @@
  * Real building / street imagery for a property, from Mapillary — open,
  * crowd-sourced street-level photos (CC-BY-SA). We look up the images closest
  * to the property's coordinates and bake their public thumbnail URLs into the
- * dataset, so the cards and gallery show the REAL place, for free.
+ * dataset, so the cards and gallery show the REAL street, for free.
  *
  * The access token is read from `MLY_TOKEN` and used server-side only (it never
- * ships to the browser). When it's absent (or in mock mode) we return [] and
- * the caller falls back to representative imagery. Attribution: © Mapillary
+ * ships to the browser). When it is absent we return [] and
+ * the caller uses the IGN aerial imagery instead. Attribution: © Mapillary
  * contributors.
  */
 
@@ -26,7 +26,7 @@ interface MlyResponse {
 
 /**
  * Up to `limit` real street-level photos near (lat,lng), nearest first.
- * Returns [] when no token / mock mode / no coverage.
+ * Returns [] when no token / no coverage.
  */
 export async function mapillaryImages(
   lat: number,
@@ -35,7 +35,7 @@ export async function mapillaryImages(
   limit = 4,
 ): Promise<string[]> {
   const token = process.env.MLY_TOKEN;
-  if (!token || config.mode === "mock") return [];
+  if (!token) return [];
 
   // ~90 m bounding box around the address.
   const d = 0.0009;

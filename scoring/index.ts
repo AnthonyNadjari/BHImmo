@@ -1,70 +1,71 @@
 /**
  * Scoring module (Step 6). Scores the whole dataset so each property can be
- * ranked against its arrondissement (price percentile) and the city
- * (gentrification). Produces the `Score`, `Signals` and `Investment` for every
- * property, plus the city median trend used by the market model.
+ * ranked against its arrondissement's real DVF sales, and produces the
+ * `Score`, `Signals` and `Investment` for every property.
  */
 
-import type { Property, Signals } from "../shared/types.ts";
-import { extractSignals } from "./signals.ts";
-import { buildExplanations, computeScore, gentrificationByDistrict } from "./score.ts";
+import { getInseeProfile } from "../enrichment/insee.ts";
+import type { DistrictMarket } from "../scraper/index.ts";
+import type { Property } from "../shared/types.ts";
+import { computeScore, gentrificationByDistrict } from "./score.ts";
+import { buildExplanations, resaleSignal } from "./signals.ts";
 
-export { WEIGHTS } from "./score.ts";
-export { LONG_MARKET_DAYS } from "./signals.ts";
+export { WEIGHTS, ACQUISITION_FEES, ANNUAL_CHARGES } from "./score.ts";
 
-export interface DatasetScoring {
-  cityMedianTrend: number;
+export interface ScoringContext {
+  markets: Map<string, DistrictMarket>;
+  cityTrend: number | null;
+  latestYear: string;
+  /** Sorted €/m² of every DVF sale per arrondissement (latest vintage). */
+  districtPpm2: Map<string, number[]>;
 }
 
-/** Score every property in place. Returns aggregate context for the market model. */
-export function scoreDataset(properties: Property[]): DatasetScoring {
-  const { map: gentMap, cityMedianTrend } = gentrificationByDistrict();
+function rank(values: number[], v: number): number {
+  let below = 0;
+  for (const x of values) if (x < v) below++;
+  return (below / Math.max(1, values.length - 1)) * 100;
+}
 
-  // Sorted €/m² per arrondissement, for the price percentile.
-  const ppm2ByDistrict = new Map<string, number[]>();
+const districtLabel = (d: string) => {
+  const n = Number(d.slice(-2));
+  return `${n}${n === 1 ? "er" : "e"}`;
+};
+
+/** Score every property in place. */
+export function scoreDataset(properties: Property[], ctx: ScoringContext): void {
+  const markets = [...ctx.markets.values()];
+  const gent = gentrificationByDistrict(
+    markets.map((m) => ({
+      district: m.district,
+      trend: m.trendPct,
+      medianPpm2: m.medianLatest,
+      income: getInseeProfile(m.district).income,
+    })),
+    ctx.cityTrend,
+  );
+  const medians = markets.map((m) => m.medianLatest);
+  const volumes = properties.map((p) => p.dvf.count_500m);
+
   for (const p of properties) {
-    const list = ppm2ByDistrict.get(p.address.district) ?? [];
-    list.push(p.pricing.price_per_m2);
-    ppm2ByDistrict.set(p.address.district, list);
+    const market = ctx.markets.get(p.address.district);
+    p.signals = { resale: resaleSignal(p.price_history), explanations: [] };
+    const out = computeScore({
+      price: p.sale.price,
+      price_per_m2: p.sale.price_per_m2,
+      surface_m2: p.characteristics.surface_m2,
+      dvf: p.dvf,
+      transport_score: p.transport?.score ?? null,
+      walk_score: p.neighborhood.walk_score,
+      rent_max_m2: p.rent?.max_m2 ?? null,
+      rent_surface_m2: p.characteristics.carrez_m2 ?? p.characteristics.surface_m2,
+      energy_class: p.dpe?.energy_class ?? null,
+      districtPpm2: ctx.districtPpm2.get(p.address.district) ?? [],
+      demand: market ? rank(medians, market.medianLatest) : null,
+      volume: rank(volumes, p.dvf.count_500m),
+      gentrification: gent.get(p.address.district) ?? null,
+    });
+    p.score = out.score;
+    p.investment = out.investment;
+    p.signals.explanations = buildExplanations(p, out, districtLabel(p.address.district), ctx.latestYear);
   }
-  for (const list of ppm2ByDistrict.values()) list.sort((a, b) => a - b);
-
-  for (const property of properties) {
-    const raw = extractSignals(
-      property.price_history,
-      property.pricing.initial_price,
-      property.pricing.current_price,
-      property.timeline.days_on_market,
-    );
-
-    const input = {
-      current_price: property.pricing.current_price,
-      price_per_m2: property.pricing.price_per_m2,
-      surface_m2: property.characteristics.surface_m2,
-      district: property.address.district,
-      daysOnMarket: property.timeline.days_on_market,
-      dvf: property.dvf,
-      transport_score: property.transport_score,
-      walk_score: property.neighborhood?.walk_score ?? 50,
-      rent_max_m2: property.rent?.max_m2 ?? 27,
-      energy_class: property.dpe?.energy_class,
-      signals: raw,
-      districtPpm2: ppm2ByDistrict.get(property.address.district) ?? [],
-      gentrification: gentMap.get(property.address.district) ?? 50,
-    };
-
-    const out = computeScore(input);
-    const signals: Signals = {
-      price_drops: raw.price_drops,
-      total_drop_percent: raw.total_drop_percent,
-      long_time_on_market: raw.long_time_on_market,
-      explanations: buildExplanations(out, input, raw, property.timeline.days_on_market),
-    };
-
-    property.score = out.score;
-    property.signals = signals;
-    property.investment = out.investment;
-  }
-
-  return { cityMedianTrend };
 }

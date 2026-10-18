@@ -1,25 +1,27 @@
 import type { ISODate } from "../shared/types.ts";
 
-/** A listing exactly as returned by a source (synthetic or real scraper). */
-export interface RawListing {
-  /** Source system identifier, e.g. "synthetic" or "seloger". */
-  source: string;
-  /** Stable per-source listing id (used by the matching engine). */
-  externalId: string;
-  rawAddress: string;
-  district: string;
-  surface_m2: number;
-  rooms: number;
-  floor: number;
+/** One clean, single-apartment DVF sale. */
+export interface DvfTxn {
+  /** `id_mutation` — stable across vintages. */
+  id: string;
+  date: ISODate;
+  /** Vintage (file year) the sale comes from. */
+  year: string;
   price: number;
-  observedDate: ISODate;
-  url?: string;
-  /** Deterministic coordinate hint used when geocoding is unavailable. */
-  fallbackLat: number;
-  fallbackLng: number;
-}
-
-/** A validated, type-clean listing ready for matching + enrichment. */
-export interface NormalizedListing extends RawListing {
-  price_per_m2: number;
+  /** Surface réelle bâtie, m². */
+  surface: number;
+  /** Loi Carrez surface of the apartment lot, m² (null if not declared). */
+  carrez: number | null;
+  rooms: number;
+  lat: number;
+  lng: number;
+  /** Postcode-style district, e.g. "75004". */
+  district: string;
+  /** "12 Rue X, 75004 Paris". */
+  address: string;
+  ppm2: number;
+  /** Cadastral parcel id. */
+  parcel: string;
+  /** Lot number of the apartment within the copropriété ("" if none). */
+  lot: string;
 }

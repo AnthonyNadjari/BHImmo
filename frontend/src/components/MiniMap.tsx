@@ -1,6 +1,6 @@
 /**
  * Detail-page mini-map: the property, walking catchment circles and nearby
- * transport / parks / Vélib' markers. Leaflet + Carto tiles (no key).
+ * transport / parks / Vélib' markers. Leaflet + Plan IGN tiles (Géoplateforme, no key).
  * Default export for React.lazy.
  */
 
@@ -18,8 +18,9 @@ export default function MiniMap({ property: p }: { property: Property }) {
   return (
     <MapContainer center={center} zoom={15} className="leaflet-mini" scrollWheelZoom={false}>
       <TileLayer
-        attribution="&copy; OpenStreetMap &copy; CARTO"
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+        attribution="&copy; IGN — Plan IGN"
+        url="https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&TILEMATRIXSET=PM&FORMAT=image/png&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}"
+        maxZoom={19}
       />
       <Circle center={center} radius={500} pathOptions={{ color: "#2563eb", weight: 1, fillOpacity: 0.05, dashArray: "4 4" }} />
       <Circle center={center} radius={150} pathOptions={{ color: "#2563eb", weight: 1, fillOpacity: 0.08 }} />

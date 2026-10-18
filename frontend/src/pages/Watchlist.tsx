@@ -1,7 +1,7 @@
 /**
  * PAGE 3 — Watchlist.
- * Properties the user is tracking (localStorage), with price-drop and
- * status-change alerts computed against the snapshot taken when each was added.
+ * Sales the user is tracking (localStorage), with deal-score and market-gap
+ * alerts computed against the snapshot taken when each was added.
  */
 
 import { useEffect, useState } from "react";
@@ -20,9 +20,8 @@ import {
   formatEuro,
   formatPerM2,
   scoreColor,
-  STATUS_LABEL,
 } from "../services/format";
-import { Img } from "../components/Img";
+import { Img, LocationPin } from "../components/Img";
 import { ErrorState, Loading } from "../components/States";
 
 export function Watchlist() {
@@ -59,7 +58,7 @@ export function Watchlist() {
         <div className="state">
           <p>You aren't tracking any properties yet.</p>
           <p className="muted">
-            Open a property and hit <strong>☆ Add to watchlist</strong> to follow its price.
+            Open a sale and hit <strong>☆ Add to watchlist</strong> to follow its score as new DVF data comes in.
           </p>
           <Link to="/" className="btn">
             Browse dashboard
@@ -85,7 +84,8 @@ export function Watchlist() {
           return (
             <div className="card watch-card" key={p.id}>
               <Link to={`/property/${p.id}`} className="watch-thumb-link" aria-label={p.address.normalized}>
-                <Img src={p.thumb || p.images?.[0] || ""} seed={p.id} alt="" className="watch-thumb" />
+                <Img src={p.thumb || p.images?.[0] || ""} alt="" className="watch-thumb" />
+                <LocationPin src={p.thumb || p.images?.[0] || ""} />
               </Link>
               <div className="watch-card-head">
                 <Link to={`/property/${p.id}`} className="watch-title">
@@ -102,17 +102,17 @@ export function Watchlist() {
               </div>
               <p className="muted">
                 {districtLabel(p.address.district)} · {p.characteristics.surface_m2} m² ·{" "}
-                <span className={`status-pill ${p.status}`}>{STATUS_LABEL[p.status]}</span>
+                <span className="status-pill sold">Sold {formatDate(p.sale.date)}</span>
               </p>
 
               <div className="watch-metrics">
                 <div>
                   <span className="kv-label">Price</span>
-                  <strong>{formatEuro(p.pricing.current_price)}</strong>
+                  <strong>{formatEuro(p.sale.price)}</strong>
                 </div>
                 <div>
                   <span className="kv-label">€/m²</span>
-                  <strong>{formatPerM2(p.pricing.price_per_m2)}</strong>
+                  <strong>{formatPerM2(p.sale.price_per_m2)}</strong>
                 </div>
                 <div>
                   <span className="kv-label">Score</span>
@@ -128,7 +128,7 @@ export function Watchlist() {
                 ) : (
                   alerts.map((a, i) => (
                     <span key={i} className={`alert ${a.kind}`}>
-                      {a.kind === "price-drop" ? "↓ " : a.kind === "price-rise" ? "↑ " : "● "}
+                      {a.kind === "score-down" ? "↓ " : a.kind === "score-up" ? "↑ " : "● "}
                       {a.message}
                     </span>
                   ))
