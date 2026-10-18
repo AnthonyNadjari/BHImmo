@@ -10,6 +10,8 @@ import { PropertyDetail } from "./pages/PropertyDetail";
 import { Watchlist } from "./pages/Watchlist";
 import { MapPage } from "./pages/MapPage";
 import { Market } from "./pages/Market";
+import { Listings } from "./pages/Listings";
+import { ListingDetail } from "./pages/ListingDetail";
 
 export default function App() {
   return (
@@ -17,6 +19,8 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/listings" element={<Listings />} />
+          <Route path="/listing/:id" element={<ListingDetail />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/market" element={<Market />} />
           <Route path="/property/:id" element={<PropertyDetail />} />

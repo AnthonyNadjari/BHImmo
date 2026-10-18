@@ -4,7 +4,7 @@
  * is loaded at most once per session.
  */
 
-import type { IndexFile, MarketFile, Property } from "../types";
+import type { IndexFile, ListingsFile, MarketFile, Property } from "../types";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -25,6 +25,7 @@ async function getJson<T>(name: string): Promise<T> {
 let indexPromise: Promise<IndexFile> | null = null;
 let marketPromise: Promise<MarketFile> | null = null;
 let quartiersPromise: Promise<QuartierGeoJson> | null = null;
+let listingsPromise: Promise<ListingsFile | null> | null = null;
 
 /** Quartier polygons (official boundaries) for the price map. */
 export interface QuartierGeoJson {
@@ -42,6 +43,7 @@ export function clearDataCache(): void {
   indexPromise = null;
   marketPromise = null;
   quartiersPromise = null;
+  listingsPromise = null;
   propertyCache.clear();
 }
 
@@ -51,6 +53,14 @@ export function fetchIndex(): Promise<IndexFile> {
 
 export function fetchMarket(): Promise<MarketFile> {
   return (marketPromise ??= getJson<MarketFile>("market.json"));
+}
+
+/**
+ * Listings on the market (Stream.estate). Null when the pipeline has no API
+ * key yet — the file simply doesn't exist then.
+ */
+export function fetchListings(): Promise<ListingsFile | null> {
+  return (listingsPromise ??= getJson<ListingsFile>("listings.json").catch(() => null));
 }
 
 export function fetchQuartiers(): Promise<QuartierGeoJson> {

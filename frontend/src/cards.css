@@ -227,3 +227,17 @@
 .card-head-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
 .card-head-row h2 { margin: 0; }
 .choro-legend .choro-item { display: inline-flex; align-items: center; gap: 4px; margin-right: 8px; white-space: nowrap; }
+
+/* ---- Listings (on the market, real advert photos) ---- */
+.listing-drop {
+  position: absolute; top: 9px; left: 9px; padding: 2px 8px; border-radius: var(--r-pill);
+  background: var(--success); color: #fff; font-size: 12px; font-weight: 700; box-shadow: var(--shadow-sm);
+}
+.listing-photos {
+  position: absolute; bottom: 9px; right: 9px; padding: 2px 8px; border-radius: var(--r-pill);
+  background: rgba(17, 21, 31, 0.6); color: #fff; font-size: 11px;
+}
+.listing-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.listing-desc { white-space: pre-line; line-height: 1.55; margin: 0; }
+.listings-setup ol { padding-left: 20px; line-height: 1.7; }
+.listings-setup code { font-family: var(--mono); background: var(--surface-inset); padding: 1px 6px; border-radius: 4px; }

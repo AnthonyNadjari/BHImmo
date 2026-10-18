@@ -9,7 +9,7 @@
  */
 
 import { round } from "../shared/geo.ts";
-import type { Dpe, Rent } from "../shared/types.ts";
+import type { Rent } from "../shared/types.ts";
 import { findQuartier, type References } from "./reference.ts";
 
 type Epoque = "Avant 1946" | "1946-1970" | "1971-1990" | "Apres 1990";
@@ -37,7 +37,8 @@ export function enrichRent(
   lng: number,
   rooms: number,
   surface: number,
-  dpe: Dpe | null,
+  /** Construction facts and where they come from (building DPE or advert). */
+  built: { year_built: number | null; period: string | null; source: "dpe" | "advert" } | null,
   refs: References,
 ): Rent | null {
   if (!refs.rent) return null;
@@ -45,9 +46,9 @@ export function enrichRent(
   if (!zone) return null;
 
   let epoque: Epoque | null = null;
-  if (dpe?.year_built) epoque = epoqueFromYear(dpe.year_built);
-  else if (dpe?.period) epoque = epoqueFromPeriod(dpe.period);
-  const epoque_source = epoque ? "dpe" : "assumed";
+  if (built?.year_built) epoque = epoqueFromYear(built.year_built);
+  else if (built?.period) epoque = epoqueFromPeriod(built.period);
+  const epoque_source = epoque && built ? built.source : "assumed";
   epoque ??= "Avant 1946";
 
   const piece = Math.min(Math.max(rooms, 1), 4);

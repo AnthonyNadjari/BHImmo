@@ -18,6 +18,8 @@ export interface PipelineConfig {
   minPerArrondissement: number;
   /** Max properties getting per-address lookups in one run (bounds CI time). */
   maxLookups: number;
+  /** Max listings fetched from Stream.estate per run (billed per item). */
+  maxListings: number;
   /** Number of DVF vintages to load (comparables, resale history, trend). */
   dvfYears: number;
   /** Per-request network timeout in milliseconds. */
@@ -32,6 +34,8 @@ export function loadConfig(): PipelineConfig {
     universeDays: Number(process.env.PRER_UNIVERSE_DAYS ?? 92),
     minPerArrondissement: Number(process.env.PRER_MIN_PER_ARR ?? 100),
     maxLookups: Number(process.env.PRER_MAX_LOOKUPS ?? 4000),
+    // 450 fits the €5 free credit (€0.01/item); raise it with a paid plan.
+    maxListings: Number(process.env.PRER_LISTINGS_MAX ?? 450),
     dvfYears: Number(process.env.PRER_DVF_YEARS ?? 5),
     requestTimeoutMs: Number(process.env.PRER_TIMEOUT_MS ?? 20_000),
     concurrency: Number(process.env.PRER_CONCURRENCY ?? 6),

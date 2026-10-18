@@ -44,6 +44,11 @@ jobs:
           PRER_MAX_LOOKUPS: "4000"
           # Optional: real street-level photos baked into the dataset (free).
           MLY_TOKEN: ${{ secrets.MLY_TOKEN }}
+          # Optional: listings on the market with interior photos (Stream.estate,
+          # billed per item). Without the secret the Listings page explains how
+          # to enable it; nothing is simulated.
+          STREAM_ESTATE_API_KEY: ${{ secrets.STREAM_ESTATE_API_KEY }}
+          PRER_LISTINGS_MAX: "450"
         run: npm run pipeline
 
       - name: Commit updated dataset

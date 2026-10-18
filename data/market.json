@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T08:20:38.244Z",
+  "generated_at": "2026-10-18T08:45:40.991Z",
   "dvf": {
     "vintages": [
       "2021",
@@ -160,6 +160,13 @@
       "records": 6572
     },
     {
+      "id": "stream-estate",
+      "label": "Stream.estate — annonces en cours (photos, prix) — clé API non configurée",
+      "url": "https://stream.estate/",
+      "status": "unavailable",
+      "records": 0
+    },
+    {
       "id": "idfm",
       "label": "IDFM — gares et stations",
       "url": "https://data.iledefrance-mobilites.fr/explore/dataset/emplacement-des-gares-idf/",
@@ -198,8 +205,8 @@
       "id": "osm",
       "label": "OpenStreetMap — commerces, santé, culture",
       "url": "https://www.openstreetmap.org/copyright",
-      "status": "ok",
-      "records": 30803
+      "status": "stale",
+      "records": 0
     },
     {
       "id": "rent",

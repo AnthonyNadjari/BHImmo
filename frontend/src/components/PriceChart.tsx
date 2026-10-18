@@ -1,11 +1,10 @@
-/** Sale-price history of one lot across DVF sales (pure SVG with hover tooltip). */
+/** Price history line chart — DVF sales of a lot, or a listing's asking prices (pure SVG with hover tooltip). */
 
 import { useState } from "react";
-import type { PriceHistoryPoint } from "../types";
 import { formatDate, formatEuro } from "../services/format";
 
 interface Props {
-  history: PriceHistoryPoint[];
+  history: Array<{ date: string; price: number }>;
   height?: number;
 }
 

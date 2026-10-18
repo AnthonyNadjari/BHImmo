@@ -9,6 +9,8 @@
  *                                     index, transport, neighbourhood, rent
  *   5. History     (scraper)          earlier DVF sales of the same lot
  *   6. Scoring     (scoring)          deal score + explainable signals
+ *   6b. Listings   (enrichment)       on-market listings with interior photos
+ *                                     (Stream.estate API key), valued the same way
  *   7. Export      (storage)          properties/<district>.json · index.json ·
  *                                     market.json (indices, quartiers) · quartiers.geojson
  *
@@ -16,9 +18,11 @@
  * CI keeps the last committed dataset instead of publishing anything made up.
  */
 
-import type { PipelineConfig } from "../shared/config.ts";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import { DATA_DIR, type PipelineConfig } from "../shared/config.ts";
 import { log } from "../shared/logger.ts";
-import type { Property, SourceStatus } from "../shared/types.ts";
+import type { ListingsFile, Property, SourceStatus } from "../shared/types.ts";
 import {
   buildPriceIndex,
   districtMarkets,
@@ -29,8 +33,9 @@ import {
   type DvfTxn,
 } from "../scraper/index.ts";
 import { enrichLocal, loadInsee, loadReferences, remoteLookups, streetPhotos } from "../enrichment/index.ts";
+import { LISTINGS_FILE, runListings } from "../enrichment/listings.ts";
 import { scoreDataset } from "../scoring/index.ts";
-import { exportDatasets, loadProperties } from "../storage/index.ts";
+import { exportDatasets, loadProperties, writeJsonLines } from "../storage/index.ts";
 
 /** A fresh property for a DVF sale (enrichment fills the rest). */
 function baseProperty(t: DvfTxn): Property {
@@ -164,6 +169,19 @@ export async function runPipeline(config: PipelineConfig): Promise<PipelineSumma
     index,
   });
 
+  // Step 6b — listings on the market (only with a Stream.estate API key).
+  log.step(6, "Listings on the market (Stream.estate)");
+  const previousListings = await readFile(join(DATA_DIR, LISTINGS_FILE), "utf8")
+    .then((t) => JSON.parse(t) as ListingsFile)
+    .catch(() => null);
+  const listingsSource = await runListings(
+    config,
+    previousListings,
+    { dvf, index, refs, markets: market.byDistrict, cityTrend: market.cityTrend, latestYear: market.latestYear, districtPpm2 },
+    (path, file) =>
+      writeJsonLines(path, { generated_at: file.generated_at, cursor: file.cursor, source: file.source, count: file.count }, "listings", file.listings),
+  );
+
   // Step 7 — export, with provenance of every source.
   log.step(7, "Export datasets");
   const sources: SourceStatus[] = [
@@ -176,6 +194,7 @@ export async function runPipeline(config: PipelineConfig): Promise<PipelineSumma
     lookupStatus("ademe", "ADEME — DPE logements existants", "https://data.ademe.fr/datasets/dpe03existant", properties.filter((p) => p.address.ban_id), (p) => p.lookups.dpe, (p) => !!p.dpe),
     lookupStatus("georisques", "Géorisques — TRI inondation", "https://www.georisques.gouv.fr/", properties, (p) => p.lookups.flood, (p) => !!p.risks.flood),
     { id: "ign", label: "IGN — BD ORTHO® / Plan IGN (imagerie, cartes)", status: "ok", url: "https://geoservices.ign.fr/bdortho", records: properties.length },
+    listingsSource,
     ...refs.sources.map((s): SourceStatus => (s.status === "unavailable" && hasPrevious(s.id, properties) ? { ...s, status: "stale" } : s)),
     ...inseeSources,
   ];
