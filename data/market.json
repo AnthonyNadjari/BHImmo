@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T08:45:40.991Z",
+  "generated_at": "2026-10-19T05:19:52.040Z",
   "dvf": {
     "vintages": [
       "2021",
@@ -205,8 +205,8 @@
       "id": "osm",
       "label": "OpenStreetMap — commerces, santé, culture",
       "url": "https://www.openstreetmap.org/copyright",
-      "status": "stale",
-      "records": 0
+      "status": "ok",
+      "records": 30807
     },
     {
       "id": "rent",
