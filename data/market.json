@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20T05:18:17.172Z",
+  "generated_at": "2026-10-21T05:18:51.090Z",
   "dvf": {
     "vintages": [
       "2021",
@@ -185,7 +185,7 @@
       "label": "Vélib' — stations",
       "url": "https://opendata.paris.fr/explore/dataset/velib-emplacement-des-stations/",
       "status": "ok",
-      "records": 1331
+      "records": 1329
     },
     {
       "id": "parks",
@@ -206,7 +206,7 @@
       "label": "OpenStreetMap — commerces, santé, culture",
       "url": "https://www.openstreetmap.org/copyright",
       "status": "ok",
-      "records": 30813
+      "records": 30817
     },
     {
       "id": "rent",
