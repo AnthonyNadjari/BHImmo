@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T05:18:51.090Z",
+  "generated_at": "2026-10-22T05:19:03.938Z",
   "dvf": {
     "vintages": [
       "2021",
@@ -171,7 +171,7 @@
       "label": "IDFM — gares et stations",
       "url": "https://data.iledefrance-mobilites.fr/explore/dataset/emplacement-des-gares-idf/",
       "status": "ok",
-      "records": 421
+      "records": 422
     },
     {
       "id": "schools",
@@ -185,7 +185,7 @@
       "label": "Vélib' — stations",
       "url": "https://opendata.paris.fr/explore/dataset/velib-emplacement-des-stations/",
       "status": "ok",
-      "records": 1329
+      "records": 1331
     },
     {
       "id": "parks",
@@ -206,7 +206,7 @@
       "label": "OpenStreetMap — commerces, santé, culture",
       "url": "https://www.openstreetmap.org/copyright",
       "status": "ok",
-      "records": 30817
+      "records": 30823
     },
     {
       "id": "rent",
@@ -1041,7 +1041,7 @@
       "avg_opportunity_score": 38,
       "median_income": 52840,
       "poverty_rate": 9.2,
-      "avg_walk_score": 45,
+      "avg_walk_score": 46,
       "median_yield": 3.11,
       "noise_exposed_pct": 8.3,
       "index": [
