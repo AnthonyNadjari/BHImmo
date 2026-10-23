@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T05:19:03.938Z",
+  "generated_at": "2026-10-23T05:18:27.113Z",
   "dvf": {
     "vintages": [
       "2021",
@@ -170,8 +170,8 @@
       "id": "idfm",
       "label": "IDFM — gares et stations",
       "url": "https://data.iledefrance-mobilites.fr/explore/dataset/emplacement-des-gares-idf/",
-      "status": "ok",
-      "records": 422
+      "status": "stale",
+      "records": 0
     },
     {
       "id": "schools",
@@ -206,7 +206,7 @@
       "label": "OpenStreetMap — commerces, santé, culture",
       "url": "https://www.openstreetmap.org/copyright",
       "status": "ok",
-      "records": 30823
+      "records": 30829
     },
     {
       "id": "rent",
@@ -2073,7 +2073,7 @@
       "avg_opportunity_score": 45,
       "median_income": 37160,
       "poverty_rate": 13.8,
-      "avg_walk_score": 57,
+      "avg_walk_score": 58,
       "median_yield": 3.91,
       "noise_exposed_pct": 8.8,
       "index": [
@@ -2331,7 +2331,7 @@
       "avg_opportunity_score": 43,
       "median_income": 37840,
       "poverty_rate": 15.6,
-      "avg_walk_score": 60,
+      "avg_walk_score": 61,
       "median_yield": 3.76,
       "noise_exposed_pct": 11.2,
       "index": [
