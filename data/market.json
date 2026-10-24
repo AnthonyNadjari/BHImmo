@@ -1,0 +1,3795 @@
+{
+  "generated_at": "2026-10-23T05:18:27.113Z",
+  "dvf": {
+    "vintages": [
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "first_sale": "2021-01-04",
+    "last_sale": "2025-12-31",
+    "sales": 137349
+  },
+  "latest_year": "2025",
+  "city_median_price_m2": 9861,
+  "city_trend_1y": 1.3,
+  "paris_index": [
+    {
+      "q": "2021-Q1",
+      "median": 11000,
+      "n": 6291
+    },
+    {
+      "q": "2021-Q2",
+      "median": 10972,
+      "n": 7565
+    },
+    {
+      "q": "2021-Q3",
+      "median": 11071,
+      "n": 8135
+    },
+    {
+      "q": "2021-Q4",
+      "median": 10921,
+      "n": 7209
+    },
+    {
+      "q": "2022-Q1",
+      "median": 10850,
+      "n": 7396
+    },
+    {
+      "q": "2022-Q2",
+      "median": 10850,
+      "n": 8502
+    },
+    {
+      "q": "2022-Q3",
+      "median": 10916,
+      "n": 8796
+    },
+    {
+      "q": "2022-Q4",
+      "median": 10799,
+      "n": 7162
+    },
+    {
+      "q": "2023-Q1",
+      "median": 10515,
+      "n": 6823
+    },
+    {
+      "q": "2023-Q2",
+      "median": 10340,
+      "n": 6890
+    },
+    {
+      "q": "2023-Q3",
+      "median": 10286,
+      "n": 6532
+    },
+    {
+      "q": "2023-Q4",
+      "median": 10031,
+      "n": 5511
+    },
+    {
+      "q": "2024-Q1",
+      "median": 9771,
+      "n": 5329
+    },
+    {
+      "q": "2024-Q2",
+      "median": 9714,
+      "n": 6249
+    },
+    {
+      "q": "2024-Q3",
+      "median": 9746,
+      "n": 6119
+    },
+    {
+      "q": "2024-Q4",
+      "median": 9706,
+      "n": 5707
+    },
+    {
+      "q": "2025-Q1",
+      "median": 9782,
+      "n": 7203
+    },
+    {
+      "q": "2025-Q2",
+      "median": 9771,
+      "n": 6019
+    },
+    {
+      "q": "2025-Q3",
+      "median": 10000,
+      "n": 7382
+    },
+    {
+      "q": "2025-Q4",
+      "median": 9900,
+      "n": 6529
+    }
+  ],
+  "paris_repeat_sales": {
+    "pairs": 2730,
+    "median_annual_pct": 3.4,
+    "share_gain_pct": 70
+  },
+  "sources": [
+    {
+      "id": "dvf",
+      "label": "DVF — Demandes de valeurs foncières (DGFiP / Etalab)",
+      "status": "ok",
+      "url": "https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres-geolocalisees/",
+      "records": 137349,
+      "period": "2021-01-04 → 2025-12-31"
+    },
+    {
+      "id": "ban",
+      "label": "BAN — Base Adresse Nationale",
+      "url": "https://adresse.data.gouv.fr/",
+      "status": "ok",
+      "records": 6325
+    },
+    {
+      "id": "ademe",
+      "label": "ADEME — DPE logements existants",
+      "url": "https://data.ademe.fr/datasets/dpe03existant",
+      "status": "ok",
+      "records": 6195
+    },
+    {
+      "id": "georisques",
+      "label": "Géorisques — TRI inondation",
+      "url": "https://www.georisques.gouv.fr/",
+      "status": "ok",
+      "records": 6572
+    },
+    {
+      "id": "ign",
+      "label": "IGN — BD ORTHO® / Plan IGN (imagerie, cartes)",
+      "status": "ok",
+      "url": "https://geoservices.ign.fr/bdortho",
+      "records": 6572
+    },
+    {
+      "id": "stream-estate",
+      "label": "Stream.estate — annonces en cours (photos, prix) — clé API non configurée",
+      "url": "https://stream.estate/",
+      "status": "unavailable",
+      "records": 0
+    },
+    {
+      "id": "idfm",
+      "label": "IDFM — gares et stations",
+      "url": "https://data.iledefrance-mobilites.fr/explore/dataset/emplacement-des-gares-idf/",
+      "status": "stale",
+      "records": 0
+    },
+    {
+      "id": "schools",
+      "label": "Annuaire de l'éducation",
+      "url": "https://data.education.gouv.fr/explore/dataset/fr-en-annuaire-education/",
+      "status": "ok",
+      "records": 1298
+    },
+    {
+      "id": "velib",
+      "label": "Vélib' — stations",
+      "url": "https://opendata.paris.fr/explore/dataset/velib-emplacement-des-stations/",
+      "status": "ok",
+      "records": 1331
+    },
+    {
+      "id": "parks",
+      "label": "Espaces verts (Ville de Paris)",
+      "url": "https://opendata.paris.fr/explore/dataset/espaces_verts/",
+      "status": "ok",
+      "records": 878
+    },
+    {
+      "id": "trees",
+      "label": "Les arbres (Ville de Paris)",
+      "url": "https://opendata.paris.fr/explore/dataset/les-arbres/",
+      "status": "ok",
+      "records": 220181
+    },
+    {
+      "id": "osm",
+      "label": "OpenStreetMap — commerces, santé, culture",
+      "url": "https://www.openstreetmap.org/copyright",
+      "status": "ok",
+      "records": 30829
+    },
+    {
+      "id": "rent",
+      "label": "Encadrement des loyers",
+      "url": "https://opendata.paris.fr/explore/dataset/logement-encadrement-des-loyers/",
+      "status": "ok",
+      "records": 80,
+      "period": "2025"
+    },
+    {
+      "id": "arrondissements",
+      "label": "Arrondissements (Ville de Paris)",
+      "url": "https://opendata.paris.fr/explore/dataset/arrondissements/",
+      "status": "ok",
+      "records": 20
+    },
+    {
+      "id": "noise",
+      "label": "Bruit routier — exposition (Ville de Paris)",
+      "url": "https://opendata.paris.fr/explore/dataset/bruit-exposition-des-parisien-ne-s-aux-depassements-des-seuils-nocturne-ou-journ/",
+      "status": "ok",
+      "records": 20,
+      "period": "2022"
+    },
+    {
+      "id": "insee-pop",
+      "label": "INSEE — populations de référence",
+      "status": "ok",
+      "url": "https://catalogue-donnees.insee.fr/fr/catalogue/recherche/DS_POPULATIONS_REFERENCE",
+      "records": 20,
+      "period": "2023"
+    },
+    {
+      "id": "insee-filosofi",
+      "label": "INSEE — FiLoSoFi (niveau de vie, pauvreté)",
+      "status": "ok",
+      "url": "https://catalogue-donnees.insee.fr/fr/catalogue/recherche/DS_FILOSOFI_CC",
+      "records": 20,
+      "period": "2023"
+    }
+  ],
+  "arrondissements": [
+    {
+      "district": "75001",
+      "name": "Louvre",
+      "lat": 48.862562701836005,
+      "lng": 2.3364433620533878,
+      "listing_count": 100,
+      "sales_latest_year": 237,
+      "population": 15114,
+      "area_km2": 1.82,
+      "density": 8283,
+      "avg_price_m2": 12814,
+      "median_price_m2": 12381,
+      "prev_median_price_m2": 12674,
+      "trend_1y_percent": -2.3,
+      "volatility": 0.247,
+      "avg_opportunity_score": 38,
+      "median_income": 39320,
+      "poverty_rate": 14,
+      "avg_walk_score": 69,
+      "median_yield": 3.35,
+      "noise_exposed_pct": 13.3,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 13511,
+          "n": 47
+        },
+        {
+          "q": "2021-Q2",
+          "median": 13304,
+          "n": 62
+        },
+        {
+          "q": "2021-Q3",
+          "median": 13223,
+          "n": 67
+        },
+        {
+          "q": "2021-Q4",
+          "median": 13941,
+          "n": 72
+        },
+        {
+          "q": "2022-Q1",
+          "median": 13529,
+          "n": 73
+        },
+        {
+          "q": "2022-Q2",
+          "median": 13167,
+          "n": 83
+        },
+        {
+          "q": "2022-Q3",
+          "median": 13072,
+          "n": 89
+        },
+        {
+          "q": "2022-Q4",
+          "median": 13540,
+          "n": 79
+        },
+        {
+          "q": "2023-Q1",
+          "median": 12763,
+          "n": 75
+        },
+        {
+          "q": "2023-Q2",
+          "median": 13160,
+          "n": 71
+        },
+        {
+          "q": "2023-Q3",
+          "median": 13550,
+          "n": 64
+        },
+        {
+          "q": "2023-Q4",
+          "median": 13557,
+          "n": 58
+        },
+        {
+          "q": "2024-Q1",
+          "median": 12833,
+          "n": 57
+        },
+        {
+          "q": "2024-Q2",
+          "median": 12735,
+          "n": 53
+        },
+        {
+          "q": "2024-Q3",
+          "median": 13103,
+          "n": 63
+        },
+        {
+          "q": "2024-Q4",
+          "median": 11896,
+          "n": 51
+        },
+        {
+          "q": "2025-Q1",
+          "median": 12432,
+          "n": 70
+        },
+        {
+          "q": "2025-Q2",
+          "median": 12332,
+          "n": 54
+        },
+        {
+          "q": "2025-Q3",
+          "median": 12000,
+          "n": 47
+        },
+        {
+          "q": "2025-Q4",
+          "median": 12508,
+          "n": 66
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 45,
+        "median_annual_pct": 8.5,
+        "share_gain_pct": 78
+      }
+    },
+    {
+      "district": "75002",
+      "name": "Bourse",
+      "lat": 48.86827922252251,
+      "lng": 2.3428025468913636,
+      "listing_count": 100,
+      "sales_latest_year": 353,
+      "population": 19847,
+      "area_km2": 0.99,
+      "density": 20024,
+      "avg_price_m2": 11385,
+      "median_price_m2": 11250,
+      "prev_median_price_m2": 11442,
+      "trend_1y_percent": -1.7,
+      "volatility": 0.222,
+      "avg_opportunity_score": 45,
+      "median_income": 38050,
+      "poverty_rate": 15,
+      "avg_walk_score": 81,
+      "median_yield": 3.81,
+      "noise_exposed_pct": 13.3,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 12083,
+          "n": 101
+        },
+        {
+          "q": "2021-Q2",
+          "median": 12325,
+          "n": 101
+        },
+        {
+          "q": "2021-Q3",
+          "median": 12068,
+          "n": 129
+        },
+        {
+          "q": "2021-Q4",
+          "median": 11959,
+          "n": 123
+        },
+        {
+          "q": "2022-Q1",
+          "median": 12055,
+          "n": 108
+        },
+        {
+          "q": "2022-Q2",
+          "median": 12481,
+          "n": 126
+        },
+        {
+          "q": "2022-Q3",
+          "median": 11976,
+          "n": 119
+        },
+        {
+          "q": "2022-Q4",
+          "median": 12212,
+          "n": 108
+        },
+        {
+          "q": "2023-Q1",
+          "median": 11484,
+          "n": 103
+        },
+        {
+          "q": "2023-Q2",
+          "median": 11875,
+          "n": 101
+        },
+        {
+          "q": "2023-Q3",
+          "median": 11933,
+          "n": 75
+        },
+        {
+          "q": "2023-Q4",
+          "median": 11875,
+          "n": 67
+        },
+        {
+          "q": "2024-Q1",
+          "median": 12128,
+          "n": 71
+        },
+        {
+          "q": "2024-Q2",
+          "median": 11514,
+          "n": 94
+        },
+        {
+          "q": "2024-Q3",
+          "median": 11000,
+          "n": 69
+        },
+        {
+          "q": "2024-Q4",
+          "median": 10931,
+          "n": 72
+        },
+        {
+          "q": "2025-Q1",
+          "median": 11188,
+          "n": 89
+        },
+        {
+          "q": "2025-Q2",
+          "median": 11144,
+          "n": 77
+        },
+        {
+          "q": "2025-Q3",
+          "median": 11448,
+          "n": 96
+        },
+        {
+          "q": "2025-Q4",
+          "median": 10743,
+          "n": 91
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 42,
+        "median_annual_pct": 4.4,
+        "share_gain_pct": 69
+      }
+    },
+    {
+      "district": "75003",
+      "name": "Temple",
+      "lat": 48.862872380016924,
+      "lng": 2.360000985897692,
+      "listing_count": 148,
+      "sales_latest_year": 657,
+      "population": 32179,
+      "area_km2": 1.17,
+      "density": 27483,
+      "avg_price_m2": 12495,
+      "median_price_m2": 12107,
+      "prev_median_price_m2": 11770,
+      "trend_1y_percent": 2.9,
+      "volatility": 0.216,
+      "avg_opportunity_score": 43,
+      "median_income": 38940,
+      "poverty_rate": 14.1,
+      "avg_walk_score": 86,
+      "median_yield": 3.48,
+      "noise_exposed_pct": 13.3,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 12667,
+          "n": 118
+        },
+        {
+          "q": "2021-Q2",
+          "median": 13086,
+          "n": 160
+        },
+        {
+          "q": "2021-Q3",
+          "median": 12838,
+          "n": 147
+        },
+        {
+          "q": "2021-Q4",
+          "median": 12500,
+          "n": 130
+        },
+        {
+          "q": "2022-Q1",
+          "median": 12595,
+          "n": 170
+        },
+        {
+          "q": "2022-Q2",
+          "median": 12500,
+          "n": 170
+        },
+        {
+          "q": "2022-Q3",
+          "median": 12709,
+          "n": 196
+        },
+        {
+          "q": "2022-Q4",
+          "median": 12668,
+          "n": 168
+        },
+        {
+          "q": "2023-Q1",
+          "median": 12625,
+          "n": 141
+        },
+        {
+          "q": "2023-Q2",
+          "median": 12647,
+          "n": 155
+        },
+        {
+          "q": "2023-Q3",
+          "median": 12333,
+          "n": 141
+        },
+        {
+          "q": "2023-Q4",
+          "median": 11810,
+          "n": 137
+        },
+        {
+          "q": "2024-Q1",
+          "median": 11773,
+          "n": 117
+        },
+        {
+          "q": "2024-Q2",
+          "median": 11699,
+          "n": 136
+        },
+        {
+          "q": "2024-Q3",
+          "median": 11538,
+          "n": 119
+        },
+        {
+          "q": "2024-Q4",
+          "median": 12064,
+          "n": 134
+        },
+        {
+          "q": "2025-Q1",
+          "median": 11911,
+          "n": 180
+        },
+        {
+          "q": "2025-Q2",
+          "median": 12467,
+          "n": 147
+        },
+        {
+          "q": "2025-Q3",
+          "median": 12173,
+          "n": 182
+        },
+        {
+          "q": "2025-Q4",
+          "median": 12218,
+          "n": 148
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 82,
+        "median_annual_pct": 4.3,
+        "share_gain_pct": 71
+      }
+    },
+    {
+      "district": "75004",
+      "name": "Hôtel-de-Ville",
+      "lat": 48.85434142627288,
+      "lng": 2.357629620324997,
+      "listing_count": 116,
+      "sales_latest_year": 509,
+      "population": 27332,
+      "area_km2": 1.6,
+      "density": 17076,
+      "avg_price_m2": 13398,
+      "median_price_m2": 12920,
+      "prev_median_price_m2": 12845,
+      "trend_1y_percent": 0.6,
+      "volatility": 0.233,
+      "avg_opportunity_score": 38,
+      "median_income": 37400,
+      "poverty_rate": 14.7,
+      "avg_walk_score": 83,
+      "median_yield": 3.4,
+      "noise_exposed_pct": 13.3,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 13569,
+          "n": 72
+        },
+        {
+          "q": "2021-Q2",
+          "median": 13000,
+          "n": 125
+        },
+        {
+          "q": "2021-Q3",
+          "median": 13615,
+          "n": 112
+        },
+        {
+          "q": "2021-Q4",
+          "median": 13333,
+          "n": 103
+        },
+        {
+          "q": "2022-Q1",
+          "median": 13563,
+          "n": 119
+        },
+        {
+          "q": "2022-Q2",
+          "median": 12866,
+          "n": 133
+        },
+        {
+          "q": "2022-Q3",
+          "median": 13646,
+          "n": 140
+        },
+        {
+          "q": "2022-Q4",
+          "median": 13026,
+          "n": 121
+        },
+        {
+          "q": "2023-Q1",
+          "median": 13548,
+          "n": 124
+        },
+        {
+          "q": "2023-Q2",
+          "median": 13077,
+          "n": 106
+        },
+        {
+          "q": "2023-Q3",
+          "median": 13624,
+          "n": 112
+        },
+        {
+          "q": "2023-Q4",
+          "median": 12882,
+          "n": 100
+        },
+        {
+          "q": "2024-Q1",
+          "median": 13163,
+          "n": 90
+        },
+        {
+          "q": "2024-Q2",
+          "median": 13046,
+          "n": 106
+        },
+        {
+          "q": "2024-Q3",
+          "median": 12174,
+          "n": 104
+        },
+        {
+          "q": "2024-Q4",
+          "median": 12770,
+          "n": 104
+        },
+        {
+          "q": "2025-Q1",
+          "median": 12687,
+          "n": 149
+        },
+        {
+          "q": "2025-Q2",
+          "median": 13116,
+          "n": 119
+        },
+        {
+          "q": "2025-Q3",
+          "median": 13000,
+          "n": 125
+        },
+        {
+          "q": "2025-Q4",
+          "median": 12981,
+          "n": 116
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 57,
+        "median_annual_pct": 5.6,
+        "share_gain_pct": 74
+      }
+    },
+    {
+      "district": "75005",
+      "name": "Panthéon",
+      "lat": 48.844443150532705,
+      "lng": 2.3507146095752587,
+      "listing_count": 194,
+      "sales_latest_year": 812,
+      "population": 55252,
+      "area_km2": 2.54,
+      "density": 21758,
+      "avg_price_m2": 12879,
+      "median_price_m2": 11921,
+      "prev_median_price_m2": 11896,
+      "trend_1y_percent": 0.2,
+      "volatility": 0.227,
+      "avg_opportunity_score": 38,
+      "median_income": 40290,
+      "poverty_rate": 12.4,
+      "avg_walk_score": 77,
+      "median_yield": 3.28,
+      "noise_exposed_pct": 11.9,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 13017,
+          "n": 156
+        },
+        {
+          "q": "2021-Q2",
+          "median": 12825,
+          "n": 192
+        },
+        {
+          "q": "2021-Q3",
+          "median": 13093,
+          "n": 217
+        },
+        {
+          "q": "2021-Q4",
+          "median": 12917,
+          "n": 197
+        },
+        {
+          "q": "2022-Q1",
+          "median": 12857,
+          "n": 197
+        },
+        {
+          "q": "2022-Q2",
+          "median": 13070,
+          "n": 218
+        },
+        {
+          "q": "2022-Q3",
+          "median": 13072,
+          "n": 270
+        },
+        {
+          "q": "2022-Q4",
+          "median": 12577,
+          "n": 197
+        },
+        {
+          "q": "2023-Q1",
+          "median": 12727,
+          "n": 189
+        },
+        {
+          "q": "2023-Q2",
+          "median": 12500,
+          "n": 196
+        },
+        {
+          "q": "2023-Q3",
+          "median": 12207,
+          "n": 188
+        },
+        {
+          "q": "2023-Q4",
+          "median": 12000,
+          "n": 151
+        },
+        {
+          "q": "2024-Q1",
+          "median": 11694,
+          "n": 165
+        },
+        {
+          "q": "2024-Q2",
+          "median": 12025,
+          "n": 188
+        },
+        {
+          "q": "2024-Q3",
+          "median": 11875,
+          "n": 193
+        },
+        {
+          "q": "2024-Q4",
+          "median": 12147,
+          "n": 158
+        },
+        {
+          "q": "2025-Q1",
+          "median": 11538,
+          "n": 211
+        },
+        {
+          "q": "2025-Q2",
+          "median": 11812,
+          "n": 180
+        },
+        {
+          "q": "2025-Q3",
+          "median": 11940,
+          "n": 227
+        },
+        {
+          "q": "2025-Q4",
+          "median": 12500,
+          "n": 194
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 68,
+        "median_annual_pct": 5,
+        "share_gain_pct": 74
+      }
+    },
+    {
+      "district": "75006",
+      "name": "Luxembourg",
+      "lat": 48.84913035858523,
+      "lng": 2.3328979990533147,
+      "listing_count": 169,
+      "sales_latest_year": 688,
+      "population": 40389,
+      "area_km2": 2.15,
+      "density": 18759,
+      "avg_price_m2": 15356,
+      "median_price_m2": 14299,
+      "prev_median_price_m2": 14783,
+      "trend_1y_percent": -3.3,
+      "volatility": 0.262,
+      "avg_opportunity_score": 33,
+      "median_income": 48110,
+      "poverty_rate": 10.9,
+      "avg_walk_score": 70,
+      "median_yield": 2.96,
+      "noise_exposed_pct": 11.7,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 15300,
+          "n": 152
+        },
+        {
+          "q": "2021-Q2",
+          "median": 15091,
+          "n": 175
+        },
+        {
+          "q": "2021-Q3",
+          "median": 15459,
+          "n": 181
+        },
+        {
+          "q": "2021-Q4",
+          "median": 15152,
+          "n": 163
+        },
+        {
+          "q": "2022-Q1",
+          "median": 15320,
+          "n": 190
+        },
+        {
+          "q": "2022-Q2",
+          "median": 15447,
+          "n": 212
+        },
+        {
+          "q": "2022-Q3",
+          "median": 15000,
+          "n": 216
+        },
+        {
+          "q": "2022-Q4",
+          "median": 14815,
+          "n": 200
+        },
+        {
+          "q": "2023-Q1",
+          "median": 15856,
+          "n": 168
+        },
+        {
+          "q": "2023-Q2",
+          "median": 15648,
+          "n": 158
+        },
+        {
+          "q": "2023-Q3",
+          "median": 14884,
+          "n": 159
+        },
+        {
+          "q": "2023-Q4",
+          "median": 14963,
+          "n": 149
+        },
+        {
+          "q": "2024-Q1",
+          "median": 14854,
+          "n": 140
+        },
+        {
+          "q": "2024-Q2",
+          "median": 14966,
+          "n": 175
+        },
+        {
+          "q": "2024-Q3",
+          "median": 14842,
+          "n": 155
+        },
+        {
+          "q": "2024-Q4",
+          "median": 14423,
+          "n": 173
+        },
+        {
+          "q": "2025-Q1",
+          "median": 14224,
+          "n": 189
+        },
+        {
+          "q": "2025-Q2",
+          "median": 14001,
+          "n": 142
+        },
+        {
+          "q": "2025-Q3",
+          "median": 14433,
+          "n": 188
+        },
+        {
+          "q": "2025-Q4",
+          "median": 14324,
+          "n": 169
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 105,
+        "median_annual_pct": 8,
+        "share_gain_pct": 84
+      }
+    },
+    {
+      "district": "75007",
+      "name": "Palais-Bourbon",
+      "lat": 48.85617443127909,
+      "lng": 2.3121876953655494,
+      "listing_count": 206,
+      "sales_latest_year": 833,
+      "population": 48015,
+      "area_km2": 4.09,
+      "density": 11739,
+      "avg_price_m2": 15043,
+      "median_price_m2": 14167,
+      "prev_median_price_m2": 13866,
+      "trend_1y_percent": 2.2,
+      "volatility": 0.28,
+      "avg_opportunity_score": 38,
+      "median_income": 52840,
+      "poverty_rate": 9.2,
+      "avg_walk_score": 46,
+      "median_yield": 3.11,
+      "noise_exposed_pct": 8.3,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 14662,
+          "n": 160
+        },
+        {
+          "q": "2021-Q2",
+          "median": 14740,
+          "n": 204
+        },
+        {
+          "q": "2021-Q3",
+          "median": 15359,
+          "n": 216
+        },
+        {
+          "q": "2021-Q4",
+          "median": 14882,
+          "n": 240
+        },
+        {
+          "q": "2022-Q1",
+          "median": 14722,
+          "n": 194
+        },
+        {
+          "q": "2022-Q2",
+          "median": 15394,
+          "n": 281
+        },
+        {
+          "q": "2022-Q3",
+          "median": 15250,
+          "n": 245
+        },
+        {
+          "q": "2022-Q4",
+          "median": 14707,
+          "n": 222
+        },
+        {
+          "q": "2023-Q1",
+          "median": 15205,
+          "n": 190
+        },
+        {
+          "q": "2023-Q2",
+          "median": 14971,
+          "n": 217
+        },
+        {
+          "q": "2023-Q3",
+          "median": 14286,
+          "n": 177
+        },
+        {
+          "q": "2023-Q4",
+          "median": 14428,
+          "n": 168
+        },
+        {
+          "q": "2024-Q1",
+          "median": 13500,
+          "n": 151
+        },
+        {
+          "q": "2024-Q2",
+          "median": 13571,
+          "n": 189
+        },
+        {
+          "q": "2024-Q3",
+          "median": 14401,
+          "n": 190
+        },
+        {
+          "q": "2024-Q4",
+          "median": 13898,
+          "n": 164
+        },
+        {
+          "q": "2025-Q1",
+          "median": 14394,
+          "n": 237
+        },
+        {
+          "q": "2025-Q2",
+          "median": 14209,
+          "n": 180
+        },
+        {
+          "q": "2025-Q3",
+          "median": 14030,
+          "n": 210
+        },
+        {
+          "q": "2025-Q4",
+          "median": 14097,
+          "n": 206
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 133,
+        "median_annual_pct": 11.1,
+        "share_gain_pct": 89
+      }
+    },
+    {
+      "district": "75008",
+      "name": "Élysée",
+      "lat": 48.872720837434464,
+      "lng": 2.312554022402065,
+      "listing_count": 154,
+      "sales_latest_year": 575,
+      "population": 35317,
+      "area_km2": 3.88,
+      "density": 9102,
+      "avg_price_m2": 13014,
+      "median_price_m2": 12164,
+      "prev_median_price_m2": 12241,
+      "trend_1y_percent": -0.6,
+      "volatility": 0.277,
+      "avg_opportunity_score": 40,
+      "median_income": 51690,
+      "poverty_rate": 10.4,
+      "avg_walk_score": 54,
+      "median_yield": 3.43,
+      "noise_exposed_pct": 27.2,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 12941,
+          "n": 120
+        },
+        {
+          "q": "2021-Q2",
+          "median": 13000,
+          "n": 149
+        },
+        {
+          "q": "2021-Q3",
+          "median": 12751,
+          "n": 151
+        },
+        {
+          "q": "2021-Q4",
+          "median": 13261,
+          "n": 147
+        },
+        {
+          "q": "2022-Q1",
+          "median": 12813,
+          "n": 144
+        },
+        {
+          "q": "2022-Q2",
+          "median": 13176,
+          "n": 165
+        },
+        {
+          "q": "2022-Q3",
+          "median": 12940,
+          "n": 200
+        },
+        {
+          "q": "2022-Q4",
+          "median": 12828,
+          "n": 146
+        },
+        {
+          "q": "2023-Q1",
+          "median": 12598,
+          "n": 112
+        },
+        {
+          "q": "2023-Q2",
+          "median": 13287,
+          "n": 138
+        },
+        {
+          "q": "2023-Q3",
+          "median": 12555,
+          "n": 106
+        },
+        {
+          "q": "2023-Q4",
+          "median": 12953,
+          "n": 124
+        },
+        {
+          "q": "2024-Q1",
+          "median": 12318,
+          "n": 121
+        },
+        {
+          "q": "2024-Q2",
+          "median": 12138,
+          "n": 152
+        },
+        {
+          "q": "2024-Q3",
+          "median": 11976,
+          "n": 126
+        },
+        {
+          "q": "2024-Q4",
+          "median": 12400,
+          "n": 130
+        },
+        {
+          "q": "2025-Q1",
+          "median": 12153,
+          "n": 148
+        },
+        {
+          "q": "2025-Q2",
+          "median": 12060,
+          "n": 122
+        },
+        {
+          "q": "2025-Q3",
+          "median": 12381,
+          "n": 151
+        },
+        {
+          "q": "2025-Q4",
+          "median": 12085,
+          "n": 154
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 77,
+        "median_annual_pct": 8.4,
+        "share_gain_pct": 83
+      }
+    },
+    {
+      "district": "75009",
+      "name": "Opéra",
+      "lat": 48.87716351732887,
+      "lng": 2.3374575434825444,
+      "listing_count": 246,
+      "sales_latest_year": 1027,
+      "population": 57271,
+      "area_km2": 2.18,
+      "density": 26292,
+      "avg_price_m2": 11088,
+      "median_price_m2": 11000,
+      "prev_median_price_m2": 10661,
+      "trend_1y_percent": 3.2,
+      "volatility": 0.204,
+      "avg_opportunity_score": 44,
+      "median_income": 43120,
+      "poverty_rate": 11.4,
+      "avg_walk_score": 80,
+      "median_yield": 3.44,
+      "noise_exposed_pct": 16.5,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 12248,
+          "n": 226
+        },
+        {
+          "q": "2021-Q2",
+          "median": 11688,
+          "n": 301
+        },
+        {
+          "q": "2021-Q3",
+          "median": 12083,
+          "n": 322
+        },
+        {
+          "q": "2021-Q4",
+          "median": 11677,
+          "n": 277
+        },
+        {
+          "q": "2022-Q1",
+          "median": 11905,
+          "n": 295
+        },
+        {
+          "q": "2022-Q2",
+          "median": 11747,
+          "n": 332
+        },
+        {
+          "q": "2022-Q3",
+          "median": 11880,
+          "n": 313
+        },
+        {
+          "q": "2022-Q4",
+          "median": 11650,
+          "n": 281
+        },
+        {
+          "q": "2023-Q1",
+          "median": 11667,
+          "n": 261
+        },
+        {
+          "q": "2023-Q2",
+          "median": 11360,
+          "n": 224
+        },
+        {
+          "q": "2023-Q3",
+          "median": 11262,
+          "n": 225
+        },
+        {
+          "q": "2023-Q4",
+          "median": 11441,
+          "n": 219
+        },
+        {
+          "q": "2024-Q1",
+          "median": 10502,
+          "n": 195
+        },
+        {
+          "q": "2024-Q2",
+          "median": 10689,
+          "n": 234
+        },
+        {
+          "q": "2024-Q3",
+          "median": 10785,
+          "n": 225
+        },
+        {
+          "q": "2024-Q4",
+          "median": 10714,
+          "n": 211
+        },
+        {
+          "q": "2025-Q1",
+          "median": 10815,
+          "n": 254
+        },
+        {
+          "q": "2025-Q2",
+          "median": 10674,
+          "n": 242
+        },
+        {
+          "q": "2025-Q3",
+          "median": 11385,
+          "n": 285
+        },
+        {
+          "q": "2025-Q4",
+          "median": 10926,
+          "n": 246
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 122,
+        "median_annual_pct": 3.1,
+        "share_gain_pct": 69
+      }
+    },
+    {
+      "district": "75010",
+      "name": "Entrepôt",
+      "lat": 48.87613003653913,
+      "lng": 2.360728487847452,
+      "listing_count": 323,
+      "sales_latest_year": 1325,
+      "population": 83873,
+      "area_km2": 2.89,
+      "density": 29004,
+      "avg_price_m2": 9573,
+      "median_price_m2": 9439,
+      "prev_median_price_m2": 9333,
+      "trend_1y_percent": 1.1,
+      "volatility": 0.213,
+      "avg_opportunity_score": 47,
+      "median_income": 32810,
+      "poverty_rate": 18.4,
+      "avg_walk_score": 81,
+      "median_yield": 4.05,
+      "noise_exposed_pct": 20.6,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 11000,
+          "n": 327
+        },
+        {
+          "q": "2021-Q2",
+          "median": 10617,
+          "n": 402
+        },
+        {
+          "q": "2021-Q3",
+          "median": 10985,
+          "n": 442
+        },
+        {
+          "q": "2021-Q4",
+          "median": 10473,
+          "n": 406
+        },
+        {
+          "q": "2022-Q1",
+          "median": 10645,
+          "n": 395
+        },
+        {
+          "q": "2022-Q2",
+          "median": 10670,
+          "n": 447
+        },
+        {
+          "q": "2022-Q3",
+          "median": 10578,
+          "n": 450
+        },
+        {
+          "q": "2022-Q4",
+          "median": 10417,
+          "n": 368
+        },
+        {
+          "q": "2023-Q1",
+          "median": 10116,
+          "n": 349
+        },
+        {
+          "q": "2023-Q2",
+          "median": 9980,
+          "n": 397
+        },
+        {
+          "q": "2023-Q3",
+          "median": 10000,
+          "n": 334
+        },
+        {
+          "q": "2023-Q4",
+          "median": 10000,
+          "n": 287
+        },
+        {
+          "q": "2024-Q1",
+          "median": 9255,
+          "n": 244
+        },
+        {
+          "q": "2024-Q2",
+          "median": 9141,
+          "n": 325
+        },
+        {
+          "q": "2024-Q3",
+          "median": 9571,
+          "n": 301
+        },
+        {
+          "q": "2024-Q4",
+          "median": 9353,
+          "n": 284
+        },
+        {
+          "q": "2025-Q1",
+          "median": 9362,
+          "n": 348
+        },
+        {
+          "q": "2025-Q2",
+          "median": 9343,
+          "n": 284
+        },
+        {
+          "q": "2025-Q3",
+          "median": 9568,
+          "n": 370
+        },
+        {
+          "q": "2025-Q4",
+          "median": 9400,
+          "n": 323
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 129,
+        "median_annual_pct": 2.3,
+        "share_gain_pct": 64
+      }
+    },
+    {
+      "district": "75011",
+      "name": "Popincourt",
+      "lat": 48.859059221342484,
+      "lng": 2.380058308197898,
+      "listing_count": 516,
+      "sales_latest_year": 2248,
+      "population": 138170,
+      "area_km2": 3.67,
+      "density": 37695,
+      "avg_price_m2": 10247,
+      "median_price_m2": 10000,
+      "prev_median_price_m2": 9868,
+      "trend_1y_percent": 1.3,
+      "volatility": 0.184,
+      "avg_opportunity_score": 44,
+      "median_income": 34270,
+      "poverty_rate": 15.6,
+      "avg_walk_score": 83,
+      "median_yield": 3.66,
+      "noise_exposed_pct": 10.2,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 11217,
+          "n": 521
+        },
+        {
+          "q": "2021-Q2",
+          "median": 11027,
+          "n": 637
+        },
+        {
+          "q": "2021-Q3",
+          "median": 11269,
+          "n": 656
+        },
+        {
+          "q": "2021-Q4",
+          "median": 10953,
+          "n": 662
+        },
+        {
+          "q": "2022-Q1",
+          "median": 11000,
+          "n": 610
+        },
+        {
+          "q": "2022-Q2",
+          "median": 10864,
+          "n": 680
+        },
+        {
+          "q": "2022-Q3",
+          "median": 11106,
+          "n": 731
+        },
+        {
+          "q": "2022-Q4",
+          "median": 10833,
+          "n": 579
+        },
+        {
+          "q": "2023-Q1",
+          "median": 10537,
+          "n": 573
+        },
+        {
+          "q": "2023-Q2",
+          "median": 10457,
+          "n": 559
+        },
+        {
+          "q": "2023-Q3",
+          "median": 10311,
+          "n": 580
+        },
+        {
+          "q": "2023-Q4",
+          "median": 10227,
+          "n": 456
+        },
+        {
+          "q": "2024-Q1",
+          "median": 9866,
+          "n": 449
+        },
+        {
+          "q": "2024-Q2",
+          "median": 9800,
+          "n": 513
+        },
+        {
+          "q": "2024-Q3",
+          "median": 9913,
+          "n": 513
+        },
+        {
+          "q": "2024-Q4",
+          "median": 9952,
+          "n": 493
+        },
+        {
+          "q": "2025-Q1",
+          "median": 9923,
+          "n": 586
+        },
+        {
+          "q": "2025-Q2",
+          "median": 10000,
+          "n": 522
+        },
+        {
+          "q": "2025-Q3",
+          "median": 10094,
+          "n": 624
+        },
+        {
+          "q": "2025-Q4",
+          "median": 10000,
+          "n": 516
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 194,
+        "median_annual_pct": 2.8,
+        "share_gain_pct": 69
+      }
+    },
+    {
+      "district": "75012",
+      "name": "Reuilly",
+      "lat": 48.834974154202456,
+      "lng": 2.4213235156144646,
+      "listing_count": 330,
+      "sales_latest_year": 1523,
+      "population": 138024,
+      "area_km2": 16.31,
+      "density": 8460,
+      "avg_price_m2": 9385,
+      "median_price_m2": 9087,
+      "prev_median_price_m2": 8897,
+      "trend_1y_percent": 2.1,
+      "volatility": 0.19,
+      "avg_opportunity_score": 44,
+      "median_income": 33680,
+      "poverty_rate": 15.3,
+      "avg_walk_score": 58,
+      "median_yield": 3.8,
+      "noise_exposed_pct": 7.8,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 10364,
+          "n": 347
+        },
+        {
+          "q": "2021-Q2",
+          "median": 10294,
+          "n": 403
+        },
+        {
+          "q": "2021-Q3",
+          "median": 10464,
+          "n": 478
+        },
+        {
+          "q": "2021-Q4",
+          "median": 10320,
+          "n": 385
+        },
+        {
+          "q": "2022-Q1",
+          "median": 10231,
+          "n": 441
+        },
+        {
+          "q": "2022-Q2",
+          "median": 10196,
+          "n": 508
+        },
+        {
+          "q": "2022-Q3",
+          "median": 10132,
+          "n": 510
+        },
+        {
+          "q": "2022-Q4",
+          "median": 10000,
+          "n": 376
+        },
+        {
+          "q": "2023-Q1",
+          "median": 9796,
+          "n": 429
+        },
+        {
+          "q": "2023-Q2",
+          "median": 9423,
+          "n": 411
+        },
+        {
+          "q": "2023-Q3",
+          "median": 9636,
+          "n": 382
+        },
+        {
+          "q": "2023-Q4",
+          "median": 9198,
+          "n": 331
+        },
+        {
+          "q": "2024-Q1",
+          "median": 9013,
+          "n": 300
+        },
+        {
+          "q": "2024-Q2",
+          "median": 8859,
+          "n": 346
+        },
+        {
+          "q": "2024-Q3",
+          "median": 8813,
+          "n": 355
+        },
+        {
+          "q": "2024-Q4",
+          "median": 8998,
+          "n": 323
+        },
+        {
+          "q": "2025-Q1",
+          "median": 8921,
+          "n": 410
+        },
+        {
+          "q": "2025-Q2",
+          "median": 9028,
+          "n": 365
+        },
+        {
+          "q": "2025-Q3",
+          "median": 9286,
+          "n": 418
+        },
+        {
+          "q": "2025-Q4",
+          "median": 9208,
+          "n": 330
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 129,
+        "median_annual_pct": 2.1,
+        "share_gain_pct": 64
+      }
+    },
+    {
+      "district": "75013",
+      "name": "Gobelins",
+      "lat": 48.82838796597577,
+      "lng": 2.3622703608413,
+      "listing_count": 369,
+      "sales_latest_year": 1370,
+      "population": 181271,
+      "area_km2": 7.15,
+      "density": 25355,
+      "avg_price_m2": 8857,
+      "median_price_m2": 8745,
+      "prev_median_price_m2": 8684,
+      "trend_1y_percent": 0.7,
+      "volatility": 0.209,
+      "avg_opportunity_score": 47,
+      "median_income": 28570,
+      "poverty_rate": 19.5,
+      "avg_walk_score": 62,
+      "median_yield": 4.07,
+      "noise_exposed_pct": 6.8,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 9682,
+          "n": 302
+        },
+        {
+          "q": "2021-Q2",
+          "median": 9840,
+          "n": 363
+        },
+        {
+          "q": "2021-Q3",
+          "median": 10116,
+          "n": 405
+        },
+        {
+          "q": "2021-Q4",
+          "median": 9813,
+          "n": 374
+        },
+        {
+          "q": "2022-Q1",
+          "median": 9755,
+          "n": 359
+        },
+        {
+          "q": "2022-Q2",
+          "median": 9708,
+          "n": 376
+        },
+        {
+          "q": "2022-Q3",
+          "median": 10000,
+          "n": 423
+        },
+        {
+          "q": "2022-Q4",
+          "median": 9697,
+          "n": 367
+        },
+        {
+          "q": "2023-Q1",
+          "median": 9372,
+          "n": 301
+        },
+        {
+          "q": "2023-Q2",
+          "median": 9135,
+          "n": 362
+        },
+        {
+          "q": "2023-Q3",
+          "median": 9218,
+          "n": 338
+        },
+        {
+          "q": "2023-Q4",
+          "median": 8753,
+          "n": 288
+        },
+        {
+          "q": "2024-Q1",
+          "median": 8659,
+          "n": 295
+        },
+        {
+          "q": "2024-Q2",
+          "median": 8452,
+          "n": 321
+        },
+        {
+          "q": "2024-Q3",
+          "median": 8788,
+          "n": 336
+        },
+        {
+          "q": "2024-Q4",
+          "median": 8829,
+          "n": 294
+        },
+        {
+          "q": "2025-Q1",
+          "median": 8647,
+          "n": 335
+        },
+        {
+          "q": "2025-Q2",
+          "median": 8676,
+          "n": 314
+        },
+        {
+          "q": "2025-Q3",
+          "median": 8866,
+          "n": 352
+        },
+        {
+          "q": "2025-Q4",
+          "median": 8684,
+          "n": 369
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 111,
+        "median_annual_pct": 1.8,
+        "share_gain_pct": 64
+      }
+    },
+    {
+      "district": "75014",
+      "name": "Observatoire",
+      "lat": 48.82924450048987,
+      "lng": 2.3265420441989466,
+      "listing_count": 310,
+      "sales_latest_year": 1432,
+      "population": 136455,
+      "area_km2": 5.61,
+      "density": 24302,
+      "avg_price_m2": 9735,
+      "median_price_m2": 9524,
+      "prev_median_price_m2": 9334,
+      "trend_1y_percent": 2,
+      "volatility": 0.203,
+      "avg_opportunity_score": 44,
+      "median_income": 33090,
+      "poverty_rate": 15.8,
+      "avg_walk_score": 60,
+      "median_yield": 3.96,
+      "noise_exposed_pct": 8.8,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 10630,
+          "n": 326
+        },
+        {
+          "q": "2021-Q2",
+          "median": 10882,
+          "n": 375
+        },
+        {
+          "q": "2021-Q3",
+          "median": 10610,
+          "n": 448
+        },
+        {
+          "q": "2021-Q4",
+          "median": 10760,
+          "n": 336
+        },
+        {
+          "q": "2022-Q1",
+          "median": 10716,
+          "n": 352
+        },
+        {
+          "q": "2022-Q2",
+          "median": 10543,
+          "n": 447
+        },
+        {
+          "q": "2022-Q3",
+          "median": 10417,
+          "n": 454
+        },
+        {
+          "q": "2022-Q4",
+          "median": 10400,
+          "n": 357
+        },
+        {
+          "q": "2023-Q1",
+          "median": 10146,
+          "n": 360
+        },
+        {
+          "q": "2023-Q2",
+          "median": 10000,
+          "n": 368
+        },
+        {
+          "q": "2023-Q3",
+          "median": 9940,
+          "n": 369
+        },
+        {
+          "q": "2023-Q4",
+          "median": 9757,
+          "n": 284
+        },
+        {
+          "q": "2024-Q1",
+          "median": 9428,
+          "n": 282
+        },
+        {
+          "q": "2024-Q2",
+          "median": 9366,
+          "n": 357
+        },
+        {
+          "q": "2024-Q3",
+          "median": 9363,
+          "n": 333
+        },
+        {
+          "q": "2024-Q4",
+          "median": 9182,
+          "n": 292
+        },
+        {
+          "q": "2025-Q1",
+          "median": 9389,
+          "n": 408
+        },
+        {
+          "q": "2025-Q2",
+          "median": 9476,
+          "n": 318
+        },
+        {
+          "q": "2025-Q3",
+          "median": 9602,
+          "n": 396
+        },
+        {
+          "q": "2025-Q4",
+          "median": 9609,
+          "n": 310
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 94,
+        "median_annual_pct": 4.4,
+        "share_gain_pct": 68
+      }
+    },
+    {
+      "district": "75015",
+      "name": "Vaugirard",
+      "lat": 48.840085375938216,
+      "lng": 2.2928258224249976,
+      "listing_count": 682,
+      "sales_latest_year": 2923,
+      "population": 229713,
+      "area_km2": 8.49,
+      "density": 27041,
+      "avg_price_m2": 9750,
+      "median_price_m2": 9555,
+      "prev_median_price_m2": 9489,
+      "trend_1y_percent": 0.7,
+      "volatility": 0.198,
+      "avg_opportunity_score": 45,
+      "median_income": 37160,
+      "poverty_rate": 13.8,
+      "avg_walk_score": 58,
+      "median_yield": 3.91,
+      "noise_exposed_pct": 8.8,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 10857,
+          "n": 689
+        },
+        {
+          "q": "2021-Q2",
+          "median": 10808,
+          "n": 871
+        },
+        {
+          "q": "2021-Q3",
+          "median": 10843,
+          "n": 926
+        },
+        {
+          "q": "2021-Q4",
+          "median": 10625,
+          "n": 764
+        },
+        {
+          "q": "2022-Q1",
+          "median": 10524,
+          "n": 753
+        },
+        {
+          "q": "2022-Q2",
+          "median": 10632,
+          "n": 882
+        },
+        {
+          "q": "2022-Q3",
+          "median": 10682,
+          "n": 939
+        },
+        {
+          "q": "2022-Q4",
+          "median": 10582,
+          "n": 806
+        },
+        {
+          "q": "2023-Q1",
+          "median": 10184,
+          "n": 691
+        },
+        {
+          "q": "2023-Q2",
+          "median": 10061,
+          "n": 760
+        },
+        {
+          "q": "2023-Q3",
+          "median": 10000,
+          "n": 725
+        },
+        {
+          "q": "2023-Q4",
+          "median": 9852,
+          "n": 608
+        },
+        {
+          "q": "2024-Q1",
+          "median": 9672,
+          "n": 609
+        },
+        {
+          "q": "2024-Q2",
+          "median": 9468,
+          "n": 672
+        },
+        {
+          "q": "2024-Q3",
+          "median": 9478,
+          "n": 666
+        },
+        {
+          "q": "2024-Q4",
+          "median": 9449,
+          "n": 606
+        },
+        {
+          "q": "2025-Q1",
+          "median": 9447,
+          "n": 769
+        },
+        {
+          "q": "2025-Q2",
+          "median": 9524,
+          "n": 661
+        },
+        {
+          "q": "2025-Q3",
+          "median": 9584,
+          "n": 811
+        },
+        {
+          "q": "2025-Q4",
+          "median": 9612,
+          "n": 682
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 267,
+        "median_annual_pct": 2.3,
+        "share_gain_pct": 65
+      }
+    },
+    {
+      "district": "75016",
+      "name": "Passy",
+      "lat": 48.860392105415826,
+      "lng": 2.261970788364543,
+      "listing_count": 513,
+      "sales_latest_year": 2217,
+      "population": 159386,
+      "area_km2": 16.37,
+      "density": 9735,
+      "avg_price_m2": 11529,
+      "median_price_m2": 11036,
+      "prev_median_price_m2": 10878,
+      "trend_1y_percent": 1.5,
+      "volatility": 0.244,
+      "avg_opportunity_score": 46,
+      "median_income": 49030,
+      "poverty_rate": 11.2,
+      "avg_walk_score": 41,
+      "median_yield": 3.51,
+      "noise_exposed_pct": 11.7,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 11665,
+          "n": 560
+        },
+        {
+          "q": "2021-Q2",
+          "median": 11667,
+          "n": 640
+        },
+        {
+          "q": "2021-Q3",
+          "median": 11877,
+          "n": 660
+        },
+        {
+          "q": "2021-Q4",
+          "median": 11716,
+          "n": 618
+        },
+        {
+          "q": "2022-Q1",
+          "median": 11765,
+          "n": 626
+        },
+        {
+          "q": "2022-Q2",
+          "median": 11899,
+          "n": 738
+        },
+        {
+          "q": "2022-Q3",
+          "median": 12130,
+          "n": 677
+        },
+        {
+          "q": "2022-Q4",
+          "median": 11864,
+          "n": 566
+        },
+        {
+          "q": "2023-Q1",
+          "median": 11567,
+          "n": 582
+        },
+        {
+          "q": "2023-Q2",
+          "median": 11546,
+          "n": 551
+        },
+        {
+          "q": "2023-Q3",
+          "median": 11462,
+          "n": 514
+        },
+        {
+          "q": "2023-Q4",
+          "median": 11374,
+          "n": 438
+        },
+        {
+          "q": "2024-Q1",
+          "median": 10908,
+          "n": 423
+        },
+        {
+          "q": "2024-Q2",
+          "median": 11064,
+          "n": 476
+        },
+        {
+          "q": "2024-Q3",
+          "median": 10725,
+          "n": 488
+        },
+        {
+          "q": "2024-Q4",
+          "median": 10717,
+          "n": 440
+        },
+        {
+          "q": "2025-Q1",
+          "median": 11147,
+          "n": 622
+        },
+        {
+          "q": "2025-Q2",
+          "median": 10884,
+          "n": 465
+        },
+        {
+          "q": "2025-Q3",
+          "median": 11128,
+          "n": 617
+        },
+        {
+          "q": "2025-Q4",
+          "median": 11000,
+          "n": 513
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 277,
+        "median_annual_pct": 5,
+        "share_gain_pct": 79
+      }
+    },
+    {
+      "district": "75017",
+      "name": "Batignolles-Monceau",
+      "lat": 48.887326522025816,
+      "lng": 2.3067769905744084,
+      "listing_count": 586,
+      "sales_latest_year": 2317,
+      "population": 159212,
+      "area_km2": 5.67,
+      "density": 28085,
+      "avg_price_m2": 10520,
+      "median_price_m2": 10220,
+      "prev_median_price_m2": 10138,
+      "trend_1y_percent": 0.8,
+      "volatility": 0.206,
+      "avg_opportunity_score": 43,
+      "median_income": 37840,
+      "poverty_rate": 15.6,
+      "avg_walk_score": 61,
+      "median_yield": 3.76,
+      "noise_exposed_pct": 11.2,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 11514,
+          "n": 558
+        },
+        {
+          "q": "2021-Q2",
+          "median": 11281,
+          "n": 654
+        },
+        {
+          "q": "2021-Q3",
+          "median": 11464,
+          "n": 727
+        },
+        {
+          "q": "2021-Q4",
+          "median": 11467,
+          "n": 631
+        },
+        {
+          "q": "2022-Q1",
+          "median": 11404,
+          "n": 630
+        },
+        {
+          "q": "2022-Q2",
+          "median": 11314,
+          "n": 770
+        },
+        {
+          "q": "2022-Q3",
+          "median": 11491,
+          "n": 758
+        },
+        {
+          "q": "2022-Q4",
+          "median": 11111,
+          "n": 658
+        },
+        {
+          "q": "2023-Q1",
+          "median": 10899,
+          "n": 615
+        },
+        {
+          "q": "2023-Q2",
+          "median": 10854,
+          "n": 624
+        },
+        {
+          "q": "2023-Q3",
+          "median": 10926,
+          "n": 498
+        },
+        {
+          "q": "2023-Q4",
+          "median": 10435,
+          "n": 467
+        },
+        {
+          "q": "2024-Q1",
+          "median": 10000,
+          "n": 436
+        },
+        {
+          "q": "2024-Q2",
+          "median": 10126,
+          "n": 556
+        },
+        {
+          "q": "2024-Q3",
+          "median": 10394,
+          "n": 551
+        },
+        {
+          "q": "2024-Q4",
+          "median": 10097,
+          "n": 479
+        },
+        {
+          "q": "2025-Q1",
+          "median": 10086,
+          "n": 603
+        },
+        {
+          "q": "2025-Q2",
+          "median": 10183,
+          "n": 474
+        },
+        {
+          "q": "2025-Q3",
+          "median": 10360,
+          "n": 654
+        },
+        {
+          "q": "2025-Q4",
+          "median": 10259,
+          "n": 586
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 259,
+        "median_annual_pct": 3,
+        "share_gain_pct": 70
+      }
+    },
+    {
+      "district": "75018",
+      "name": "Buttes-Montmartre",
+      "lat": 48.89256926800578,
+      "lng": 2.3481605195620396,
+      "listing_count": 692,
+      "sales_latest_year": 2794,
+      "population": 183127,
+      "area_km2": 6,
+      "density": 30541,
+      "avg_price_m2": 9288,
+      "median_price_m2": 8998,
+      "prev_median_price_m2": 8750,
+      "trend_1y_percent": 2.8,
+      "volatility": 0.232,
+      "avg_opportunity_score": 47,
+      "median_income": 27800,
+      "poverty_rate": 22.9,
+      "avg_walk_score": 73,
+      "median_yield": 3.98,
+      "noise_exposed_pct": 12.4,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 10344,
+          "n": 708
+        },
+        {
+          "q": "2021-Q2",
+          "median": 10505,
+          "n": 821
+        },
+        {
+          "q": "2021-Q3",
+          "median": 10483,
+          "n": 828
+        },
+        {
+          "q": "2021-Q4",
+          "median": 10076,
+          "n": 732
+        },
+        {
+          "q": "2022-Q1",
+          "median": 10049,
+          "n": 781
+        },
+        {
+          "q": "2022-Q2",
+          "median": 10145,
+          "n": 923
+        },
+        {
+          "q": "2022-Q3",
+          "median": 10042,
+          "n": 948
+        },
+        {
+          "q": "2022-Q4",
+          "median": 10000,
+          "n": 723
+        },
+        {
+          "q": "2023-Q1",
+          "median": 9753,
+          "n": 756
+        },
+        {
+          "q": "2023-Q2",
+          "median": 9270,
+          "n": 677
+        },
+        {
+          "q": "2023-Q3",
+          "median": 9513,
+          "n": 705
+        },
+        {
+          "q": "2023-Q4",
+          "median": 9119,
+          "n": 522
+        },
+        {
+          "q": "2024-Q1",
+          "median": 8610,
+          "n": 545
+        },
+        {
+          "q": "2024-Q2",
+          "median": 8788,
+          "n": 619
+        },
+        {
+          "q": "2024-Q3",
+          "median": 8972,
+          "n": 561
+        },
+        {
+          "q": "2024-Q4",
+          "median": 8692,
+          "n": 560
+        },
+        {
+          "q": "2025-Q1",
+          "median": 8913,
+          "n": 731
+        },
+        {
+          "q": "2025-Q2",
+          "median": 8844,
+          "n": 630
+        },
+        {
+          "q": "2025-Q3",
+          "median": 9118,
+          "n": 741
+        },
+        {
+          "q": "2025-Q4",
+          "median": 9060,
+          "n": 692
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 268,
+        "median_annual_pct": 2.3,
+        "share_gain_pct": 64
+      }
+    },
+    {
+      "district": "75019",
+      "name": "Buttes-Chaumont",
+      "lat": 48.887075996572584,
+      "lng": 2.384820960152517,
+      "listing_count": 350,
+      "sales_latest_year": 1426,
+      "population": 178691,
+      "area_km2": 6.79,
+      "density": 26307,
+      "avg_price_m2": 8372,
+      "median_price_m2": 8124,
+      "prev_median_price_m2": 7917,
+      "trend_1y_percent": 2.6,
+      "volatility": 0.206,
+      "avg_opportunity_score": 45,
+      "median_income": 25420,
+      "poverty_rate": 23.7,
+      "avg_walk_score": 64,
+      "median_yield": 3.94,
+      "noise_exposed_pct": 7.5,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 9381,
+          "n": 380
+        },
+        {
+          "q": "2021-Q2",
+          "median": 9415,
+          "n": 416
+        },
+        {
+          "q": "2021-Q3",
+          "median": 9535,
+          "n": 481
+        },
+        {
+          "q": "2021-Q4",
+          "median": 9330,
+          "n": 410
+        },
+        {
+          "q": "2022-Q1",
+          "median": 9224,
+          "n": 414
+        },
+        {
+          "q": "2022-Q2",
+          "median": 9011,
+          "n": 450
+        },
+        {
+          "q": "2022-Q3",
+          "median": 9374,
+          "n": 484
+        },
+        {
+          "q": "2022-Q4",
+          "median": 9118,
+          "n": 383
+        },
+        {
+          "q": "2023-Q1",
+          "median": 8889,
+          "n": 343
+        },
+        {
+          "q": "2023-Q2",
+          "median": 8747,
+          "n": 386
+        },
+        {
+          "q": "2023-Q3",
+          "median": 8829,
+          "n": 352
+        },
+        {
+          "q": "2023-Q4",
+          "median": 8413,
+          "n": 311
+        },
+        {
+          "q": "2024-Q1",
+          "median": 7820,
+          "n": 285
+        },
+        {
+          "q": "2024-Q2",
+          "median": 7776,
+          "n": 330
+        },
+        {
+          "q": "2024-Q3",
+          "median": 7849,
+          "n": 323
+        },
+        {
+          "q": "2024-Q4",
+          "median": 8195,
+          "n": 322
+        },
+        {
+          "q": "2025-Q1",
+          "median": 8056,
+          "n": 351
+        },
+        {
+          "q": "2025-Q2",
+          "median": 7917,
+          "n": 333
+        },
+        {
+          "q": "2025-Q3",
+          "median": 8260,
+          "n": 392
+        },
+        {
+          "q": "2025-Q4",
+          "median": 8225,
+          "n": 350
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 128,
+        "median_annual_pct": 2.2,
+        "share_gain_pct": 63
+      }
+    },
+    {
+      "district": "75020",
+      "name": "Ménilmontant",
+      "lat": 48.86346057889562,
+      "lng": 2.4011881292846864,
+      "listing_count": 468,
+      "sales_latest_year": 1867,
+      "population": 185140,
+      "area_km2": 5.98,
+      "density": 30942,
+      "avg_price_m2": 8579,
+      "median_price_m2": 8433,
+      "prev_median_price_m2": 8269,
+      "trend_1y_percent": 2,
+      "volatility": 0.186,
+      "avg_opportunity_score": 44,
+      "median_income": 26680,
+      "poverty_rate": 21.7,
+      "avg_walk_score": 63,
+      "median_yield": 3.87,
+      "noise_exposed_pct": 11.8,
+      "index": [
+        {
+          "q": "2021-Q1",
+          "median": 9756,
+          "n": 421
+        },
+        {
+          "q": "2021-Q2",
+          "median": 9623,
+          "n": 514
+        },
+        {
+          "q": "2021-Q3",
+          "median": 9827,
+          "n": 542
+        },
+        {
+          "q": "2021-Q4",
+          "median": 9571,
+          "n": 439
+        },
+        {
+          "q": "2022-Q1",
+          "median": 9429,
+          "n": 545
+        },
+        {
+          "q": "2022-Q2",
+          "median": 9486,
+          "n": 561
+        },
+        {
+          "q": "2022-Q3",
+          "median": 9436,
+          "n": 634
+        },
+        {
+          "q": "2022-Q4",
+          "median": 9250,
+          "n": 457
+        },
+        {
+          "q": "2023-Q1",
+          "median": 9156,
+          "n": 461
+        },
+        {
+          "q": "2023-Q2",
+          "median": 8824,
+          "n": 429
+        },
+        {
+          "q": "2023-Q3",
+          "median": 8937,
+          "n": 488
+        },
+        {
+          "q": "2023-Q4",
+          "median": 8377,
+          "n": 346
+        },
+        {
+          "q": "2024-Q1",
+          "median": 8288,
+          "n": 354
+        },
+        {
+          "q": "2024-Q2",
+          "median": 8201,
+          "n": 407
+        },
+        {
+          "q": "2024-Q3",
+          "median": 8394,
+          "n": 448
+        },
+        {
+          "q": "2024-Q4",
+          "median": 8200,
+          "n": 417
+        },
+        {
+          "q": "2025-Q1",
+          "median": 8417,
+          "n": 513
+        },
+        {
+          "q": "2025-Q2",
+          "median": 8201,
+          "n": 390
+        },
+        {
+          "q": "2025-Q3",
+          "median": 8564,
+          "n": 496
+        },
+        {
+          "q": "2025-Q4",
+          "median": 8500,
+          "n": 468
+        }
+      ],
+      "repeat_sales": {
+        "pairs": 143,
+        "median_annual_pct": 1.4,
+        "share_gain_pct": 56
+      }
+    }
+  ],
+  "quartiers": [
+    {
+      "id": "1",
+      "name": "St-Germain-l'Auxerrois",
+      "district": "75001",
+      "lat": 48.85845,
+      "lng": 2.34471,
+      "median_price_m2": 12924,
+      "prev_median_price_m2": 12615,
+      "trend_pct": 2.5,
+      "sales_12m": 14,
+      "rent_ref_m2": 30.7
+    },
+    {
+      "id": "2",
+      "name": "Halles",
+      "district": "75001",
+      "lat": 48.86221,
+      "lng": 2.34464,
+      "median_price_m2": 11689,
+      "prev_median_price_m2": 12187,
+      "trend_pct": -4.1,
+      "sales_12m": 132,
+      "rent_ref_m2": 27.7
+    },
+    {
+      "id": "3",
+      "name": "Palais-Royal",
+      "district": "75001",
+      "lat": 48.86536,
+      "lng": 2.33551,
+      "median_price_m2": 12917,
+      "prev_median_price_m2": 13333,
+      "trend_pct": -3.1,
+      "sales_12m": 47,
+      "rent_ref_m2": 30.7
+    },
+    {
+      "id": "4",
+      "name": "Place-Vendôme",
+      "district": "75001",
+      "lat": 48.86606,
+      "lng": 2.33019,
+      "median_price_m2": 14666,
+      "prev_median_price_m2": 13646,
+      "trend_pct": 7.5,
+      "sales_12m": 44,
+      "rent_ref_m2": 30.7
+    },
+    {
+      "id": "5",
+      "name": "Gaillon",
+      "district": "75002",
+      "lat": 48.86902,
+      "lng": 2.3342,
+      "median_price_m2": 12468,
+      "prev_median_price_m2": 12841,
+      "trend_pct": -2.9,
+      "sales_12m": 28,
+      "rent_ref_m2": 30.7
+    },
+    {
+      "id": "6",
+      "name": "Vivienne",
+      "district": "75002",
+      "lat": 48.86977,
+      "lng": 2.33978,
+      "median_price_m2": 11795,
+      "prev_median_price_m2": 11922,
+      "trend_pct": -1.1,
+      "sales_12m": 45,
+      "rent_ref_m2": 30.1
+    },
+    {
+      "id": "7",
+      "name": "Mail",
+      "district": "75002",
+      "lat": 48.8673,
+      "lng": 2.34514,
+      "median_price_m2": 11588,
+      "prev_median_price_m2": 11588,
+      "trend_pct": 0,
+      "sales_12m": 83,
+      "rent_ref_m2": 30.1
+    },
+    {
+      "id": "8",
+      "name": "Bonne-Nouvelle",
+      "district": "75002",
+      "lat": 48.8671,
+      "lng": 2.34972,
+      "median_price_m2": 10667,
+      "prev_median_price_m2": 10734,
+      "trend_pct": -0.6,
+      "sales_12m": 197,
+      "rent_ref_m2": 30.1
+    },
+    {
+      "id": "9",
+      "name": "Arts-et-Metiers",
+      "district": "75003",
+      "lat": 48.86618,
+      "lng": 2.35769,
+      "median_price_m2": 11400,
+      "prev_median_price_m2": 11199,
+      "trend_pct": 1.8,
+      "sales_12m": 181,
+      "rent_ref_m2": 30.1
+    },
+    {
+      "id": "10",
+      "name": "Enfants-Rouges",
+      "district": "75003",
+      "lat": 48.8634,
+      "lng": 2.36273,
+      "median_price_m2": 12467,
+      "prev_median_price_m2": 11963,
+      "trend_pct": 4.2,
+      "sales_12m": 197,
+      "rent_ref_m2": 30.1
+    },
+    {
+      "id": "11",
+      "name": "Archives",
+      "district": "75003",
+      "lat": 48.85939,
+      "lng": 2.36385,
+      "median_price_m2": 12698,
+      "prev_median_price_m2": 12667,
+      "trend_pct": 0.2,
+      "sales_12m": 147,
+      "rent_ref_m2": 30.1
+    },
+    {
+      "id": "12",
+      "name": "Sainte-Avoie",
+      "district": "75003",
+      "lat": 48.86278,
+      "lng": 2.35474,
+      "median_price_m2": 12060,
+      "prev_median_price_m2": 11647,
+      "trend_pct": 3.5,
+      "sales_12m": 132,
+      "rent_ref_m2": 30.1
+    },
+    {
+      "id": "13",
+      "name": "Saint-Merri",
+      "district": "75004",
+      "lat": 48.85918,
+      "lng": 2.35295,
+      "median_price_m2": 12310,
+      "prev_median_price_m2": 11250,
+      "trend_pct": 9.4,
+      "sales_12m": 109,
+      "rent_ref_m2": 30.7
+    },
+    {
+      "id": "14",
+      "name": "Saint-Gervais",
+      "district": "75004",
+      "lat": 48.85643,
+      "lng": 2.35938,
+      "median_price_m2": 12842,
+      "prev_median_price_m2": 13122,
+      "trend_pct": -2.1,
+      "sales_12m": 167,
+      "rent_ref_m2": 30.1
+    },
+    {
+      "id": "15",
+      "name": "Arsenal",
+      "district": "75004",
+      "lat": 48.85271,
+      "lng": 2.36483,
+      "median_price_m2": 12658,
+      "prev_median_price_m2": 12900,
+      "trend_pct": -1.9,
+      "sales_12m": 163,
+      "rent_ref_m2": 30.7
+    },
+    {
+      "id": "16",
+      "name": "Notre-Dame",
+      "district": "75004",
+      "lat": 48.85224,
+      "lng": 2.35512,
+      "median_price_m2": 15583,
+      "prev_median_price_m2": 14056,
+      "trend_pct": 10.9,
+      "sales_12m": 70,
+      "rent_ref_m2": 30.7
+    },
+    {
+      "id": "17",
+      "name": "Saint-Victor",
+      "district": "75005",
+      "lat": 48.84713,
+      "lng": 2.35223,
+      "median_price_m2": 12000,
+      "prev_median_price_m2": 12335,
+      "trend_pct": -2.7,
+      "sales_12m": 182,
+      "rent_ref_m2": 30.1
+    },
+    {
+      "id": "18",
+      "name": "Jardin-des-Plantes",
+      "district": "75005",
+      "lat": 48.84054,
+      "lng": 2.35449,
+      "median_price_m2": 11304,
+      "prev_median_price_m2": 11143,
+      "trend_pct": 1.4,
+      "sales_12m": 257,
+      "rent_ref_m2": 27.1
+    },
+    {
+      "id": "19",
+      "name": "Val-de-Grace",
+      "district": "75005",
+      "lat": 48.8416,
+      "lng": 2.34447,
+      "median_price_m2": 12273,
+      "prev_median_price_m2": 12191,
+      "trend_pct": 0.7,
+      "sales_12m": 251,
+      "rent_ref_m2": 30.1
+    },
+    {
+      "id": "20",
+      "name": "Sorbonne",
+      "district": "75005",
+      "lat": 48.84957,
+      "lng": 2.34617,
+      "median_price_m2": 12808,
+      "prev_median_price_m2": 12259,
+      "trend_pct": 4.5,
+      "sales_12m": 122,
+      "rent_ref_m2": 30.1
+    },
+    {
+      "id": "21",
+      "name": "Monnaie",
+      "district": "75006",
+      "lat": 48.85425,
+      "lng": 2.33988,
+      "median_price_m2": 13407,
+      "prev_median_price_m2": 14592,
+      "trend_pct": -8.1,
+      "sales_12m": 149,
+      "rent_ref_m2": 30.7
+    },
+    {
+      "id": "22",
+      "name": "Odeon",
+      "district": "75006",
+      "lat": 48.84996,
+      "lng": 2.33629,
+      "median_price_m2": 15161,
+      "prev_median_price_m2": 15184,
+      "trend_pct": -0.1,
+      "sales_12m": 123,
+      "rent_ref_m2": 30.7
+    },
+    {
+      "id": "23",
+      "name": "Notre-Dame-des-Champs",
+      "district": "75006",
+      "lat": 48.8465,
+      "lng": 2.32704,
+      "median_price_m2": 14148,
+      "prev_median_price_m2": 14280,
+      "trend_pct": -0.9,
+      "sales_12m": 324,
+      "rent_ref_m2": 30.6
+    },
+    {
+      "id": "24",
+      "name": "Saint-Germain-des-Prés",
+      "district": "75006",
+      "lat": 48.85446,
+      "lng": 2.33328,
+      "median_price_m2": 15638,
+      "prev_median_price_m2": 16506,
+      "trend_pct": -5.3,
+      "sales_12m": 92,
+      "rent_ref_m2": 30.7
+    },
+    {
+      "id": "25",
+      "name": "Saint-Thomas-d'Aquin",
+      "district": "75007",
+      "lat": 48.85578,
+      "lng": 2.32646,
+      "median_price_m2": 17129,
+      "prev_median_price_m2": 17050,
+      "trend_pct": 0.5,
+      "sales_12m": 192,
+      "rent_ref_m2": 30.6
+    },
+    {
+      "id": "26",
+      "name": "Invalides",
+      "district": "75007",
+      "lat": 48.85717,
+      "lng": 2.31833,
+      "median_price_m2": 14419,
+      "prev_median_price_m2": 14957,
+      "trend_pct": -3.6,
+      "sales_12m": 78,
+      "rent_ref_m2": 30.6
+    },
+    {
+      "id": "27",
+      "name": "Ecole-Militaire",
+      "district": "75007",
+      "lat": 48.84961,
+      "lng": 2.31389,
+      "median_price_m2": 13642,
+      "prev_median_price_m2": 13311,
+      "trend_pct": 2.5,
+      "sales_12m": 175,
+      "rent_ref_m2": 30.6
+    },
+    {
+      "id": "28",
+      "name": "Gros-Caillou",
+      "district": "75007",
+      "lat": 48.85784,
+      "lng": 2.30427,
+      "median_price_m2": 13412,
+      "prev_median_price_m2": 13067,
+      "trend_pct": 2.6,
+      "sales_12m": 388,
+      "rent_ref_m2": 30.6
+    },
+    {
+      "id": "29",
+      "name": "Champs-Elysées",
+      "district": "75008",
+      "lat": 48.86778,
+      "lng": 2.30383,
+      "median_price_m2": 17198,
+      "prev_median_price_m2": 16259,
+      "trend_pct": 5.8,
+      "sales_12m": 70,
+      "rent_ref_m2": 30.7
+    },
+    {
+      "id": "30",
+      "name": "Faubourg-du-Roule",
+      "district": "75008",
+      "lat": 48.87455,
+      "lng": 2.30389,
+      "median_price_m2": 12640,
+      "prev_median_price_m2": 12313,
+      "trend_pct": 2.7,
+      "sales_12m": 151,
+      "rent_ref_m2": 30.7
+    },
+    {
+      "id": "31",
+      "name": "Madeleine",
+      "district": "75008",
+      "lat": 48.87211,
+      "lng": 2.32024,
+      "median_price_m2": 12167,
+      "prev_median_price_m2": 12400,
+      "trend_pct": -1.9,
+      "sales_12m": 108,
+      "rent_ref_m2": 30.7
+    },
+    {
+      "id": "32",
+      "name": "Europe",
+      "district": "75008",
+      "lat": 48.87891,
+      "lng": 2.31913,
+      "median_price_m2": 11526,
+      "prev_median_price_m2": 11378,
+      "trend_pct": 1.3,
+      "sales_12m": 246,
+      "rent_ref_m2": 28
+    },
+    {
+      "id": "33",
+      "name": "Saint-Georges",
+      "district": "75009",
+      "lat": 48.88048,
+      "lng": 2.33376,
+      "median_price_m2": 11011,
+      "prev_median_price_m2": 10769,
+      "trend_pct": 2.2,
+      "sales_12m": 342,
+      "rent_ref_m2": 27.7
+    },
+    {
+      "id": "34",
+      "name": "Chaussée-d'Antin",
+      "district": "75009",
+      "lat": 48.87376,
+      "lng": 2.33206,
+      "median_price_m2": 11522,
+      "prev_median_price_m2": 10895,
+      "trend_pct": 5.8,
+      "sales_12m": 59,
+      "rent_ref_m2": 30.7
+    },
+    {
+      "id": "35",
+      "name": "Faubourg-Montmartre",
+      "district": "75009",
+      "lat": 48.87432,
+      "lng": 2.34384,
+      "median_price_m2": 11000,
+      "prev_median_price_m2": 10726,
+      "trend_pct": 2.6,
+      "sales_12m": 169,
+      "rent_ref_m2": 27.7
+    },
+    {
+      "id": "36",
+      "name": "Rochechouart",
+      "district": "75009",
+      "lat": 48.87962,
+      "lng": 2.34459,
+      "median_price_m2": 10895,
+      "prev_median_price_m2": 10542,
+      "trend_pct": 3.3,
+      "sales_12m": 457,
+      "rent_ref_m2": 27.7
+    },
+    {
+      "id": "37",
+      "name": "Saint-Vincent-de-Paul",
+      "district": "75010",
+      "lat": 48.88091,
+      "lng": 2.35818,
+      "median_price_m2": 8594,
+      "prev_median_price_m2": 8682,
+      "trend_pct": -1,
+      "sales_12m": 317,
+      "rent_ref_m2": 27.7
+    },
+    {
+      "id": "38",
+      "name": "Porte-Saint-Denis",
+      "district": "75010",
+      "lat": 48.87331,
+      "lng": 2.35271,
+      "median_price_m2": 9697,
+      "prev_median_price_m2": 9767,
+      "trend_pct": -0.7,
+      "sales_12m": 228,
+      "rent_ref_m2": 27.7
+    },
+    {
+      "id": "39",
+      "name": "Porte-Saint-Martin",
+      "district": "75010",
+      "lat": 48.87138,
+      "lng": 2.36167,
+      "median_price_m2": 10000,
+      "prev_median_price_m2": 9670,
+      "trend_pct": 3.4,
+      "sales_12m": 394,
+      "rent_ref_m2": 26.3
+    },
+    {
+      "id": "40",
+      "name": "Hôpital-Saint-Louis",
+      "district": "75010",
+      "lat": 48.87535,
+      "lng": 2.36912,
+      "median_price_m2": 9380,
+      "prev_median_price_m2": 9242,
+      "trend_pct": 1.5,
+      "sales_12m": 386,
+      "rent_ref_m2": 26.3
+    },
+    {
+      "id": "41",
+      "name": "Folie-Méricourt",
+      "district": "75011",
+      "lat": 48.86747,
+      "lng": 2.37346,
+      "median_price_m2": 9868,
+      "prev_median_price_m2": 9805,
+      "trend_pct": 0.6,
+      "sales_12m": 501,
+      "rent_ref_m2": 26.3
+    },
+    {
+      "id": "42",
+      "name": "Saint-Ambroise",
+      "district": "75011",
+      "lat": 48.86255,
+      "lng": 2.37628,
+      "median_price_m2": 10337,
+      "prev_median_price_m2": 10204,
+      "trend_pct": 1.3,
+      "sales_12m": 521,
+      "rent_ref_m2": 27.1
+    },
+    {
+      "id": "43",
+      "name": "Roquette",
+      "district": "75011",
+      "lat": 48.85698,
+      "lng": 2.37998,
+      "median_price_m2": 10106,
+      "prev_median_price_m2": 9975,
+      "trend_pct": 1.3,
+      "sales_12m": 658,
+      "rent_ref_m2": 26.3
+    },
+    {
+      "id": "44",
+      "name": "Sainte-Marguerite",
+      "district": "75011",
+      "lat": 48.85211,
+      "lng": 2.38834,
+      "median_price_m2": 9758,
+      "prev_median_price_m2": 9444,
+      "trend_pct": 3.3,
+      "sales_12m": 568,
+      "rent_ref_m2": 27.1
+    },
+    {
+      "id": "45",
+      "name": "Bel-Air",
+      "district": "75012",
+      "lat": 48.84213,
+      "lng": 2.4051,
+      "median_price_m2": 8755,
+      "prev_median_price_m2": 8642,
+      "trend_pct": 1.3,
+      "sales_12m": 364,
+      "rent_ref_m2": 24.6
+    },
+    {
+      "id": "46",
+      "name": "Picpus",
+      "district": "75012",
+      "lat": 48.84093,
+      "lng": 2.39471,
+      "median_price_m2": 9045,
+      "prev_median_price_m2": 8846,
+      "trend_pct": 2.2,
+      "sales_12m": 740,
+      "rent_ref_m2": 25.5
+    },
+    {
+      "id": "47",
+      "name": "Bercy",
+      "district": "75012",
+      "lat": 48.83937,
+      "lng": 2.38682,
+      "median_price_m2": 8904,
+      "prev_median_price_m2": 8216,
+      "trend_pct": 8.4,
+      "sales_12m": 100,
+      "rent_ref_m2": 24.6
+    },
+    {
+      "id": "48",
+      "name": "Quinze-Vingts",
+      "district": "75012",
+      "lat": 48.84802,
+      "lng": 2.37637,
+      "median_price_m2": 10000,
+      "prev_median_price_m2": 9765,
+      "trend_pct": 2.4,
+      "sales_12m": 319,
+      "rent_ref_m2": 26.3
+    },
+    {
+      "id": "49",
+      "name": "Salpêtrière",
+      "district": "75013",
+      "lat": 48.83581,
+      "lng": 2.35817,
+      "median_price_m2": 9135,
+      "prev_median_price_m2": 9259,
+      "trend_pct": -1.3,
+      "sales_12m": 167,
+      "rent_ref_m2": 27.1
+    },
+    {
+      "id": "50",
+      "name": "Gare",
+      "district": "75013",
+      "lat": 48.82799,
+      "lng": 2.36918,
+      "median_price_m2": 8220,
+      "prev_median_price_m2": 8029,
+      "trend_pct": 2.4,
+      "sales_12m": 382,
+      "rent_ref_m2": 24.1
+    },
+    {
+      "id": "51",
+      "name": "Maison-Blanche",
+      "district": "75013",
+      "lat": 48.82571,
+      "lng": 2.3512,
+      "median_price_m2": 8487,
+      "prev_median_price_m2": 8527,
+      "trend_pct": -0.5,
+      "sales_12m": 537,
+      "rent_ref_m2": 27
+    },
+    {
+      "id": "52",
+      "name": "Croulebarbe",
+      "district": "75013",
+      "lat": 48.83406,
+      "lng": 2.34714,
+      "median_price_m2": 9807,
+      "prev_median_price_m2": 9487,
+      "trend_pct": 3.4,
+      "sales_12m": 284,
+      "rent_ref_m2": 27.7
+    },
+    {
+      "id": "53",
+      "name": "Montparnasse",
+      "district": "75014",
+      "lat": 48.83848,
+      "lng": 2.32892,
+      "median_price_m2": 10967,
+      "prev_median_price_m2": 10459,
+      "trend_pct": 4.9,
+      "sales_12m": 199,
+      "rent_ref_m2": 27.7
+    },
+    {
+      "id": "54",
+      "name": "Parc-de-Montsouris",
+      "district": "75014",
+      "lat": 48.82688,
+      "lng": 2.33726,
+      "median_price_m2": 9194,
+      "prev_median_price_m2": 9073,
+      "trend_pct": 1.3,
+      "sales_12m": 183,
+      "rent_ref_m2": 26.3
+    },
+    {
+      "id": "55",
+      "name": "Petit-Montrouge",
+      "district": "75014",
+      "lat": 48.82812,
+      "lng": 2.32764,
+      "median_price_m2": 9400,
+      "prev_median_price_m2": 9360,
+      "trend_pct": 0.4,
+      "sales_12m": 525,
+      "rent_ref_m2": 27.1
+    },
+    {
+      "id": "56",
+      "name": "Plaisance",
+      "district": "75014",
+      "lat": 48.83184,
+      "lng": 2.31855,
+      "median_price_m2": 9310,
+      "prev_median_price_m2": 9048,
+      "trend_pct": 2.9,
+      "sales_12m": 525,
+      "rent_ref_m2": 27
+    },
+    {
+      "id": "57",
+      "name": "Saint-Lambert",
+      "district": "75015",
+      "lat": 48.83612,
+      "lng": 2.2981,
+      "median_price_m2": 9140,
+      "prev_median_price_m2": 9107,
+      "trend_pct": 0.4,
+      "sales_12m": 1077,
+      "rent_ref_m2": 24.9
+    },
+    {
+      "id": "58",
+      "name": "Necker",
+      "district": "75015",
+      "lat": 48.84328,
+      "lng": 2.30841,
+      "median_price_m2": 10078,
+      "prev_median_price_m2": 10000,
+      "trend_pct": 0.8,
+      "sales_12m": 563,
+      "rent_ref_m2": 28
+    },
+    {
+      "id": "59",
+      "name": "Grenelle",
+      "district": "75015",
+      "lat": 48.8491,
+      "lng": 2.29269,
+      "median_price_m2": 10115,
+      "prev_median_price_m2": 10054,
+      "trend_pct": 0.6,
+      "sales_12m": 722,
+      "rent_ref_m2": 26.2
+    },
+    {
+      "id": "60",
+      "name": "Javel 15Art",
+      "district": "75015",
+      "lat": 48.84206,
+      "lng": 2.2844,
+      "median_price_m2": 9196,
+      "prev_median_price_m2": 9164,
+      "trend_pct": 0.4,
+      "sales_12m": 561,
+      "rent_ref_m2": 26.2
+    },
+    {
+      "id": "61",
+      "name": "Auteuil",
+      "district": "75016",
+      "lat": 48.84607,
+      "lng": 2.26518,
+      "median_price_m2": 9857,
+      "prev_median_price_m2": 9857,
+      "trend_pct": 0,
+      "sales_12m": 919,
+      "rent_ref_m2": 26.2
+    },
+    {
+      "id": "62",
+      "name": "Muette",
+      "district": "75016",
+      "lat": 48.85845,
+      "lng": 2.27757,
+      "median_price_m2": 11780,
+      "prev_median_price_m2": 11322,
+      "trend_pct": 4,
+      "sales_12m": 610,
+      "rent_ref_m2": 28
+    },
+    {
+      "id": "63",
+      "name": "Porte-Dauphine",
+      "district": "75016",
+      "lat": 48.86827,
+      "lng": 2.27966,
+      "median_price_m2": 12048,
+      "prev_median_price_m2": 11579,
+      "trend_pct": 4.1,
+      "sales_12m": 365,
+      "rent_ref_m2": 28
+    },
+    {
+      "id": "64",
+      "name": "Chaillot",
+      "district": "75016",
+      "lat": 48.86945,
+      "lng": 2.29068,
+      "median_price_m2": 12205,
+      "prev_median_price_m2": 12262,
+      "trend_pct": -0.5,
+      "sales_12m": 323,
+      "rent_ref_m2": 28
+    },
+    {
+      "id": "65",
+      "name": "Ternes",
+      "district": "75017",
+      "lat": 48.88056,
+      "lng": 2.29169,
+      "median_price_m2": 10444,
+      "prev_median_price_m2": 10669,
+      "trend_pct": -2.1,
+      "sales_12m": 585,
+      "rent_ref_m2": 28
+    },
+    {
+      "id": "66",
+      "name": "Plaine de Monceaux",
+      "district": "75017",
+      "lat": 48.88392,
+      "lng": 2.30358,
+      "median_price_m2": 11000,
+      "prev_median_price_m2": 11072,
+      "trend_pct": -0.6,
+      "sales_12m": 466,
+      "rent_ref_m2": 28
+    },
+    {
+      "id": "67",
+      "name": "Batignolles",
+      "district": "75017",
+      "lat": 48.88592,
+      "lng": 2.31749,
+      "median_price_m2": 10512,
+      "prev_median_price_m2": 10440,
+      "trend_pct": 0.7,
+      "sales_12m": 638,
+      "rent_ref_m2": 27.1
+    },
+    {
+      "id": "68",
+      "name": "Epinettes",
+      "district": "75017",
+      "lat": 48.89232,
+      "lng": 2.32239,
+      "median_price_m2": 9212,
+      "prev_median_price_m2": 9024,
+      "trend_pct": 2.1,
+      "sales_12m": 628,
+      "rent_ref_m2": 26.3
+    },
+    {
+      "id": "69",
+      "name": "Grandes-Carrières",
+      "district": "75018",
+      "lat": 48.89044,
+      "lng": 2.3339,
+      "median_price_m2": 9440,
+      "prev_median_price_m2": 9315,
+      "trend_pct": 1.3,
+      "sales_12m": 1037,
+      "rent_ref_m2": 25.5
+    },
+    {
+      "id": "70",
+      "name": "Clignancourt",
+      "district": "75018",
+      "lat": 48.89013,
+      "lng": 2.34535,
+      "median_price_m2": 9286,
+      "prev_median_price_m2": 8966,
+      "trend_pct": 3.6,
+      "sales_12m": 1228,
+      "rent_ref_m2": 25.5
+    },
+    {
+      "id": "71",
+      "name": "Goutte-d'Or",
+      "district": "75018",
+      "lat": 48.88836,
+      "lng": 2.35519,
+      "median_price_m2": 7406,
+      "prev_median_price_m2": 7308,
+      "trend_pct": 1.3,
+      "sales_12m": 318,
+      "rent_ref_m2": 26.3
+    },
+    {
+      "id": "72",
+      "name": "La Chapelle",
+      "district": "75018",
+      "lat": 48.89072,
+      "lng": 2.36186,
+      "median_price_m2": 7406,
+      "prev_median_price_m2": 7292,
+      "trend_pct": 1.6,
+      "sales_12m": 211,
+      "rent_ref_m2": 24.1
+    },
+    {
+      "id": "73",
+      "name": "Villette",
+      "district": "75019",
+      "lat": 48.88757,
+      "lng": 2.37504,
+      "median_price_m2": 7692,
+      "prev_median_price_m2": 7500,
+      "trend_pct": 2.6,
+      "sales_12m": 426,
+      "rent_ref_m2": 24.1
+    },
+    {
+      "id": "74",
+      "name": "Pont-de-Flandre",
+      "district": "75019",
+      "lat": 48.89216,
+      "lng": 2.38193,
+      "median_price_m2": 7650,
+      "prev_median_price_m2": 7105,
+      "trend_pct": 7.7,
+      "sales_12m": 141,
+      "rent_ref_m2": 24.1
+    },
+    {
+      "id": "75",
+      "name": "Amérique",
+      "district": "75019",
+      "lat": 48.88103,
+      "lng": 2.39258,
+      "median_price_m2": 7846,
+      "prev_median_price_m2": 7667,
+      "trend_pct": 2.3,
+      "sales_12m": 402,
+      "rent_ref_m2": 24.1
+    },
+    {
+      "id": "76",
+      "name": "Combat",
+      "district": "75019",
+      "lat": 48.87809,
+      "lng": 2.37985,
+      "median_price_m2": 8889,
+      "prev_median_price_m2": 8678,
+      "trend_pct": 2.4,
+      "sales_12m": 457,
+      "rent_ref_m2": 24.6
+    },
+    {
+      "id": "77",
+      "name": "Belleville",
+      "district": "75020",
+      "lat": 48.87168,
+      "lng": 2.38834,
+      "median_price_m2": 8652,
+      "prev_median_price_m2": 8433,
+      "trend_pct": 2.6,
+      "sales_12m": 396,
+      "rent_ref_m2": 26.3
+    },
+    {
+      "id": "78",
+      "name": "Saint-Fargeau",
+      "district": "75020",
+      "lat": 48.87068,
+      "lng": 2.40309,
+      "median_price_m2": 7925,
+      "prev_median_price_m2": 7892,
+      "trend_pct": 0.4,
+      "sales_12m": 461,
+      "rent_ref_m2": 24.1
+    },
+    {
+      "id": "79",
+      "name": "Père-Lachaise",
+      "district": "75020",
+      "lat": 48.86486,
+      "lng": 2.39646,
+      "median_price_m2": 8750,
+      "prev_median_price_m2": 8660,
+      "trend_pct": 1,
+      "sales_12m": 504,
+      "rent_ref_m2": 24.6
+    },
+    {
+      "id": "80",
+      "name": "Charonne",
+      "district": "75020",
+      "lat": 48.85401,
+      "lng": 2.4038,
+      "median_price_m2": 8372,
+      "prev_median_price_m2": 8079,
+      "trend_pct": 3.6,
+      "sales_12m": 506,
+      "rent_ref_m2": 24.1
+    }
+  ]
+}
