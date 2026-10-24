@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23T05:18:27.113Z",
+  "generated_at": "2026-10-24T05:17:14.529Z",
   "dvf": {
     "vintages": [
       "2021",
@@ -170,8 +170,8 @@
       "id": "idfm",
       "label": "IDFM — gares et stations",
       "url": "https://data.iledefrance-mobilites.fr/explore/dataset/emplacement-des-gares-idf/",
-      "status": "stale",
-      "records": 0
+      "status": "ok",
+      "records": 422
     },
     {
       "id": "schools",
@@ -199,14 +199,14 @@
       "label": "Les arbres (Ville de Paris)",
       "url": "https://opendata.paris.fr/explore/dataset/les-arbres/",
       "status": "ok",
-      "records": 220181
+      "records": 220112
     },
     {
       "id": "osm",
       "label": "OpenStreetMap — commerces, santé, culture",
       "url": "https://www.openstreetmap.org/copyright",
       "status": "ok",
-      "records": 30829
+      "records": 30830
     },
     {
       "id": "rent",
