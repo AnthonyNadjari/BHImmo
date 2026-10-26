@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T05:17:17.648Z",
+  "generated_at": "2026-10-26T05:21:28.622Z",
   "dvf": {
     "vintages": [
       "2021",
@@ -198,15 +198,15 @@
       "id": "trees",
       "label": "Les arbres (Ville de Paris)",
       "url": "https://opendata.paris.fr/explore/dataset/les-arbres/",
-      "status": "ok",
-      "records": 220112
+      "status": "stale",
+      "records": 0
     },
     {
       "id": "osm",
       "label": "OpenStreetMap — commerces, santé, culture",
       "url": "https://www.openstreetmap.org/copyright",
       "status": "ok",
-      "records": 30827
+      "records": 30836
     },
     {
       "id": "rent",
